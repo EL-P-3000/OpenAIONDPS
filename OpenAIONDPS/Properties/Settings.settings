@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="InstallDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Program Files (x86)\The Tower of AION\</Value>
+      <Value Profile="(Default)">C:\Program Files (x86)\NCSoft\The Tower of AION\</Value>
     </Setting>
     <Setting Name="ChatLogPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Program Files (x86)\The Tower of AION\Chat.log</Value>
+      <Value Profile="(Default)">C:\Program Files (x86)\NCSoft\The Tower of AION\Chat.log</Value>
     </Setting>
     <Setting Name="FavoriteMemberName01" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

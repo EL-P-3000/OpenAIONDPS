@@ -25,7 +25,7 @@ namespace OpenAIONDPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\The Tower of AION\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\NCSoft\\The Tower of AION\\")]
         public string InstallDirectory {
             get {
                 return ((string)(this["InstallDirectory"]));
@@ -37,7 +37,7 @@ namespace OpenAIONDPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\The Tower of AION\\Chat.log")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\NCSoft\\The Tower of AION\\Chat.log")]
         public string ChatLogPath {
             get {
                 return ((string)(this["ChatLogPath"]));
