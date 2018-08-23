@@ -481,7 +481,6 @@
             this.Controls.Add(this.FileButton);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
-            this.MinimumSize = new System.Drawing.Size(790, 735);
             this.Name = "MainForm";
             this.Text = "Open AION DPS 1.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
