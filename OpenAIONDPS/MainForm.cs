@@ -347,7 +347,7 @@ namespace OpenAIONDPS
         /// </summary>
         public void Calculate()
         {
-            Delegate UpdateDataDelegate = new Action<ActionData>(UpdateData);
+            Delegate UpdateDataDelegate = new Action<ActionData>(UpdateDamageData);
             Delegate CalcFromLogEndDelegate = new Action(CalcFromLogEnd);
             string LogFilePath = Properties.Settings.Default.ChatLogPath;
             string LogText = "";
@@ -380,6 +380,9 @@ namespace OpenAIONDPS
 
             // ディレイダメージスキルのダメージのパターン
             LinkedList<Regex> ChatLogSkillDelayDamageDamageRegexList = this.GetChatLogSkillDelayDamageDamageRegexList();
+
+            // エフェクトダメージスキルのダメージのパターン
+            LinkedList<Regex> ChatLogSkillEffectDamageDamageRegexList = this.GetChatLogSkillEffectDamageDamageRegexList();
 
             // ログファイルから計算の場合はログファイルを設定
             if (this.IsCalcLogFile)
@@ -573,6 +576,30 @@ namespace OpenAIONDPS
 
                                 this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
+                                continue;
+                            }
+
+
+                            //
+                            // エフェクトダメージスキルのダメージ
+                            // "^(?<TargetName>.+)は(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)のダメージを受けました。"
+                            //
+                            bool ChatLogSkillEffectDamageDamageMatchFlag = false;
+                            foreach (Regex ChatLogSkillEffectDamageDamageRegex in ChatLogSkillEffectDamageDamageRegexList)
+                            {
+                                Match ChatLogSkillEffectDamageDamageMatch = ChatLogSkillEffectDamageDamageRegex.Match(LogTextWithoutTime);
+                                if (ChatLogSkillEffectDamageDamageMatch.Success)
+                                {
+                                    ChatLogSkillEffectDamageDamageMatchFlag = true;
+                                    ChatLogActionData.SkillName = ChatLogSkillEffectDamageDamageMatch.Groups["SkillName"].Value;
+                                    ChatLogActionData.TargetName = ChatLogSkillEffectDamageDamageMatch.Groups["TargetName"].Value;
+                                    ChatLogActionData.Damage = long.Parse(ChatLogSkillEffectDamageDamageMatch.Groups["Damage"].Value.Replace(",", ""));
+
+                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
+                                }
+                            }
+                            if (ChatLogSkillEffectDamageDamageMatchFlag)
+                            {
                                 continue;
                             }
 
@@ -1136,12 +1163,29 @@ namespace OpenAIONDPS
             }
         }
 
+        /// <summary>
+        /// エフェクトダメージスキルのダメージのパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetChatLogSkillEffectDamageDamageRegexList()
+        {
+            LinkedList<Regex> ChatLogSkillEffectDamageDamageRegexList = new LinkedList<Regex>();
+
+            foreach (AION.Skill _Skill in this.SkillList.Values)
+            {
+                if (_Skill.SkillType.Equals(AION.SkillType.EffectDamage))
+                {
+                    ChatLogSkillEffectDamageDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)は(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)のダメージを受けました。", RegexOptions.Compiled));
+                }
+            }
+
+            return ChatLogSkillEffectDamageDamageRegexList;
+        }
 
 
 
 
-
-        public void UpdateData(ActionData ChatLogActionData)
+        public void UpdateDamageData(ActionData ChatLogActionData)
         {
             bool UpdateTotalDamageFlag = false;
 
@@ -1153,18 +1197,17 @@ namespace OpenAIONDPS
                 }
             }
 
-            if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) &&
-                (this.CheckSkillSummon(ChatLogActionData.SourceName) ||  this.CheckSkillEffectDamage(ChatLogActionData.SourceName))
-                )
+            // エフェクトダメージスキルのダメージ
+            if (this.CheckSkillEffectDamage(ChatLogActionData.SkillName))
             {
-                if (this.EnableJobRadioButton.Checked &&
-                    this.JobTypeNumberOfMemberList[this.SkillList[ChatLogActionData.SourceName].Job] == 1 &&
-                    this.JobTypeNumberOfMemberList[AION.JobType.None] == 0
-                    )
+                AION.JobType Job = this.SkillList[ChatLogActionData.SkillName].Job;
+
+                if (this.EnableJobRadioButton.Checked && this.JobTypeNumberOfMemberList[Job] == 1 && this.JobTypeNumberOfMemberList[AION.JobType.None] == 0)
                 {
+                    // メンバーのダメージを更新
                     foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
                     {
-                        if (_MemberUnit.GetJob() == this.SkillList[ChatLogActionData.SourceName].Job)
+                        if (_MemberUnit.GetJob() == Job)
                         {
                             this.UpdateTotalDamage(ChatLogActionData.Damage);
                             _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
@@ -1175,11 +1218,40 @@ namespace OpenAIONDPS
                 }
                 else
                 {
+                    // スキル一覧のダメージを更新
+                    this.UpdateTotalDamage(ChatLogActionData.Damage);
+                    this.SkillUnitList[ChatLogActionData.SkillName].UpdateDamage(ChatLogActionData.Damage);
+                    UpdateTotalDamageFlag = true;
+                }
+            }
+            // サモンのダメージ
+            else if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) && this.CheckSkillSummon(ChatLogActionData.SourceName))
+            {
+                AION.JobType Job = this.SkillList[ChatLogActionData.SkillName].Job;
+
+                if (this.EnableJobRadioButton.Checked && this.JobTypeNumberOfMemberList[Job] == 1 && this.JobTypeNumberOfMemberList[AION.JobType.None] == 0)
+                {
+                    // メンバーのダメージを更新
+                    foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
+                    {
+                        if (_MemberUnit.GetJob() == Job)
+                        {
+                            this.UpdateTotalDamage(ChatLogActionData.Damage);
+                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                            UpdateTotalDamageFlag = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    // スキル一覧のダメージを更新
                     this.UpdateTotalDamage(ChatLogActionData.Damage);
                     this.SkillUnitList[ChatLogActionData.SourceName].UpdateDamage(ChatLogActionData.Damage);
                     UpdateTotalDamageFlag = true;
                 }
             }
+            // その他のダメージ
             else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
             {
                 this.UpdateTotalDamage(ChatLogActionData.Damage);
