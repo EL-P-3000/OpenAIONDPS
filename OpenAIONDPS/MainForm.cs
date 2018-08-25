@@ -280,8 +280,18 @@ namespace OpenAIONDPS
         /// </summary>
         private static readonly Regex ChatLogSkillDamageRegex = new Regex(@"^(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
 
-        /// スキルダメージのパターン(他人)は計測開始時に取得
+        // スキルダメージのパターン(他人)は計測開始時に取得
 
+        /// <summary>
+        /// ドットスキルの成功のパターン(自分)
+        /// </summary>
+        private static readonly Regex ChatLogSkillDotRegex = new Regex("^(?<SkillName>.+)の効果により、(?<TargetName>.+)(にダメージを与え続けました。|が出血状態になりました。)", RegexOptions.Compiled);
+
+        /// <summary>
+        /// ドットスキルの成功のパターン(他人)
+        /// </summary>
+        private static readonly Regex ChatLogCharacterSkillDotRegex = new Regex("^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)(はダメージを受け続けました。|は出血状態になりました。)", RegexOptions.Compiled);
+            
         // ドットスキルのダメージのパターンは計測開始時に取得
 
         /* 未実装 */
@@ -371,12 +381,6 @@ namespace OpenAIONDPS
             // ディレイダメージスキルのダメージのパターン
             LinkedList<Regex> ChatLogSkillDelayDamageDamageRegexList = this.GetChatLogSkillDelayDamageDamageRegexList();
 
-            // 次のラインがデバフかどうかのフラグ
-            bool ChatLogNextDebuffFlag = false;
-
-            // 前のChatLogActionData(ChatLogNextDebuffFlag=true用)
-            ActionData ChatLogActionDataPrebious = null;
-
             // ログファイルから計算の場合はログファイルを設定
             if (this.IsCalcLogFile)
             {
@@ -437,53 +441,50 @@ namespace OpenAIONDPS
 
 
                             //
-                            // デバフ
-                            // "^" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "にダメージを与え続けました。"
-                            // "^" + ChatLogActionDataPrebious.SourceName + "が使用した" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "はダメージを受け続けました。"
+                            // ドットスキルの成功
+                            // "^(?<SkillName>.+)の効果により、(?<TargetName>.+)(にダメージを与え続けました。|が出血状態になりました。)
+                            // "^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)(はダメージを受け続けました。|は出血状態になりました。)
                             //
-                            if (ChatLogNextDebuffFlag)
+                            Match ChatLogCharacterSkillDotMatch = ChatLogCharacterSkillDotRegex.Match(LogTextWithoutTime);
+                            Match ChatLogSkillDotMatch = ChatLogSkillDotRegex.Match(LogTextWithoutTime);
+                            if (ChatLogCharacterSkillDotMatch.Success || ChatLogSkillDotMatch.Success)
                             {
-                                ChatLogNextDebuffFlag = false;
-
-                                Regex ChatLogDebuffRegex = null;
-                                if (ChatLogActionDataPrebious.SourceName.Equals(this.OwnName))
+                                Match _Match = null;
+                                if (ChatLogCharacterSkillDotMatch.Success)
                                 {
-                                    ChatLogDebuffRegex = new Regex("^" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "(にダメージを与え続けました。|が出血状態になりました。)");
+                                    _Match = ChatLogCharacterSkillDotMatch;
+                                    ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
                                 }
                                 else
                                 {
-                                    ChatLogDebuffRegex = new Regex("^" + ChatLogActionDataPrebious.SourceName + "が使用した" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "(はダメージを受け続けました。|は出血状態になりました。)");
+                                    _Match = ChatLogSkillDotMatch;
+                                    ChatLogActionData.SourceName = this.OwnName;
                                 }
 
-                                // デバフ成功のチェック
-                                Match ChatLogDebuffMatch = ChatLogDebuffRegex.Match(LogTextWithoutTime);
-                                if (ChatLogDebuffMatch.Success)
+                                ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
+                                ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
+
+                                // ターゲット存在のチェック
+                                if (SkillDebuffTargetList.ContainsKey(ChatLogActionData.TargetName))
                                 {
-                                    // ターゲット存在のチェック
-                                    if (SkillDebuffTargetList.ContainsKey(ChatLogActionDataPrebious.TargetName))
+                                    // デバフ存在のチェック
+                                    Dictionary<string, ActionData> DebuffSkillList = SkillDebuffTargetList[ChatLogActionData.TargetName];
+                                    if (DebuffSkillList.ContainsKey(ChatLogActionData.SkillName))
                                     {
-                                        // デバフ存在のチェック
-                                        Dictionary<string, ActionData> DebuffSkillList = SkillDebuffTargetList[ChatLogActionDataPrebious.TargetName];
-                                        if (DebuffSkillList.ContainsKey(ChatLogActionDataPrebious.SkillName))
-                                        {
-                                            DebuffSkillList.Remove(ChatLogActionDataPrebious.SkillName);
-                                        }
-
-                                        DebuffSkillList.Add(ChatLogActionDataPrebious.SkillName, ChatLogActionDataPrebious);
-                                    }
-                                    else
-                                    {
-                                        Dictionary<string, ActionData> DebuffSkillList = new Dictionary<string, ActionData>();
-                                        DebuffSkillList.Add(ChatLogActionDataPrebious.SkillName, ChatLogActionDataPrebious);
-                                        SkillDebuffTargetList.Add(ChatLogActionDataPrebious.TargetName, DebuffSkillList);
+                                        DebuffSkillList.Remove(ChatLogActionData.SkillName);
                                     }
 
-                                    ChatLogActionDataPrebious = null;
-
-                                    continue;
+                                    DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
                                 }
+                                else
+                                {
+                                    Dictionary<string, ActionData> DebuffSkillList = new Dictionary<string, ActionData>();
+                                    DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
+                                    SkillDebuffTargetList.Add(ChatLogActionData.TargetName, DebuffSkillList);
+                                }
+
+                                continue;
                             }
-                            ChatLogNextDebuffFlag = false;
 
 
                             // 
@@ -633,7 +634,8 @@ namespace OpenAIONDPS
 
                             //
                             // ディレイダメージスキル(他人)
-                            // "^(?<SourceName>.+)が使用した(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。"
+                            // "^(?<SourceName>.+)は(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果を与えました。"
+                            // "^(?<SourceName>.+)が使用した(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。"
                             //
                             bool ChatLogCharacterSkillDelayDamageMatchFlag = false;
                             foreach (Regex ChatLogCharacterSkillDelayDamageRegex in ChatLogCharacterSkillDelayDamageRegexList)
@@ -674,7 +676,8 @@ namespace OpenAIONDPS
 
                             //
                             // ディレイダメージスキル(自分)
-                            // "(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。"
+                            // "^(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")を使い、(?<TargetName>.+)が(?<SkillName2>.+)効果を受けました。"
+                            // "^(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。"
                             //
                             bool ChatLogSkillDelayDamageMatchFlag = false;
                             foreach (Regex ChatLogSkillDelayDamageRegex in ChatLogSkillDelayDamageRegexList)
@@ -789,17 +792,7 @@ namespace OpenAIONDPS
                                     ChatLogActionData.TargetName = ChatLogCharacterSkillDamageMatch.Groups["TargetName"].Value;
                                     ChatLogActionData.Damage = long.Parse(ChatLogCharacterSkillDamageMatch.Groups["Damage"].Value.Replace(",", ""));
 
-                                    if (this.CheckSkillDot(ChatLogActionData.SkillName))
-                                    {
-                                        ChatLogNextDebuffFlag = true;
-                                        ChatLogActionDataPrebious = ChatLogActionData;
-
-                                        this.Invoke(UpdateDataDelegate, ChatLogActionData);
-                                    }
-                                    else
-                                    {
-                                        this.Invoke(UpdateDataDelegate, ChatLogActionData);
-                                    }
+                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
                                     break;
                                 }
@@ -822,17 +815,7 @@ namespace OpenAIONDPS
                                 ChatLogActionData.TargetName = ChatLogSkillDamageMatch.Groups["TargetName"].Value;
                                 ChatLogActionData.Damage = long.Parse(ChatLogSkillDamageMatch.Groups["Damage"].Value.Replace(",", ""));
 
-                                if (this.CheckSkillDot(ChatLogActionData.SkillName))
-                                {
-                                    ChatLogNextDebuffFlag = true;
-                                    ChatLogActionDataPrebious = ChatLogActionData;
-
-                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
-                                }
-                                else
-                                {
-                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
-                                }
+                                this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
                                 continue;
                             }
@@ -918,7 +901,7 @@ namespace OpenAIONDPS
         }
 
         // [味方]が[ターゲット]に[ダメージ]のダメージを与えました。
-        public LinkedList<Regex> GetChatLogCharacterSimpleDamageRegexList()
+        private LinkedList<Regex> GetChatLogCharacterSimpleDamageRegexList()
         {
             LinkedList<Regex> ChatLogCharacterSimpleDamageRegexList = new LinkedList<Regex>();
 
@@ -937,7 +920,7 @@ namespace OpenAIONDPS
 
 
         // [味方]が使用した[スキル]の効果により、[ターゲット]に[ダメージ]のダメージを与えました。
-        public LinkedList<Regex> GetChatLogCharacterSkillDamageRegexList()
+        private LinkedList<Regex> GetChatLogCharacterSkillDamageRegexList()
         {
             LinkedList<Regex> ChatLogCharacterSkillDamageRegexList = new LinkedList<Regex>();
 
@@ -959,15 +942,15 @@ namespace OpenAIONDPS
         /// ドットスキルのダメージのパターンリストの取得
         /// </summary>
         /// <returns></returns>
-        public LinkedList<Regex> GetChatLogSkillDotDamageRegexList()
+        private LinkedList<Regex> GetChatLogSkillDotDamageRegexList()
         {
             LinkedList<Regex> ChatLogSkillDotDamageRegexList = new LinkedList<Regex>();
 
-            foreach (KeyValuePair<string, AION.Skill> _Skill in this.SkillList)
+            foreach (AION.Skill _Skill in this.SkillList.Values)
             {
-                if (_Skill.Value.SkillType.Equals(AION.SkillType.Dot))
+                if (_Skill.SkillType.Equals(AION.SkillType.Dot))
                 {
-                    ChatLogSkillDotDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)(は|が)(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)の(出血|)ダメージを受けました。", RegexOptions.Compiled));
+                    ChatLogSkillDotDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)(は|が)(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)の(出血|)ダメージを受けました。", RegexOptions.Compiled));
                 }
             }
 
@@ -978,7 +961,7 @@ namespace OpenAIONDPS
         /// サモンスキル(攻撃対象固定)のダメージのパターンリストの取得
         /// </summary>
         /// <returns></returns>
-        public LinkedList<Regex> GetChatLogSkillSummon2DamageRegexList()
+        private LinkedList<Regex> GetChatLogSkillSummon2DamageRegexList()
         {
             LinkedList<Regex> ChatLogSkillSummon2DamageRegexList = new LinkedList<Regex>();
 
@@ -997,15 +980,22 @@ namespace OpenAIONDPS
         /// ディレイダメージスキルのパターン(自分)のパターンリストの取得
         /// </summary>
         /// <returns></returns>
-        public LinkedList<Regex> GetChatLogSkillDelayDamageRegexList()
+        private LinkedList<Regex> GetChatLogSkillDelayDamageRegexList()
         {
             LinkedList<Regex> ChatLogSkillDelayDamageRegexList = new LinkedList<Regex>();
 
-            foreach (KeyValuePair<string, AION.Skill> _Skill in this.SkillList)
+            foreach (AION.Skill _Skill in this.SkillList.Values)
             {
-                if (_Skill.Value.SkillType.Equals(AION.SkillType.DelayDamage))
+                if (_Skill.SkillType.Equals(AION.SkillType.DelayDamage))
                 {
-                    ChatLogSkillDelayDamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled));
+                    if (_Skill.Job == AION.JobType.Melody)
+                    {
+                        ChatLogSkillDelayDamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")を使い、(?<TargetName>.+)が(?<SkillName2>.+)効果を受けました。", RegexOptions.Compiled));
+                    }
+                    else
+                    {
+                        ChatLogSkillDelayDamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled));
+                    }
                 }
 
             }
@@ -1017,15 +1007,22 @@ namespace OpenAIONDPS
         /// ディレイダメージスキルのパターン(他人)のパターンリストの取得
         /// </summary>
         /// <returns></returns>
-        public LinkedList<Regex> GetChatLogCharacterSkillDelayDamageRegexList()
+        private LinkedList<Regex> GetChatLogCharacterSkillDelayDamageRegexList()
         {
             LinkedList<Regex> ChatLogCharacterSkillDelayDamageRegexList = new LinkedList<Regex>();
 
-            foreach (KeyValuePair<string, AION.Skill> _Skill in this.SkillList)
+            foreach (AION.Skill _Skill in this.SkillList.Values)
             {
-                if (_Skill.Value.SkillType.Equals(AION.SkillType.DelayDamage))
+                if (_Skill.SkillType.Equals(AION.SkillType.DelayDamage))
                 {
-                    ChatLogCharacterSkillDelayDamageRegexList.AddLast(new Regex("^(?<SourceName>.+)が使用した(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled));
+                    if (_Skill.Job == AION.JobType.Melody)
+                    {
+                        ChatLogCharacterSkillDelayDamageRegexList.AddLast(new Regex("^(?<SourceName>.+)は(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果を与えました。", RegexOptions.Compiled));
+                    }
+                    else
+                    {
+                        ChatLogCharacterSkillDelayDamageRegexList.AddLast(new Regex("^(?<SourceName>.+)が使用した(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled));
+                    }
                 }
             }
 
@@ -1036,7 +1033,7 @@ namespace OpenAIONDPS
         /// ディレイダメージスキルのダメージのパターンリストの取得
         /// </summary>
         /// <returns></returns>
-        public LinkedList<Regex> GetChatLogSkillDelayDamageDamageRegexList()
+        private LinkedList<Regex> GetChatLogSkillDelayDamageDamageRegexList()
         {
             LinkedList<Regex> ChatLogSkillDelayDamageDamageRegexList = new LinkedList<Regex>();
 
@@ -1044,7 +1041,7 @@ namespace OpenAIONDPS
             {
                 if (_Skill.Value.SkillType.Equals(AION.SkillType.DelayDamage))
                 {
-                    ChatLogSkillDelayDamageDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)は(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)のダメージを受けました。", RegexOptions.Compiled));
+                    ChatLogSkillDelayDamageDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)は(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")(\\sエフェクト|)の効果により、(?<Damage>[0-9,]+)のダメージを受けました。", RegexOptions.Compiled));
                 }
             }
 
@@ -1056,7 +1053,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public bool CheckSkillDot(string SkillName)
+        private bool CheckSkillDot(string SkillName)
         {
             try
             {
@@ -1078,7 +1075,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public bool CheckSkillEffectDamage(string SkillName)
+        private bool CheckSkillEffectDamage(string SkillName)
         {
             try
             {
@@ -1100,7 +1097,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public bool CheckSkillSummon(string SkillName)
+        private bool CheckSkillSummon(string SkillName)
         {
             try
             {
@@ -1122,7 +1119,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public bool CheckSkillDelayDamage(string SkillName)
+        private bool CheckSkillDelayDamage(string SkillName)
         {
             try
             {
@@ -1204,7 +1201,7 @@ namespace OpenAIONDPS
             }
         }
 
-        public void UpdateTotalDamage(long TotalDamage)
+        private void UpdateTotalDamage(long TotalDamage)
         {
             this.TotalDamage += TotalDamage;
             this.TotalDamageLabel.Text = this.TotalDamage.ToString("#,0");
