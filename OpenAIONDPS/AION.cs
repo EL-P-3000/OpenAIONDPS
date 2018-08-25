@@ -273,9 +273,11 @@ namespace OpenAIONDPS
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.Dot));
 
             // エフェクトダメージ
+            SkillName = "ウインド ブレス";
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
             SkillName = "アース プロミス エフェクト";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
-            SkillName = "ウインド ブレス";
+            SkillName = "アース コミットメント エフェクト";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
 
 
@@ -290,8 +292,6 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             /* ギア *******************************************************************************************************************************/
             /**************************************************************************************************************************************/
-
-            /* 要調査 */
             // ディレイダメージ
             SkillName = "チャージ ファイヤ";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Gia, AION.SkillType.DelayDamage));
