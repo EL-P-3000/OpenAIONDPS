@@ -181,9 +181,14 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             /* ボウ *******************************************************************************************************************************/
             /**************************************************************************************************************************************/
-
+            // エフェクトダメージ
+            SkillName = "ヴェンジフル トラップ エフェクト";
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
+            SkillName = "ダスト トラップ エフェクト";
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
+            SkillName = "バンプ トラップ エフェクト";
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
             /* 要調査 */
-            // エフェクト
             SkillName = "バースト トラップ エフェクト";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
             SkillName = "クレアポイアンス トラップ エフェクト";
@@ -270,7 +275,6 @@ namespace OpenAIONDPS
             // エフェクトダメージ
             SkillName = "アース プロミス エフェクト";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
-
             SkillName = "ウインド ブレス";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
 
@@ -281,6 +285,7 @@ namespace OpenAIONDPS
             // ドット
             SkillName = "ホーム ペネトレート";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bullet, AION.SkillType.Dot));
+
 
             /**************************************************************************************************************************************/
             /* ギア *******************************************************************************************************************************/
@@ -304,6 +309,7 @@ namespace OpenAIONDPS
             // ドット
             SkillName = "モスキー ラプソディ";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Melody, AION.SkillType.Dot));
+
 
             return SkillList;
         }

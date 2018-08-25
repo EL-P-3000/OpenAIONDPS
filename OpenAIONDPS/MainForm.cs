@@ -461,6 +461,7 @@ namespace OpenAIONDPS
                             }
                             ChatLogNextDebuffFlag = false;
 
+
                             // 
                             // 反射のダメージ
                             // "^ディシプリン\sエネルギーが攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。"
