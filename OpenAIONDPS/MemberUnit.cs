@@ -43,6 +43,7 @@ namespace OpenAIONDPS
             this.MaxDamage = 0;
             this.MinDamage = 0;
             this.AttackNumber = 0;
+            this.CriticalNumber = 0;
             this.DeadNumber = 0;
             this.DamageLabel.Text = "0";
             this.MaxDamageLabel.Text = "0";
@@ -82,14 +83,14 @@ namespace OpenAIONDPS
             return (AION.JobType)this.JobComboBox.SelectedValue;
         }
 
-        public void AddDamage(long Damage, bool IsCritical)
+        public void AddDamage(long Damage, bool IsCritical, DateTime Time)
         {
             if (!this.IsStart())
             {
                 this.StartFlag = true;
-                this.StartTime = DateTime.Now;
+                this.StartTime = Time;
             }
-            this.EndTime = DateTime.Now;
+            this.EndTime = Time;
 
             this.UpdateDamage(Damage);
             if (IsCritical)
@@ -157,12 +158,12 @@ namespace OpenAIONDPS
 
             if (Ticks <= 10000000)
             {
-                this.DamageParSecondLabel.Text = (this.Damage).ToString();
+                this.DamageParSecondLabel.Text = (this.Damage).ToString("#,0");
             }
             else
             {
                 double Second = Math.Ceiling((double)Ticks / 10000000);
-                this.DamageParSecondLabel.Text = Math.Ceiling(this.Damage / Second).ToString();
+                this.DamageParSecondLabel.Text = Math.Ceiling(this.Damage / Second).ToString("#,0");
             }
         }
 

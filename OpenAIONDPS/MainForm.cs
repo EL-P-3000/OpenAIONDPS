@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace OpenAIONDPS
 {
-    public partial class MainForm : Form
+    public partial class a : Form
     {
         private string ApplicationDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
         StreamWriter DebugLogFileStreamWriter = null;
@@ -31,7 +31,10 @@ namespace OpenAIONDPS
 
         private long TotalDamage = 0;
 
-        public MainForm()
+        private bool IsCalcLogFile = false;
+        private string CalcLogFilePath = "";
+
+        public a()
         {
             InitializeComponent();
         }
@@ -253,7 +256,7 @@ namespace OpenAIONDPS
         /// <summary>
         /// ログのパターン
         /// </summary>
-        private static readonly Regex ChatLogLineRegex = new Regex(@"^20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\s[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\s:\s(.*。)", RegexOptions.Compiled);
+        private static readonly Regex ChatLogLineRegex = new Regex(@"^(20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\s[0-9][0-9]:[0-9][0-9]:[0-9][0-9])\s:\s(.*。)", RegexOptions.Compiled);
 
         /// <summary>
         /// クリティカルヒットのパターン
@@ -335,6 +338,8 @@ namespace OpenAIONDPS
         public void Calculate()
         {
             Delegate UpdateDataDelegate = new Action<ActionData>(UpdateData);
+            Delegate CalcFromLogEndDelegate = new Action(CalcFromLogEnd);
+            string LogFilePath = Properties.Settings.Default.ChatLogPath;
             string LogText = "";
             string LogTextWithoutTime = "";
             ActionData ChatLogActionData = null;
@@ -372,7 +377,13 @@ namespace OpenAIONDPS
             // 前のChatLogActionData(ChatLogNextDebuffFlag=true用)
             ActionData ChatLogActionDataPrebious = null;
 
-            using (FileStream ChatLogFileStream = new FileStream(Properties.Settings.Default.ChatLogPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            // ログファイルから計算の場合はログファイルを設定
+            if (this.IsCalcLogFile)
+            {
+                LogFilePath = this.CalcLogFilePath;
+            }
+
+            using (FileStream ChatLogFileStream = new FileStream(LogFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (StreamReader ChatLogStreamReader = new StreamReader(ChatLogFileStream, Encoding.GetEncoding("Shift_JIS")))
                 {
@@ -380,6 +391,12 @@ namespace OpenAIONDPS
                     {
                         try
                         {
+                            // ログファイルから計算の場合はファイルの最後で終了
+                            if (this.IsCalcLogFile && ChatLogStreamReader.EndOfStream == true)
+                            {
+                                break;
+                            }
+
                             LogText = ChatLogStreamReader.ReadLine();
                             LogTextWithoutTime = "";
 
@@ -400,8 +417,15 @@ namespace OpenAIONDPS
                             ChatLogActionData.LogText = LogText;
                             ChatLogActionData.SourceName = OwnName;
 
+                            // ログファイルから計算の場合は時刻を取得
+                            if (this.IsCalcLogFile)
+                            {
+                                ChatLogActionData.Time = DateTime.ParseExact(ChatLogLineMatch.Groups[1].Value, "yyyy.MM.dd HH:mm:ss", null);
+                            }
+
+
                             // 時刻をラインから削除
-                            LogTextWithoutTime = ChatLogLineMatch.Groups[1].Value;
+                            LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
 
                             // クリティカルヒット！
                             Match ChatLogCriticalHitMatch = ChatLogCriticalHitRegex.Match(LogTextWithoutTime);
@@ -885,6 +909,11 @@ namespace OpenAIONDPS
                 }
             }
 
+            if (this.IsCalcLogFile)
+            {
+                this.Invoke(CalcFromLogEndDelegate);
+            }
+
             this.IsRunning = false;
         }
 
@@ -1119,6 +1148,14 @@ namespace OpenAIONDPS
         {
             bool UpdateTotalDamageFlag = false;
 
+            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameTextBox.Text))
+            {
+                if (!ChatLogActionData.TargetName.Equals(this.LimitedTargetNameTextBox.Text))
+                {
+                    return;
+                }
+            }
+
             if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) &&
                 (this.CheckSkillSummon(ChatLogActionData.SourceName) ||  this.CheckSkillEffectDamage(ChatLogActionData.SourceName))
                 )
@@ -1133,7 +1170,7 @@ namespace OpenAIONDPS
                         if (_MemberUnit.GetJob() == this.SkillList[ChatLogActionData.SourceName].Job)
                         {
                             this.UpdateTotalDamage(ChatLogActionData.Damage);
-                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit);
+                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
                             UpdateTotalDamageFlag = true;
                             break;
                         }
@@ -1149,7 +1186,7 @@ namespace OpenAIONDPS
             else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
             {
                 this.UpdateTotalDamage(ChatLogActionData.Damage);
-                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit);
+                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
                 UpdateTotalDamageFlag = true;
             }
 
@@ -1174,6 +1211,76 @@ namespace OpenAIONDPS
         }
 
 
+
+
+        private void CalcFromLogButton_Click(object sender, EventArgs e)
+        {
+            if (this.IsRunning == true)
+            {
+                MessageBox.Show("計測中です。", "エラー");
+                return;
+            }
+
+            OpenFileDialog Dialog = new OpenFileDialog();
+            Dialog.FileName = "*.log";
+            Dialog.Filter = "ログファイル(*.log)|*.log";
+            Dialog.Title = "ログファイルを選択してください";
+            Dialog.RestoreDirectory = true;
+
+            if (Dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.CalcLogFilePath = Dialog.FileName;
+
+                this.StartButton.Enabled = false;
+                this.StopButton.Enabled = false;
+                this.FavoriteMemberButton.Enabled = false;
+                this.IsRunning = true;
+                this.StopFlag = false;
+
+                this.JobTypeNumberOfMemberList.Clear();
+                foreach (AION.JobType Job in Enum.GetValues(typeof(AION.JobType)))
+                {
+                    this.JobTypeNumberOfMemberList.Add(Job, 0);
+                }
+
+                this.MemberNameMemberUnitList.Clear();
+                foreach (Control _Control in this.MemberGroupBox.Controls)
+                {
+                    if (_Control.GetType().Name.Equals("MemberUnit"))
+                    {
+                        MemberUnit _MemberUnit = (MemberUnit)_Control;
+                        _MemberUnit.Clear();
+                        if (!String.IsNullOrEmpty(_MemberUnit.GetMemberName()))
+                        {
+                            this.MemberNameMemberUnitList.Add(_MemberUnit.GetMemberName(), _MemberUnit);
+                            if (_MemberUnit.GetJob() != AION.JobType.None)
+                            {
+                                this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
+                            }
+                        }
+                    }
+                }
+
+                this.TotalDamage = 0;
+                this.TotalDamageLabel.Text = "0";
+                this.IsCalcLogFile = true;
+
+                this.CalculateThread = new Thread(new ThreadStart(Calculate));
+                this.CalculateThread.Start();
+            }
+        }
+
+        public void CalcFromLogEnd()
+        {
+            this.StopFlag = true;
+            this.IsRunning = false;
+
+            this.StartButton.Enabled = true;
+            this.StopButton.Enabled = false;
+            this.FavoriteMemberButton.Enabled = true;
+
+            this.IsCalcLogFile = false;
+        }
 
 
 

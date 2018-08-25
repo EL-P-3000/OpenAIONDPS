@@ -1,6 +1,6 @@
 ﻿namespace OpenAIONDPS
 {
-    partial class MainForm
+    partial class a
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -66,6 +66,9 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
+            this.LimitedTargetCheckBox = new System.Windows.Forms.CheckBox();
+            this.LimitedTargetNameTextBox = new System.Windows.Forms.TextBox();
+            this.CalcFromLogButton = new System.Windows.Forms.Button();
             this.MemberGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,15 +108,17 @@
             this.SkillListFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SkillListFlowLayoutPanel.AutoScroll = true;
-            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(12, 505);
+            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(12, 533);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
-            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(750, 240);
+            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(750, 239);
             this.SkillListFlowLayoutPanel.TabIndex = 15;
             // 
             // MemberGroupBox
             // 
             this.MemberGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.MemberGroupBox.Controls.Add(this.LimitedTargetNameTextBox);
+            this.MemberGroupBox.Controls.Add(this.LimitedTargetCheckBox);
             this.MemberGroupBox.Controls.Add(this.FavoriteMemberList);
             this.MemberGroupBox.Controls.Add(this.FavoriteMemberButton);
             this.MemberGroupBox.Controls.Add(this.DisableJobRadioButton);
@@ -147,7 +152,7 @@
             this.MemberGroupBox.Controls.Add(this.Member12);
             this.MemberGroupBox.Location = new System.Drawing.Point(12, 41);
             this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Size = new System.Drawing.Size(750, 458);
+            this.MemberGroupBox.Size = new System.Drawing.Size(750, 486);
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
@@ -166,7 +171,7 @@
             // 
             this.DisableJobRadioButton.AutoSize = true;
             this.DisableJobRadioButton.Checked = true;
-            this.DisableJobRadioButton.Location = new System.Drawing.Point(86, 392);
+            this.DisableJobRadioButton.Location = new System.Drawing.Point(88, 392);
             this.DisableJobRadioButton.Name = "DisableJobRadioButton";
             this.DisableJobRadioButton.Size = new System.Drawing.Size(72, 16);
             this.DisableJobRadioButton.TabIndex = 35;
@@ -177,7 +182,7 @@
             // EnableJobRadioButton
             // 
             this.EnableJobRadioButton.AutoSize = true;
-            this.EnableJobRadioButton.Location = new System.Drawing.Point(8, 392);
+            this.EnableJobRadioButton.Location = new System.Drawing.Point(10, 392);
             this.EnableJobRadioButton.Name = "EnableJobRadioButton";
             this.EnableJobRadioButton.Size = new System.Drawing.Size(72, 16);
             this.EnableJobRadioButton.TabIndex = 34;
@@ -294,9 +299,9 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.Location = new System.Drawing.Point(6, 411);
+            this.label11.Location = new System.Drawing.Point(8, 411);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(744, 44);
+            this.label11.Size = new System.Drawing.Size(734, 44);
             this.label11.TabIndex = 36;
             this.label11.Text = "ジョブ有効の場合、誰の攻撃かを特定できない攻撃をジョブで特定します。空白以外の全員の職を設定し、かつジョブが重複していないジョブの場合は、職固有スキルによるダメー" +
     "ジをメンバーに加算します。同一ジョブが2人以上いる場合やジョブを未選択の場合は、下のスキル別にダメージが加算されます。ジョブ無効の場合は誰の攻撃かを特定できない" +
@@ -469,11 +474,39 @@
             this.Member12.Size = new System.Drawing.Size(721, 26);
             this.Member12.TabIndex = 12;
             // 
-            // MainForm
+            // LimitedTargetCheckBox
+            // 
+            this.LimitedTargetCheckBox.AutoSize = true;
+            this.LimitedTargetCheckBox.Location = new System.Drawing.Point(8, 460);
+            this.LimitedTargetCheckBox.Name = "LimitedTargetCheckBox";
+            this.LimitedTargetCheckBox.Size = new System.Drawing.Size(72, 16);
+            this.LimitedTargetCheckBox.TabIndex = 37;
+            this.LimitedTargetCheckBox.Text = "対象限定";
+            this.LimitedTargetCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // LimitedTargetNameTextBox
+            // 
+            this.LimitedTargetNameTextBox.Location = new System.Drawing.Point(86, 458);
+            this.LimitedTargetNameTextBox.Name = "LimitedTargetNameTextBox";
+            this.LimitedTargetNameTextBox.Size = new System.Drawing.Size(207, 19);
+            this.LimitedTargetNameTextBox.TabIndex = 38;
+            // 
+            // CalcFromLogButton
+            // 
+            this.CalcFromLogButton.Location = new System.Drawing.Point(255, 12);
+            this.CalcFromLogButton.Name = "CalcFromLogButton";
+            this.CalcFromLogButton.Size = new System.Drawing.Size(75, 23);
+            this.CalcFromLogButton.TabIndex = 26;
+            this.CalcFromLogButton.Text = "ログから計測";
+            this.CalcFromLogButton.UseVisualStyleBackColor = true;
+            this.CalcFromLogButton.Click += new System.EventHandler(this.CalcFromLogButton_Click);
+            // 
+            // a
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 757);
+            this.ClientSize = new System.Drawing.Size(774, 784);
+            this.Controls.Add(this.CalcFromLogButton);
             this.Controls.Add(this.DebugCheckBox);
             this.Controls.Add(this.AION64bitButton);
             this.Controls.Add(this.MemberGroupBox);
@@ -481,7 +514,7 @@
             this.Controls.Add(this.FileButton);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
-            this.Name = "MainForm";
+            this.Name = "a";
             this.Text = "Open AION DPS 1.0.2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -532,6 +565,9 @@
         private System.Windows.Forms.Button FavoriteMemberButton;
         private FavoriteMemberListUnit FavoriteMemberList;
         private System.Windows.Forms.CheckBox DebugCheckBox;
+        private System.Windows.Forms.CheckBox LimitedTargetCheckBox;
+        private System.Windows.Forms.TextBox LimitedTargetNameTextBox;
+        private System.Windows.Forms.Button CalcFromLogButton;
     }
 }
 
