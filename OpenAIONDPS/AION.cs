@@ -185,9 +185,9 @@ namespace OpenAIONDPS
             /* 要調査 */
             // エフェクト
             SkillName = "バースト トラップ エフェクト";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
             SkillName = "クレアポイアンス トラップ エフェクト";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/
@@ -209,33 +209,33 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ドット
             SkillName = "イロージョン";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
             SkillName = "ワイドエリア イロージョン";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
             SkillName = "アース チェーン";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
             SkillName = "マジック エクスプロージョン";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
             SkillName = "アンガー サイクロン";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
             SkillName = "カース クラウド";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
             SkillName = "サモン：ウインド エネルギー";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
             SkillName = "サモン：サイクロン エネルギー";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
 
             // サモン
             SkillName = "ファイア スピリット";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
             SkillName = "ウォーター スピリット";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
             SkillName = "ウインド スピリット";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
             SkillName = "グラウンド スピリット";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
             SkillName = "タイフーン スピリット";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
 
 
             /**************************************************************************************************************************************/
@@ -265,24 +265,22 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ドット
             SkillName = "マウンテン クラッシュ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.Dot));
 
             // エフェクトダメージ
             SkillName = "アース プロミス エフェクト";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
 
             SkillName = "ウインド ブレス";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/
             /* バレット ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
-
-            /* 要調査 */
-
-            // 出血有？
-
+            // ドット
+            SkillName = "ホーム ペネトレート";
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bullet, AION.SkillType.Dot));
 
             /**************************************************************************************************************************************/
             /* ギア *******************************************************************************************************************************/
@@ -291,7 +289,7 @@ namespace OpenAIONDPS
             /* 要調査 */
             // ディレイダメージ
             SkillName = "チャージ ファイヤ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spell, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Gia, AION.SkillType.DelayDamage));
 
 
             /**************************************************************************************************************************************/
@@ -299,13 +297,13 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ディレイダメージ
             SkillName = "ダメージ エコー";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spell, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Melody, AION.SkillType.DelayDamage));
             SkillName = "シャープ フリカディブ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Spell, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Melody, AION.SkillType.DelayDamage));
 
             // ドット
             SkillName = "モスキー ラプソディ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Melody, AION.SkillType.Dot));
 
             return SkillList;
         }

@@ -424,11 +424,11 @@ namespace OpenAIONDPS
                                 Regex ChatLogDebuffRegex = null;
                                 if (ChatLogActionDataPrebious.SourceName.Equals(this.OwnName))
                                 {
-                                    ChatLogDebuffRegex = new Regex("^" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "にダメージを与え続けました。");
+                                    ChatLogDebuffRegex = new Regex("^" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "(にダメージを与え続けました。|が出血状態になりました。)");
                                 }
                                 else
                                 {
-                                    ChatLogDebuffRegex = new Regex("^" + ChatLogActionDataPrebious.SourceName + "が使用した" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "はダメージを受け続けました。");
+                                    ChatLogDebuffRegex = new Regex("^" + ChatLogActionDataPrebious.SourceName + "が使用した" + ChatLogActionDataPrebious.SkillName + "の効果により、" + ChatLogActionDataPrebious.TargetName + "(はダメージを受け続けました。|は出血状態になりました。)");
                                 }
 
                                 // デバフ成功のチェック
@@ -937,7 +937,7 @@ namespace OpenAIONDPS
             {
                 if (_Skill.Value.SkillType.Equals(AION.SkillType.Dot))
                 {
-                    ChatLogSkillDotDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)は(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)のダメージを受けました。", RegexOptions.Compiled));
+                    ChatLogSkillDotDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)(は|が)(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)の(出血|)ダメージを受けました。", RegexOptions.Compiled));
                 }
             }
 
