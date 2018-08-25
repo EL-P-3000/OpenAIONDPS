@@ -279,11 +279,6 @@ namespace OpenAIONDPS
 
         /// スキルダメージのパターン(他人)は計測開始時に取得
 
-        /// <summary>
-        /// デバフダメージスキルのダメージのパターン
-        /// </summary>
-        private static readonly Regex ChatLogSkillDebuffDamageRegex = new Regex(@"^(?<SkillName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+されました。", RegexOptions.Compiled);
-
         // ドットスキルのダメージのパターンは計測開始時に取得
 
         /* 未実装 */
@@ -306,6 +301,18 @@ namespace OpenAIONDPS
         // ディレイダメージスキルのパターン(他人)は計測開始時に取得
 
         // ディレイダメージスキルのダメージのパターンは計測開始時に取得
+
+        /// <summary>
+        /// デバフダメージスキルのダメージのパターン(自分)
+        /// </summary>
+        private static readonly Regex ChatLogSkillDebuffDamage1Regex = new Regex(@"^(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogSkillDebuffDamage2Regex = new Regex(@"^(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与え、(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled);
+
+        /// <summary>
+        /// デバフダメージスキルのダメージのパターン(他人)
+        /// </summary>
+        private static readonly Regex ChatLogCharacterSkillDebuffDamage1Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogCharacterSkillDebuffDamage2Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージ与え、(?<SkillName2>.+)効果を得ました。", RegexOptions.Compiled);
 
         /// <summary>
         /// 反射のダメージのパターン(自分)
@@ -483,6 +490,58 @@ namespace OpenAIONDPS
                                     _Match = ChatLogReflectDamageMatch;
                                 }
 
+                                ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
+                                ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
+
+                                this.Invoke(UpdateDataDelegate, ChatLogActionData);
+
+                                continue;
+                            }
+
+
+                            //
+                            // デバフダメージスキルのダメージ
+                            // "^(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。"
+                            // "^(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与え、(?<SkillName2>.+)効果が生じました。"
+                            // "^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。"
+                            // "^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージ与え、(?<SkillName2>.+)効果を得ました。"
+                            //
+                            Match ChatLogCharacterSkillDebuffDamage1Match = ChatLogCharacterSkillDebuffDamage1Regex.Match(LogTextWithoutTime);
+                            Match ChatLogCharacterSkillDebuffDamage2Match = ChatLogCharacterSkillDebuffDamage2Regex.Match(LogTextWithoutTime);
+                            Match ChatLogSkillDebuffDamage1Match = ChatLogSkillDebuffDamage1Regex.Match(LogTextWithoutTime);
+                            Match ChatLogSkillDebuffDamage2Match = ChatLogSkillDebuffDamage2Regex.Match(LogTextWithoutTime);
+                            if (ChatLogCharacterSkillDebuffDamage1Match.Success ||
+                                ChatLogCharacterSkillDebuffDamage2Match.Success ||
+                                ChatLogSkillDebuffDamage1Match.Success ||
+                                ChatLogSkillDebuffDamage2Match.Success)
+                            {
+                                Match _Match = null;
+                                if (ChatLogCharacterSkillDebuffDamage1Match.Success || ChatLogCharacterSkillDebuffDamage2Match.Success)
+                                {
+                                    if (ChatLogCharacterSkillDebuffDamage1Match.Success)
+                                    {
+                                        _Match = ChatLogCharacterSkillDebuffDamage1Match;
+                                    }
+                                    else
+                                    {
+                                        _Match = ChatLogCharacterSkillDebuffDamage2Match;
+                                    }
+                                    ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
+                                }
+                                else
+                                {
+                                    if (ChatLogSkillDebuffDamage1Match.Success)
+                                    {
+                                        _Match = ChatLogSkillDebuffDamage1Match;
+                                    }
+                                    else
+                                    {
+                                        _Match = ChatLogSkillDebuffDamage2Match;
+                                    }
+                                    ChatLogActionData.SourceName = this.OwnName;
+                                }
+
+                                ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
                                 ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
                                 ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
 
@@ -684,24 +743,6 @@ namespace OpenAIONDPS
                             }
                             if (ChatLogSkillDotDamageMatchFlag)
                             {
-                                continue;
-                            }
-
-
-                            //
-                            // デバフダメージスキルのダメージ
-                            // "^(?<SkillName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+されました。"
-                            //
-                            Match ChatLogSkillDebuffDamageMatch = ChatLogSkillDebuffDamageRegex.Match(LogTextWithoutTime);
-                            if (ChatLogSkillDebuffDamageMatch.Success)
-                            {
-                                ChatLogActionData.SourceName = ChatLogSkillDebuffDamageMatch.Groups["SourceName"].Value;
-                                ChatLogActionData.SkillName = ChatLogSkillDebuffDamageMatch.Groups["SkillName"].Value;
-                                ChatLogActionData.TargetName = ChatLogSkillDebuffDamageMatch.Groups["TargetName"].Value;
-                                ChatLogActionData.Damage = long.Parse(ChatLogSkillDebuffDamageMatch.Groups["Damage"].Value.Replace(",", ""));
-
-                                this.Invoke(UpdateDataDelegate, ChatLogActionData);
-
                                 continue;
                             }
 
