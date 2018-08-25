@@ -11,7 +11,7 @@ namespace OpenAIONDPS
 {
     public partial class FavoriteMemberListUnit : UserControl
     {
-        private a _MainForm = null;
+        private MainForm _MainForm = null;
 
         public FavoriteMemberListUnit()
         {
@@ -50,7 +50,7 @@ namespace OpenAIONDPS
             }
         }
 
-        public void SetMainForm(a _MainForm)
+        public void SetMainForm(MainForm _MainForm)
         {
             this._MainForm = _MainForm;
         }

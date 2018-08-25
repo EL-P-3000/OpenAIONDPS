@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace OpenAIONDPS
 {
-    public partial class a : Form
+    public partial class MainForm : Form
     {
         private string ApplicationDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
         StreamWriter DebugLogFileStreamWriter = null;
@@ -34,7 +34,7 @@ namespace OpenAIONDPS
         private bool IsCalcLogFile = false;
         private string CalcLogFilePath = "";
 
-        public a()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -68,41 +68,39 @@ namespace OpenAIONDPS
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
-            this.Clear();
+            this.StopThread();
         }
 
-        private void Clear()
+        private void ClearData()
         {
-            try
+            this.JobTypeNumberOfMemberList.Clear();
+            foreach (AION.JobType Job in Enum.GetValues(typeof(AION.JobType)))
             {
-                this.StopFlag = true;
-                if (this.CalculateThread != null)
+                this.JobTypeNumberOfMemberList.Add(Job, 0);
+            }
+
+            this.MemberNameMemberUnitList.Clear();
+            foreach (Control _Control in this.MemberGroupBox.Controls)
+            {
+                if (_Control.GetType().Name.Equals("MemberUnit"))
                 {
-                    this.CalculateThread.Join(2 * 1000);
-                    this.CalculateThread = null;
+                    MemberUnit _MemberUnit = (MemberUnit)_Control;
+                    _MemberUnit.Clear();
+                    if (!String.IsNullOrEmpty(_MemberUnit.GetMemberName()))
+                    {
+                        this.MemberNameMemberUnitList.Add(_MemberUnit.GetMemberName(), _MemberUnit);
+                        if (_MemberUnit.GetJob() != AION.JobType.None)
+                        {
+                            this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
+                        }
+                    }
                 }
-                this.IsRunning = false;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+                else if (_Control.GetType().Name.Equals("SkillUnit"))
                 {
-                    this.DebugLogFileStreamWriter.Flush();
-                    this.DebugLogFileStreamWriter.Close();
+                    SkillUnit _SkillUnit = (SkillUnit)_Control;
+                    _SkillUnit.Clear();
                 }
-
             }
-            catch
-            {
-            }
-
-            this.StartButton.Enabled = true;
-            this.StopButton.Enabled = false;
-            this.FavoriteMemberButton.Enabled = true;
         }
 
         private void FileButton_Click(object sender, EventArgs e)
@@ -170,29 +168,7 @@ namespace OpenAIONDPS
             this.IsRunning = true;
             this.StopFlag = false;
 
-            this.JobTypeNumberOfMemberList.Clear();
-            foreach (AION.JobType Job in Enum.GetValues(typeof(AION.JobType)))
-            {
-                this.JobTypeNumberOfMemberList.Add(Job, 0);
-            }
-
-            this.MemberNameMemberUnitList.Clear();
-            foreach (Control _Control in this.MemberGroupBox.Controls)
-            {
-                if (_Control.GetType().Name.Equals("MemberUnit"))
-                {
-                    MemberUnit _MemberUnit = (MemberUnit)_Control;
-                    _MemberUnit.Clear();
-                    if (!String.IsNullOrEmpty(_MemberUnit.GetMemberName()))
-                    {
-                        this.MemberNameMemberUnitList.Add(_MemberUnit.GetMemberName(), _MemberUnit);
-                        if (_MemberUnit.GetJob() != AION.JobType.None)
-                        {
-                            this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
-                        }
-                    }
-                }
-            }
+            this.ClearData();
 
             try
             {
@@ -225,8 +201,43 @@ namespace OpenAIONDPS
 
         private void StopButton_Click(object sender, EventArgs e)
         {
-            this.Clear();
+            this.StopThread();
         }
+
+        private void StopThread()
+        {
+            try
+            {
+                this.StopFlag = true;
+                if (this.CalculateThread != null)
+                {
+                    this.CalculateThread.Join(2 * 1000);
+                    this.CalculateThread = null;
+                }
+                this.IsRunning = false;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+                {
+                    this.DebugLogFileStreamWriter.Flush();
+                    this.DebugLogFileStreamWriter.Close();
+                }
+
+            }
+            catch
+            {
+            }
+
+            this.StartButton.Enabled = true;
+            this.StopButton.Enabled = false;
+            this.FavoriteMemberButton.Enabled = true;
+        }
+
 
         /* ログのパターン
          * 
@@ -293,9 +304,6 @@ namespace OpenAIONDPS
         private static readonly Regex ChatLogCharacterSkillDotRegex = new Regex("^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)(はダメージを受け続けました。|は出血状態になりました。)", RegexOptions.Compiled);
             
         // ドットスキルのダメージのパターンは計測開始時に取得
-
-        /* 未実装 */
-        // サモンスキルのパターン
 
         /// <summary>
         /// サモンスキル(攻撃対象固定)のパターン(自分)
@@ -1224,7 +1232,7 @@ namespace OpenAIONDPS
                     UpdateTotalDamageFlag = true;
                 }
             }
-            // サモンのダメージ
+            // サモンスキル(攻撃対象固定)のダメージ
             else if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) && this.CheckSkillSummon(ChatLogActionData.SourceName))
             {
                 AION.JobType Job = this.SkillList[ChatLogActionData.SkillName].Job;
@@ -1306,29 +1314,7 @@ namespace OpenAIONDPS
                 this.IsRunning = true;
                 this.StopFlag = false;
 
-                this.JobTypeNumberOfMemberList.Clear();
-                foreach (AION.JobType Job in Enum.GetValues(typeof(AION.JobType)))
-                {
-                    this.JobTypeNumberOfMemberList.Add(Job, 0);
-                }
-
-                this.MemberNameMemberUnitList.Clear();
-                foreach (Control _Control in this.MemberGroupBox.Controls)
-                {
-                    if (_Control.GetType().Name.Equals("MemberUnit"))
-                    {
-                        MemberUnit _MemberUnit = (MemberUnit)_Control;
-                        _MemberUnit.Clear();
-                        if (!String.IsNullOrEmpty(_MemberUnit.GetMemberName()))
-                        {
-                            this.MemberNameMemberUnitList.Add(_MemberUnit.GetMemberName(), _MemberUnit);
-                            if (_MemberUnit.GetJob() != AION.JobType.None)
-                            {
-                                this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
-                            }
-                        }
-                    }
-                }
+                this.ClearData();
 
                 this.TotalDamage = 0;
                 this.TotalDamageLabel.Text = "0";

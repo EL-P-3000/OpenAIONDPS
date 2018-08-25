@@ -1,6 +1,6 @@
 ﻿namespace OpenAIONDPS
 {
-    partial class a
+    partial class MainForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -501,7 +501,7 @@
             this.CalcFromLogButton.UseVisualStyleBackColor = true;
             this.CalcFromLogButton.Click += new System.EventHandler(this.CalcFromLogButton_Click);
             // 
-            // a
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -514,7 +514,7 @@
             this.Controls.Add(this.FileButton);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
-            this.Name = "a";
+            this.Name = "MainForm";
             this.Text = "Open AION DPS 1.0.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);

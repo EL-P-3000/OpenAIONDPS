@@ -25,7 +25,13 @@ namespace OpenAIONDPS
         public void UpdateDamage(long Damage)
         {
             this.Damage += Damage;
-            this.DamageLabel.Text = this.Damage.ToString();
+            this.DamageLabel.Text = this.Damage.ToString("#,0");
+        }
+
+        public void Clear()
+        {
+            this.Damage = 0;
+            this.DamageLabel.Text = "0";
         }
     }
 }
