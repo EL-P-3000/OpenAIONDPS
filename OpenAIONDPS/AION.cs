@@ -174,6 +174,8 @@ namespace OpenAIONDPS
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
             SkillName = "スティレット コミットメント アディショナル エフェクト";
             SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillName = "ドラスティック ポイズン エフェクト";
+            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/
