@@ -515,7 +515,7 @@
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.3";
+            this.Text = "Open AION DPS 1.0.5";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
