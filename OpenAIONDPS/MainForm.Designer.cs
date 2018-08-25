@@ -33,6 +33,9 @@
             this.FileButton = new System.Windows.Forms.Button();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.LimitedTargetNameTextBox = new System.Windows.Forms.TextBox();
+            this.LimitedTargetCheckBox = new System.Windows.Forms.CheckBox();
+            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.FavoriteMemberButton = new System.Windows.Forms.Button();
             this.DisableJobRadioButton = new System.Windows.Forms.RadioButton();
             this.EnableJobRadioButton = new System.Windows.Forms.RadioButton();
@@ -51,9 +54,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.AION64bitButton = new System.Windows.Forms.Button();
-            this.DebugCheckBox = new System.Windows.Forms.CheckBox();
-            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.Member01 = new OpenAIONDPS.MemberUnit();
             this.Member02 = new OpenAIONDPS.MemberUnit();
             this.Member03 = new OpenAIONDPS.MemberUnit();
@@ -66,8 +66,8 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
-            this.LimitedTargetCheckBox = new System.Windows.Forms.CheckBox();
-            this.LimitedTargetNameTextBox = new System.Windows.Forms.TextBox();
+            this.AION64bitButton = new System.Windows.Forms.Button();
+            this.DebugCheckBox = new System.Windows.Forms.CheckBox();
             this.CalcFromLogButton = new System.Windows.Forms.Button();
             this.MemberGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -156,6 +156,32 @@
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
+            // 
+            // LimitedTargetNameTextBox
+            // 
+            this.LimitedTargetNameTextBox.Location = new System.Drawing.Point(86, 458);
+            this.LimitedTargetNameTextBox.Name = "LimitedTargetNameTextBox";
+            this.LimitedTargetNameTextBox.Size = new System.Drawing.Size(207, 19);
+            this.LimitedTargetNameTextBox.TabIndex = 38;
+            // 
+            // LimitedTargetCheckBox
+            // 
+            this.LimitedTargetCheckBox.AutoSize = true;
+            this.LimitedTargetCheckBox.Location = new System.Drawing.Point(8, 460);
+            this.LimitedTargetCheckBox.Name = "LimitedTargetCheckBox";
+            this.LimitedTargetCheckBox.Size = new System.Drawing.Size(72, 16);
+            this.LimitedTargetCheckBox.TabIndex = 37;
+            this.LimitedTargetCheckBox.Text = "対象限定";
+            this.LimitedTargetCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // FavoriteMemberList
+            // 
+            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FavoriteMemberList.Location = new System.Drawing.Point(220, 15);
+            this.FavoriteMemberList.Name = "FavoriteMemberList";
+            this.FavoriteMemberList.Size = new System.Drawing.Size(522, 372);
+            this.FavoriteMemberList.TabIndex = 25;
+            this.FavoriteMemberList.Visible = false;
             // 
             // FavoriteMemberButton
             // 
@@ -337,35 +363,6 @@
             this.label17.Text = "クリ確率";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // AION64bitButton
-            // 
-            this.AION64bitButton.Location = new System.Drawing.Point(690, 12);
-            this.AION64bitButton.Name = "AION64bitButton";
-            this.AION64bitButton.Size = new System.Drawing.Size(75, 23);
-            this.AION64bitButton.TabIndex = 24;
-            this.AION64bitButton.Text = "64bit起動";
-            this.AION64bitButton.UseVisualStyleBackColor = true;
-            this.AION64bitButton.Click += new System.EventHandler(this.AION64bitButton_Click);
-            // 
-            // DebugCheckBox
-            // 
-            this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(624, 16);
-            this.DebugCheckBox.Name = "DebugCheckBox";
-            this.DebugCheckBox.Size = new System.Drawing.Size(60, 16);
-            this.DebugCheckBox.TabIndex = 25;
-            this.DebugCheckBox.Text = "デバッグ";
-            this.DebugCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // FavoriteMemberList
-            // 
-            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FavoriteMemberList.Location = new System.Drawing.Point(220, 15);
-            this.FavoriteMemberList.Name = "FavoriteMemberList";
-            this.FavoriteMemberList.Size = new System.Drawing.Size(522, 372);
-            this.FavoriteMemberList.TabIndex = 25;
-            this.FavoriteMemberList.Visible = false;
-            // 
             // Member01
             // 
             this.Member01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -474,22 +471,25 @@
             this.Member12.Size = new System.Drawing.Size(721, 26);
             this.Member12.TabIndex = 12;
             // 
-            // LimitedTargetCheckBox
+            // AION64bitButton
             // 
-            this.LimitedTargetCheckBox.AutoSize = true;
-            this.LimitedTargetCheckBox.Location = new System.Drawing.Point(8, 460);
-            this.LimitedTargetCheckBox.Name = "LimitedTargetCheckBox";
-            this.LimitedTargetCheckBox.Size = new System.Drawing.Size(72, 16);
-            this.LimitedTargetCheckBox.TabIndex = 37;
-            this.LimitedTargetCheckBox.Text = "対象限定";
-            this.LimitedTargetCheckBox.UseVisualStyleBackColor = true;
+            this.AION64bitButton.Location = new System.Drawing.Point(690, 12);
+            this.AION64bitButton.Name = "AION64bitButton";
+            this.AION64bitButton.Size = new System.Drawing.Size(75, 23);
+            this.AION64bitButton.TabIndex = 24;
+            this.AION64bitButton.Text = "64bit起動";
+            this.AION64bitButton.UseVisualStyleBackColor = true;
+            this.AION64bitButton.Click += new System.EventHandler(this.AION64bitButton_Click);
             // 
-            // LimitedTargetNameTextBox
+            // DebugCheckBox
             // 
-            this.LimitedTargetNameTextBox.Location = new System.Drawing.Point(86, 458);
-            this.LimitedTargetNameTextBox.Name = "LimitedTargetNameTextBox";
-            this.LimitedTargetNameTextBox.Size = new System.Drawing.Size(207, 19);
-            this.LimitedTargetNameTextBox.TabIndex = 38;
+            this.DebugCheckBox.AutoSize = true;
+            this.DebugCheckBox.Location = new System.Drawing.Point(624, 16);
+            this.DebugCheckBox.Name = "DebugCheckBox";
+            this.DebugCheckBox.Size = new System.Drawing.Size(60, 16);
+            this.DebugCheckBox.TabIndex = 25;
+            this.DebugCheckBox.Text = "デバッグ";
+            this.DebugCheckBox.UseVisualStyleBackColor = true;
             // 
             // CalcFromLogButton
             // 
@@ -515,7 +515,7 @@
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
             this.Name = "a";
-            this.Text = "Open AION DPS 1.0.2";
+            this.Text = "Open AION DPS 1.0.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
