@@ -31,6 +31,10 @@ namespace OpenAIONDPS
 
         private long TotalDamage = 0;
 
+        private System.Timers.Timer CalcTimer = new System.Timers.Timer();
+
+        private int CalcRemainingTime = 0;
+
         private bool IsCalcLogFile = false;
         private string CalcLogFilePath = "";
 
@@ -193,6 +197,16 @@ namespace OpenAIONDPS
             this.TotalDamageLabel.Text = "0";
 
             this.ClearChatLogFile();
+
+            if (this.CalcTimeCheckBox.Checked)
+            {
+                this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
+                this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+                this.CalcTimer = new System.Timers.Timer();
+                this.CalcTimer.SynchronizingObject = this;
+                this.CalcTimer.Interval = 1000;
+                this.CalcTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
+            }
 
             this.CalculateThread = new Thread(new ThreadStart(Calculate));
             this.CalculateThread.Start();
@@ -1273,6 +1287,11 @@ namespace OpenAIONDPS
 
             if (UpdateTotalDamageFlag)
             {
+                if (this.CalcTimeCheckBox.Checked && !this.CalcTimer.Enabled)
+                {
+                    this.CalcTimer.Start();
+                }
+
                 foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
                 {
                     _MemberUnit.UpdateDamageParTotalDamage(this.TotalDamage);
@@ -1291,6 +1310,17 @@ namespace OpenAIONDPS
             this.TotalDamageLabel.Text = this.TotalDamage.ToString("#,0");
         }
 
+        private void CalcTimer_Elapsed(object sender, EventArgs e)
+        {
+            this.CalcRemainingTime -= 1;
+            this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+
+            if (this.CalcRemainingTime <= 0)
+            {
+                this.CalcTimer.Stop();
+                this.StopThread();
+            }
+        }
 
 
         /// <summary>
@@ -1434,6 +1464,12 @@ namespace OpenAIONDPS
             {
                 FavoriteMemberList.Visible = true;
             }
+        }
+
+        private void CalcTimerMinutesNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
+            this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
         }
     }
 }

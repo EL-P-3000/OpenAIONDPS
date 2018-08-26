@@ -70,7 +70,11 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
+            this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
             this.MemberGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // StartButton
@@ -111,7 +115,7 @@
             this.SkillListFlowLayoutPanel.AutoScroll = true;
             this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(12, 533);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
-            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(750, 239);
+            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(750, 266);
             this.SkillListFlowLayoutPanel.TabIndex = 15;
             // 
             // MemberGroupBox
@@ -513,11 +517,59 @@
             this.Member12.Size = new System.Drawing.Size(721, 26);
             this.Member12.TabIndex = 12;
             // 
+            // CalcTimeCheckBox
+            // 
+            this.CalcTimeCheckBox.AutoSize = true;
+            this.CalcTimeCheckBox.Location = new System.Drawing.Point(336, 16);
+            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
+            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
+            this.CalcTimeCheckBox.TabIndex = 28;
+            this.CalcTimeCheckBox.Text = "計測時間(分)";
+            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // CalcTimerMinutesNumericUpDown
+            // 
+            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(429, 14);
+            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
+            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
+            this.CalcTimerMinutesNumericUpDown.TabIndex = 29;
+            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
+            // 
+            // CalcRemainingTimeLabel
+            // 
+            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(477, 14);
+            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
+            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
+            this.CalcRemainingTimeLabel.TabIndex = 30;
+            this.CalcRemainingTimeLabel.Text = "300";
+            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 784);
+            this.ClientSize = new System.Drawing.Size(774, 811);
+            this.Controls.Add(this.CalcRemainingTimeLabel);
+            this.Controls.Add(this.CalcTimerMinutesNumericUpDown);
+            this.Controls.Add(this.CalcTimeCheckBox);
             this.Controls.Add(this.AlwaysOnTopCheckBox);
             this.Controls.Add(this.CalcFromLogButton);
             this.Controls.Add(this.DebugCheckBox);
@@ -527,13 +579,14 @@
             this.Controls.Add(this.FileButton);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
-            this.MaximumSize = new System.Drawing.Size(790, 823);
+            this.MaximumSize = new System.Drawing.Size(790, 850);
             this.Name = "MainForm";
             this.Text = "Open AION DPS 1.0.6";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
             this.MemberGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -583,6 +636,9 @@
         private System.Windows.Forms.TextBox LimitedTargetNameTextBox;
         private System.Windows.Forms.Button CalcFromLogButton;
         private System.Windows.Forms.CheckBox AlwaysOnTopCheckBox;
+        private System.Windows.Forms.CheckBox CalcTimeCheckBox;
+        private System.Windows.Forms.NumericUpDown CalcTimerMinutesNumericUpDown;
+        private System.Windows.Forms.Label CalcRemainingTimeLabel;
     }
 }
 
