@@ -45,6 +45,9 @@ namespace OpenAIONDPS
             this.InitSkillUnit();
             this.FavoriteMemberList.SetMainForm(this);
             this.Member01.SetMemberName(this.OwnName);
+
+            this.AlwaysOnTopCheckBox.Checked = Properties.Settings.Default.AlwaysOnTop;
+            this.TopMost = Properties.Settings.Default.AlwaysOnTop;
         }
 
         private void InitSkillUnit()
@@ -1367,7 +1370,22 @@ namespace OpenAIONDPS
             this.IsCalcLogFile = false;
         }
 
+        private void AlwaysOnTopCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.AlwaysOnTopCheckBox.Checked)
+            {
+                this.TopMost = true;
+                Properties.Settings.Default.AlwaysOnTop = true;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                this.TopMost = false;
+                Properties.Settings.Default.AlwaysOnTop = false;
+                Properties.Settings.Default.Save();
+            }
 
+        }
 
         /// <summary>
         /// クライアントを64bitで起動
