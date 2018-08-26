@@ -174,7 +174,7 @@ namespace OpenAIONDPS
             {
                 if (this.DebugCheckBox.Checked)
                 {
-                    DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName);
+                    this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, System.Text.Encoding.GetEncoding("shift_jis"));
                     this.IsDebug = true;
                 }
             }
@@ -351,7 +351,7 @@ namespace OpenAIONDPS
         private static readonly Regex ChatLogReflectDamagDisciplineEnergyRegex = new Regex(@"^ディシプリン\sエネルギーが攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
 
         /// <summary>
-        /// スレッド処理
+        /// 計測
         /// </summary>
         public void Calculate()
         {
@@ -1190,9 +1190,6 @@ namespace OpenAIONDPS
             return ChatLogSkillEffectDamageDamageRegexList;
         }
 
-
-
-
         public void UpdateDamageData(ActionData ChatLogActionData)
         {
             bool UpdateTotalDamageFlag = false;
@@ -1289,7 +1286,11 @@ namespace OpenAIONDPS
 
 
 
-
+        /// <summary>
+        /// ログファイルから計測
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CalcFromLogButton_Click(object sender, EventArgs e)
         {
             if (this.IsRunning == true)
@@ -1320,6 +1321,18 @@ namespace OpenAIONDPS
                 this.TotalDamageLabel.Text = "0";
                 this.IsCalcLogFile = true;
 
+                try
+                {
+                    if (this.DebugCheckBox.Checked)
+                    {
+                        this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, System.Text.Encoding.GetEncoding("shift_jis"));
+                        this.IsDebug = true;
+                    }
+                }
+                catch
+                {
+                }
+
                 this.CalculateThread = new Thread(new ThreadStart(Calculate));
                 this.CalculateThread.Start();
             }
@@ -1327,6 +1340,19 @@ namespace OpenAIONDPS
 
         public void CalcFromLogEnd()
         {
+            try
+            {
+                if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+                {
+                    this.DebugLogFileStreamWriter.Flush();
+                    this.DebugLogFileStreamWriter.Close();
+                }
+
+            }
+            catch
+            {
+            }
+
             this.StopFlag = true;
             this.IsRunning = false;
 
