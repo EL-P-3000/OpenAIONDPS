@@ -215,6 +215,10 @@ namespace OpenAIONDPS
             SkillName = "ヒート サモン";
             SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spell, AION.SkillType.Dot));
 
+            // サモン
+            SkillName = "タイフーン サモン";
+            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spell, AION.SkillType.Summon));
+
 
             /**************************************************************************************************************************************/
             /* スピリット *************************************************************************************************************************/

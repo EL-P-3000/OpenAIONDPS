@@ -272,10 +272,15 @@ namespace OpenAIONDPS
          * 他人, スキル                  [他人]が使用した[スキル]の効果により、[ターゲット]に[ダメージ]のダメージを与えました。
          *
          * 自分, スキル, ダメージ＆効果  [スキル]により、[ターゲット]に[ダメージ]を与え、[エフェクトスキル]効果が生じました。 
+         * 自分, スキル, ダメージ＆効果  
          * 他人, スキル, ダメージ＆効果  
+         * 他人, スキル, ダメージ＆効果  [他人]が使用した[スキル]の効果により、[ターゲット]が[ダメージ]のダメージを受け、一部の魔法強化・弱化効果が解除されました。 
          * 
          * 自分, スキル, クリティカル    クリティカルヒット！[スキル]の効果により、[ターゲット]に[ダメージ]のダメージを与えました。
          * 他人, スキル, クリティカル    クリティカルヒット！[他人]が使用した[スキル]の効果により、[ターゲット]に[ダメージ]のダメージを与えました。
+         * 
+         * サモン, スキル                [サモン名]が使用した[サモン名]の効果により、[ターゲット]に[ダメージ]ダメージを与えました。
+         * サモン, スキル                [サモン名]が使用した[サモン名] エフェクトの効果により、[ターゲット]に[ダメージ]のダメージを与えました。
          * 
          * 自分, 反射                    攻撃を反射し、[ターゲット]に[ダメージ]のダメージを与えました。
          * 他人, 反射                    [味方]が攻撃を反射し、[ターゲット]に[ダメージ]のダメージを与えました。
@@ -774,7 +779,7 @@ namespace OpenAIONDPS
 
                             //
                             // サモン(攻撃対象固定)のダメージ
-                            // "^(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")が使用した(?<SkillName2>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。"
+                            // "^(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")が使用した(?<SkillName2>" + _Skill.Value.Name.Replace(" ", "\\s") + ")(\\sエフェクト|)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。"
                             //
                             bool ChatLogSkillSummon2DamageMatchFlag = false;
                             foreach (Regex ChatLogSkillSummon2DamageRegex in ChatLogSkillSummon2DamageRegexList)
@@ -1025,7 +1030,7 @@ namespace OpenAIONDPS
             {
                 if (_Skill.Value.SkillType.Equals(AION.SkillType.Summon))
                 {
-                    ChatLogSkillSummon2DamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")が使用した(?<SkillName2>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+                    ChatLogSkillSummon2DamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")が使用した(?<SkillName2>" + _Skill.Value.Name.Replace(" ", "\\s") + ")(\\sエフェクト|)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
                 }
             }
 
@@ -1322,6 +1327,11 @@ namespace OpenAIONDPS
             }
         }
 
+        private void CalcTimerMinutesNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
+            this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+        }
 
         /// <summary>
         /// ログファイルから計測
@@ -1464,12 +1474,6 @@ namespace OpenAIONDPS
             {
                 FavoriteMemberList.Visible = true;
             }
-        }
-
-        private void CalcTimerMinutesNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
-            this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
         }
     }
 }
