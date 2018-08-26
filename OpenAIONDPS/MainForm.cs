@@ -95,7 +95,11 @@ namespace OpenAIONDPS
                         }
                     }
                 }
-                else if (_Control.GetType().Name.Equals("SkillUnit"))
+            }
+
+            foreach (Control _Control in this.SkillListFlowLayoutPanel.Controls)
+            {
+                if (_Control.GetType().Name.Equals("SkillUnit"))
                 {
                     SkillUnit _SkillUnit = (SkillUnit)_Control;
                     _SkillUnit.Clear();
@@ -174,7 +178,7 @@ namespace OpenAIONDPS
             {
                 if (this.DebugCheckBox.Checked)
                 {
-                    this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, System.Text.Encoding.GetEncoding("shift_jis"));
+                    this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, Encoding.GetEncoding("shift_jis"));
                     this.IsDebug = true;
                 }
             }
@@ -1084,6 +1088,25 @@ namespace OpenAIONDPS
         }
 
         /// <summary>
+        /// エフェクトダメージスキルのダメージのパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetChatLogSkillEffectDamageDamageRegexList()
+        {
+            LinkedList<Regex> ChatLogSkillEffectDamageDamageRegexList = new LinkedList<Regex>();
+
+            foreach (AION.Skill _Skill in this.SkillList.Values)
+            {
+                if (_Skill.SkillType.Equals(AION.SkillType.EffectDamage))
+                {
+                    ChatLogSkillEffectDamageDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)は(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)のダメージを受けました。", RegexOptions.Compiled));
+                }
+            }
+
+            return ChatLogSkillEffectDamageDamageRegexList;
+        }
+
+        /// <summary>
         /// スキルがドットスキルかをチェック
         /// </summary>
         /// <param name="SkillName"></param>
@@ -1169,25 +1192,6 @@ namespace OpenAIONDPS
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// エフェクトダメージスキルのダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetChatLogSkillEffectDamageDamageRegexList()
-        {
-            LinkedList<Regex> ChatLogSkillEffectDamageDamageRegexList = new LinkedList<Regex>();
-
-            foreach (AION.Skill _Skill in this.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.EffectDamage))
-                {
-                    ChatLogSkillEffectDamageDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)は(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)のダメージを受けました。", RegexOptions.Compiled));
-                }
-            }
-
-            return ChatLogSkillEffectDamageDamageRegexList;
         }
 
         public void UpdateDamageData(ActionData ChatLogActionData)
@@ -1325,7 +1329,7 @@ namespace OpenAIONDPS
                 {
                     if (this.DebugCheckBox.Checked)
                     {
-                        this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, System.Text.Encoding.GetEncoding("shift_jis"));
+                        this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, Encoding.GetEncoding("shift_jis"));
                         this.IsDebug = true;
                     }
                 }
