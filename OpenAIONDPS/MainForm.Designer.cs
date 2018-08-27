@@ -514,7 +514,7 @@
             // 
             // AION64bitButton
             // 
-            this.AION64bitButton.Location = new System.Drawing.Point(690, 12);
+            this.AION64bitButton.Location = new System.Drawing.Point(747, 12);
             this.AION64bitButton.Name = "AION64bitButton";
             this.AION64bitButton.Size = new System.Drawing.Size(75, 23);
             this.AION64bitButton.TabIndex = 24;
@@ -525,7 +525,7 @@
             // DebugCheckBox
             // 
             this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(624, 16);
+            this.DebugCheckBox.Location = new System.Drawing.Point(681, 16);
             this.DebugCheckBox.Name = "DebugCheckBox";
             this.DebugCheckBox.Size = new System.Drawing.Size(60, 16);
             this.DebugCheckBox.TabIndex = 25;
@@ -545,7 +545,7 @@
             // AlwaysOnTopCheckBox
             // 
             this.AlwaysOnTopCheckBox.AutoSize = true;
-            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(534, 16);
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(591, 16);
             this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
             this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
             this.AlwaysOnTopCheckBox.TabIndex = 27;
