@@ -15,6 +15,8 @@ namespace OpenAIONDPS
         private long MinDamage = 0;
         private long AttackNumber = 0;
         private long CriticalNumber = 0;
+        private long EvadeAttackNumber = 0;
+        private long EvadedAttackNumber = 0;
         private long DeadNumber = 0;
 
         public MemberUnit()
@@ -44,6 +46,8 @@ namespace OpenAIONDPS
             this.MinDamage = 0;
             this.AttackNumber = 0;
             this.CriticalNumber = 0;
+            this.EvadeAttackNumber = 0;
+            this.EvadedAttackNumber = 0;
             this.DeadNumber = 0;
             this.DamageLabel.Text = "0";
             this.MaxDamageLabel.Text = "0";
@@ -56,6 +60,8 @@ namespace OpenAIONDPS
             this.CriticalNumberLabel.Text = "0";
             this.CriticalNumberParAttackNumberLabel.Text = "0%";
             this.DamageParTotalDamageLabel.Text = "100%";
+            this.EvadeAttackNumberLabel.Text = "0";
+            this.EvadedAttackNumberLabel.Text = "0";
         }
 
         public bool IsStart()
@@ -104,6 +110,19 @@ namespace OpenAIONDPS
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
+        }
+
+        public void AddEvasion(bool IsSourceNameMember)
+        {
+            if (IsSourceNameMember)
+            {
+                this.UpdateEvadeAttackNumber();
+            }
+            else
+            {
+                this.UpdateEvadedAttackNumber();
+            }
+
         }
 
         private void UpdateDamage(long Damage)
@@ -182,6 +201,18 @@ namespace OpenAIONDPS
         {
             this.CriticalNumber += 1;
             this.CriticalNumberLabel.Text = this.CriticalNumber.ToString("#,0");
+        }
+
+        private void UpdateEvadeAttackNumber()
+        {
+            this.EvadeAttackNumber += 1;
+            this.EvadeAttackNumberLabel.Text = this.EvadeAttackNumber.ToString("#,0");
+        }
+
+        private void UpdateEvadedAttackNumber()
+        {
+            this.EvadedAttackNumber += 1;
+            this.EvadedAttackNumberLabel.Text = this.EvadedAttackNumber.ToString("#,0");
         }
     }
 }

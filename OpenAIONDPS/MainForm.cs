@@ -92,10 +92,11 @@ namespace OpenAIONDPS
                 if (_Control.GetType().Name.Equals("MemberUnit"))
                 {
                     MemberUnit _MemberUnit = (MemberUnit)_Control;
+                    string MemberName = _MemberUnit.GetMemberName();
                     _MemberUnit.Clear();
-                    if (!String.IsNullOrEmpty(_MemberUnit.GetMemberName()))
+                    if (!String.IsNullOrEmpty(MemberName) && !this.MemberNameMemberUnitList.ContainsKey(MemberName))
                     {
-                        this.MemberNameMemberUnitList.Add(_MemberUnit.GetMemberName(), _MemberUnit);
+                        this.MemberNameMemberUnitList.Add(MemberName, _MemberUnit);
                         if (_MemberUnit.GetJob() != AION.JobType.None)
                         {
                             this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
@@ -377,11 +378,17 @@ namespace OpenAIONDPS
         private static readonly Regex ChatLogReflectDamagDisciplineEnergyRegex = new Regex(@"^ディシプリン\sエネルギーが攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
 
         /// <summary>
+        /// 回避
+        /// </summary>
+        private static readonly Regex ChatLogEvasionRegex = new Regex("^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)を回避しました。", RegexOptions.Compiled);
+
+        /// <summary>
         /// 計測
         /// </summary>
         public void Calculate()
         {
             Delegate UpdateDataDelegate = new Action<ActionData>(UpdateDamageData);
+            Delegate UpdateEvasionDelegate = new Action<string, string>(UpdateEvasion);
             Delegate CalcFromLogEndDelegate = new Action(CalcFromLogEnd);
             string LogFilePath = Properties.Settings.Default.ChatLogPath;
             string LogText = "";
@@ -944,6 +951,24 @@ namespace OpenAIONDPS
 
                                 continue;
                             }
+
+                            ///
+                            /// 回避
+                            /// "^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)を回避しました。"
+                            ///
+                            Match ChatLogEvasionMatch = ChatLogEvasionRegex.Match(LogTextWithoutTime);
+                            if (ChatLogEvasionMatch.Success)
+                            {
+                                string SourceName = ChatLogEvasionMatch.Groups["SourceName"].Value;
+                                string TargetName = ChatLogEvasionMatch.Groups["TargetName"].Value;
+
+                                if (MemberNameMemberUnitList.ContainsKey(SourceName) || MemberNameMemberUnitList.ContainsKey(TargetName))
+                                {
+                                    this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName });
+                                }
+
+                                continue;
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -1313,6 +1338,18 @@ namespace OpenAIONDPS
         {
             this.TotalDamage += TotalDamage;
             this.TotalDamageLabel.Text = this.TotalDamage.ToString("#,0");
+        }
+
+        public void UpdateEvasion(string SourceName, string TargetName)
+        {
+            if (this.MemberNameMemberUnitList.ContainsKey(SourceName))
+            {
+                this.MemberNameMemberUnitList[SourceName].AddEvasion(true);
+            }
+            else if (this.MemberNameMemberUnitList.ContainsKey(TargetName))
+            {
+                this.MemberNameMemberUnitList[TargetName].AddEvasion(false);
+            }
         }
 
         private void CalcTimer_Elapsed(object sender, EventArgs e)

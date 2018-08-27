@@ -42,6 +42,8 @@
             this.DamageParTotalDamageLabel = new System.Windows.Forms.Label();
             this.CriticalNumberParAttackNumberLabel = new System.Windows.Forms.Label();
             this.CriticalNumberLabel = new System.Windows.Forms.Label();
+            this.EvadeAttackNumberLabel = new System.Windows.Forms.Label();
+            this.EvadedAttackNumberLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CharacterNameTextBox
@@ -181,10 +183,30 @@
             this.CriticalNumberLabel.Text = "0";
             this.CriticalNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // EvadeAttackNumberLabel
+            // 
+            this.EvadeAttackNumberLabel.Location = new System.Drawing.Point(699, 1);
+            this.EvadeAttackNumberLabel.Name = "EvadeAttackNumberLabel";
+            this.EvadeAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.EvadeAttackNumberLabel.TabIndex = 16;
+            this.EvadeAttackNumberLabel.Text = "0";
+            this.EvadeAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // EvadedAttackNumberLabel
+            // 
+            this.EvadedAttackNumberLabel.Location = new System.Drawing.Point(699, 13);
+            this.EvadedAttackNumberLabel.Name = "EvadedAttackNumberLabel";
+            this.EvadedAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.EvadedAttackNumberLabel.TabIndex = 17;
+            this.EvadedAttackNumberLabel.Text = "0";
+            this.EvadedAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MemberUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.EvadedAttackNumberLabel);
+            this.Controls.Add(this.EvadeAttackNumberLabel);
             this.Controls.Add(this.CriticalNumberParAttackNumberLabel);
             this.Controls.Add(this.CriticalNumberLabel);
             this.Controls.Add(this.DamageParTotalDamageLabel);
@@ -200,7 +222,7 @@
             this.Controls.Add(this.DamageLabel);
             this.Controls.Add(this.CharacterNameTextBox);
             this.Name = "MemberUnit";
-            this.Size = new System.Drawing.Size(700, 26);
+            this.Size = new System.Drawing.Size(795, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +244,7 @@
         private System.Windows.Forms.Label DamageParTotalDamageLabel;
         private System.Windows.Forms.Label CriticalNumberParAttackNumberLabel;
         private System.Windows.Forms.Label CriticalNumberLabel;
+        private System.Windows.Forms.Label EvadeAttackNumberLabel;
+        private System.Windows.Forms.Label EvadedAttackNumberLabel;
     }
 }
