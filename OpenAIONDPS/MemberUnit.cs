@@ -17,6 +17,8 @@ namespace OpenAIONDPS
         private long CriticalNumber = 0;
         private long EvadeAttackNumber = 0;
         private long EvadedAttackNumber = 0;
+        private long ResistAttackNumber = 0;
+        private long ResistedAttackNumber = 0;
         private long DeadNumber = 0;
 
         public MemberUnit()
@@ -134,6 +136,28 @@ namespace OpenAIONDPS
 
         }
 
+        public void AddResistance(bool IsSourceNameMember, DateTime Time)
+        {
+            // 回避した攻撃
+            if (IsSourceNameMember)
+            {
+                this.UpdateResistAttackNumber();
+            }
+            // 回避された攻撃
+            else
+            {
+                if (!this.IsStart())
+                {
+                    this.StartFlag = true;
+                    this.StartTime = Time;
+                }
+                this.EndTime = Time;
+
+                this.UpdateResistedAttackNumber();
+            }
+
+        }
+
         private void UpdateDamage(long Damage)
         {
             this.Damage += Damage;
@@ -221,6 +245,24 @@ namespace OpenAIONDPS
         {
             this.EvadedAttackNumber += 1;
             this.EvadedAttackNumberLabel.Text = this.EvadedAttackNumber.ToString("#,0");
+
+            this.UpdateSeconds();
+            this.UpdateAttackNumber();
+            this.UpdateDamageParSecond();
+            this.UpdateDamageParAttackNumber();
+            this.UpdateAttackNumberParSecond();
+        }
+
+        private void UpdateResistAttackNumber()
+        {
+            this.ResistAttackNumber += 1;
+            this.ResistAttackNumberLabel.Text = this.EvadeAttackNumber.ToString("#,0");
+        }
+
+        private void UpdateResistedAttackNumber()
+        {
+            this.ResistedAttackNumber += 1;
+            this.ResistedAttackNumberLabel.Text = this.ResistedAttackNumber.ToString("#,0");
 
             this.UpdateSeconds();
             this.UpdateAttackNumber();

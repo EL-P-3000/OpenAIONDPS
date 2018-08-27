@@ -33,6 +33,10 @@
             this.FileButton = new System.Windows.Forms.Button();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -116,15 +120,19 @@
             this.SkillListFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SkillListFlowLayoutPanel.AutoScroll = true;
-            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(12, 559);
+            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(12, 573);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
-            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(810, 240);
+            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(890, 236);
             this.SkillListFlowLayoutPanel.TabIndex = 15;
             // 
             // MemberGroupBox
             // 
             this.MemberGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.MemberGroupBox.Controls.Add(this.label21);
+            this.MemberGroupBox.Controls.Add(this.label20);
+            this.MemberGroupBox.Controls.Add(this.label18);
+            this.MemberGroupBox.Controls.Add(this.label19);
             this.MemberGroupBox.Controls.Add(this.label14);
             this.MemberGroupBox.Controls.Add(this.label13);
             this.MemberGroupBox.Controls.Add(this.label12);
@@ -163,15 +171,55 @@
             this.MemberGroupBox.Controls.Add(this.Member12);
             this.MemberGroupBox.Location = new System.Drawing.Point(12, 41);
             this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Size = new System.Drawing.Size(810, 512);
+            this.MemberGroupBox.Size = new System.Drawing.Size(890, 526);
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(761, 12);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(29, 12);
+            this.label21.TabIndex = 45;
+            this.label21.Text = "回避";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(837, 12);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(29, 12);
+            this.label20.TabIndex = 44;
+            this.label20.Text = "抵抗";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(809, 43);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(57, 12);
+            this.label18.TabIndex = 43;
+            this.label18.Text = "された回数";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(819, 27);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(47, 12);
+            this.label19.TabIndex = 42;
+            this.label19.Text = "した回数";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 398);
+            this.label14.Location = new System.Drawing.Point(6, 410);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(174, 12);
             this.label14.TabIndex = 41;
@@ -180,26 +228,26 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(714, 31);
+            this.label13.Location = new System.Drawing.Point(733, 43);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 12);
+            this.label13.Size = new System.Drawing.Size(57, 12);
             this.label13.TabIndex = 40;
-            this.label13.Text = "回避された回数";
+            this.label13.Text = "された回数";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(724, 15);
+            this.label12.Location = new System.Drawing.Point(743, 27);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 12);
+            this.label12.Size = new System.Drawing.Size(47, 12);
             this.label12.TabIndex = 39;
-            this.label12.Text = "回避した回数";
+            this.label12.Text = "した回数";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LimitedTargetNameTextBox
             // 
-            this.LimitedTargetNameTextBox.Location = new System.Drawing.Point(86, 487);
+            this.LimitedTargetNameTextBox.Location = new System.Drawing.Point(86, 501);
             this.LimitedTargetNameTextBox.Name = "LimitedTargetNameTextBox";
             this.LimitedTargetNameTextBox.Size = new System.Drawing.Size(207, 19);
             this.LimitedTargetNameTextBox.TabIndex = 38;
@@ -207,7 +255,7 @@
             // LimitedTargetCheckBox
             // 
             this.LimitedTargetCheckBox.AutoSize = true;
-            this.LimitedTargetCheckBox.Location = new System.Drawing.Point(8, 489);
+            this.LimitedTargetCheckBox.Location = new System.Drawing.Point(8, 503);
             this.LimitedTargetCheckBox.Name = "LimitedTargetCheckBox";
             this.LimitedTargetCheckBox.Size = new System.Drawing.Size(72, 16);
             this.LimitedTargetCheckBox.TabIndex = 37;
@@ -217,7 +265,7 @@
             // FavoriteMemberList
             // 
             this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FavoriteMemberList.Location = new System.Drawing.Point(243, 46);
+            this.FavoriteMemberList.Location = new System.Drawing.Point(243, 58);
             this.FavoriteMemberList.Name = "FavoriteMemberList";
             this.FavoriteMemberList.Size = new System.Drawing.Size(522, 345);
             this.FavoriteMemberList.TabIndex = 25;
@@ -225,7 +273,7 @@
             // 
             // FavoriteMemberButton
             // 
-            this.FavoriteMemberButton.Location = new System.Drawing.Point(53, 18);
+            this.FavoriteMemberButton.Location = new System.Drawing.Point(53, 30);
             this.FavoriteMemberButton.Name = "FavoriteMemberButton";
             this.FavoriteMemberButton.Size = new System.Drawing.Size(75, 23);
             this.FavoriteMemberButton.TabIndex = 25;
@@ -237,7 +285,7 @@
             // 
             this.DisableJobRadioButton.AutoSize = true;
             this.DisableJobRadioButton.Checked = true;
-            this.DisableJobRadioButton.Location = new System.Drawing.Point(86, 417);
+            this.DisableJobRadioButton.Location = new System.Drawing.Point(86, 429);
             this.DisableJobRadioButton.Name = "DisableJobRadioButton";
             this.DisableJobRadioButton.Size = new System.Drawing.Size(72, 16);
             this.DisableJobRadioButton.TabIndex = 35;
@@ -248,7 +296,7 @@
             // EnableJobRadioButton
             // 
             this.EnableJobRadioButton.AutoSize = true;
-            this.EnableJobRadioButton.Location = new System.Drawing.Point(8, 417);
+            this.EnableJobRadioButton.Location = new System.Drawing.Point(8, 429);
             this.EnableJobRadioButton.Name = "EnableJobRadioButton";
             this.EnableJobRadioButton.Size = new System.Drawing.Size(72, 16);
             this.EnableJobRadioButton.TabIndex = 34;
@@ -258,7 +306,7 @@
             // TotalDamageLabel
             // 
             this.TotalDamageLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TotalDamageLabel.Location = new System.Drawing.Point(227, 398);
+            this.TotalDamageLabel.Location = new System.Drawing.Point(227, 410);
             this.TotalDamageLabel.Name = "TotalDamageLabel";
             this.TotalDamageLabel.Size = new System.Drawing.Size(82, 12);
             this.TotalDamageLabel.TabIndex = 31;
@@ -268,7 +316,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(426, 15);
+            this.label1.Location = new System.Drawing.Point(426, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 12);
             this.label1.TabIndex = 24;
@@ -278,7 +326,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(255, 23);
+            this.label2.Location = new System.Drawing.Point(255, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 12);
             this.label2.TabIndex = 20;
@@ -287,7 +335,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(392, 15);
+            this.label3.Location = new System.Drawing.Point(392, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 21;
@@ -297,7 +345,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(380, 31);
+            this.label4.Location = new System.Drawing.Point(380, 43);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 22;
@@ -307,7 +355,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(414, 31);
+            this.label5.Location = new System.Drawing.Point(414, 43);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 12);
             this.label5.TabIndex = 23;
@@ -317,7 +365,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(496, 15);
+            this.label6.Location = new System.Drawing.Point(496, 27);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 12);
             this.label6.TabIndex = 25;
@@ -327,7 +375,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(500, 31);
+            this.label7.Location = new System.Drawing.Point(500, 43);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 12);
             this.label7.TabIndex = 26;
@@ -337,7 +385,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 23);
+            this.label8.Location = new System.Drawing.Point(6, 35);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 12);
             this.label8.TabIndex = 27;
@@ -346,7 +394,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(145, 23);
+            this.label9.Location = new System.Drawing.Point(145, 35);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(30, 12);
             this.label9.TabIndex = 28;
@@ -355,7 +403,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(668, 23);
+            this.label10.Location = new System.Drawing.Point(668, 35);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 12);
             this.label10.TabIndex = 29;
@@ -366,9 +414,9 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.Location = new System.Drawing.Point(6, 440);
+            this.label11.Location = new System.Drawing.Point(6, 452);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(794, 44);
+            this.label11.Size = new System.Drawing.Size(874, 44);
             this.label11.TabIndex = 36;
             this.label11.Text = "ジョブ有効の場合、誰の攻撃かを特定できない攻撃をジョブで特定します。空白以外の全員の職を設定し、かつジョブが重複していないジョブの場合は、職固有スキルによるダメー" +
     "ジをメンバーに加算します。同一ジョブが2人以上いる場合やジョブを未選択の場合は、下のスキル別にダメージが加算されます。ジョブ無効の場合は誰の攻撃かを特定できない" +
@@ -377,7 +425,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(322, 23);
+            this.label15.Location = new System.Drawing.Point(322, 35);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(29, 12);
             this.label15.TabIndex = 30;
@@ -387,7 +435,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(594, 15);
+            this.label16.Location = new System.Drawing.Point(594, 27);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(44, 12);
             this.label16.TabIndex = 32;
@@ -397,7 +445,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(594, 31);
+            this.label17.Location = new System.Drawing.Point(594, 43);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(44, 12);
             this.label17.TabIndex = 33;
@@ -408,108 +456,108 @@
             // 
             this.Member01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member01.Location = new System.Drawing.Point(6, 46);
+            this.Member01.Location = new System.Drawing.Point(6, 58);
             this.Member01.Name = "Member01";
-            this.Member01.Size = new System.Drawing.Size(781, 26);
+            this.Member01.Size = new System.Drawing.Size(874, 26);
             this.Member01.TabIndex = 1;
             // 
             // Member02
             // 
             this.Member02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member02.Location = new System.Drawing.Point(6, 75);
+            this.Member02.Location = new System.Drawing.Point(6, 87);
             this.Member02.Name = "Member02";
-            this.Member02.Size = new System.Drawing.Size(781, 26);
+            this.Member02.Size = new System.Drawing.Size(874, 26);
             this.Member02.TabIndex = 2;
             // 
             // Member03
             // 
             this.Member03.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member03.Location = new System.Drawing.Point(6, 104);
+            this.Member03.Location = new System.Drawing.Point(6, 116);
             this.Member03.Name = "Member03";
-            this.Member03.Size = new System.Drawing.Size(781, 26);
+            this.Member03.Size = new System.Drawing.Size(874, 26);
             this.Member03.TabIndex = 3;
             // 
             // Member04
             // 
             this.Member04.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member04.Location = new System.Drawing.Point(6, 133);
+            this.Member04.Location = new System.Drawing.Point(6, 145);
             this.Member04.Name = "Member04";
-            this.Member04.Size = new System.Drawing.Size(781, 26);
+            this.Member04.Size = new System.Drawing.Size(874, 26);
             this.Member04.TabIndex = 4;
             // 
             // Member05
             // 
             this.Member05.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member05.Location = new System.Drawing.Point(6, 162);
+            this.Member05.Location = new System.Drawing.Point(6, 174);
             this.Member05.Name = "Member05";
-            this.Member05.Size = new System.Drawing.Size(781, 26);
+            this.Member05.Size = new System.Drawing.Size(874, 26);
             this.Member05.TabIndex = 5;
             // 
             // Member06
             // 
             this.Member06.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member06.Location = new System.Drawing.Point(6, 191);
+            this.Member06.Location = new System.Drawing.Point(6, 203);
             this.Member06.Name = "Member06";
-            this.Member06.Size = new System.Drawing.Size(781, 26);
+            this.Member06.Size = new System.Drawing.Size(874, 26);
             this.Member06.TabIndex = 6;
             // 
             // Member07
             // 
             this.Member07.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member07.Location = new System.Drawing.Point(6, 220);
+            this.Member07.Location = new System.Drawing.Point(6, 232);
             this.Member07.Name = "Member07";
-            this.Member07.Size = new System.Drawing.Size(781, 26);
+            this.Member07.Size = new System.Drawing.Size(874, 26);
             this.Member07.TabIndex = 7;
             // 
             // Member08
             // 
             this.Member08.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member08.Location = new System.Drawing.Point(6, 249);
+            this.Member08.Location = new System.Drawing.Point(6, 261);
             this.Member08.Name = "Member08";
-            this.Member08.Size = new System.Drawing.Size(781, 26);
+            this.Member08.Size = new System.Drawing.Size(874, 26);
             this.Member08.TabIndex = 8;
             // 
             // Member09
             // 
             this.Member09.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member09.Location = new System.Drawing.Point(6, 278);
+            this.Member09.Location = new System.Drawing.Point(6, 290);
             this.Member09.Name = "Member09";
-            this.Member09.Size = new System.Drawing.Size(781, 26);
+            this.Member09.Size = new System.Drawing.Size(874, 26);
             this.Member09.TabIndex = 9;
             // 
             // Member10
             // 
             this.Member10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member10.Location = new System.Drawing.Point(6, 307);
+            this.Member10.Location = new System.Drawing.Point(6, 319);
             this.Member10.Name = "Member10";
-            this.Member10.Size = new System.Drawing.Size(781, 26);
+            this.Member10.Size = new System.Drawing.Size(874, 26);
             this.Member10.TabIndex = 10;
             // 
             // Member11
             // 
             this.Member11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member11.Location = new System.Drawing.Point(6, 336);
+            this.Member11.Location = new System.Drawing.Point(6, 348);
             this.Member11.Name = "Member11";
-            this.Member11.Size = new System.Drawing.Size(781, 26);
+            this.Member11.Size = new System.Drawing.Size(874, 26);
             this.Member11.TabIndex = 11;
             // 
             // Member12
             // 
             this.Member12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member12.Location = new System.Drawing.Point(6, 365);
+            this.Member12.Location = new System.Drawing.Point(6, 377);
             this.Member12.Name = "Member12";
-            this.Member12.Size = new System.Drawing.Size(781, 26);
+            this.Member12.Size = new System.Drawing.Size(874, 26);
             this.Member12.TabIndex = 12;
             // 
             // AION64bitButton
@@ -602,7 +650,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 811);
+            this.ClientSize = new System.Drawing.Size(914, 821);
             this.Controls.Add(this.CalcRemainingTimeLabel);
             this.Controls.Add(this.CalcTimerMinutesNumericUpDown);
             this.Controls.Add(this.CalcTimeCheckBox);
@@ -615,7 +663,7 @@
             this.Controls.Add(this.FileButton);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
-            this.MaximumSize = new System.Drawing.Size(850, 850);
+            this.MaximumSize = new System.Drawing.Size(930, 860);
             this.Name = "MainForm";
             this.Text = "Open AION DPS 1.0.9";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -678,6 +726,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
     }
 }
 
