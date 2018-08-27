@@ -112,14 +112,23 @@ namespace OpenAIONDPS
             this.UpdateAttackNumberParSecond();
         }
 
-        public void AddEvasion(bool IsSourceNameMember)
+        public void AddEvasion(bool IsSourceNameMember, DateTime Time)
         {
+            // 回避した攻撃
             if (IsSourceNameMember)
             {
                 this.UpdateEvadeAttackNumber();
             }
+            // 回避された攻撃
             else
             {
+                if (!this.IsStart())
+                {
+                    this.StartFlag = true;
+                    this.StartTime = Time;
+                }
+                this.EndTime = Time;
+
                 this.UpdateEvadedAttackNumber();
             }
 
@@ -135,7 +144,6 @@ namespace OpenAIONDPS
         {
             this.DamageParTotalDamageLabel.Text = ((long)(this.Damage * 100 / TotalDamage)).ToString() + "%";
         }
-
 
         private void UpdateSeconds()
         {
@@ -213,6 +221,12 @@ namespace OpenAIONDPS
         {
             this.EvadedAttackNumber += 1;
             this.EvadedAttackNumberLabel.Text = this.EvadedAttackNumber.ToString("#,0");
+
+            this.UpdateSeconds();
+            this.UpdateAttackNumber();
+            this.UpdateDamageParSecond();
+            this.UpdateDamageParAttackNumber();
+            this.UpdateAttackNumberParSecond();
         }
     }
 }

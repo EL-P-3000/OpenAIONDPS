@@ -383,7 +383,7 @@ namespace OpenAIONDPS
         public void Calculate()
         {
             Delegate UpdateDataDelegate = new Action<ActionData>(UpdateDamageData);
-            Delegate UpdateEvasionDelegate = new Action<string, string>(UpdateEvasion);
+            Delegate UpdateEvasionDelegate = new Action<string, string, DateTime>(UpdateEvasion);
             Delegate CalcFromLogEndDelegate = new Action(CalcFromLogEnd);
             string LogFilePath = Properties.Settings.Default.ChatLogPath;
             string LogText = "";
@@ -967,7 +967,7 @@ namespace OpenAIONDPS
                                     if (MemberNameMemberUnitList.ContainsKey(SourceName) || MemberNameMemberUnitList.ContainsKey(TargetName))
                                     {
                                         ChatLogEvasionMatchFlag = true;
-                                        this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName });
+                                        this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
                                     }
 
                                     continue;
@@ -1370,15 +1370,15 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SourceName"></param>
         /// <param name="TargetName"></param>
-        public void UpdateEvasion(string SourceName, string TargetName)
+        public void UpdateEvasion(string SourceName, string TargetName, DateTime Time)
         {
             if (this.MemberNameMemberUnitList.ContainsKey(SourceName))
             {
-                this.MemberNameMemberUnitList[SourceName].AddEvasion(true);
+                this.MemberNameMemberUnitList[SourceName].AddEvasion(true, Time);
             }
             else if (this.MemberNameMemberUnitList.ContainsKey(TargetName))
             {
-                this.MemberNameMemberUnitList[TargetName].AddEvasion(false);
+                this.MemberNameMemberUnitList[TargetName].AddEvasion(false, Time);
             }
         }
 
