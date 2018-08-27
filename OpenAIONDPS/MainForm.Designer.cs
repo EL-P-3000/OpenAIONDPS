@@ -217,7 +217,7 @@
             // FavoriteMemberList
             // 
             this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FavoriteMemberList.Location = new System.Drawing.Point(230, 46);
+            this.FavoriteMemberList.Location = new System.Drawing.Point(243, 46);
             this.FavoriteMemberList.Name = "FavoriteMemberList";
             this.FavoriteMemberList.Size = new System.Drawing.Size(522, 345);
             this.FavoriteMemberList.TabIndex = 25;
@@ -258,7 +258,7 @@
             // TotalDamageLabel
             // 
             this.TotalDamageLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TotalDamageLabel.Location = new System.Drawing.Point(228, 398);
+            this.TotalDamageLabel.Location = new System.Drawing.Point(227, 398);
             this.TotalDamageLabel.Name = "TotalDamageLabel";
             this.TotalDamageLabel.Size = new System.Drawing.Size(82, 12);
             this.TotalDamageLabel.TabIndex = 31;
@@ -278,7 +278,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 23);
+            this.label2.Location = new System.Drawing.Point(255, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 12);
             this.label2.TabIndex = 20;
