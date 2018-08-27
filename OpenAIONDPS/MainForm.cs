@@ -378,11 +378,6 @@ namespace OpenAIONDPS
         private static readonly Regex ChatLogReflectDamagDisciplineEnergyRegex = new Regex(@"^ディシプリン\sエネルギーが攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
 
         /// <summary>
-        /// 回避
-        /// </summary>
-        private static readonly Regex ChatLogEvasionRegex = new Regex("^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)を回避しました。", RegexOptions.Compiled);
-
-        /// <summary>
         /// 計測
         /// </summary>
         public void Calculate()
@@ -424,6 +419,9 @@ namespace OpenAIONDPS
 
             // エフェクトダメージスキルのダメージのパターン
             LinkedList<Regex> ChatLogSkillEffectDamageDamageRegexList = this.GetChatLogSkillEffectDamageDamageRegexList();
+
+            // 回避のパターンリスト
+            LinkedList<Regex> ChatLogEvasionRegexList = this.GetChatLogEvasionRegexList();
 
             // ログファイルから計算の場合はログファイルを設定
             if (this.IsCalcLogFile)
@@ -954,19 +952,29 @@ namespace OpenAIONDPS
 
                             ///
                             /// 回避
-                            /// "^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)を回避しました。"
+                            /// "^(?<SourceName>" + MemberName + ")が(?<TargetName>.+)の(?<SkillName>.+)を回避しました。"
+                            /// "^(?<SourceName>.+)が(?<TargetName>" + MemberName + ")の(?<SkillName>.+)を回避しました。"
                             ///
-                            Match ChatLogEvasionMatch = ChatLogEvasionRegex.Match(LogTextWithoutTime);
-                            if (ChatLogEvasionMatch.Success)
+                            bool ChatLogEvasionMatchFlag = false;
+                            foreach (Regex ChatLogEvasionRegex in ChatLogEvasionRegexList)
                             {
-                                string SourceName = ChatLogEvasionMatch.Groups["SourceName"].Value;
-                                string TargetName = ChatLogEvasionMatch.Groups["TargetName"].Value;
-
-                                if (MemberNameMemberUnitList.ContainsKey(SourceName) || MemberNameMemberUnitList.ContainsKey(TargetName))
+                                Match ChatLogEvasionMatch = ChatLogEvasionRegex.Match(LogTextWithoutTime);
+                                if (ChatLogEvasionMatch.Success)
                                 {
-                                    this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName });
-                                }
+                                    string SourceName = ChatLogEvasionMatch.Groups["SourceName"].Value;
+                                    string TargetName = ChatLogEvasionMatch.Groups["TargetName"].Value;
 
+                                    if (MemberNameMemberUnitList.ContainsKey(SourceName) || MemberNameMemberUnitList.ContainsKey(TargetName))
+                                    {
+                                        ChatLogEvasionMatchFlag = true;
+                                        this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName });
+                                    }
+
+                                    continue;
+                                }
+                            }
+                            if (ChatLogEvasionMatchFlag)
+                            {
                                 continue;
                             }
                         }
@@ -1153,6 +1161,19 @@ namespace OpenAIONDPS
             return ChatLogSkillEffectDamageDamageRegexList;
         }
 
+        private LinkedList<Regex> GetChatLogEvasionRegexList()
+        {
+            LinkedList<Regex> ChatLogEvasionRegexList = new LinkedList<Regex>();
+
+            foreach (string MemberName in this.MemberNameMemberUnitList.Keys)
+            {
+                ChatLogEvasionRegexList.AddLast(new Regex("^(?<SourceName>" + MemberName + ")が(?<TargetName>.+)の(?<SkillName>.+)を回避しました。", RegexOptions.Compiled));
+                ChatLogEvasionRegexList.AddLast(new Regex("^(?<SourceName>.+)が(?<TargetName>" + MemberName + ")の(?<SkillName>.+)を回避しました。", RegexOptions.Compiled));
+            }
+
+            return ChatLogEvasionRegexList;
+        }
+
         /// <summary>
         /// スキルがドットスキルかをチェック
         /// </summary>
@@ -1241,6 +1262,10 @@ namespace OpenAIONDPS
             }
         }
 
+        /// <summary>
+        /// 攻撃のアップデート
+        /// </summary>
+        /// <param name="ChatLogActionData"></param>
         public void UpdateDamageData(ActionData ChatLogActionData)
         {
             bool UpdateTotalDamageFlag = false;
@@ -1340,6 +1365,11 @@ namespace OpenAIONDPS
             this.TotalDamageLabel.Text = this.TotalDamage.ToString("#,0");
         }
 
+        /// <summary>
+        /// 回避のアップデート
+        /// </summary>
+        /// <param name="SourceName"></param>
+        /// <param name="TargetName"></param>
         public void UpdateEvasion(string SourceName, string TargetName)
         {
             if (this.MemberNameMemberUnitList.ContainsKey(SourceName))
@@ -1371,7 +1401,7 @@ namespace OpenAIONDPS
         }
 
         /// <summary>
-        /// ログファイルから計測
+        /// ログファイルから計測イベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1422,6 +1452,9 @@ namespace OpenAIONDPS
             }
         }
 
+        /// <summary>
+        /// ログファイルから測定終了
+        /// </summary>
         public void CalcFromLogEnd()
         {
             try
@@ -1447,6 +1480,11 @@ namespace OpenAIONDPS
             this.IsCalcLogFile = false;
         }
 
+        /// <summary>
+        /// 最前面表示イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AlwaysOnTopCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (this.AlwaysOnTopCheckBox.Checked)
@@ -1465,7 +1503,7 @@ namespace OpenAIONDPS
         }
 
         /// <summary>
-        /// クライアントを64bitで起動
+        /// クライアントを64bitで起動イベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1501,6 +1539,11 @@ namespace OpenAIONDPS
             }
         }
 
+        /// <summary>
+        /// メンバー登録画面表示イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FavoriteMemberButton_Click(object sender, EventArgs e)
         {
             if (FavoriteMemberList.Visible)
