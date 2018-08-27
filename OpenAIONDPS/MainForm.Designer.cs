@@ -40,9 +40,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.LimitedTargetNameTextBox = new System.Windows.Forms.TextBox();
             this.LimitedTargetCheckBox = new System.Windows.Forms.CheckBox();
-            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.FavoriteMemberButton = new System.Windows.Forms.Button();
             this.DisableJobRadioButton = new System.Windows.Forms.RadioButton();
             this.EnableJobRadioButton = new System.Windows.Forms.RadioButton();
@@ -61,6 +59,15 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.AION64bitButton = new System.Windows.Forms.Button();
+            this.DebugCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalcFromLogButton = new System.Windows.Forms.Button();
+            this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
+            this.LimitedTargetNameComboBox = new System.Windows.Forms.ComboBox();
+            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.Member01 = new OpenAIONDPS.MemberUnit();
             this.Member02 = new OpenAIONDPS.MemberUnit();
             this.Member03 = new OpenAIONDPS.MemberUnit();
@@ -73,13 +80,6 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
-            this.AION64bitButton = new System.Windows.Forms.Button();
-            this.DebugCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcFromLogButton = new System.Windows.Forms.Button();
-            this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -129,6 +129,7 @@
             // 
             this.MemberGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.MemberGroupBox.Controls.Add(this.LimitedTargetNameComboBox);
             this.MemberGroupBox.Controls.Add(this.label21);
             this.MemberGroupBox.Controls.Add(this.label20);
             this.MemberGroupBox.Controls.Add(this.label18);
@@ -136,7 +137,6 @@
             this.MemberGroupBox.Controls.Add(this.label14);
             this.MemberGroupBox.Controls.Add(this.label13);
             this.MemberGroupBox.Controls.Add(this.label12);
-            this.MemberGroupBox.Controls.Add(this.LimitedTargetNameTextBox);
             this.MemberGroupBox.Controls.Add(this.LimitedTargetCheckBox);
             this.MemberGroupBox.Controls.Add(this.FavoriteMemberList);
             this.MemberGroupBox.Controls.Add(this.FavoriteMemberButton);
@@ -245,31 +245,15 @@
             this.label12.Text = "した回数";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // LimitedTargetNameTextBox
-            // 
-            this.LimitedTargetNameTextBox.Location = new System.Drawing.Point(86, 501);
-            this.LimitedTargetNameTextBox.Name = "LimitedTargetNameTextBox";
-            this.LimitedTargetNameTextBox.Size = new System.Drawing.Size(207, 19);
-            this.LimitedTargetNameTextBox.TabIndex = 38;
-            // 
             // LimitedTargetCheckBox
             // 
             this.LimitedTargetCheckBox.AutoSize = true;
-            this.LimitedTargetCheckBox.Location = new System.Drawing.Point(8, 503);
+            this.LimitedTargetCheckBox.Location = new System.Drawing.Point(3, 502);
             this.LimitedTargetCheckBox.Name = "LimitedTargetCheckBox";
             this.LimitedTargetCheckBox.Size = new System.Drawing.Size(72, 16);
             this.LimitedTargetCheckBox.TabIndex = 37;
             this.LimitedTargetCheckBox.Text = "対象限定";
             this.LimitedTargetCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // FavoriteMemberList
-            // 
-            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FavoriteMemberList.Location = new System.Drawing.Point(243, 58);
-            this.FavoriteMemberList.Name = "FavoriteMemberList";
-            this.FavoriteMemberList.Size = new System.Drawing.Size(522, 345);
-            this.FavoriteMemberList.TabIndex = 25;
-            this.FavoriteMemberList.Visible = false;
             // 
             // FavoriteMemberButton
             // 
@@ -452,6 +436,114 @@
             this.label17.Text = "クリ確率";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // AION64bitButton
+            // 
+            this.AION64bitButton.Location = new System.Drawing.Point(827, 12);
+            this.AION64bitButton.Name = "AION64bitButton";
+            this.AION64bitButton.Size = new System.Drawing.Size(75, 23);
+            this.AION64bitButton.TabIndex = 24;
+            this.AION64bitButton.Text = "64bit起動";
+            this.AION64bitButton.UseVisualStyleBackColor = true;
+            this.AION64bitButton.Click += new System.EventHandler(this.AION64bitButton_Click);
+            // 
+            // DebugCheckBox
+            // 
+            this.DebugCheckBox.AutoSize = true;
+            this.DebugCheckBox.Location = new System.Drawing.Point(761, 16);
+            this.DebugCheckBox.Name = "DebugCheckBox";
+            this.DebugCheckBox.Size = new System.Drawing.Size(60, 16);
+            this.DebugCheckBox.TabIndex = 25;
+            this.DebugCheckBox.Text = "デバッグ";
+            this.DebugCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // CalcFromLogButton
+            // 
+            this.CalcFromLogButton.Location = new System.Drawing.Point(255, 12);
+            this.CalcFromLogButton.Name = "CalcFromLogButton";
+            this.CalcFromLogButton.Size = new System.Drawing.Size(75, 23);
+            this.CalcFromLogButton.TabIndex = 26;
+            this.CalcFromLogButton.Text = "ログから計測";
+            this.CalcFromLogButton.UseVisualStyleBackColor = true;
+            this.CalcFromLogButton.Click += new System.EventHandler(this.CalcFromLogButton_Click);
+            // 
+            // AlwaysOnTopCheckBox
+            // 
+            this.AlwaysOnTopCheckBox.AutoSize = true;
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(671, 16);
+            this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
+            this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
+            this.AlwaysOnTopCheckBox.TabIndex = 27;
+            this.AlwaysOnTopCheckBox.Text = "最前面表示";
+            this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
+            this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
+            // 
+            // CalcTimeCheckBox
+            // 
+            this.CalcTimeCheckBox.AutoSize = true;
+            this.CalcTimeCheckBox.Location = new System.Drawing.Point(336, 16);
+            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
+            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
+            this.CalcTimeCheckBox.TabIndex = 28;
+            this.CalcTimeCheckBox.Text = "計測時間(分)";
+            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // CalcTimerMinutesNumericUpDown
+            // 
+            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(428, 13);
+            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
+            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
+            this.CalcTimerMinutesNumericUpDown.TabIndex = 29;
+            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
+            // 
+            // CalcRemainingTimeLabel
+            // 
+            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(476, 12);
+            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
+            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
+            this.CalcRemainingTimeLabel.TabIndex = 30;
+            this.CalcRemainingTimeLabel.Text = "300";
+            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LimitedTargetNameComboBox
+            // 
+            this.LimitedTargetNameComboBox.FormattingEnabled = true;
+            this.LimitedTargetNameComboBox.Items.AddRange(new object[] {
+            "ベリトラ",
+            "理性を失ったプリギタ",
+            "ネルガル",
+            "呪われたオペル"});
+            this.LimitedTargetNameComboBox.Location = new System.Drawing.Point(81, 500);
+            this.LimitedTargetNameComboBox.Name = "LimitedTargetNameComboBox";
+            this.LimitedTargetNameComboBox.Size = new System.Drawing.Size(203, 20);
+            this.LimitedTargetNameComboBox.TabIndex = 46;
+            // 
+            // FavoriteMemberList
+            // 
+            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FavoriteMemberList.Location = new System.Drawing.Point(243, 58);
+            this.FavoriteMemberList.Name = "FavoriteMemberList";
+            this.FavoriteMemberList.Size = new System.Drawing.Size(522, 345);
+            this.FavoriteMemberList.TabIndex = 25;
+            this.FavoriteMemberList.Visible = false;
+            // 
             // Member01
             // 
             this.Member01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -560,92 +652,6 @@
             this.Member12.Size = new System.Drawing.Size(874, 26);
             this.Member12.TabIndex = 12;
             // 
-            // AION64bitButton
-            // 
-            this.AION64bitButton.Location = new System.Drawing.Point(827, 12);
-            this.AION64bitButton.Name = "AION64bitButton";
-            this.AION64bitButton.Size = new System.Drawing.Size(75, 23);
-            this.AION64bitButton.TabIndex = 24;
-            this.AION64bitButton.Text = "64bit起動";
-            this.AION64bitButton.UseVisualStyleBackColor = true;
-            this.AION64bitButton.Click += new System.EventHandler(this.AION64bitButton_Click);
-            // 
-            // DebugCheckBox
-            // 
-            this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(761, 16);
-            this.DebugCheckBox.Name = "DebugCheckBox";
-            this.DebugCheckBox.Size = new System.Drawing.Size(60, 16);
-            this.DebugCheckBox.TabIndex = 25;
-            this.DebugCheckBox.Text = "デバッグ";
-            this.DebugCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // CalcFromLogButton
-            // 
-            this.CalcFromLogButton.Location = new System.Drawing.Point(255, 12);
-            this.CalcFromLogButton.Name = "CalcFromLogButton";
-            this.CalcFromLogButton.Size = new System.Drawing.Size(75, 23);
-            this.CalcFromLogButton.TabIndex = 26;
-            this.CalcFromLogButton.Text = "ログから計測";
-            this.CalcFromLogButton.UseVisualStyleBackColor = true;
-            this.CalcFromLogButton.Click += new System.EventHandler(this.CalcFromLogButton_Click);
-            // 
-            // AlwaysOnTopCheckBox
-            // 
-            this.AlwaysOnTopCheckBox.AutoSize = true;
-            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(671, 16);
-            this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
-            this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
-            this.AlwaysOnTopCheckBox.TabIndex = 27;
-            this.AlwaysOnTopCheckBox.Text = "最前面表示";
-            this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
-            this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
-            // 
-            // CalcTimeCheckBox
-            // 
-            this.CalcTimeCheckBox.AutoSize = true;
-            this.CalcTimeCheckBox.Location = new System.Drawing.Point(336, 16);
-            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
-            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
-            this.CalcTimeCheckBox.TabIndex = 28;
-            this.CalcTimeCheckBox.Text = "計測時間(分)";
-            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // CalcTimerMinutesNumericUpDown
-            // 
-            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(428, 13);
-            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
-            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
-            this.CalcTimerMinutesNumericUpDown.TabIndex = 29;
-            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
-            // 
-            // CalcRemainingTimeLabel
-            // 
-            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
-            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(476, 12);
-            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
-            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
-            this.CalcRemainingTimeLabel.TabIndex = 30;
-            this.CalcRemainingTimeLabel.Text = "300";
-            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -717,7 +723,6 @@
         private FavoriteMemberListUnit FavoriteMemberList;
         private System.Windows.Forms.CheckBox DebugCheckBox;
         private System.Windows.Forms.CheckBox LimitedTargetCheckBox;
-        private System.Windows.Forms.TextBox LimitedTargetNameTextBox;
         private System.Windows.Forms.Button CalcFromLogButton;
         private System.Windows.Forms.CheckBox AlwaysOnTopCheckBox;
         private System.Windows.Forms.CheckBox CalcTimeCheckBox;
@@ -730,6 +735,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox LimitedTargetNameComboBox;
     }
 }
 

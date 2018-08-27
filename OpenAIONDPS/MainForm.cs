@@ -1404,9 +1404,9 @@ namespace OpenAIONDPS
         {
             bool UpdateTotalDamageFlag = false;
 
-            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameTextBox.Text))
+            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
             {
-                if (!ChatLogActionData.TargetName.Equals(this.LimitedTargetNameTextBox.Text))
+                if (!ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
                 {
                     return;
                 }
