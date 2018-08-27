@@ -419,7 +419,7 @@ namespace OpenAIONDPS
             // ターゲットのディレイダメージスキルリスト
             Dictionary<string, Dictionary<string, LinkedList<ActionData>>> SkillDelayDamageList = new Dictionary<string, Dictionary<string, LinkedList<ActionData>>>();
 
-            //  通常攻撃のダメージのパターン(他人)
+            // 通常攻撃のダメージのパターン(他人)
             LinkedList<Regex> ChatLogCharacterSimpleDamageRegexList = this.GetChatLogCharacterSimpleDamageRegexList();
 
             // 通常攻撃のダメージのパターン(サモン)
