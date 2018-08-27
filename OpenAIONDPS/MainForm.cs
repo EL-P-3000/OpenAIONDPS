@@ -1506,6 +1506,14 @@ namespace OpenAIONDPS
         /// <param name="TargetName"></param>
         public void UpdateEvasion(ActionData ChatLogActionData)
         {
+            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
+            {
+                if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                {
+                    return;
+                }
+            }
+
             if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
             {
                 this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.Time);
@@ -1528,6 +1536,14 @@ namespace OpenAIONDPS
         /// <param name="TargetName"></param>
         public void UpdateResistance(ActionData ChatLogActionData)
         {
+            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
+            {
+                if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                {
+                    return;
+                }
+            }
+
             if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
             {
                 this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.Time);
