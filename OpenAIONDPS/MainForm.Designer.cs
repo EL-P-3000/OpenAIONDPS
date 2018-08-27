@@ -33,6 +33,7 @@
             this.FileButton = new System.Windows.Forms.Button();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.LimitedTargetNameComboBox = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
             this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
             this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
-            this.LimitedTargetNameComboBox = new System.Windows.Forms.ComboBox();
             this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.Member01 = new OpenAIONDPS.MemberUnit();
             this.Member02 = new OpenAIONDPS.MemberUnit();
@@ -175,6 +175,19 @@
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
+            // 
+            // LimitedTargetNameComboBox
+            // 
+            this.LimitedTargetNameComboBox.FormattingEnabled = true;
+            this.LimitedTargetNameComboBox.Items.AddRange(new object[] {
+            "ベリトラ",
+            "理性を失ったプリギタ",
+            "ネルガル",
+            "呪われたオペル"});
+            this.LimitedTargetNameComboBox.Location = new System.Drawing.Point(81, 500);
+            this.LimitedTargetNameComboBox.Name = "LimitedTargetNameComboBox";
+            this.LimitedTargetNameComboBox.Size = new System.Drawing.Size(203, 20);
+            this.LimitedTargetNameComboBox.TabIndex = 46;
             // 
             // label21
             // 
@@ -522,19 +535,6 @@
             this.CalcRemainingTimeLabel.Text = "300";
             this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // LimitedTargetNameComboBox
-            // 
-            this.LimitedTargetNameComboBox.FormattingEnabled = true;
-            this.LimitedTargetNameComboBox.Items.AddRange(new object[] {
-            "ベリトラ",
-            "理性を失ったプリギタ",
-            "ネルガル",
-            "呪われたオペル"});
-            this.LimitedTargetNameComboBox.Location = new System.Drawing.Point(81, 500);
-            this.LimitedTargetNameComboBox.Name = "LimitedTargetNameComboBox";
-            this.LimitedTargetNameComboBox.Size = new System.Drawing.Size(203, 20);
-            this.LimitedTargetNameComboBox.TabIndex = 46;
-            // 
             // FavoriteMemberList
             // 
             this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -671,7 +671,7 @@
             this.Controls.Add(this.StartButton);
             this.MaximumSize = new System.Drawing.Size(930, 860);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.11";
+            this.Text = "Open AION DPS 1.0.12";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
