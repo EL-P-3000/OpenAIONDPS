@@ -50,6 +50,8 @@ namespace OpenAIONDPS
             this.CriticalNumber = 0;
             this.EvadeAttackNumber = 0;
             this.EvadedAttackNumber = 0;
+            this.ResistAttackNumber = 0;
+            this.ResistedAttackNumber = 0;
             this.DeadNumber = 0;
             this.DamageLabel.Text = "0";
             this.MaxDamageLabel.Text = "0";
@@ -64,6 +66,8 @@ namespace OpenAIONDPS
             this.DamageParTotalDamageLabel.Text = "100%";
             this.EvadeAttackNumberLabel.Text = "0";
             this.EvadedAttackNumberLabel.Text = "0";
+            this.ResistAttackNumberLabel.Text = "0";
+            this.ResistedAttackNumberLabel.Text = "0";
         }
 
         public bool IsStart()
@@ -244,13 +248,12 @@ namespace OpenAIONDPS
         private void UpdateEvadedAttackNumber()
         {
             this.EvadedAttackNumber += 1;
-            this.EvadedAttackNumberLabel.Text = this.EvadedAttackNumber.ToString("#,0");
-
             this.UpdateSeconds();
             this.UpdateAttackNumber();
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
+            this.EvadedAttackNumberLabel.Text = this.EvadedAttackNumber.ToString("#,0") + " (" + Math.Round((1.0 * this.EvadedAttackNumber * 100 / this.AttackNumber), 0, MidpointRounding.AwayFromZero) + "%)";
         }
 
         private void UpdateResistAttackNumber()
@@ -262,13 +265,12 @@ namespace OpenAIONDPS
         private void UpdateResistedAttackNumber()
         {
             this.ResistedAttackNumber += 1;
-            this.ResistedAttackNumberLabel.Text = this.ResistedAttackNumber.ToString("#,0");
-
             this.UpdateSeconds();
             this.UpdateAttackNumber();
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
+            this.ResistedAttackNumberLabel.Text = this.ResistedAttackNumber.ToString("#,0") + " (" + Math.Round((1.0 * this.ResistedAttackNumber * 100 / this.AttackNumber), 0, MidpointRounding.AwayFromZero) + "%)";
         }
     }
 }

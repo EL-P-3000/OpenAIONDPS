@@ -378,13 +378,18 @@ namespace OpenAIONDPS
         private static readonly Regex ChatLogReflectDamagDisciplineEnergyRegex = new Regex(@"^ディシプリン\sエネルギーが攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
 
         /// <summary>
+        /// 回避/抵抗のパターン(他人)(その他排除用)
+        /// </summary>
+        private static readonly Regex ChatLogCharacterOthersEvasionResistanceRegex = new Regex("^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)(を回避|に抵抗)しました。", RegexOptions.Compiled);
+
+        /// <summary>
         /// 計測
         /// </summary>
         public void Calculate()
         {
             Delegate UpdateDataDelegate = new Action<ActionData>(UpdateDamageData);
-            Delegate UpdateEvasionDelegate = new Action<string, string, DateTime>(UpdateEvasion);
-            Delegate UpdateResistanceDelegate = new Action<string, string, DateTime>(UpdateResistance);
+            Delegate UpdateEvasionDelegate = new Action<ActionData>(UpdateEvasion);
+            Delegate UpdateResistanceDelegate = new Action<ActionData>(UpdateResistance);
             Delegate CalcFromLogEndDelegate = new Action(CalcFromLogEnd);
             string LogFilePath = Properties.Settings.Default.ChatLogPath;
             string LogText = "";
@@ -969,8 +974,8 @@ namespace OpenAIONDPS
 
                             ///
                             /// 回避/抵抗(他人)
-                            /// "^(?<SourceName>" + MemberName + ")が(?<TargetName>.+)の(?<SkillName>.+)(?<EvasionRegist>を回避|に抵抗)しました。"
-                            /// "^(?<SourceName>.+)が(?<TargetName>" + MemberName + ")の(?<SkillName>.+)(?<EvasionRegist>を回避|に抵抗)しました。"
+                            /// "^(?<SourceName>" + MemberName + ")が(?<TargetName>.+)の(?<SkillName>.+)(を回避|に抵抗)しました。"
+                            /// "^(?<SourceName>.+)が(?<TargetName>" + MemberName + ")の(?<SkillName>.+)(を回避|に抵抗)しました。"
                             ///
                             bool ChatLogCharacterEvasionResistanceMatchFlag = false;
                             foreach (Regex ChatLogCharacterEvasionResistanceRegex in ChatLogCharacterEvasionResistanceRegexList)
@@ -979,18 +984,18 @@ namespace OpenAIONDPS
                                 if (ChatLogCharacterEvasionResistanceMatch.Success)
                                 {
                                     ChatLogCharacterEvasionResistanceMatchFlag = true;
-                                    string SourceName = ChatLogCharacterEvasionResistanceMatch.Groups["SourceName"].Value;
-                                    string TargetName = ChatLogCharacterEvasionResistanceMatch.Groups["TargetName"].Value;
+                                    ChatLogActionData.SourceName = ChatLogCharacterEvasionResistanceMatch.Groups["SourceName"].Value;
+                                    ChatLogActionData.TargetName = ChatLogCharacterEvasionResistanceMatch.Groups["TargetName"].Value;
 
-                                    if (MemberNameMemberUnitList.ContainsKey(SourceName) || MemberNameMemberUnitList.ContainsKey(TargetName))
+                                    if (MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName) || MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
                                     {
                                         if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                         {
-                                            this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
+                                            this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
                                         }
                                         else
                                         {
-                                            this.Invoke(UpdateResistanceDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
+                                            this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
                                         }
                                     }
 
@@ -1004,8 +1009,19 @@ namespace OpenAIONDPS
 
 
                             ///
+                            /// 回避/抵抗(他人)(その他排除用)
+                            /// "^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)(を回避|に抵抗)しました。"
+                            ///
+                            Match ChatLogCharacterOthersEvasionResistanceMatch = ChatLogCharacterOthersEvasionResistanceRegex.Match(LogTextWithoutTime);
+                            if (ChatLogCharacterOthersEvasionResistanceMatch.Success)
+                            {
+                                continue;
+                            }
+
+
+                            ///
                             /// 回避/抵抗された攻撃(自分)
-                            /// "^(?<SourceName>.+)が(?<SkillName>.+)(?<EvasionRegist>を回避|に抵抗)しました。"
+                            /// "^(?<SourceName>.+)が(?<SkillName>[^の]+)(を回避|に抵抗)しました。"
                             ///
                             bool ChatLogEvadedResistedMatchFlag = false;
                             foreach (Regex ChatLogEvadedResistedRegex in ChatLogEvadedResistedRegexList)
@@ -1014,17 +1030,17 @@ namespace OpenAIONDPS
                                 if (ChatLogEvadedResistedMatch.Success)
                                 {
                                     ChatLogEvadedResistedMatchFlag = true;
-                                    string SourceName = ChatLogEvadedResistedMatch.Groups["SourceName"].Value;
-                                    string TargetName = this.OwnName;
+                                    ChatLogActionData.SourceName = ChatLogEvadedResistedMatch.Groups["SourceName"].Value;
+                                    ChatLogActionData.TargetName = this.OwnName;
 
                                     Debug.WriteLine(LogText);
                                     if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                     {
-                                        this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
+                                        this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
                                     }
                                     else
                                     {
-                                        this.Invoke(UpdateResistanceDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
+                                        this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
                                     }
 
                                     break;
@@ -1038,7 +1054,7 @@ namespace OpenAIONDPS
 
                             ///
                             /// 回避/抵抗した攻撃(自分)
-                            /// "^(?<TargetName>.+)の(?<SkillName>.+)(?<EvasionRegist>を回避|に抵抗)しました。"
+                            /// "^(?<TargetName>.+)の(?<SkillName>[^の]+)(を回避|に抵抗)しました。"
                             ///
                             bool ChatLogEvadeResistMatchFlag = false;
                             foreach (Regex ChatLogEvadeResistRegex in ChatLogEvadeResistRegexList)
@@ -1047,17 +1063,17 @@ namespace OpenAIONDPS
                                 if (ChatLogEvadeResistMatch.Success)
                                 {
                                     ChatLogEvadeResistMatchFlag = true;
-                                    string SourceName = this.OwnName;
-                                    string TargetName = ChatLogEvadeResistMatch.Groups["TargetName"].Value;
+                                    ChatLogActionData.SourceName = this.OwnName;
+                                    ChatLogActionData.TargetName = ChatLogEvadeResistMatch.Groups["TargetName"].Value;
 
                                     Debug.WriteLine(LogText);
                                     if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                     {
-                                        this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
+                                        this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
                                     }
                                     else
                                     {
-                                        this.Invoke(UpdateResistanceDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
+                                        this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
                                     }
 
                                     break;
@@ -1488,15 +1504,20 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SourceName"></param>
         /// <param name="TargetName"></param>
-        public void UpdateEvasion(string SourceName, string TargetName, DateTime Time)
+        public void UpdateEvasion(ActionData ChatLogActionData)
         {
-            if (this.MemberNameMemberUnitList.ContainsKey(SourceName))
+            if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
             {
-                this.MemberNameMemberUnitList[SourceName].AddEvasion(true, Time);
+                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.Time);
             }
-            else if (this.MemberNameMemberUnitList.ContainsKey(TargetName))
+            else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
             {
-                this.MemberNameMemberUnitList[TargetName].AddEvasion(false, Time);
+                this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.Time);
+            }
+
+            if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+            {
+                this.DebugLogFileStreamWriter.WriteLine(ChatLogActionData.LogText);
             }
         }
 
@@ -1505,15 +1526,20 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SourceName"></param>
         /// <param name="TargetName"></param>
-        public void UpdateResistance(string SourceName, string TargetName, DateTime Time)
+        public void UpdateResistance(ActionData ChatLogActionData)
         {
-            if (this.MemberNameMemberUnitList.ContainsKey(SourceName))
+            if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
             {
-                this.MemberNameMemberUnitList[SourceName].AddResistance(true, Time);
+                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.Time);
             }
-            else if (this.MemberNameMemberUnitList.ContainsKey(TargetName))
+            else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
             {
-                this.MemberNameMemberUnitList[TargetName].AddResistance(false, Time);
+                this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.Time);
+            }
+
+            if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+            {
+                this.DebugLogFileStreamWriter.WriteLine(ChatLogActionData.LogText);
             }
         }
 
