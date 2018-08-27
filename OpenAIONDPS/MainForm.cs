@@ -327,38 +327,38 @@ namespace OpenAIONDPS
         /// <summary>
         /// ドットスキルの成功のパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSkillDotRegex = new Regex("^(?<SkillName>.+)の効果により、(?<TargetName>.+)(にダメージを与え続けました。|が出血状態になりました。)", RegexOptions.Compiled);
+        private static readonly Regex ChatLogSkillDotRegex = new Regex(@"^(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)(にダメージを与え続けました。|が出血状態になりました。)", RegexOptions.Compiled);
 
         /// <summary>
         /// ドットスキルの成功のパターン(他人)
         /// </summary>
-        private static readonly Regex ChatLogCharacterSkillDotRegex = new Regex("^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)(はダメージを受け続けました。|は出血状態になりました。)", RegexOptions.Compiled);
+        private static readonly Regex ChatLogCharacterSkillDotRegex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)(はダメージを受け続けました。|は出血状態になりました。)", RegexOptions.Compiled);
             
         // ドットスキルのダメージのパターンは計測開始時に取得
 
         /// <summary>
         /// サモンスキル(攻撃対象固定)のパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSkillSummon2Regex = new Regex(@"^サモン：(?<SkillName>.+)の効果により、(?<TargetName>.+)を攻撃する(?<SkillName2>.+)を召喚しました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogSkillSummon2Regex = new Regex(@"^サモン：(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)を攻撃する(?<SkillName2>.+)を召喚しました。", RegexOptions.Compiled);
 
         /// <summary>
         /// サモンスキル(攻撃対象固定)のパターン(他人)
         /// </summary>
-        private static readonly Regex ChatLogCharacterSkillSummon2Regex = new Regex(@"^(?<SourceName>.+)が使用したサモン：(?<SkillName>.+)の効果により、(?<TargetName>.+)を攻撃する(?<SkillName2>.+)を召喚しました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogCharacterSkillSummon2Regex = new Regex(@"^(?<SourceName>.+)が使用したサモン：(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)を攻撃する(?<SkillName2>.+)を召喚しました。", RegexOptions.Compiled);
 
         // サモンスキル(攻撃対象固定)のダメージのパターンは計測開始時に取得
 
         /// <summary>
         /// デバフダメージスキルのダメージのパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSkillDebuffDamage1Regex = new Regex(@"^(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
-        private static readonly Regex ChatLogSkillDebuffDamage2Regex = new Regex(@"^(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与え、(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogSkillDebuffDamage1Regex = new Regex(@"^(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogSkillDebuffDamage2Regex = new Regex(@"^(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与え、(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled);
 
         /// <summary>
         /// デバフダメージスキルのダメージのパターン(他人)
         /// </summary>
-        private static readonly Regex ChatLogCharacterSkillDebuffDamage1Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
-        private static readonly Regex ChatLogCharacterSkillDebuffDamage2Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージ与え、(?<SkillName2>.+)効果を得ました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogCharacterSkillDebuffDamage1Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogCharacterSkillDebuffDamage2Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージ与え、(?<SkillName2>.+)効果を得ました。", RegexOptions.Compiled);
 
         // ディレイダメージスキルのパターン(自分)は計測開始時に取得
 
@@ -393,6 +393,11 @@ namespace OpenAIONDPS
         /// 回避/抵抗のパターン(他人)(その他排除用)
         /// </summary>
         private static readonly Regex ChatLogCharacterOthersEvasionResistanceRegex = new Regex("^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)(を回避|に抵抗)しました。", RegexOptions.Compiled);
+
+        /// <summary>
+        /// 回復のパターン
+        /// </summary>
+        private static readonly Regex ChatLogHealRegex = new Regex(".*回復しました。$", RegexOptions.Compiled);
 
         /// <summary>
         /// 計測
@@ -503,7 +508,19 @@ namespace OpenAIONDPS
                             // 時刻をラインから削除
                             LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
 
+
+                            //
+                            // 回復のパターンは対象外
+                            //
+                            Match ChatLogHealMatch = ChatLogHealRegex.Match(LogTextWithoutTime);
+                            if (ChatLogHealMatch.Success)
+                            {
+                                continue;
+                            }
+
+                            //
                             // クリティカルヒット！
+                            //
                             Match ChatLogCriticalHitMatch = ChatLogCriticalHitRegex.Match(LogTextWithoutTime);
                             if (ChatLogCriticalHitMatch.Success)
                             {
