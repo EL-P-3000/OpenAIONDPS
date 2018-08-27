@@ -55,16 +55,17 @@
             // 
             // DamageLabel
             // 
-            this.DamageLabel.Location = new System.Drawing.Point(217, 0);
+            this.DamageLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.DamageLabel.Location = new System.Drawing.Point(217, 6);
             this.DamageLabel.Name = "DamageLabel";
-            this.DamageLabel.Size = new System.Drawing.Size(70, 27);
+            this.DamageLabel.Size = new System.Drawing.Size(86, 12);
             this.DamageLabel.TabIndex = 1;
             this.DamageLabel.Text = "0";
             this.DamageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MaxDamageLabel
             // 
-            this.MaxDamageLabel.Location = new System.Drawing.Point(471, 1);
+            this.MaxDamageLabel.Location = new System.Drawing.Point(487, 1);
             this.MaxDamageLabel.Name = "MaxDamageLabel";
             this.MaxDamageLabel.Size = new System.Drawing.Size(70, 12);
             this.MaxDamageLabel.TabIndex = 2;
@@ -73,7 +74,7 @@
             // 
             // MinDamageLabel
             // 
-            this.MinDamageLabel.Location = new System.Drawing.Point(471, 13);
+            this.MinDamageLabel.Location = new System.Drawing.Point(487, 13);
             this.MinDamageLabel.Name = "MinDamageLabel";
             this.MinDamageLabel.Size = new System.Drawing.Size(70, 12);
             this.MinDamageLabel.TabIndex = 3;
@@ -82,7 +83,7 @@
             // 
             // DamageParSecondLabel
             // 
-            this.DamageParSecondLabel.Location = new System.Drawing.Point(395, 1);
+            this.DamageParSecondLabel.Location = new System.Drawing.Point(411, 1);
             this.DamageParSecondLabel.Name = "DamageParSecondLabel";
             this.DamageParSecondLabel.Size = new System.Drawing.Size(70, 12);
             this.DamageParSecondLabel.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             // SecondLabel
             // 
-            this.SecondLabel.Location = new System.Drawing.Point(354, 1);
+            this.SecondLabel.Location = new System.Drawing.Point(370, 1);
             this.SecondLabel.Name = "SecondLabel";
             this.SecondLabel.Size = new System.Drawing.Size(35, 12);
             this.SecondLabel.TabIndex = 5;
@@ -100,7 +101,7 @@
             // 
             // SlashLabel
             // 
-            this.SlashLabel.Location = new System.Drawing.Point(332, 0);
+            this.SlashLabel.Location = new System.Drawing.Point(348, 0);
             this.SlashLabel.Name = "SlashLabel";
             this.SlashLabel.Size = new System.Drawing.Size(16, 26);
             this.SlashLabel.TabIndex = 6;
@@ -109,7 +110,7 @@
             // 
             // AttackNumberLabel
             // 
-            this.AttackNumberLabel.Location = new System.Drawing.Point(354, 13);
+            this.AttackNumberLabel.Location = new System.Drawing.Point(370, 13);
             this.AttackNumberLabel.Name = "AttackNumberLabel";
             this.AttackNumberLabel.Size = new System.Drawing.Size(35, 12);
             this.AttackNumberLabel.TabIndex = 7;
@@ -140,7 +141,7 @@
             // 
             // DamageParAttackNumberLabel
             // 
-            this.DamageParAttackNumberLabel.Location = new System.Drawing.Point(395, 13);
+            this.DamageParAttackNumberLabel.Location = new System.Drawing.Point(411, 13);
             this.DamageParAttackNumberLabel.Name = "DamageParAttackNumberLabel";
             this.DamageParAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.DamageParAttackNumberLabel.TabIndex = 11;
@@ -149,7 +150,7 @@
             // 
             // AttackNumberParSecondLabel
             // 
-            this.AttackNumberParSecondLabel.Location = new System.Drawing.Point(623, 6);
+            this.AttackNumberParSecondLabel.Location = new System.Drawing.Point(639, 6);
             this.AttackNumberParSecondLabel.Name = "AttackNumberParSecondLabel";
             this.AttackNumberParSecondLabel.Size = new System.Drawing.Size(70, 12);
             this.AttackNumberParSecondLabel.TabIndex = 12;
@@ -158,7 +159,7 @@
             // 
             // DamageParTotalDamageLabel
             // 
-            this.DamageParTotalDamageLabel.Location = new System.Drawing.Point(293, 0);
+            this.DamageParTotalDamageLabel.Location = new System.Drawing.Point(309, 0);
             this.DamageParTotalDamageLabel.Name = "DamageParTotalDamageLabel";
             this.DamageParTotalDamageLabel.Size = new System.Drawing.Size(33, 27);
             this.DamageParTotalDamageLabel.TabIndex = 13;
@@ -167,7 +168,7 @@
             // 
             // CriticalNumberParAttackNumberLabel
             // 
-            this.CriticalNumberParAttackNumberLabel.Location = new System.Drawing.Point(547, 13);
+            this.CriticalNumberParAttackNumberLabel.Location = new System.Drawing.Point(563, 13);
             this.CriticalNumberParAttackNumberLabel.Name = "CriticalNumberParAttackNumberLabel";
             this.CriticalNumberParAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.CriticalNumberParAttackNumberLabel.TabIndex = 15;
@@ -176,7 +177,7 @@
             // 
             // CriticalNumberLabel
             // 
-            this.CriticalNumberLabel.Location = new System.Drawing.Point(547, 1);
+            this.CriticalNumberLabel.Location = new System.Drawing.Point(563, 1);
             this.CriticalNumberLabel.Name = "CriticalNumberLabel";
             this.CriticalNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.CriticalNumberLabel.TabIndex = 14;
@@ -185,7 +186,7 @@
             // 
             // EvadeAttackNumberLabel
             // 
-            this.EvadeAttackNumberLabel.Location = new System.Drawing.Point(699, 1);
+            this.EvadeAttackNumberLabel.Location = new System.Drawing.Point(715, 1);
             this.EvadeAttackNumberLabel.Name = "EvadeAttackNumberLabel";
             this.EvadeAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.EvadeAttackNumberLabel.TabIndex = 16;
@@ -194,7 +195,7 @@
             // 
             // EvadedAttackNumberLabel
             // 
-            this.EvadedAttackNumberLabel.Location = new System.Drawing.Point(699, 13);
+            this.EvadedAttackNumberLabel.Location = new System.Drawing.Point(715, 13);
             this.EvadedAttackNumberLabel.Name = "EvadedAttackNumberLabel";
             this.EvadedAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.EvadedAttackNumberLabel.TabIndex = 17;
