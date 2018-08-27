@@ -562,7 +562,7 @@
             // 
             // AION64bitButton
             // 
-            this.AION64bitButton.Location = new System.Drawing.Point(747, 12);
+            this.AION64bitButton.Location = new System.Drawing.Point(827, 12);
             this.AION64bitButton.Name = "AION64bitButton";
             this.AION64bitButton.Size = new System.Drawing.Size(75, 23);
             this.AION64bitButton.TabIndex = 24;
@@ -573,7 +573,7 @@
             // DebugCheckBox
             // 
             this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(681, 16);
+            this.DebugCheckBox.Location = new System.Drawing.Point(761, 16);
             this.DebugCheckBox.Name = "DebugCheckBox";
             this.DebugCheckBox.Size = new System.Drawing.Size(60, 16);
             this.DebugCheckBox.TabIndex = 25;
@@ -593,7 +593,7 @@
             // AlwaysOnTopCheckBox
             // 
             this.AlwaysOnTopCheckBox.AutoSize = true;
-            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(591, 16);
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(671, 16);
             this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
             this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
             this.AlwaysOnTopCheckBox.TabIndex = 27;
@@ -613,7 +613,7 @@
             // 
             // CalcTimerMinutesNumericUpDown
             // 
-            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(429, 14);
+            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(428, 13);
             this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -639,7 +639,7 @@
             // 
             this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
-            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(477, 14);
+            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(476, 12);
             this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
             this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
             this.CalcRemainingTimeLabel.TabIndex = 30;
