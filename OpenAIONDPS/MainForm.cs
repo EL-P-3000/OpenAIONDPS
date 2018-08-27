@@ -318,7 +318,7 @@ namespace OpenAIONDPS
         /// <summary>
         /// スキルダメージのパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSkillDamageRegex = new Regex(@"^(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogSkillDamageRegex = new Regex(@"^(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
 
         // スキルダメージのパターン(他人)は計測開始時に取得
 
@@ -1208,11 +1208,11 @@ namespace OpenAIONDPS
                 if (!String.IsNullOrEmpty(MemberName) && !MemberName.Equals(this.OwnName))
                 {
 
-                    ChatLogCharacterSkillDamageRegexList.AddLast(new Regex("^(?<SourceName>" + MemberName + ")が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+                    ChatLogCharacterSkillDamageRegexList.AddLast(new Regex("^(?<SourceName>" + MemberName + @")が使用した(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
                 }
             }
 
-            ChatLogCharacterSkillDamageRegexList.AddLast(new Regex("^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+            ChatLogCharacterSkillDamageRegexList.AddLast(new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
 
             return ChatLogCharacterSkillDamageRegexList;
         }
