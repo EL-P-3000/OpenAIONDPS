@@ -984,7 +984,7 @@ namespace OpenAIONDPS
 
                                     if (MemberNameMemberUnitList.ContainsKey(SourceName) || MemberNameMemberUnitList.ContainsKey(TargetName))
                                     {
-                                        if (LogTextWithoutTime.IndexOf("を回避") > 0)
+                                        if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                         {
                                             this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
                                         }
@@ -1018,7 +1018,7 @@ namespace OpenAIONDPS
                                     string TargetName = this.OwnName;
 
                                     Debug.WriteLine(LogText);
-                                    if (LogTextWithoutTime.IndexOf("を回避") > 0)
+                                    if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                     {
                                         this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
                                     }
@@ -1051,7 +1051,7 @@ namespace OpenAIONDPS
                                     string TargetName = ChatLogEvadeResistMatch.Groups["TargetName"].Value;
 
                                     Debug.WriteLine(LogText);
-                                    if (LogTextWithoutTime.IndexOf("を回避") > 0)
+                                    if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                     {
                                         this.Invoke(UpdateEvasionDelegate, new object[] { SourceName, TargetName, ChatLogActionData.Time });
                                     }
