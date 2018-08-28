@@ -40,8 +40,8 @@
             this.DamageParAttackNumberLabel = new System.Windows.Forms.Label();
             this.AttackNumberParSecondLabel = new System.Windows.Forms.Label();
             this.DamageParTotalDamageLabel = new System.Windows.Forms.Label();
-            this.CriticalNumberParAttackNumberLabel = new System.Windows.Forms.Label();
-            this.CriticalNumberLabel = new System.Windows.Forms.Label();
+            this.SimpleCriticalNumberLabel = new System.Windows.Forms.Label();
+            this.SkillCriticalNumberLabel = new System.Windows.Forms.Label();
             this.EvadeAttackNumberLabel = new System.Windows.Forms.Label();
             this.EvadedAttackNumberLabel = new System.Windows.Forms.Label();
             this.ResistedAttackNumberLabel = new System.Windows.Forms.Label();
@@ -168,23 +168,23 @@
             this.DamageParTotalDamageLabel.Text = "0%";
             this.DamageParTotalDamageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // CriticalNumberParAttackNumberLabel
+            // SimpleCriticalNumberLabel
             // 
-            this.CriticalNumberParAttackNumberLabel.Location = new System.Drawing.Point(563, 13);
-            this.CriticalNumberParAttackNumberLabel.Name = "CriticalNumberParAttackNumberLabel";
-            this.CriticalNumberParAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
-            this.CriticalNumberParAttackNumberLabel.TabIndex = 15;
-            this.CriticalNumberParAttackNumberLabel.Text = "0%";
-            this.CriticalNumberParAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.SimpleCriticalNumberLabel.Location = new System.Drawing.Point(563, 13);
+            this.SimpleCriticalNumberLabel.Name = "SimpleCriticalNumberLabel";
+            this.SimpleCriticalNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.SimpleCriticalNumberLabel.TabIndex = 15;
+            this.SimpleCriticalNumberLabel.Text = "0 (0%)";
+            this.SimpleCriticalNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // CriticalNumberLabel
+            // SkillCriticalNumberLabel
             // 
-            this.CriticalNumberLabel.Location = new System.Drawing.Point(563, 1);
-            this.CriticalNumberLabel.Name = "CriticalNumberLabel";
-            this.CriticalNumberLabel.Size = new System.Drawing.Size(70, 12);
-            this.CriticalNumberLabel.TabIndex = 14;
-            this.CriticalNumberLabel.Text = "0";
-            this.CriticalNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.SkillCriticalNumberLabel.Location = new System.Drawing.Point(563, 1);
+            this.SkillCriticalNumberLabel.Name = "SkillCriticalNumberLabel";
+            this.SkillCriticalNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.SkillCriticalNumberLabel.TabIndex = 14;
+            this.SkillCriticalNumberLabel.Text = "0 (0%)";
+            this.SkillCriticalNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // EvadeAttackNumberLabel
             // 
@@ -230,8 +230,8 @@
             this.Controls.Add(this.ResistAttackNumberLabel);
             this.Controls.Add(this.EvadedAttackNumberLabel);
             this.Controls.Add(this.EvadeAttackNumberLabel);
-            this.Controls.Add(this.CriticalNumberParAttackNumberLabel);
-            this.Controls.Add(this.CriticalNumberLabel);
+            this.Controls.Add(this.SimpleCriticalNumberLabel);
+            this.Controls.Add(this.SkillCriticalNumberLabel);
             this.Controls.Add(this.DamageParTotalDamageLabel);
             this.Controls.Add(this.AttackNumberParSecondLabel);
             this.Controls.Add(this.DamageParAttackNumberLabel);
@@ -265,8 +265,8 @@
         private System.Windows.Forms.Label DamageParAttackNumberLabel;
         private System.Windows.Forms.Label AttackNumberParSecondLabel;
         private System.Windows.Forms.Label DamageParTotalDamageLabel;
-        private System.Windows.Forms.Label CriticalNumberParAttackNumberLabel;
-        private System.Windows.Forms.Label CriticalNumberLabel;
+        private System.Windows.Forms.Label SimpleCriticalNumberLabel;
+        private System.Windows.Forms.Label SkillCriticalNumberLabel;
         private System.Windows.Forms.Label EvadeAttackNumberLabel;
         private System.Windows.Forms.Label EvadedAttackNumberLabel;
         private System.Windows.Forms.Label ResistedAttackNumberLabel;

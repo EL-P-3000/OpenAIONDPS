@@ -14,12 +14,12 @@ namespace OpenAIONDPS
         private long MaxDamage = 0;
         private long MinDamage = 0;
         private long AttackNumber = 0;
-        private long CriticalNumber = 0;
+        private long SkillCriticalNumber = 0;
+        private long SimpleCriticalNumber = 0;
         private long EvadeAttackNumber = 0;
         private long EvadedAttackNumber = 0;
         private long ResistAttackNumber = 0;
         private long ResistedAttackNumber = 0;
-        private long DeadNumber = 0;
 
         public MemberUnit()
         {
@@ -43,16 +43,18 @@ namespace OpenAIONDPS
             this.StartTime = DefaultTime;
             this.EndTime = DefaultTime;
             this.StartFlag = false;
+
             this.Damage = 0;
             this.MaxDamage = 0;
             this.MinDamage = 0;
             this.AttackNumber = 0;
-            this.CriticalNumber = 0;
+            this.SkillCriticalNumber = 0;
+            this.SimpleCriticalNumber = 0;
             this.EvadeAttackNumber = 0;
             this.EvadedAttackNumber = 0;
             this.ResistAttackNumber = 0;
             this.ResistedAttackNumber = 0;
-            this.DeadNumber = 0;
+
             this.DamageLabel.Text = "0";
             this.MaxDamageLabel.Text = "0";
             this.MinDamageLabel.Text = "0";
@@ -61,13 +63,13 @@ namespace OpenAIONDPS
             this.DamageParSecondLabel.Text = "0";
             this.DamageParAttackNumberLabel.Text = "0";
             this.AttackNumberParSecondLabel.Text = "0";
-            this.CriticalNumberLabel.Text = "0";
-            this.CriticalNumberParAttackNumberLabel.Text = "0%";
+            this.SkillCriticalNumberLabel.Text = "0 (0%)";
+            this.SimpleCriticalNumberLabel.Text = "0 (0%)";
             this.DamageParTotalDamageLabel.Text = "100%";
             this.EvadeAttackNumberLabel.Text = "0";
-            this.EvadedAttackNumberLabel.Text = "0";
+            this.EvadedAttackNumberLabel.Text = "0 (0%)";
             this.ResistAttackNumberLabel.Text = "0";
-            this.ResistedAttackNumberLabel.Text = "0";
+            this.ResistedAttackNumberLabel.Text = "0 (0%)";
         }
 
         public bool IsStart()
@@ -95,7 +97,7 @@ namespace OpenAIONDPS
             return (AION.JobType)this.JobComboBox.SelectedValue;
         }
 
-        public void AddDamage(long Damage, bool IsCritical, DateTime Time)
+        public void AddDamage(long Damage, bool IsSkill, bool IsCritical, DateTime Time)
         {
             if (!this.IsStart())
             {
@@ -107,7 +109,7 @@ namespace OpenAIONDPS
             this.UpdateDamage(Damage);
             if (IsCritical)
             {
-                this.UpdateCriticalHit(); // 必ず UpdateAttackNumber() の前に呼ぶ。
+                this.UpdateCriticalHit(IsSkill);
             }
             this.UpdateSeconds();
             this.UpdateAttackNumber();
@@ -116,6 +118,8 @@ namespace OpenAIONDPS
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
+
+            this.UpdateCriticalHitLabel();
         }
 
         public void AddEvasion(bool IsSourceNameMember, DateTime Time)
@@ -183,10 +187,6 @@ namespace OpenAIONDPS
         {
             this.AttackNumber += 1;
             this.AttackNumberLabel.Text = this.AttackNumber.ToString("#,0");
-            if (this.CriticalNumber > 0)
-            {
-                this.CriticalNumberParAttackNumberLabel.Text = (((1.0 * this.CriticalNumber / this.AttackNumber)) * 100).ToString("F2") + "%";
-            }
         }
 
         private void UpdateMaxDamage(long Damage)
@@ -233,10 +233,29 @@ namespace OpenAIONDPS
             this.AttackNumberParSecondLabel.Text = Math.Round((double)(this.AttackNumber / (double)(Ticks / 10000000)), 2, MidpointRounding.AwayFromZero).ToString("F2");
         }
 
-        private void UpdateCriticalHit()
+        private void UpdateCriticalHit(bool IsSkill)
         {
-            this.CriticalNumber += 1;
-            this.CriticalNumberLabel.Text = this.CriticalNumber.ToString("#,0");
+            if (IsSkill)
+            {
+                this.SkillCriticalNumber += 1;
+            }
+            else
+            {
+                this.SimpleCriticalNumber += 1;
+            }
+        }
+
+        private void UpdateCriticalHitLabel()
+        {
+            if (this.SkillCriticalNumber > 0)
+            {
+                this.SkillCriticalNumberLabel.Text = this.SkillCriticalNumber.ToString("#,0") + " (" + (1.0 * this.SkillCriticalNumber * 100/ this.AttackNumber).ToString("F2") + "%)";
+            }
+
+            if (this.SimpleCriticalNumber > 0)
+            {
+                this.SimpleCriticalNumberLabel.Text = this.SimpleCriticalNumber.ToString("#,0") + " (" + (1.0 * this.SimpleCriticalNumber * 100 / this.AttackNumber).ToString("F2") + "%)";
+            }
         }
 
         private void UpdateEvadeAttackNumber()

@@ -311,7 +311,7 @@ namespace OpenAIONDPS
         // 通常攻撃のダメージのパターン(サモン)は計測開始時に取得
 
         /// <summary>
-        /// クリティカルヒットのダメージのパターン(自分)
+        /// 通常攻撃(クリティカルヒット)のダメージのパターン(自分)
         /// </summary>
         private static readonly Regex ChatLogCriticalHitDamageRegex = new Regex(@"^(?<TargetName>[^、]+)に(?<Damage>[0-9,]+)の致命的なダメージを与えました。", RegexOptions.Compiled);
 
@@ -986,6 +986,7 @@ namespace OpenAIONDPS
                                     ChatLogActionData.SourceName = ChatLogSummonSimpleDamageMatch.Groups["SkillName"].Value;
                                     ChatLogActionData.TargetName = ChatLogSummonSimpleDamageMatch.Groups["TargetName"].Value;
                                     ChatLogActionData.Damage = long.Parse(ChatLogSummonSimpleDamageMatch.Groups["Damage"].Value.Replace(",", ""));
+                                    ChatLogActionData.IsSkill = false;
 
                                     this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
@@ -999,7 +1000,7 @@ namespace OpenAIONDPS
 
 
                             //
-                            // クリティカルヒットのダメージ(自分)
+                            // 通常攻撃(クリティカルヒット)のダメージ(自分)
                             // @"^(?<TargetName>[^、]+)に(?<Damage>[0-9,]+)の致命的なダメージを与えました。"
                             //
                             Match ChatLogCriticalHitDamageMatch = ChatLogCriticalHitDamageRegex.Match(LogTextWithoutTime);
@@ -1009,6 +1010,7 @@ namespace OpenAIONDPS
                                 ChatLogActionData.SkillName = ChatLogCriticalHitDamageMatch.Groups["SkillName"].Value;
                                 ChatLogActionData.TargetName = ChatLogCriticalHitDamageMatch.Groups["TargetName"].Value;
                                 ChatLogActionData.Damage = long.Parse(ChatLogCriticalHitDamageMatch.Groups["Damage"].Value.Replace(",", ""));
+                                ChatLogActionData.IsSkill = false;
 
                                 this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
@@ -1032,6 +1034,7 @@ namespace OpenAIONDPS
                                     ChatLogActionData.SkillName = ChatLogCharacterSimpleDamageMatch.Groups["SkillName"].Value;
                                     ChatLogActionData.TargetName = ChatLogCharacterSimpleDamageMatch.Groups["TargetName"].Value;
                                     ChatLogActionData.Damage = long.Parse(ChatLogCharacterSimpleDamageMatch.Groups["Damage"].Value.Replace(",", ""));
+                                    ChatLogActionData.IsSkill = false;
 
                                     this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
@@ -1055,6 +1058,7 @@ namespace OpenAIONDPS
                                 ChatLogActionData.SkillName = ChatLogSimpleDamageMatch.Groups["SkillName"].Value;
                                 ChatLogActionData.TargetName = ChatLogSimpleDamageMatch.Groups["TargetName"].Value;
                                 ChatLogActionData.Damage = long.Parse(ChatLogSimpleDamageMatch.Groups["Damage"].Value.Replace(",", ""));
+                                ChatLogActionData.IsSkill = false;
 
                                 this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
@@ -1567,7 +1571,7 @@ namespace OpenAIONDPS
                         if (_MemberUnit.GetJob() == Job)
                         {
                             this.UpdateTotalDamage(ChatLogActionData.Damage);
-                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
                             UpdateTotalDamageFlag = true;
                             break;
                         }
@@ -1594,7 +1598,7 @@ namespace OpenAIONDPS
                         if (_MemberUnit.GetJob() == Job)
                         {
                             this.UpdateTotalDamage(ChatLogActionData.Damage);
-                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
                             UpdateTotalDamageFlag = true;
                             break;
                         }
@@ -1612,7 +1616,7 @@ namespace OpenAIONDPS
             else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
             {
                 this.UpdateTotalDamage(ChatLogActionData.Damage);
-                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
                 UpdateTotalDamageFlag = true;
             }
 

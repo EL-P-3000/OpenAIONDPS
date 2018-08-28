@@ -13,6 +13,7 @@ namespace OpenAIONDPS
         public string EffectSkillName = "";
         public string TargetName = "";
         public long Damage = 0;
+        public bool IsSkill = true;
         public bool CriticalHit = false;
         public DateTime Time = DateTime.Now;
     }
