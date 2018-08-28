@@ -1173,7 +1173,7 @@ namespace OpenAIONDPS
                         }
                         catch (Exception ex)
                         {
-                            Debug.WriteLine(ex.StackTrace);
+                            this.PrintExceptionDebugMessage(ex);
                         }
                     }
                 }
@@ -1542,92 +1542,99 @@ namespace OpenAIONDPS
         {
             bool UpdateTotalDamageFlag = false;
 
-            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
+            try
             {
-                if (!ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
                 {
-                    return;
-                }
-            }
-
-            // エフェクトダメージスキルのダメージ
-            if (this.CheckSkillEffectDamage(ChatLogActionData.SkillName))
-            {
-                AION.JobType Job = this.SkillList[ChatLogActionData.SkillName].Job;
-
-                if (this.EnableJobRadioButton.Checked && this.JobTypeNumberOfMemberList[Job] == 1 && this.JobTypeNumberOfMemberList[AION.JobType.None] == 0)
-                {
-                    // メンバーのダメージを更新
-                    foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
+                    if (!ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
                     {
-                        if (_MemberUnit.GetJob() == Job)
-                        {
-                            this.UpdateTotalDamage(ChatLogActionData.Damage);
-                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
-                            UpdateTotalDamageFlag = true;
-                            break;
-                        }
+                        return;
                     }
                 }
-                else
-                {
-                    // スキル一覧のダメージを更新
-                    this.UpdateTotalDamage(ChatLogActionData.Damage);
-                    this.SkillUnitList[ChatLogActionData.SkillName].UpdateDamage(ChatLogActionData.Damage);
-                    UpdateTotalDamageFlag = true;
-                }
-            }
-            // サモンスキルのダメージ
-            else if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) && this.CheckSkillSummon(ChatLogActionData.SourceName))
-            {
-                AION.JobType Job = this.SkillList[ChatLogActionData.SourceName].Job;
 
-                if (this.EnableJobRadioButton.Checked && this.JobTypeNumberOfMemberList[Job] == 1 && this.JobTypeNumberOfMemberList[AION.JobType.None] == 0)
+                // エフェクトダメージスキルのダメージ
+                if (this.CheckSkillEffectDamage(ChatLogActionData.SkillName))
                 {
-                    // メンバーのダメージを更新
-                    foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
+                    AION.JobType Job = this.SkillList[ChatLogActionData.SkillName].Job;
+
+                    if (this.EnableJobRadioButton.Checked && this.JobTypeNumberOfMemberList[Job] == 1 && this.JobTypeNumberOfMemberList[AION.JobType.None] == 0)
                     {
-                        if (_MemberUnit.GetJob() == Job)
+                        // メンバーのダメージを更新
+                        foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
                         {
-                            this.UpdateTotalDamage(ChatLogActionData.Damage);
-                            _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
-                            UpdateTotalDamageFlag = true;
-                            break;
+                            if (_MemberUnit.GetJob() == Job)
+                            {
+                                this.UpdateTotalDamage(ChatLogActionData.Damage);
+                                _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                                UpdateTotalDamageFlag = true;
+                                break;
+                            }
                         }
                     }
+                    else
+                    {
+                        // スキル一覧のダメージを更新
+                        this.UpdateTotalDamage(ChatLogActionData.Damage);
+                        this.SkillUnitList[ChatLogActionData.SkillName].UpdateDamage(ChatLogActionData.Damage);
+                        UpdateTotalDamageFlag = true;
+                    }
                 }
-                else
+                // サモンスキルのダメージ
+                else if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) && this.CheckSkillSummon(ChatLogActionData.SourceName))
                 {
-                    // スキル一覧のダメージを更新
+                    AION.JobType Job = this.SkillList[ChatLogActionData.SourceName].Job;
+
+                    if (this.EnableJobRadioButton.Checked && this.JobTypeNumberOfMemberList[Job] == 1 && this.JobTypeNumberOfMemberList[AION.JobType.None] == 0)
+                    {
+                        // メンバーのダメージを更新
+                        foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
+                        {
+                            if (_MemberUnit.GetJob() == Job)
+                            {
+                                this.UpdateTotalDamage(ChatLogActionData.Damage);
+                                _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                                UpdateTotalDamageFlag = true;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // スキル一覧のダメージを更新
+                        this.UpdateTotalDamage(ChatLogActionData.Damage);
+                        this.SkillUnitList[ChatLogActionData.SourceName].UpdateDamage(ChatLogActionData.Damage);
+                        UpdateTotalDamageFlag = true;
+                    }
+                }
+                // その他のダメージ
+                else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
+                {
                     this.UpdateTotalDamage(ChatLogActionData.Damage);
-                    this.SkillUnitList[ChatLogActionData.SourceName].UpdateDamage(ChatLogActionData.Damage);
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
                     UpdateTotalDamageFlag = true;
                 }
+
+                if (UpdateTotalDamageFlag)
+                {
+                    if (this.CalcTimeCheckBox.Checked && !this.CalcTimer.Enabled)
+                    {
+                        this.CalcTimer.Start();
+                    }
+
+                    foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
+                    {
+                        _MemberUnit.UpdateDamageParTotalDamage(this.TotalDamage);
+                    }
+
+                    if (this.IsDebug && this.DebugLogFileTextWriter != null)
+                    {
+                        this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
+                    }
+                }
             }
-            // その他のダメージ
-            else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
+            catch (Exception ex)
             {
-                this.UpdateTotalDamage(ChatLogActionData.Damage);
-                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
-                UpdateTotalDamageFlag = true;
-            }
-
-            if (UpdateTotalDamageFlag)
-            {
-                if (this.CalcTimeCheckBox.Checked && !this.CalcTimer.Enabled)
-                {
-                    this.CalcTimer.Start();
-                }
-
-                foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
-                {
-                    _MemberUnit.UpdateDamageParTotalDamage(this.TotalDamage);
-                }
-
-                if (this.IsDebug && this.DebugLogFileTextWriter != null)
-                {
-                    this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
-                }
+                this.PrintExceptionDebugMessage(ex);
             }
         }
 
@@ -1644,26 +1651,33 @@ namespace OpenAIONDPS
         /// <param name="TargetName"></param>
         public void UpdateEvasion(ActionData ChatLogActionData)
         {
-            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
+            try
             {
-                if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
                 {
-                    return;
+                    if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                    {
+                        return;
+                    }
+                }
+
+                if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
+                {
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.Time);
+                }
+                else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
+                {
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.Time);
+                }
+
+                if (this.IsDebug && this.DebugLogFileTextWriter != null)
+                {
+                    this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
                 }
             }
-
-            if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
+            catch (Exception ex)
             {
-                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.Time);
-            }
-            else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
-            {
-                this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.Time);
-            }
-
-            if (this.IsDebug && this.DebugLogFileTextWriter != null)
-            {
-                this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
+                this.PrintExceptionDebugMessage(ex);
             }
         }
 
@@ -1674,26 +1688,33 @@ namespace OpenAIONDPS
         /// <param name="TargetName"></param>
         public void UpdateResistance(ActionData ChatLogActionData)
         {
-            if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
+            try
             {
-                if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
                 {
-                    return;
+                    if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                    {
+                        return;
+                    }
+                }
+
+                if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
+                {
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.Time);
+                }
+                else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
+                {
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.Time);
+                }
+
+                if (this.IsDebug && this.DebugLogFileTextWriter != null)
+                {
+                    this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
                 }
             }
-
-            if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
+            catch (Exception ex)
             {
-                this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.Time);
-            }
-            else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
-            {
-                this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.Time);
-            }
-
-            if (this.IsDebug && this.DebugLogFileTextWriter != null)
-            {
-                this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
+                this.PrintExceptionDebugMessage(ex);
             }
         }
 
@@ -1862,8 +1883,7 @@ namespace OpenAIONDPS
             }
         }
 
-
-
+        /* デバッグ関係 */
 
         /// <summary>
         /// デバッグ用ログファイルのオープン
@@ -1915,6 +1935,23 @@ namespace OpenAIONDPS
             }
             catch
             {
+            }
+        }
+
+        private void PrintDebugMessage(string Message)
+        {
+            Debug.WriteLine(Message);
+            if (this.IsDebug && this.DebugLogFileTextWriter != null)
+            {
+                this.DebugLogFileTextWriter.WriteLine(Message);
+            }
+        }
+
+        private void PrintExceptionDebugMessage(Exception Ex)
+        {
+            if (this.IsDebug)
+            {
+                this.PrintDebugMessage(Ex.Message + Environment.NewLine + Ex.StackTrace);
             }
         }
     }
