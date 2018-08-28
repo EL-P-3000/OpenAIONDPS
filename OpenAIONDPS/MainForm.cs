@@ -167,6 +167,11 @@ namespace OpenAIONDPS
 
         private void StartButton_Click(object sender, EventArgs e)
         {
+            StartThread();
+        }
+
+        private void StartThread()
+        {
             if (this.IsRunning == true)
             {
                 MessageBox.Show("計測中です。", "エラー");
@@ -280,17 +285,17 @@ namespace OpenAIONDPS
         /// <summary>
         /// ログのパターン
         /// </summary>
-        private static readonly Regex ChatLogLineRegex = new Regex(@"^(20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\s[0-9][0-9]:[0-9][0-9]:[0-9][0-9])\s:\s(.*。)", RegexOptions.Compiled);
+        private static readonly Regex ChatLogLineRegex = new Regex(AION.LogPattern.LinePattern, RegexOptions.Compiled);
 
         /// <summary>
         /// クリティカルヒットのパターン
         /// </summary>
-        private static readonly Regex ChatLogCriticalHitRegex = new Regex(@"^クリティカルヒット！(.*)$", RegexOptions.Compiled);
+        private static readonly Regex ChatLogCriticalHitRegex = new Regex(AION.LogPattern.AttackCriticalHitPattern, RegexOptions.Compiled);
 
         /// <summary>
         ///  通常攻撃のダメージのパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSimpleDamageRegex = new Regex(@"^(?<TargetName>[^、]+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSimpleDamageWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackSimpleDamageWithoutSourceNamePattern, RegexOptions.Compiled);
 
         // 通常攻撃のダメージのパターン(他人)は計測開始時に取得
 
@@ -304,7 +309,7 @@ namespace OpenAIONDPS
         /// <summary>
         /// スキルダメージのパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSkillDamageRegex = new Regex(@"^(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSkillDamageWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDamageWithoutSourceNamePattern, RegexOptions.Compiled);
 
         // スキルダメージのパターン(他人)は計測開始時に取得
 
@@ -313,12 +318,12 @@ namespace OpenAIONDPS
         /// <summary>
         /// ドットスキルの成功のパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSkillDotRegex = new Regex(@"^(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)(にダメージを与え続けました。|が出血状態になりました。)", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSkillDotEffectWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDotEffectWithoutSourceNamePattern, RegexOptions.Compiled);
 
         /// <summary>
         /// ドットスキルの成功のパターン(他人)
         /// </summary>
-        private static readonly Regex ChatLogCharacterSkillDotRegex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)(はダメージを受け続けました。|は出血状態になりました。)", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSkillDotEffectWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDotEffectWithSourceNamePattern, RegexOptions.Compiled);
             
         // ドットスキルのダメージのパターンは計測開始時に取得
 
@@ -337,14 +342,14 @@ namespace OpenAIONDPS
         /// <summary>
         /// デバフダメージスキルのダメージのパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogSkillDebuffDamage1Regex = new Regex(@"^(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
-        private static readonly Regex ChatLogSkillDebuffDamage2Regex = new Regex(@"^(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与え、(?<SkillName2>.+)効果が生じました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSkillReleaseBuffDamageWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackSkillReleaseBuffDamageWithoutSourceNamePattern, RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSkillDebuffDamageWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDebuffDamageWithoutSourceNamePattern, RegexOptions.Compiled);
 
         /// <summary>
         /// デバフダメージスキルのダメージのパターン(他人)
         /// </summary>
-        private static readonly Regex ChatLogCharacterSkillDebuffDamage1Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。", RegexOptions.Compiled);
-        private static readonly Regex ChatLogCharacterSkillDebuffDamage2Regex = new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージ与え、(?<SkillName2>.+)効果を得ました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSkillReleaseBuffDamageWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillReleaseBuffDamageWithSourceNamePattern, RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackSkillDebuffDamageWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDebuffDamageWithSourceNamePattern, RegexOptions.Compiled);
 
         // ディレイダメージスキルのパターン(自分)は計測開始時に取得
 
@@ -357,17 +362,17 @@ namespace OpenAIONDPS
         /// <summary>
         /// 反射のダメージのパターン(自分)
         /// </summary>
-        private static readonly Regex ChatLogReflectDamageRegex = new Regex(@"^攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackReflectionDamageWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackReflectionDamageWithoutSourceNamePattern, RegexOptions.Compiled);
 
         /// <summary>
         /// 反射のダメージのパターン(他人)
         /// </summary>
-        private static readonly Regex ChatLogReflectDamageCharacterRegex = new Regex(@"^(?<SourceName>.+)が攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackReflectionDamageWithSourceNameRegex = new Regex(AION.LogPattern.AttackReflectionDamageWithSourceNamePattern, RegexOptions.Compiled);
 
         /// <summary>
         /// 反射のダメージのパターン(ディシプリン エネルギー)
         /// </summary>
-        private static readonly Regex ChatLogReflectDamagDisciplineEnergyRegex = new Regex(@"^ディシプリン\sエネルギーが攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogAttackReflectionDamageWithDisciplineEnergyRegex = new Regex(AION.LogPattern.AttackReflectionDamageWithDisciplineEnergyPattern, RegexOptions.Compiled);
 
         // 回避/抵抗した攻撃のパターン(自分)リスト
 
@@ -378,12 +383,12 @@ namespace OpenAIONDPS
         /// <summary>
         /// 回避/抵抗のパターン(他人)(その他排除用)
         /// </summary>
-        private static readonly Regex ChatLogCharacterOthersEvasionResistanceRegex = new Regex("^(?<SourceName>.+)が(?<TargetName>.+)の(?<SkillName>.+)(を回避|に抵抗)しました。", RegexOptions.Compiled);
+        private static readonly Regex ChatLogCharacterOthersEvasionResistanceRegex = new Regex(AION.LogPattern.EvasionResistancePatternWithSourceNamePattern, RegexOptions.Compiled);
 
         /// <summary>
         /// 回復のパターン
         /// </summary>
-        private static readonly Regex ChatLogHealRegex = new Regex(".*回復しました。$", RegexOptions.Compiled);
+        private static readonly Regex ChatLogHealRegex = new Regex(AION.LogPattern.HealCommonPattern, RegexOptions.Compiled);
 
         /// <summary>
         /// 計測
@@ -406,19 +411,19 @@ namespace OpenAIONDPS
             Dictionary<string, Dictionary<string, LinkedList<ActionData>>> SkillDelayDamageList = new Dictionary<string, Dictionary<string, LinkedList<ActionData>>>();
 
             // 通常攻撃のダメージのパターン(他人)
-            LinkedList<Regex> ChatLogCharacterSimpleDamageRegexList = this.GetChatLogCharacterSimpleDamageRegexList();
+            LinkedList<Regex> ChatLogAttackSimpleDamageWithSourceNameRegexList = this.GetChatLogAttackSimpleDamageWithSourceNameRegexList();
 
             // 通常攻撃のダメージのパターン(サモン)
             LinkedList<Regex> ChatLogSummonSimpleDamageRegexList = this.GetChatLogSummonSimpleDamageRegexList();
 
             // スキルダメージのパターン(他人)
-            LinkedList<Regex> ChatLogCharacterSkillDamageRegexList = this.GetChatLogCharacterSkillDamageRegexList();
+            LinkedList<Regex> ChatLogAttackSkillDamageWithSourceNameRegexList = this.GetChatLogAttackSkillDamageWithSourceNameRegexList();
 
             // スキルのダメージのパターン(サモン)
             LinkedList<Regex> ChatLogSummonSkillDamageRegexList = this.GetChatLogSummonSkillDamageRegexList();
 
             // ドットスキルのダメージのパターン
-            LinkedList<Regex> ChatLogSkillDotDamageRegexList = this.GetChatLogSkillDotDamageRegexList();
+            LinkedList<Regex> ChatLogAttackSkillDotDamageRegexList = this.GetChatLogAttackSkillDotDamageRegexList();
 
             // サモンスキル(攻撃対象固定)のダメージのパターン
             LinkedList<Regex> ChatLogSkillSummon2DamageRegexList = this.GetChatLogSkillSummon2DamageRegexList();
@@ -520,8 +525,8 @@ namespace OpenAIONDPS
                             // "^(?<SkillName>.+)の効果により、(?<TargetName>.+)(にダメージを与え続けました。|が出血状態になりました。)
                             // "^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)(はダメージを受け続けました。|は出血状態になりました。)
                             //
-                            Match ChatLogCharacterSkillDotMatch = ChatLogCharacterSkillDotRegex.Match(LogTextWithoutTime);
-                            Match ChatLogSkillDotMatch = ChatLogSkillDotRegex.Match(LogTextWithoutTime);
+                            Match ChatLogCharacterSkillDotMatch = ChatLogAttackSkillDotEffectWithSourceNameRegex.Match(LogTextWithoutTime);
+                            Match ChatLogSkillDotMatch = ChatLogAttackSkillDotEffectWithoutSourceNameRegex.Match(LogTextWithoutTime);
                             if (ChatLogCharacterSkillDotMatch.Success || ChatLogSkillDotMatch.Success)
                             {
                                 Match _Match = null;
@@ -568,9 +573,9 @@ namespace OpenAIONDPS
                             // "^(?<SourceName>.+)が攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。"
                             // "^攻撃を反射し、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。"
                             //
-                            Match ChatLogReflectDamagDisciplineEnergyMatch = ChatLogReflectDamagDisciplineEnergyRegex.Match(LogTextWithoutTime);
-                            Match ChatLogReflectDamageCharacterMatch = ChatLogReflectDamageCharacterRegex.Match(LogTextWithoutTime);
-                            Match ChatLogReflectDamageMatch = ChatLogReflectDamageRegex.Match(LogTextWithoutTime);
+                            Match ChatLogReflectDamagDisciplineEnergyMatch = ChatLogAttackReflectionDamageWithDisciplineEnergyRegex.Match(LogTextWithoutTime);
+                            Match ChatLogReflectDamageCharacterMatch = ChatLogAttackReflectionDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                            Match ChatLogReflectDamageMatch = ChatLogAttackReflectionDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
                             if (ChatLogReflectDamagDisciplineEnergyMatch.Success || ChatLogReflectDamageCharacterMatch.Success || ChatLogReflectDamageMatch.Success)
                             {
                                 Match _Match = null;
@@ -607,10 +612,10 @@ namespace OpenAIONDPS
                             // "^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)が(?<Damage>[0-9,]+)のダメージを受け、.+が解除されました。"
                             // "^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージ与え、(?<SkillName2>.+)効果を得ました。"
                             //
-                            Match ChatLogCharacterSkillDebuffDamage1Match = ChatLogCharacterSkillDebuffDamage1Regex.Match(LogTextWithoutTime);
-                            Match ChatLogCharacterSkillDebuffDamage2Match = ChatLogCharacterSkillDebuffDamage2Regex.Match(LogTextWithoutTime);
-                            Match ChatLogSkillDebuffDamage1Match = ChatLogSkillDebuffDamage1Regex.Match(LogTextWithoutTime);
-                            Match ChatLogSkillDebuffDamage2Match = ChatLogSkillDebuffDamage2Regex.Match(LogTextWithoutTime);
+                            Match ChatLogCharacterSkillDebuffDamage1Match = ChatLogAttackSkillReleaseBuffDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                            Match ChatLogCharacterSkillDebuffDamage2Match = ChatLogAttackSkillDebuffDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                            Match ChatLogSkillDebuffDamage1Match = ChatLogAttackSkillReleaseBuffDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                            Match ChatLogSkillDebuffDamage2Match = ChatLogAttackSkillDebuffDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
                             if (ChatLogCharacterSkillDebuffDamage1Match.Success ||
                                 ChatLogCharacterSkillDebuffDamage2Match.Success ||
                                 ChatLogSkillDebuffDamage1Match.Success ||
@@ -856,7 +861,7 @@ namespace OpenAIONDPS
                             // "^(?<TargetName>.+)は(?<SkillName>" + _Skill.Value.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)のダメージを受けました。"
                             //
                             bool ChatLogSkillDotDamageMatchFlag = false;
-                            foreach (Regex ChatLogSkillDotDamageRegex in ChatLogSkillDotDamageRegexList)
+                            foreach (Regex ChatLogSkillDotDamageRegex in ChatLogAttackSkillDotDamageRegexList)
                             {
                                 Match ChatLogSkillDotDamageMatch = ChatLogSkillDotDamageRegex.Match(LogTextWithoutTime);
                                 if (ChatLogSkillDotDamageMatch.Success)
@@ -917,7 +922,7 @@ namespace OpenAIONDPS
                             // "^(?<SourceName>.+)が使用した(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。"
                             //
                             bool ChatLogCharacterSkillDamageMatchFlag = false;
-                            foreach (Regex ChatLogCharacterSkillDamageRegex in ChatLogCharacterSkillDamageRegexList)
+                            foreach (Regex ChatLogCharacterSkillDamageRegex in ChatLogAttackSkillDamageWithSourceNameRegexList)
                             {
                                 Match ChatLogCharacterSkillDamageMatch = ChatLogCharacterSkillDamageRegex.Match(LogTextWithoutTime);
                                 if (ChatLogCharacterSkillDamageMatch.Success)
@@ -943,7 +948,7 @@ namespace OpenAIONDPS
                             // スキルのダメージ(自分)
                             // "^(?<SkillName>.+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。"
                             //
-                            Match ChatLogSkillDamageMatch = ChatLogSkillDamageRegex.Match(LogTextWithoutTime);
+                            Match ChatLogSkillDamageMatch = ChatLogAttackSkillDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
                             if (ChatLogSkillDamageMatch.Success)
                             {
                                 ChatLogActionData.SourceName = this.OwnName;
@@ -1010,7 +1015,7 @@ namespace OpenAIONDPS
                             // "^(?<SourceName>.+)が(?<TargetName>[^、]+)に(?<Damage>[0-9,]+)のダメージを与えました。"
                             //
                             bool ChatLogCharacterSimpleDamageMatchFlag = false;
-                            foreach (Regex ChatLogCharacterSimpleDamageRegex in ChatLogCharacterSimpleDamageRegexList)
+                            foreach (Regex ChatLogCharacterSimpleDamageRegex in ChatLogAttackSimpleDamageWithSourceNameRegexList)
                             {
                                 Match ChatLogCharacterSimpleDamageMatch = ChatLogCharacterSimpleDamageRegex.Match(LogTextWithoutTime);
                                 if (ChatLogCharacterSimpleDamageMatch.Success)
@@ -1037,7 +1042,7 @@ namespace OpenAIONDPS
                             // 自分 通常攻撃のダメージ
                             // "^(?<TargetName>[^、]+)に(?<Damage>[0-9,]+)のダメージを与えました。"
                             //
-                            Match ChatLogSimpleDamageMatch = ChatLogSimpleDamageRegex.Match(LogTextWithoutTime);
+                            Match ChatLogSimpleDamageMatch = ChatLogAttackSimpleDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
                             if (ChatLogSimpleDamageMatch.Success)
                             {
                                 ChatLogActionData.SourceName = this.OwnName;
@@ -1185,7 +1190,7 @@ namespace OpenAIONDPS
         /// 通常攻撃のダメージのパターン(他人)リストの取得
         /// </summary>
         /// <returns></returns>
-        private LinkedList<Regex> GetChatLogCharacterSimpleDamageRegexList()
+        private LinkedList<Regex> GetChatLogAttackSimpleDamageWithSourceNameRegexList()
         {
             LinkedList<Regex> ChatLogCharacterSimpleDamageRegexList = new LinkedList<Regex>();
 
@@ -1193,11 +1198,11 @@ namespace OpenAIONDPS
             {
                 if (!String.IsNullOrEmpty(MemberName) && !MemberName.Equals(this.OwnName))
                 {
-                    ChatLogCharacterSimpleDamageRegexList.AddLast(new Regex("^(?<SourceName>" + MemberName + ")が(?<TargetName>[^、]+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+                    ChatLogCharacterSimpleDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSimpleDamageWithSourceNameReplacedMemberNamePattern.Replace("[[[MemberName]]]", MemberName), RegexOptions.Compiled));
                 }
             }
 
-            ChatLogCharacterSimpleDamageRegexList.AddLast(new Regex("^(?<SourceName>.+)が(?<TargetName>[^、]+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+            ChatLogCharacterSimpleDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSimpleDamageWithSourceNamePattern, RegexOptions.Compiled));
 
             return ChatLogCharacterSimpleDamageRegexList;
         }
@@ -1206,7 +1211,7 @@ namespace OpenAIONDPS
         /// スキルダメージのパターン(他人)リストの取得
         /// </summary>
         /// <returns></returns>
-        private LinkedList<Regex> GetChatLogCharacterSkillDamageRegexList()
+        private LinkedList<Regex> GetChatLogAttackSkillDamageWithSourceNameRegexList()
         {
             LinkedList<Regex> ChatLogCharacterSkillDamageRegexList = new LinkedList<Regex>();
 
@@ -1215,11 +1220,11 @@ namespace OpenAIONDPS
                 if (!String.IsNullOrEmpty(MemberName) && !MemberName.Equals(this.OwnName))
                 {
 
-                    ChatLogCharacterSkillDamageRegexList.AddLast(new Regex("^(?<SourceName>" + MemberName + @")が使用した(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+                    ChatLogCharacterSkillDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSourceNameReplacedMemberNamePattern.Replace("[[[MemberName]]]", MemberName), RegexOptions.Compiled));
                 }
             }
 
-            ChatLogCharacterSkillDamageRegexList.AddLast(new Regex(@"^(?<SourceName>.+)が使用した(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+            ChatLogCharacterSkillDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSourceNamePattern, RegexOptions.Compiled));
 
             return ChatLogCharacterSkillDamageRegexList;
         }
@@ -1228,7 +1233,7 @@ namespace OpenAIONDPS
         /// ドットスキルのダメージのパターンリストの取得
         /// </summary>
         /// <returns></returns>
-        private LinkedList<Regex> GetChatLogSkillDotDamageRegexList()
+        private LinkedList<Regex> GetChatLogAttackSkillDotDamageRegexList()
         {
             LinkedList<Regex> ChatLogSkillDotDamageRegexList = new LinkedList<Regex>();
 
@@ -1236,7 +1241,7 @@ namespace OpenAIONDPS
             {
                 if (_Skill.SkillType.Equals(AION.SkillType.Dot))
                 {
-                    ChatLogSkillDotDamageRegexList.AddLast(new Regex("^(?<TargetName>.+)(は|が)(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")の効果により、(?<Damage>[0-9,]+)の(出血|)ダメージを受けました。", RegexOptions.Compiled));
+                    ChatLogSkillDotDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDotDamagePattern, RegexOptions.Compiled));
                 }
             }
 

@@ -8,49 +8,120 @@ namespace OpenAIONDPS
     {
         public class LogPattern
         {
-            private const string SkillNameRegexPattern                    = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
-            private const string SourceNameRegexPattern                   = @"(?<SourceName>[^、]+)";
-            private const string SourceNameReplacedMemberNameRegexPattern = @"(?<SourceName>[[[MemberName]]])";
-            private const string TargetNameRegexPattern                   = @"(?<TargetName>[^、]+)";
-            private const string DamageRegexPattern                       = @"(?<Damage>[0-9,]+)";
+            private const string SkillNamePattern                     = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
+            private const string SkillNameReplacedDotSkillNamePattern = @"(?<SkillName>[[[DotSkillName]]])";
+            private const string SkillNameOrSimpleAttackPattern       = @"(?<SkillName>([\p{IsKatakana}：\s]+|攻撃))";
+            private const string SourceNamePattern                    = @"(?<SourceName>[^、]+)";
+            private const string SourceNameReplacedMemberNamePattern  = @"(?<SourceName>[[[MemberName]]])";
+            private const string TargetNamePattern                    = @"(?<TargetName>[^、]+)";
+            private const string DamagePattern                        = @"(?<Damage>[0-9,]+)";
+
+            /* 共通 */
 
             /// <summary>
             /// 行のパターン
             /// </summary>
-            public const string LineRegex = @"^(20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\s[0-9][0-9]:[0-9][0-9]:[0-9][0-9])\s:\s(.*。)";
+            public const string LinePattern = @"^(20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\s[0-9][0-9]:[0-9][0-9]:[0-9][0-9])\s:\s(.*。)";
 
             /// <summary>
             /// クリティカルヒットのパターン
             /// </summary>
-            public const string CriticalHitRegexPattern = "^クリティカルヒット！(.*)$";
+            public const string AttackCriticalHitPattern = "^クリティカルヒット！(.*)$";
 
             /* 通常攻撃 */
 
             /// <summary>
             ///  通常攻撃のダメージのパターン(自分)
             /// </summary>
-            public const string AttackSimpleDamageWithoutSourceName = "^"+ TargetNameRegexPattern + "に" + DamageRegexPattern + "の(致命的な|)ダメージを与えました。";
+            public const string AttackSimpleDamageWithoutSourceNamePattern = "^"+ TargetNamePattern + "に" + DamagePattern + "の(致命的な|)ダメージを与えました。";
 
             /// <summary>
             /// 通常攻撃のダメージのパターン(他人)(要SourceNameの置換)
             /// </summary>
-            public const string AttackSimpleDamageWithSourceNameReplacedMemberName = "^" + SourceNameReplacedMemberNameRegexPattern + "が" + TargetNameRegexPattern + "に" + DamageRegexPattern + "のダメージを与えました。";
+            public const string AttackSimpleDamageWithSourceNameReplacedMemberNamePattern = "^" + SourceNameReplacedMemberNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /// <summary>
             /// 通常攻撃のダメージのパターン(他人)
             /// </summary>
-            public const string AttackSimpleDamageWithSourceName = "^" + SourceNameRegexPattern + "が" + TargetNameRegexPattern + "に" + DamageRegexPattern + "のダメージを与えました。";
+            public const string AttackSimpleDamageWithSourceNamePattern = "^" + SourceNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /* スキル攻撃 */
 
             /// <summary>
-            /// スキル攻撃のダメージのパターン
+            /// スキル攻撃のダメージのパターン(自分)
             /// </summary>
-            public const string AttackSkillDamageWithoutSourceName = "^" + SkillNameRegexPattern + "の効果により、" + TargetNameRegexPattern + "に" + DamageRegexPattern + "のダメージを与えました。";
+            public const string AttackSkillDamageWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /// <summary>
+            /// スキル攻撃のダメージのパターン(他人)(要SourceNameの置換)
+            /// </summary>
+            public const string AttackSkillDamageWithSourceNameReplacedMemberNamePattern = "^" + SourceNameReplacedMemberNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /// <summary>
+            /// スキル攻撃のダメージのパターン(他人)
+            /// </summary>
+            public const string AttackSkillDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /* ドットスキル攻撃 */
+
+            /// <summary>
+            /// ドットスキル攻撃のエフェクトのパターン(自分)
+            /// </summary>
+            public const string AttackSkillDotEffectWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。";
+
+            /// <summary>
+            /// ドットスキル攻撃のエフェクトのパターン(他人)
+            /// </summary>
+            public const string AttackSkillDotEffectWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。";
+
+            /// <summary>
+            /// ドットスキル攻撃のダメージのパターン
+            /// </summary>
+            public const string AttackSkillDotDamagePattern = "^" + TargetNamePattern + "(は|が)" + SkillNameReplacedDotSkillNamePattern + "の効果により、" + DamagePattern + "の(出血|)ダメージを受けました。";
+
+            /* バフ消去スキル攻撃 */
+
+            public const string AttackSkillReleaseBuffDamageWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "が" + DamagePattern + "のダメージを受け、.+が解除されました。";
+
+            public const string AttackSkillReleaseBuffDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "が" + DamagePattern + "のダメージを受け、.+が解除されました。";
+
+            /* デバフスキル攻撃 */
+
+            public const string AttackSkillDebuffDamageWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与え、(?<SkillName2>.+)効果が生じました。";
+
+            public const string AttackSkillDebuffDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージ与え、(?<SkillName2>.+)効果を得ました。";
+
+            /* 反射攻撃 */
+
+            /// <summary>
+            /// 反射攻撃のダメージのパターン(自分)
+            /// </summary>
+            public const string AttackReflectionDamageWithoutSourceNamePattern = @"^攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /// <summary>
+            /// 反射攻撃のダメージのパターン(他人)
+            /// </summary>
+            public const string AttackReflectionDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /// <summary>
+            /// 反射攻撃のダメージのパターン(ディシプリン エネルギー)
+            /// </summary>
+            public const string AttackReflectionDamageWithDisciplineEnergyPattern = @"^ディシプリン\sエネルギーが攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /* 回避/抵抗 */
+
+            /// <summary>
+            /// 回避/抵抗のパターン(他人)
+            /// </summary>
+            public const string EvasionResistancePatternWithSourceNamePattern = "^" + SourceNamePattern + "が" + TargetNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
 
 
+            /* 回復 */
 
-
+            /// <summary>
+            /// 回復の共通のパターン
+            /// </summary>
+            public const string HealCommonPattern = "回復しました。$";
         }
 
         public enum JobType { None, Sword, Shield, Shadow, Bow, Spell, Spirit, Cure, Chant, Bullet, Gia, Melody };
