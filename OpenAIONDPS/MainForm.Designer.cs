@@ -33,6 +33,10 @@
             this.FileButton = new System.Windows.Forms.Button();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.LimitedTargetNameComboBox = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -80,10 +84,6 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -183,6 +183,46 @@
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(444, 12);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(42, 12);
+            this.label25.TabIndex = 50;
+            this.label25.Text = "ダメージ";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(380, 12);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(29, 12);
+            this.label24.TabIndex = 49;
+            this.label24.Text = "攻撃";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(520, 12);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(42, 12);
+            this.label23.TabIndex = 48;
+            this.label23.Text = "ダメージ";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(583, 12);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(55, 12);
+            this.label22.TabIndex = 47;
+            this.label22.Text = "クリティカル";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LimitedTargetNameComboBox
             // 
@@ -660,46 +700,6 @@
             this.Member12.Size = new System.Drawing.Size(874, 26);
             this.Member12.TabIndex = 12;
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(583, 12);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(55, 12);
-            this.label22.TabIndex = 47;
-            this.label22.Text = "クリティカル";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(520, 12);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(42, 12);
-            this.label23.TabIndex = 48;
-            this.label23.Text = "ダメージ";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(380, 12);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(29, 12);
-            this.label24.TabIndex = 49;
-            this.label24.Text = "攻撃";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(444, 12);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(42, 12);
-            this.label25.TabIndex = 50;
-            this.label25.Text = "ダメージ";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -719,7 +719,7 @@
             this.Controls.Add(this.StartButton);
             this.MaximumSize = new System.Drawing.Size(930, 860);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.12";
+            this.Text = "Open AION DPS 1.0.13";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
