@@ -1,10 +1,58 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace OpenAIONDPS
 {
     public static class AION
     {
+        public class LogPattern
+        {
+            private const string SkillNameRegexPattern                    = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
+            private const string SourceNameRegexPattern                   = @"(?<SourceName>[^、]+)";
+            private const string SourceNameReplacedMemberNameRegexPattern = @"(?<SourceName>[[[MemberName]]])";
+            private const string TargetNameRegexPattern                   = @"(?<TargetName>[^、]+)";
+            private const string DamageRegexPattern                       = @"(?<Damage>[0-9,]+)";
+
+            /// <summary>
+            /// 行のパターン
+            /// </summary>
+            public const string LineRegex = @"^(20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\s[0-9][0-9]:[0-9][0-9]:[0-9][0-9])\s:\s(.*。)";
+
+            /// <summary>
+            /// クリティカルヒットのパターン
+            /// </summary>
+            public const string CriticalHitRegexPattern = "^クリティカルヒット！(.*)$";
+
+            /* 通常攻撃 */
+
+            /// <summary>
+            ///  通常攻撃のダメージのパターン(自分)
+            /// </summary>
+            public const string AttackSimpleDamageWithoutSourceName = "^"+ TargetNameRegexPattern + "に" + DamageRegexPattern + "の(致命的な|)ダメージを与えました。";
+
+            /// <summary>
+            /// 通常攻撃のダメージのパターン(他人)(要SourceNameの置換)
+            /// </summary>
+            public const string AttackSimpleDamageWithSourceNameReplacedMemberName = "^" + SourceNameReplacedMemberNameRegexPattern + "が" + TargetNameRegexPattern + "に" + DamageRegexPattern + "のダメージを与えました。";
+
+            /// <summary>
+            /// 通常攻撃のダメージのパターン(他人)
+            /// </summary>
+            public const string AttackSimpleDamageWithSourceName = "^" + SourceNameRegexPattern + "が" + TargetNameRegexPattern + "に" + DamageRegexPattern + "のダメージを与えました。";
+
+            /* スキル攻撃 */
+
+            /// <summary>
+            /// スキル攻撃のダメージのパターン
+            /// </summary>
+            public const string AttackSkillDamageWithoutSourceName = "^" + SkillNameRegexPattern + "の効果により、" + TargetNameRegexPattern + "に" + DamageRegexPattern + "のダメージを与えました。";
+
+
+
+
+        }
+
         public enum JobType { None, Sword, Shield, Shadow, Bow, Spell, Spirit, Cure, Chant, Bullet, Gia, Melody };
 
         public enum SkillType { Normal, DelayDamage, Dot, Summon, EffectDamage, Others };

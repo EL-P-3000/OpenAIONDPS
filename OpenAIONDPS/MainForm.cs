@@ -26,12 +26,6 @@ namespace OpenAIONDPS
 
         private string OwnName = "自分";
 
-        /// <summary>
-        /// スキル名のパターン
-        /// カナ, ：, スペース
-        /// </summary>
-        private const string SkillNamePattern = @"[\p{IsKatakana}：\s]+";
-
         private Dictionary<string, SkillUnit> SkillUnitList = new Dictionary<string, SkillUnit>();
         private Dictionary<string, MemberUnit> MemberNameMemberUnitList = new Dictionary<string, MemberUnit>();
         private Dictionary<AION.JobType, int> JobTypeNumberOfMemberList = new Dictionary<AION.JobType, int>();
