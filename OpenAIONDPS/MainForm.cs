@@ -12,14 +12,19 @@ namespace OpenAIONDPS
     public partial class MainForm : Form
     {
         private string ApplicationDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
+
+        /* デバッグ用 */
         StreamWriter DebugLogFileStreamWriter = null;
+        TextWriter DebugLogFileTextWriter = null;
         private string DebugLogFileName = "Debug.log";
         private bool IsDebug = false;
 
-        private string OwnName = "自分";
+        /* スレッド制御用 */
         private bool IsRunning = false;
         private bool StopFlag = true;
         private Thread CalculateThread = null;
+
+        private string OwnName = "自分";
 
         private Dictionary<string, SkillUnit> SkillUnitList = new Dictionary<string, SkillUnit>();
         private Dictionary<string, MemberUnit> MemberNameMemberUnitList = new Dictionary<string, MemberUnit>();
@@ -182,17 +187,8 @@ namespace OpenAIONDPS
 
             this.ClearData();
 
-            try
-            {
-                if (this.DebugCheckBox.Checked)
-                {
-                    this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, Encoding.GetEncoding("shift_jis"));
-                    this.IsDebug = true;
-                }
-            }
-            catch
-            {
-            }
+            // デバッグ
+            this.OpenDebugLogFile();
 
             this.TotalDamage = 0;
             this.TotalDamageLabel.Text = "0";
@@ -242,18 +238,8 @@ namespace OpenAIONDPS
             {
             }
 
-            try
-            {
-                if (this.IsDebug && this.DebugLogFileStreamWriter != null)
-                {
-                    this.DebugLogFileStreamWriter.Flush();
-                    this.DebugLogFileStreamWriter.Close();
-                }
-
-            }
-            catch
-            {
-            }
+            this.CloseDebugLogFile();
+            this.IsDebug = false;
 
             this.StartButton.Enabled = true;
             this.StopButton.Enabled = false;
@@ -1632,9 +1618,9 @@ namespace OpenAIONDPS
                     _MemberUnit.UpdateDamageParTotalDamage(this.TotalDamage);
                 }
 
-                if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+                if (this.IsDebug && this.DebugLogFileTextWriter != null)
                 {
-                    this.DebugLogFileStreamWriter.WriteLine(ChatLogActionData.LogText);
+                    this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
                 }
             }
         }
@@ -1669,9 +1655,9 @@ namespace OpenAIONDPS
                 this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.Time);
             }
 
-            if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+            if (this.IsDebug && this.DebugLogFileTextWriter != null)
             {
-                this.DebugLogFileStreamWriter.WriteLine(ChatLogActionData.LogText);
+                this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
             }
         }
 
@@ -1699,9 +1685,9 @@ namespace OpenAIONDPS
                 this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.Time);
             }
 
-            if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+            if (this.IsDebug && this.DebugLogFileTextWriter != null)
             {
-                this.DebugLogFileStreamWriter.WriteLine(ChatLogActionData.LogText);
+                this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
             }
         }
 
@@ -1768,17 +1754,8 @@ namespace OpenAIONDPS
                 this.TotalDamageLabel.Text = "0";
                 this.IsCalcLogFile = true;
 
-                try
-                {
-                    if (this.DebugCheckBox.Checked)
-                    {
-                        this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + DebugLogFileName, false, Encoding.GetEncoding("shift_jis"));
-                        this.IsDebug = true;
-                    }
-                }
-                catch
-                {
-                }
+                // デバッグ
+                this.OpenDebugLogFile();
 
                 this.CalculateThread = new Thread(new ThreadStart(Calculate));
                 this.CalculateThread.Start();
@@ -1790,18 +1767,8 @@ namespace OpenAIONDPS
         /// </summary>
         public void CalcFromLogEnd()
         {
-            try
-            {
-                if (this.IsDebug && this.DebugLogFileStreamWriter != null)
-                {
-                    this.DebugLogFileStreamWriter.Flush();
-                    this.DebugLogFileStreamWriter.Close();
-                }
-
-            }
-            catch
-            {
-            }
+            this.CloseDebugLogFile();
+            this.IsDebug = false;
 
             this.StopFlag = true;
             this.IsRunning = false;
@@ -1886,6 +1853,62 @@ namespace OpenAIONDPS
             else
             {
                 FavoriteMemberList.Visible = true;
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// デバッグ用ログファイルのオープン
+        /// </summary>
+        private void OpenDebugLogFile()
+        {
+            try
+            {
+                if (this.DebugCheckBox.Checked)
+                {
+                    this.DebugLogFileStreamWriter = new StreamWriter(this.ApplicationDirectory + this.DebugLogFileName, false, Encoding.GetEncoding("shift_jis"));
+                    this.DebugLogFileTextWriter = TextWriter.Synchronized(this.DebugLogFileStreamWriter);
+                    this.IsDebug = true;
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// デバッグ用ログファイルのクローズ
+        /// </summary>
+        private void CloseDebugLogFile()
+        {
+            try
+            {
+                if (this.IsDebug && this.DebugLogFileTextWriter != null)
+                {
+                    this.DebugLogFileTextWriter.Flush();
+                    this.DebugLogFileTextWriter.Close();
+                    this.DebugLogFileTextWriter = null;
+                }
+
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                if (this.IsDebug && this.DebugLogFileStreamWriter != null)
+                {
+                    this.DebugLogFileStreamWriter.Flush();
+                    this.DebugLogFileStreamWriter.Close();
+                    this.DebugLogFileStreamWriter = null;
+                }
+
+            }
+            catch
+            {
             }
         }
     }
