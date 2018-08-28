@@ -470,11 +470,11 @@
             // DebugCheckBox
             // 
             this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(761, 16);
+            this.DebugCheckBox.Location = new System.Drawing.Point(707, 16);
             this.DebugCheckBox.Name = "DebugCheckBox";
-            this.DebugCheckBox.Size = new System.Drawing.Size(60, 16);
+            this.DebugCheckBox.Size = new System.Drawing.Size(114, 16);
             this.DebugCheckBox.TabIndex = 25;
-            this.DebugCheckBox.Text = "デバッグ";
+            this.DebugCheckBox.Text = "デバッグ用ログ出力";
             this.DebugCheckBox.UseVisualStyleBackColor = true;
             // 
             // CalcFromLogButton
@@ -490,7 +490,7 @@
             // AlwaysOnTopCheckBox
             // 
             this.AlwaysOnTopCheckBox.AutoSize = true;
-            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(671, 16);
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(617, 16);
             this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
             this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
             this.AlwaysOnTopCheckBox.TabIndex = 27;
