@@ -8,13 +8,16 @@ namespace OpenAIONDPS
     {
         public class LogPattern
         {
-            private const string SkillNamePattern                     = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
-            private const string SkillNameReplacedDotSkillNamePattern = @"(?<SkillName>[[[DotSkillName]]])";
-            private const string SkillNameOrSimpleAttackPattern       = @"(?<SkillName>([\p{IsKatakana}：\s]+|攻撃))";
-            private const string SourceNamePattern                    = @"(?<SourceName>[^、]+)";
-            private const string SourceNameReplacedMemberNamePattern  = @"(?<SourceName>[[[MemberName]]])";
-            private const string TargetNamePattern                    = @"(?<TargetName>[^、]+)";
-            private const string DamagePattern                        = @"(?<Damage>[0-9,]+)";
+            private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
+            private const string SkillNameEffectedPattern                      = @"(?<SkillName2>.+)";
+            private const string SkillNameReplacedDotSkillNamePattern          = @"(?<SkillName>[[[DotSkillName]]])";
+            private const string SkillNameReplacedDelayDamageSkillNamePattern  = @"(?<SkillName>[[[DelayDamageSkillName]]])";
+            private const string SkillNameReplacedEffectDamageSkillNamePattern = @"(?<SkillName>[[[EffectDamageSkillName]]])";
+            private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s]+|攻撃))";
+            private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
+            private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
+            private const string TargetNamePattern                             = @"(?<TargetName>[^、]+)";
+            private const string DamagePattern                                 = @"(?<Damage>[0-9,]+)";
 
             /* 共通 */
 
@@ -67,12 +70,12 @@ namespace OpenAIONDPS
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(自分)
             /// </summary>
-            public const string AttackSkillDotEffectWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。";
+            public const string AttackSkillDotEffectWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。)";
 
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(他人)
             /// </summary>
-            public const string AttackSkillDotEffectWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。";
+            public const string AttackSkillDotEffectWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。)";
 
             /// <summary>
             /// ドットスキル攻撃のダメージのパターン
@@ -87,9 +90,43 @@ namespace OpenAIONDPS
 
             /* デバフスキル攻撃 */
 
-            public const string AttackSkillDebuffDamageWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与え、(?<SkillName2>.+)効果が生じました。";
+            public const string AttackSkillDebuffDamageWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与え、" + SkillNameEffectedPattern + "効果が生じました。";
 
-            public const string AttackSkillDebuffDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージ与え、(?<SkillName2>.+)効果を得ました。";
+            public const string AttackSkillDebuffDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージ与え、" + SkillNameEffectedPattern + "効果を得ました。";
+
+            /* ディレイダメージスキル攻撃 */
+
+            /// <summary>
+            /// ディレイダメージスキル攻撃のパターン(自分)
+            /// </summary>
+            public const string AttackSkillDelayDamageWithoutSourceNamePattern = "^" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
+
+            /// <summary>
+            /// ディレイダメージスキル攻撃のパターン(自分)(メロディ)
+            /// </summary>
+            public const string AttackSkillDelayDamageMelodyWithoutSourceNamePattern = "^" + SkillNameReplacedDelayDamageSkillNamePattern + "を使い、" + TargetNamePattern + "が" + SkillNameEffectedPattern + "効果を受けました。";
+
+            /// <summary>
+            /// ディレイダメージスキル攻撃のパターン(他人)
+            /// </summary>
+            public const string AttackSkillDelayDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
+
+            /// <summary>
+            /// ディレイダメージスキル攻撃のパターン(他人)(メロディ)
+            /// </summary>
+            public const string AttackSkillDelayDamageMelodyWithSourceNamePattern = "^" + SourceNamePattern + "は" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果を与えました。";
+
+            /// <summary>
+            /// ディレイダメージスキル攻撃のダメージのパターン
+            /// </summary>
+            public const string AttackSkillDelayDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedDelayDamageSkillNamePattern + @"(\sエフェクト|)の効果により、" + DamagePattern + "のダメージを受けました。";
+
+            /* エフェクトダメージスキル攻撃 */
+
+            /// <summary>
+            /// エフェクトダメージスキル攻撃のダメージのパターン
+            /// </summary>
+            public const string AttackSkillEffectDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedEffectDamageSkillNamePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
 
             /* 反射攻撃 */
 
@@ -111,10 +148,19 @@ namespace OpenAIONDPS
             /* 回避/抵抗 */
 
             /// <summary>
+            /// 回避/抵抗したパターン(自分)
+            /// </summary>
+            public const string EvasionResistanceWithoutSourceNamePattern = "^" + TargetNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
+
+            /// <summary>
+            /// 回避/抵抗されたパターン(自分)
+            /// </summary>
+            public const string EvadedResistedWithoutTargetNamePattern = "^" + SourceNamePattern + "が" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
+
+            /// <summary>
             /// 回避/抵抗のパターン(他人)
             /// </summary>
-            public const string EvasionResistancePatternWithSourceNamePattern = "^" + SourceNamePattern + "が" + TargetNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
-
+            public const string EvasionResistanceWithSourceNamePattern = "^" + SourceNamePattern + "が" + TargetNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
 
             /* 回復 */
 
@@ -264,9 +310,11 @@ namespace OpenAIONDPS
             }
         }
 
-        public static Dictionary<string, AION.Skill> GetSkillList()
+        public static readonly Dictionary<string, Skill> SkillList = GetSkillList();
+
+        private static Dictionary<string, Skill> GetSkillList()
         {
-            Dictionary<string, AION.Skill> SkillList = new Dictionary<string, Skill>();
+            Dictionary<string, Skill> SkillList = new Dictionary<string, Skill>();
             string SkillName = "";
 
             /**************************************************************************************************************************************/
@@ -274,7 +322,7 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // エフェクトダメージ
             SkillName = "アップセット エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Shield, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Shield, SkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/
@@ -287,19 +335,19 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ドット
             SkillName = "エクターミネーション";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Shadow, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Shadow, SkillType.Dot));
             SkillName = "デッドリー ポイズン サドン アタック";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Shadow, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Shadow, SkillType.Dot));
             SkillName = "バック ダメージ";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Shadow, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Shadow, SkillType.Dot));
 
             // エフェクトダメージ
             SkillName = "エクスプローシブ アプライ エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Shadow, SkillType.EffectDamage));
             SkillName = "スティレット コミットメント アディショナル エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Shadow, SkillType.EffectDamage));
             SkillName = "ドラスティック ポイズン エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Shadow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Shadow, SkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/
@@ -307,16 +355,16 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // エフェクトダメージ
             SkillName = "ヴェンジフル トラップ エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Bow, SkillType.EffectDamage));
             SkillName = "ダスト トラップ エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Bow, SkillType.EffectDamage));
             SkillName = "バンプ トラップ エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Bow, SkillType.EffectDamage));
             /* 要調査 */
             SkillName = "バースト トラップ エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Bow, SkillType.EffectDamage));
             SkillName = "クレアポイアンス トラップ エフェクト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Bow, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Bow, SkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/
@@ -324,19 +372,19 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ディレイダメージ
             SkillName = "ボルカニック ブローアウト";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spell, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spell, SkillType.DelayDamage));
             SkillName = "ボルカニック ビック イラプション";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spell, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spell, SkillType.DelayDamage));
 
             // ドット
             SkillName = "バーン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spell, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spell, SkillType.Dot));
             SkillName = "ヒート サモン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spell, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spell, SkillType.Dot));
 
             // サモン
             SkillName = "タイフーン サモン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spell, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spell, SkillType.Summon));
 
 
             /**************************************************************************************************************************************/
@@ -344,33 +392,33 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ドット
             SkillName = "イロージョン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
             SkillName = "ワイドエリア イロージョン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
             SkillName = "アース チェーン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
             SkillName = "マジック エクスプロージョン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
             SkillName = "アンガー サイクロン";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
             SkillName = "カース クラウド";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
             SkillName = "サモン：ウインド エネルギー";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
             SkillName = "サモン：サイクロン エネルギー";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Dot));
 
             // サモン
             SkillName = "ファイア スピリット";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Summon));
             SkillName = "ウォーター スピリット";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Summon));
             SkillName = "ウインド スピリット";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Summon));
             SkillName = "グラウンド スピリット";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Summon));
             SkillName = "タイフーン スピリット";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Spirit, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Spirit, SkillType.Summon));
 
 
             /**************************************************************************************************************************************/
@@ -378,21 +426,21 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ドット
             SkillName = "パニッシュ";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Cure, SkillType.Dot));
             SkillName = "アース アンガー";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Cure, SkillType.Dot));
             SkillName = "ウイークン ブランド";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Cure, SkillType.Dot));
             SkillName = "ペイン サクセッシブ";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Cure, SkillType.Dot));
             SkillName = "ディストラクション ボイス";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Cure, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Cure, SkillType.Dot));
 
             // サモン
             SkillName = "ディシプリン エネルギー";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Cure, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Cure, SkillType.Summon));
             SkillName = "ノーブル エネルギー";
-            SkillList.Add(SkillName, new Skill(SkillName, AION.JobType.Cure, AION.SkillType.Summon));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Cure, SkillType.Summon));
 
 
             /**************************************************************************************************************************************/
@@ -400,15 +448,15 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ドット
             SkillName = "マウンテン クラッシュ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Chant, SkillType.Dot));
 
             // エフェクトダメージ
             SkillName = "ウインド ブレス";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Chant, SkillType.EffectDamage));
             SkillName = "アース プロミス エフェクト";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Chant, SkillType.EffectDamage));
             SkillName = "アース コミットメント エフェクト";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Chant, AION.SkillType.EffectDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Chant, SkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/
@@ -416,7 +464,7 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ドット
             SkillName = "ホーム ペネトレート";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Bullet, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Bullet, SkillType.Dot));
 
 
             /**************************************************************************************************************************************/
@@ -424,7 +472,7 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ディレイダメージ
             SkillName = "チャージ ファイヤ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Gia, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Gia, SkillType.DelayDamage));
 
 
             /**************************************************************************************************************************************/
@@ -432,16 +480,104 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // ディレイダメージ
             SkillName = "ダメージ エコー";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Melody, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.DelayDamage));
             SkillName = "シャープ フリカティブ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Melody, AION.SkillType.DelayDamage));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.DelayDamage));
 
             // ドット
             SkillName = "モスキー ラプソディ";
-            SkillList.Add(SkillName, new AION.Skill(SkillName, AION.JobType.Melody, AION.SkillType.Dot));
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.Dot));
 
 
             return SkillList;
+        }
+
+        /// <summary>
+        /// スキルがドットスキルかをチェック
+        /// </summary>
+        /// <param name="SkillName"></param>
+        /// <returns></returns>
+        public static bool CheckSkillDot(string SkillName)
+        {
+            try
+            {
+                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.Dot))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// スキルがエフェクトダメージスキルかをチェック
+        /// </summary>
+        /// <param name="SkillName"></param>
+        /// <returns></returns>
+        public static bool CheckSkillEffectDamage(string SkillName)
+        {
+            try
+            {
+                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.EffectDamage))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// スキルがサモンスキルかをチェック
+        /// </summary>
+        /// <param name="SkillName"></param>
+        /// <returns></returns>
+        public static bool CheckSkillSummon(string SkillName)
+        {
+            try
+            {
+                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.Summon))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// スキルがディレイダメージスキルかをチェック
+        /// </summary>
+        /// <param name="SkillName"></param>
+        /// <returns></returns>
+        public static bool CheckSkillDelayDamage(string SkillName)
+        {
+            try
+            {
+                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.DelayDamage))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
