@@ -24,20 +24,18 @@ namespace OpenAIONDPS
         private bool StopFlag = true;
         private Thread CalculateThread = null;
 
+        /* メンバー＆スキル一覧 */
         private string OwnName = "自分";
-
-        private Dictionary<string, SkillUnit> SkillUnitList = new Dictionary<string, SkillUnit>();
         private Dictionary<string, MemberUnit> MemberNameMemberUnitList = new Dictionary<string, MemberUnit>();
         private Dictionary<AION.JobType, int> JobTypeNumberOfMemberList = new Dictionary<AION.JobType, int>();
+        private Dictionary<string, SkillUnit> SkillUnitList = new Dictionary<string, SkillUnit>();
 
-        private LinkedList<MemberUnit> CureMemberUnitList = new LinkedList<MemberUnit>();
-
+        /* 時間計測 */
         private long TotalDamage = 0;
-
         private System.Timers.Timer CalcTimer = new System.Timers.Timer();
-
         private int CalcRemainingTime = 0;
 
+        /* ログファイルからの計測 */
         private bool IsCalcLogFile = false;
         private string CalcLogFilePath = "";
 
@@ -324,16 +322,6 @@ namespace OpenAIONDPS
             
         // ドットスキルのダメージのパターンは計測開始時に取得
 
-        /// <summary>
-        /// サモンスキル(攻撃対象固定)のパターン(自分)
-        /// </summary>
-        private static readonly Regex ChatLogSkillSummon2Regex = new Regex(@"^サモン：(?<SkillName>[\p{IsKatakana}\s]+)の効果により、(?<TargetName>.+)を攻撃する(?<SkillName2>.+)を召喚しました。", RegexOptions.Compiled);
-
-        /// <summary>
-        /// サモンスキル(攻撃対象固定)のパターン(他人)
-        /// </summary>
-        private static readonly Regex ChatLogCharacterSkillSummon2Regex = new Regex(@"^(?<SourceName>.+)が使用したサモン：(?<SkillName>[\p{IsKatakana}：\s]+)の効果により、(?<TargetName>.+)を攻撃する(?<SkillName2>.+)を召喚しました。", RegexOptions.Compiled);
-
         // サモンスキル(攻撃対象固定)のダメージのパターンは計測開始時に取得
 
         /// <summary>
@@ -386,7 +374,7 @@ namespace OpenAIONDPS
         /// <summary>
         /// 回避/抵抗のパターン(他人)(その他排除用)
         /// </summary>
-        private static readonly Regex EvasionResistancePatternWithSourceNameRegex = new Regex(AION.LogPattern.EvasionResistanceWithSourceNamePattern, RegexOptions.Compiled);
+        private static readonly Regex EvasionResistanceWithOthersRegex = new Regex(AION.LogPattern.EvasionResistanceWithOthersPattern, RegexOptions.Compiled);
 
         /// <summary>
         /// 回復のパターン
@@ -417,19 +405,19 @@ namespace OpenAIONDPS
             LinkedList<Regex> AttackSimpleDamageWithSourceNameRegexList = this.GetAttackSimpleDamageWithSourceNameRegexList();
 
             // 通常攻撃のダメージのパターン(サモン)
-            LinkedList<Regex> ChatLogSummonSimpleDamageRegexList = this.GetChatLogSummonSimpleDamageRegexList();
+            LinkedList<Regex> AttackSimpleDamageWithSummonRegexList = this.GetAttackSimpleDamageWithSummonRegexList();
 
             // スキルダメージのパターン(他人)
             LinkedList<Regex> AttackSkillDamageWithSourceNameRegexList = this.GetAttackSkillDamageWithSourceNameRegexList();
 
             // スキルのダメージのパターン(サモン)
-            LinkedList<Regex> ChatLogSummonSkillDamageRegexList = this.GetChatLogSummonSkillDamageRegexList();
+            LinkedList<Regex> AttackSkillDamageWithSummonRegexList = this.GetAttackSkillDamageWithSummonRegexList();
 
             // ドットスキルのダメージのパターン
             LinkedList<Regex> AttackSkillDotDamageRegexList = this.GetAttackSkillDotDamageRegexList();
 
             // サモンスキル(攻撃対象固定)のダメージのパターン
-            LinkedList<Regex> ChatLogSkillSummon2DamageRegexList = this.GetChatLogSkillSummon2DamageRegexList();
+            LinkedList<Regex> AttackSkillDamage2WithSummonRegexList = this.GetAttackSkillDamage2WithSummonRegexList();
 
             // ディレイダメージスキルのパターン(自分)
             LinkedList<Regex> AttackSkillDelayDamageWithoutSourceNameRegexList = this.GetAttackSkillDelayDamageWithoutSourceNameRegexList();
@@ -444,7 +432,7 @@ namespace OpenAIONDPS
             LinkedList<Regex> AttackSkillEffectDamageDamageRegexList = this.GetAttackSkillEffectDamageDamageRegexList();
 
             // 回避/抵抗した/された攻撃のパターン(他人)リスト
-            LinkedList<Regex> ChatLogCharacterEvasionResistanceRegexList = this.GetChatLogCharacterEvasionResistanceRegexList();
+            LinkedList<Regex> EvasionResistanceWithSourceNameRegexList = this.GetEvasionResistanceWithSourceNameRegexList();
 
             // ログファイルから計算の場合はログファイルを設定
             if (this.IsCalcLogFile)
@@ -785,7 +773,7 @@ namespace OpenAIONDPS
 
                             // サモン(攻撃対象固定)のダメージ
                             bool ChatLogSkillSummon2DamageMatchFlag = false;
-                            foreach (Regex ChatLogSkillSummon2DamageRegex in ChatLogSkillSummon2DamageRegexList)
+                            foreach (Regex ChatLogSkillSummon2DamageRegex in AttackSkillDamage2WithSummonRegexList)
                             {
                                 Match ChatLogSkillSummon2DamageMatch = ChatLogSkillSummon2DamageRegex.Match(LogTextWithoutTime);
                                 if (ChatLogSkillSummon2DamageMatch.Success)
@@ -836,7 +824,7 @@ namespace OpenAIONDPS
 
                             // スキルのダメージ(サモン)
                             bool ChatLogSummonSkillDamageMatchFlag = false;
-                            foreach (Regex ChatLogSummonSkillDamageRegex in ChatLogSummonSkillDamageRegexList)
+                            foreach (Regex ChatLogSummonSkillDamageRegex in AttackSkillDamageWithSummonRegexList)
                             {
                                 Match ChatLogSummonSkillDamageMatch = ChatLogSummonSkillDamageRegex.Match(LogTextWithoutTime);
                                 if (ChatLogSummonSkillDamageMatch.Success)
@@ -897,7 +885,7 @@ namespace OpenAIONDPS
 
                             // 通常攻撃のダメージ(サモン)
                             bool ChatLogSummonSimpleDamageMatchFlag = false;
-                            foreach (Regex ChatLogSummonSimpleDamageRegex in ChatLogSummonSimpleDamageRegexList)
+                            foreach (Regex ChatLogSummonSimpleDamageRegex in AttackSimpleDamageWithSummonRegexList)
                             {
                                 Match ChatLogSummonSimpleDamageMatch = ChatLogSummonSimpleDamageRegex.Match(LogTextWithoutTime);
                                 if (ChatLogSummonSimpleDamageMatch.Success)
@@ -975,7 +963,7 @@ namespace OpenAIONDPS
 
                             // 回避/抵抗(他人)
                             bool ChatLogCharacterEvasionResistanceMatchFlag = false;
-                            foreach (Regex ChatLogCharacterEvasionResistanceRegex in ChatLogCharacterEvasionResistanceRegexList)
+                            foreach (Regex ChatLogCharacterEvasionResistanceRegex in EvasionResistanceWithSourceNameRegexList)
                             {
                                 Match ChatLogCharacterEvasionResistanceMatch = ChatLogCharacterEvasionResistanceRegex.Match(LogTextWithoutTime);
                                 if (ChatLogCharacterEvasionResistanceMatch.Success)
@@ -1005,7 +993,7 @@ namespace OpenAIONDPS
                             }
 
                             // 回避/抵抗(他人)(その他排除用)
-                            Match EvasionResistancePatternWithSourceNameMatch = EvasionResistancePatternWithSourceNameRegex.Match(LogTextWithoutTime);
+                            Match EvasionResistancePatternWithSourceNameMatch = EvasionResistanceWithOthersRegex.Match(LogTextWithoutTime);
                             if (EvasionResistancePatternWithSourceNameMatch.Success)
                             {
                                 continue;
@@ -1133,57 +1121,57 @@ namespace OpenAIONDPS
         /// 通常攻撃のダメージのパターン(サモン)リストの取得
         /// </summary>
         /// <returns></returns>
-        private LinkedList<Regex> GetChatLogSummonSimpleDamageRegexList()
+        private LinkedList<Regex> GetAttackSimpleDamageWithSummonRegexList()
         {
-            LinkedList<Regex> ChatLogSummonSimpleDamageRegexList = new LinkedList<Regex>();
+            LinkedList<Regex> AttackSimpleDamageWithSummonPatternRegexList = new LinkedList<Regex>();
 
             foreach (AION.Skill _Skill in AION.SkillList.Values)
             {
                 if (_Skill.SkillType.Equals(AION.SkillType.Summon))
                 {
-                    ChatLogSummonSimpleDamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")が(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+                    AttackSimpleDamageWithSummonPatternRegexList.AddLast(new Regex(AION.LogPattern.AttackSimpleDamageWithSummonPattern.Replace("[[[SummonSkillName]]]", _Skill.Name), RegexOptions.Compiled));
                 }
             }
 
-            return ChatLogSummonSimpleDamageRegexList;
+            return AttackSimpleDamageWithSummonPatternRegexList;
         }
 
         /// <summary>
         /// スキルのダメージのパターン(サモン)リストの取得
         /// </summary>
         /// <returns></returns>
-        private LinkedList<Regex> GetChatLogSummonSkillDamageRegexList()
+        private LinkedList<Regex> GetAttackSkillDamageWithSummonRegexList()
         {
-            LinkedList<Regex> ChatLogSummonSkillDamageRegexList = new LinkedList<Regex>();
+            LinkedList<Regex> AttackSkillDamageWithSummonRegexList = new LinkedList<Regex>();
 
             foreach (AION.Skill _Skill in AION.SkillList.Values)
             {
                 if (_Skill.SkillType.Equals(AION.SkillType.Summon))
                 {
-                    ChatLogSummonSkillDamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")が使用した(?<SkillName2>.+)(\\sエフェクト|)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+                    AttackSkillDamageWithSummonRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSummonPattern.Replace("[[[SummonSkillName]]]", _Skill.Name), RegexOptions.Compiled));
                 }
             }
 
-            return ChatLogSummonSkillDamageRegexList;
+            return AttackSkillDamageWithSummonRegexList;
         }
 
         /// <summary>
         /// サモンスキル(攻撃対象固定)のダメージのパターンリストの取得
         /// </summary>
         /// <returns></returns>
-        private LinkedList<Regex> GetChatLogSkillSummon2DamageRegexList()
+        private LinkedList<Regex> GetAttackSkillDamage2WithSummonRegexList()
         {
-            LinkedList<Regex> ChatLogSkillSummon2DamageRegexList = new LinkedList<Regex>();
+            LinkedList<Regex> AttackSkillDamage2WithSummonRegexList = new LinkedList<Regex>();
 
             foreach (AION.Skill _Skill in AION.SkillList.Values)
             {
                 if (_Skill.SkillType.Equals(AION.SkillType.Summon))
                 {
-                    ChatLogSkillSummon2DamageRegexList.AddLast(new Regex("^(?<SkillName>" + _Skill.Name.Replace(" ", "\\s") + ")が使用した(?<SkillName2>" + _Skill.Name.Replace(" ", "\\s") + ")(\\sエフェクト|)の効果により、(?<TargetName>.+)に(?<Damage>[0-9,]+)のダメージを与えました。", RegexOptions.Compiled));
+                    AttackSkillDamage2WithSummonRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamage2WithSummonPattern.Replace("[[[SummonSkillName]]]", _Skill.Name), RegexOptions.Compiled));
                 }
             }
 
-            return ChatLogSkillSummon2DamageRegexList;
+            return AttackSkillDamage2WithSummonRegexList;
         }
 
         /// <summary>
@@ -1281,17 +1269,17 @@ namespace OpenAIONDPS
         /// 回避/抵抗した/されたスキルのパターン(他人)
         /// </summary>
         /// <returns></returns>
-        private LinkedList<Regex> GetChatLogCharacterEvasionResistanceRegexList()
+        private LinkedList<Regex> GetEvasionResistanceWithSourceNameRegexList()
         {
-            LinkedList<Regex> ChatLogCharacterEvasionResistanceRegexList = new LinkedList<Regex>();
+            LinkedList<Regex> EvasionResistanceWithSourceNameRegexList = new LinkedList<Regex>();
 
             foreach (string MemberName in this.MemberNameMemberUnitList.Keys)
             {
-                ChatLogCharacterEvasionResistanceRegexList.AddLast(new Regex("^(?<SourceName>" + MemberName + ")が(?<TargetName>.+)の(?<SkillName>.+)(を回避|に抵抗)しました。", RegexOptions.Compiled));
-                ChatLogCharacterEvasionResistanceRegexList.AddLast(new Regex("^(?<SourceName>.+)が(?<TargetName>" + MemberName + ")の(?<SkillName>.+)(を回避|に抵抗)しました。", RegexOptions.Compiled));
+                EvasionResistanceWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.EvasionResistanceWithSourceNamePattern.Replace("[[[MemberName]]]", MemberName), RegexOptions.Compiled));
+                EvasionResistanceWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.EvadedResistedWithTargetNamePattern.Replace("[[[MemberName]]]", MemberName), RegexOptions.Compiled));
             }
 
-            return ChatLogCharacterEvasionResistanceRegexList;
+            return EvasionResistanceWithSourceNameRegexList;
         }
 
         /// <summary>
@@ -1478,6 +1466,8 @@ namespace OpenAIONDPS
             }
         }
 
+        /* 計測時間 */
+
         /// <summary>
         /// 計測時間の1秒間隔のイベント
         /// </summary>
@@ -1505,6 +1495,8 @@ namespace OpenAIONDPS
             this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
             this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
         }
+
+        /* ログファイルからの計測 */
 
         /// <summary>
         /// ログファイルから計測イベント
@@ -1566,6 +1558,8 @@ namespace OpenAIONDPS
 
             this.IsCalcLogFile = false;
         }
+
+        /* その他 */
 
         /// <summary>
         /// 最前面表示イベント

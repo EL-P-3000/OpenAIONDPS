@@ -11,12 +11,15 @@ namespace OpenAIONDPS
             private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
             private const string SkillNameEffectedPattern                      = @"(?<SkillName2>.+)";
             private const string SkillNameReplacedDotSkillNamePattern          = @"(?<SkillName>[[[DotSkillName]]])";
+            private const string SkillNameReplacedSummonSkillNamePattern       = @"(?<SkillName>[[[SummonSkillName]]])";
+            private const string SkillNameReplacedSummonSkillName2Pattern      = @"(?<SkillName2>[[[SummonSkillName]]])";
             private const string SkillNameReplacedDelayDamageSkillNamePattern  = @"(?<SkillName>[[[DelayDamageSkillName]]])";
             private const string SkillNameReplacedEffectDamageSkillNamePattern = @"(?<SkillName>[[[EffectDamageSkillName]]])";
             private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s]+|攻撃))";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
             private const string TargetNamePattern                             = @"(?<TargetName>[^、]+)";
+            private const string TargetNameReplacedMemberNamePattern           = @"(?<TargetName>[[[MemberName]]])";
             private const string DamagePattern                                 = @"(?<Damage>[0-9,]+)";
 
             /* 共通 */
@@ -64,6 +67,14 @@ namespace OpenAIONDPS
             /// スキル攻撃のダメージのパターン(他人)
             /// </summary>
             public const string AttackSkillDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /* サモン攻撃 */
+
+            public const string AttackSimpleDamageWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            public const string AttackSkillDamageWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が使用した" + SkillNameEffectedPattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            public const string AttackSkillDamage2WithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が使用した" + SkillNameReplacedSummonSkillName2Pattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /* ドットスキル攻撃 */
 
@@ -160,7 +171,10 @@ namespace OpenAIONDPS
             /// <summary>
             /// 回避/抵抗のパターン(他人)
             /// </summary>
-            public const string EvasionResistanceWithSourceNamePattern = "^" + SourceNamePattern + "が" + TargetNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
+            public const string EvasionResistanceWithOthersPattern = "^" + SourceNamePattern + "が" + TargetNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
+
+            public const string EvasionResistanceWithSourceNamePattern = "^" + SourceNameReplacedMemberNamePattern + "が" + TargetNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
+            public const string EvadedResistedWithTargetNamePattern = "^" + SourceNamePattern + "が" + TargetNameReplacedMemberNamePattern + "の" + SkillNameOrSimpleAttackPattern + "(を回避|に抵抗)しました。";
 
             /* 回復 */
 
