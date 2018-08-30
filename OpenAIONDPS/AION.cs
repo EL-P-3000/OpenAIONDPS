@@ -517,21 +517,9 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public static bool CheckSkillDot(string SkillName)
+        public static bool CheckSkillTypeDot(string Name)
         {
-            try
-            {
-                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.Dot))
-                {
-                    return true;
-                }
-
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
+            return CheckSkillType(Name, SkillType.Dot);
         }
 
         /// <summary>
@@ -539,21 +527,9 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public static bool CheckSkillEffectDamage(string SkillName)
+        public static bool CheckSkillTypeEffectDamage(string Name)
         {
-            try
-            {
-                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.EffectDamage))
-                {
-                    return true;
-                }
-
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
+            return CheckSkillType(Name, SkillType.EffectDamage);
         }
 
         /// <summary>
@@ -561,21 +537,9 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public static bool CheckSkillSummon(string SkillName)
+        public static bool CheckSkillTypeSummon(string Name)
         {
-            try
-            {
-                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.Summon))
-                {
-                    return true;
-                }
-
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
+            return CheckSkillType(Name, SkillType.Summon);
         }
 
         /// <summary>
@@ -583,21 +547,25 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="SkillName"></param>
         /// <returns></returns>
-        public static bool CheckSkillDelayDamage(string SkillName)
+        public static bool CheckSkillTypeDelayDamage(string Name)
+        {
+            return CheckSkillType(Name, SkillType.DelayDamage);
+        }
+
+        private static bool CheckSkillType(string Name, SkillType Type)
         {
             try
             {
-                if (SkillList.ContainsKey(SkillName) && SkillList[SkillName].SkillType.Equals(SkillType.DelayDamage))
+                if (SkillList.ContainsKey(Name) && SkillList[Name].SkillType.Equals(Type))
                 {
                     return true;
                 }
-
-                return false;
             }
             catch
             {
-                return false;
             }
+
+            return false;
         }
     }
 }

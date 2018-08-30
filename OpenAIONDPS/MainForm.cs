@@ -1301,7 +1301,7 @@ namespace OpenAIONDPS
                 }
 
                 // エフェクトダメージスキルのダメージ
-                if (AION.CheckSkillEffectDamage(ChatLogActionData.SkillName))
+                if (AION.CheckSkillTypeEffectDamage(ChatLogActionData.SkillName))
                 {
                     AION.JobType Job = AION.SkillList[ChatLogActionData.SkillName].Job;
 
@@ -1328,7 +1328,7 @@ namespace OpenAIONDPS
                     }
                 }
                 // サモンスキルのダメージ
-                else if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) && AION.CheckSkillSummon(ChatLogActionData.SourceName))
+                else if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) && AION.CheckSkillTypeSummon(ChatLogActionData.SourceName))
                 {
                     AION.JobType Job = AION.SkillList[ChatLogActionData.SourceName].Job;
 
