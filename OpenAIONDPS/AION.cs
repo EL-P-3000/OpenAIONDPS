@@ -51,6 +51,11 @@ namespace OpenAIONDPS
             /// </summary>
             public const string AttackSimpleDamageWithSourceNamePattern = "^" + SourceNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
+            /// <summary>
+            /// 通常攻撃のダメージのパターン(サモン)
+            /// </summary>
+            public const string AttackSimpleDamageWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
             /* スキル攻撃 */
 
             /// <summary>
@@ -68,13 +73,15 @@ namespace OpenAIONDPS
             /// </summary>
             public const string AttackSkillDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
-            /* サモン攻撃 */
-
-            public const string AttackSimpleDamageWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
-
+            /// <summary>
+            /// スキル攻撃のダメージのパターン(サモン)(要スキル名置換)
+            /// </summary>
             public const string AttackSkillDamageWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が使用した" + SkillNameEffectedPattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
-            public const string AttackSkillDamage2WithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が使用した" + SkillNameReplacedSummonSkillName2Pattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            /// <summary>
+            /// スキル攻撃(固定スキル)のダメージのパターン(サモン)(要スキル名置換)
+            /// </summary>
+            public const string AttackSkillDamageFixedSkillWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が使用した" + SkillNameReplacedSummonSkillName2Pattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /* ドットスキル攻撃 */
 
