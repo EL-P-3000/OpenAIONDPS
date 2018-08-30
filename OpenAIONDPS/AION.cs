@@ -90,14 +90,24 @@ namespace OpenAIONDPS
             public const string AttackSkillDotEffectWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。)";
 
             /// <summary>
+            /// ドットスキル攻撃のエフェクトのパターン(自分)(メロディ)
+            /// </summary>
+            public const string AttackSkillDotEffectMelodyWithoutSourceNamePattern = "^" + SkillNamePattern + "を使い、" + TargetNamePattern + "が" + SkillNameEffectedPattern + "効果を受けました。";
+
+            /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(他人)
             /// </summary>
             public const string AttackSkillDotEffectWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。)";
 
             /// <summary>
+            /// ドットスキル攻撃のエフェクトのパターン(他人)(メロディ)
+            /// </summary>
+            public const string AttackSkillDotEffectMelodyWithSourceNamePattern = "^" + SourceNamePattern + "は" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果を与えました。";
+
+            /// <summary>
             /// ドットスキル攻撃のダメージのパターン
             /// </summary>
-            public const string AttackSkillDotDamagePattern = "^" + TargetNamePattern + "(は|が)" + SkillNameReplacedDotSkillNamePattern + "の効果により、" + DamagePattern + "の(出血|)ダメージを受けました。";
+            public const string AttackSkillDotDamagePattern = "^" + TargetNamePattern + "(は|が)" + SkillNameReplacedDotSkillNamePattern + @"(\sエフェクト|)の効果により、" + DamagePattern + "の(出血|)ダメージを受けました。";
 
             /* バフ消去スキル攻撃 */
 
@@ -119,24 +129,14 @@ namespace OpenAIONDPS
             public const string AttackSkillDelayDamageWithoutSourceNamePattern = "^" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
 
             /// <summary>
-            /// ディレイダメージスキル攻撃のパターン(自分)(メロディ)
-            /// </summary>
-            public const string AttackSkillDelayDamageMelodyWithoutSourceNamePattern = "^" + SkillNameReplacedDelayDamageSkillNamePattern + "を使い、" + TargetNamePattern + "が" + SkillNameEffectedPattern + "効果を受けました。";
-
-            /// <summary>
             /// ディレイダメージスキル攻撃のパターン(他人)
             /// </summary>
             public const string AttackSkillDelayDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
 
             /// <summary>
-            /// ディレイダメージスキル攻撃のパターン(他人)(メロディ)
-            /// </summary>
-            public const string AttackSkillDelayDamageMelodyWithSourceNamePattern = "^" + SourceNamePattern + "は" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果を与えました。";
-
-            /// <summary>
             /// ディレイダメージスキル攻撃のダメージのパターン
             /// </summary>
-            public const string AttackSkillDelayDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedDelayDamageSkillNamePattern + @"(\sエフェクト|)の効果により、" + DamagePattern + "のダメージを受けました。";
+            public const string AttackSkillDelayDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
 
             /* エフェクトダメージスキル攻撃 */
 
@@ -498,13 +498,11 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             /* メロディ ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
-            // ディレイダメージ
-            SkillName = "ダメージ エコー";
-            SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.DelayDamage));
-            SkillName = "シャープ フリカティブ";
-            SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.DelayDamage));
-
             // ドット
+            SkillName = "ダメージ エコー";
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.Dot));
+            SkillName = "シャープ フリカティブ";
+            SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.Dot));
             SkillName = "モスキー ラプソディ";
             SkillList.Add(SkillName, new Skill(SkillName, JobType.Melody, SkillType.Dot));
 

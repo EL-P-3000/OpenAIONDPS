@@ -316,10 +316,20 @@ namespace OpenAIONDPS
         private static readonly Regex AttackSkillDotEffectWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDotEffectWithoutSourceNamePattern, RegexOptions.Compiled);
 
         /// <summary>
+        /// ドットスキルの成功のパターン(自分)(メロディ)
+        /// </summary>
+        private static readonly Regex AttackSkillDotEffectMelodyWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDotEffectMelodyWithoutSourceNamePattern, RegexOptions.Compiled);
+
+        /// <summary>
         /// ドットスキルの成功のパターン(他人)
         /// </summary>
         private static readonly Regex AttackSkillDotEffectWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDotEffectWithSourceNamePattern, RegexOptions.Compiled);
-            
+
+        /// <summary>
+        /// ドットスキルの成功のパターン(他人)(メロディ)
+        /// </summary>
+        private static readonly Regex AttackSkillDotEffectMelodyWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDotEffectMelodyWithSourceNamePattern, RegexOptions.Compiled);
+
         // ドットスキルのダメージのパターンは計測開始時に取得
 
         // サモンスキル(攻撃対象固定)のダメージのパターンは計測開始時に取得
@@ -500,8 +510,10 @@ namespace OpenAIONDPS
 
                             // ドットスキルの成功
                             Match AttackSkillDotEffectWithSourceNameMatch = AttackSkillDotEffectWithSourceNameRegex.Match(LogTextWithoutTime);
+                            Match AttackSkillDotEffectMelodyWithSourceNameMatch = AttackSkillDotEffectMelodyWithSourceNameRegex.Match(LogTextWithoutTime);
                             Match AttackSkillDotEffectWithoutSourceNameMatch = AttackSkillDotEffectWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                            if (AttackSkillDotEffectWithSourceNameMatch.Success || AttackSkillDotEffectWithoutSourceNameMatch.Success)
+                            Match AttackSkillDotEffectMelodyWithoutSourceNameMatch = AttackSkillDotEffectMelodyWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                            if (AttackSkillDotEffectWithSourceNameMatch.Success || AttackSkillDotEffectMelodyWithSourceNameMatch.Success || AttackSkillDotEffectWithoutSourceNameMatch.Success || AttackSkillDotEffectMelodyWithoutSourceNameMatch.Success)
                             {
                                 Match _Match = null;
                                 if (AttackSkillDotEffectWithSourceNameMatch.Success)
@@ -509,9 +521,19 @@ namespace OpenAIONDPS
                                     _Match = AttackSkillDotEffectWithSourceNameMatch;
                                     ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
                                 }
-                                else
+                                else if (AttackSkillDotEffectMelodyWithSourceNameMatch.Success)
+                                {
+                                    _Match = AttackSkillDotEffectMelodyWithSourceNameMatch;
+                                    ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
+                                }
+                                else if (AttackSkillDotEffectWithoutSourceNameMatch.Success)
                                 {
                                     _Match = AttackSkillDotEffectWithoutSourceNameMatch;
+                                    ChatLogActionData.SourceName = this.OwnName;
+                                }
+                                else
+                                {
+                                    _Match = AttackSkillDotEffectMelodyWithoutSourceNameMatch;
                                     ChatLogActionData.SourceName = this.OwnName;
                                 }
 
@@ -1088,7 +1110,6 @@ namespace OpenAIONDPS
             {
                 if (!String.IsNullOrEmpty(MemberName) && !MemberName.Equals(this.OwnName))
                 {
-
                     AttackSkillDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSourceNameReplacedMemberNamePattern.Replace("[[[MemberName]]]", MemberName), RegexOptions.Compiled));
                 }
             }
@@ -1186,14 +1207,7 @@ namespace OpenAIONDPS
             {
                 if (_Skill.SkillType.Equals(AION.SkillType.DelayDamage))
                 {
-                    if (_Skill.Job == AION.JobType.Melody)
-                    {
-                        AttackSkillDelayDamageWithoutSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageMelodyWithoutSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", _Skill.Name), RegexOptions.Compiled));
-                    }
-                    else
-                    {
-                        AttackSkillDelayDamageWithoutSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageWithoutSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", _Skill.Name), RegexOptions.Compiled));
-                    }
+                    AttackSkillDelayDamageWithoutSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageWithoutSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", _Skill.Name), RegexOptions.Compiled));
                 }
 
             }
@@ -1213,14 +1227,7 @@ namespace OpenAIONDPS
             {
                 if (_Skill.SkillType.Equals(AION.SkillType.DelayDamage))
                 {
-                    if (_Skill.Job == AION.JobType.Melody)
-                    {
-                        AttackSkillDelayDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageMelodyWithSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", _Skill.Name), RegexOptions.Compiled));
-                    }
-                    else
-                    {
-                        AttackSkillDelayDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageWithSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", _Skill.Name), RegexOptions.Compiled));
-                    }
+                    AttackSkillDelayDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageWithSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", _Skill.Name), RegexOptions.Compiled));
                 }
             }
 
