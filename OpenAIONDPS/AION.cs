@@ -70,7 +70,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// スキル攻撃のダメージのパターン(他人)
             /// </summary>
-            public const string AttackSkillDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            public const string AttackSkillDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /// <summary>
             /// スキル攻撃のダメージのパターン(サモン)(要スキル名置換)
@@ -87,7 +87,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(自分)
             /// </summary>
-            public const string AttackSkillDotEffectWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。)";
+            public const string AttackSkillDotEffectWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。)";
 
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(自分)(メロディ)
@@ -97,7 +97,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(他人)
             /// </summary>
-            public const string AttackSkillDotEffectWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。)";
+            public const string AttackSkillDotEffectWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。)";
 
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(他人)(メロディ)
@@ -111,15 +111,15 @@ namespace OpenAIONDPS
 
             /* バフ消去スキル攻撃 */
 
-            public const string AttackSkillReleaseBuffDamageWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "が" + DamagePattern + "のダメージを受け、.+が解除されました。";
+            public const string AttackSkillReleaseBuffDamageWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "が" + DamagePattern + "のダメージを受け、.+が解除されました。";
 
-            public const string AttackSkillReleaseBuffDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "が" + DamagePattern + "のダメージを受け、.+が解除されました。";
+            public const string AttackSkillReleaseBuffDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "が" + DamagePattern + "のダメージを受け、.+が解除されました。";
 
             /* デバフスキル攻撃 */
 
-            public const string AttackSkillDebuffDamageWithoutSourceNamePattern = @"^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与え、" + SkillNameEffectedPattern + "効果が生じました。";
+            public const string AttackSkillDebuffDamageWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与え、" + SkillNameEffectedPattern + "効果が生じました。";
 
-            public const string AttackSkillDebuffDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージ与え、" + SkillNameEffectedPattern + "効果を得ました。";
+            public const string AttackSkillDebuffDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージ与え、" + SkillNameEffectedPattern + "効果を得ました。";
 
             /* ディレイダメージスキル攻撃 */
 
@@ -150,12 +150,12 @@ namespace OpenAIONDPS
             /// <summary>
             /// 反射攻撃のダメージのパターン(自分)
             /// </summary>
-            public const string AttackReflectionDamageWithoutSourceNamePattern = @"^攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            public const string AttackReflectionDamageWithoutSourceNamePattern = "^攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /// <summary>
             /// 反射攻撃のダメージのパターン(他人)
             /// </summary>
-            public const string AttackReflectionDamageWithSourceNamePattern = @"^" + SourceNamePattern + "が攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            public const string AttackReflectionDamageWithSourceNamePattern = "^" + SourceNamePattern + "が攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /// <summary>
             /// 反射攻撃のダメージのパターン(ディシプリン エネルギー)
