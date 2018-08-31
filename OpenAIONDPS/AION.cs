@@ -9,11 +9,11 @@ namespace OpenAIONDPS
         {
             private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
             private const string SkillNameEffectedPattern                      = @"(?<SkillName2>.+)";
-            private const string SkillNameReplacedDotSkillNamePattern          = @"(?<SkillName>[[[DotSkillName]]])";
-            private const string SkillNameReplacedSummonSkillNamePattern       = @"(?<SkillName>[[[SummonSkillName]]])";
-            private const string SkillNameReplacedSummonSkillName2Pattern      = @"(?<SkillName2>[[[SummonSkillName]]])";
-            private const string SkillNameReplacedDelayDamageSkillNamePattern  = @"(?<SkillName>[[[DelayDamageSkillName]]])";
-            private const string SkillNameReplacedEffectDamageSkillNamePattern = @"(?<SkillName>[[[EffectDamageSkillName]]])";
+            private const string SkillNameReplacedDotSkillNamePattern          = @"(?<SkillName>[[[SkillName]]])";
+            private const string SkillNameReplacedSummonSkillNamePattern       = @"(?<SkillName>[[[SkillName]]])";
+            private const string SkillNameReplacedSummonSkillName2Pattern      = @"(?<SkillName2>[[[SkillName]]])";
+            private const string SkillNameReplacedDelayDamageSkillNamePattern  = @"(?<SkillName>[[[SkillName]]])";
+            private const string SkillNameReplacedEffectDamageSkillNamePattern = @"(?<SkillName>[[[SkillName]]])";
             private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s]+|攻撃))";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";

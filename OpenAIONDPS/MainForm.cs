@@ -1092,26 +1092,8 @@ namespace OpenAIONDPS
         private LinkedList<Regex> GetAttackSimpleDamageWithSourceNameRegexList()
         {
             LinkedList<Regex> AttackSimpleDamageWithSourceNameRegexList = new LinkedList<Regex>();
-            string MemberNameOrString = "";
-
-            foreach (string MemberName in this.MemberNameMemberUnitList.Keys)
-            {
-                if (!String.IsNullOrEmpty(MemberName) && !MemberName.Equals(this.OwnName))
-                {
-                    if (String.IsNullOrEmpty(MemberNameOrString))
-                    {
-                        MemberNameOrString = MemberName;
-                    }
-                    else
-                    {
-                        MemberNameOrString += "|" + MemberName;
-                    }
-                }
-            }
-
-            AttackSimpleDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSimpleDamageWithSourceNameReplacedMemberNamePattern.Replace("[[[MemberName]]]", MemberNameOrString), RegexOptions.Compiled));
+            AttackSimpleDamageWithSourceNameRegexList.AddLast(this.GetReplacedMemberNameRegexList(AION.LogPattern.AttackSimpleDamageWithSourceNameReplacedMemberNamePattern));
             AttackSimpleDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSimpleDamageWithSourceNamePattern, RegexOptions.Compiled));
-
             return AttackSimpleDamageWithSourceNameRegexList;
         }
 
@@ -1122,6 +1104,113 @@ namespace OpenAIONDPS
         private LinkedList<Regex> GetAttackSkillDamageWithSourceNameRegexList()
         {
             LinkedList<Regex> AttackSkillDamageWithSourceNameRegexList = new LinkedList<Regex>();
+            AttackSkillDamageWithSourceNameRegexList.AddLast(this.GetReplacedMemberNameRegexList(AION.LogPattern.AttackSkillDamageWithSourceNameReplacedMemberNamePattern));
+            AttackSkillDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSourceNamePattern, RegexOptions.Compiled));
+            return AttackSkillDamageWithSourceNameRegexList;
+        }
+
+        /// <summary>
+        /// ドットスキルのダメージのパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSkillDotDamageRegexList()
+        {
+            LinkedList<Regex> AttackSkillDotDamageRegexList = new LinkedList<Regex>();
+            AttackSkillDotDamageRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDotDamagePattern, AION.SkillType.Dot));
+            return AttackSkillDotDamageRegexList;
+        }
+
+        /// <summary>
+        /// 通常攻撃のダメージのパターン(サモン)リストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSimpleDamageWithSummonRegexList()
+        {
+            LinkedList<Regex> AttackSimpleDamageWithSummonPatternRegexList = new LinkedList<Regex>();
+            AttackSimpleDamageWithSummonPatternRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSimpleDamageWithSummonPattern, AION.SkillType.Summon));
+            return AttackSimpleDamageWithSummonPatternRegexList;
+        }
+
+        /// <summary>
+        /// スキルのダメージのパターン(サモン)リストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSkillDamageWithSummonRegexList()
+        {
+            LinkedList<Regex> AttackSkillDamageWithSummonRegexList = new LinkedList<Regex>();
+            AttackSkillDamageWithSummonRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDamageWithSummonPattern, AION.SkillType.Summon));
+            return AttackSkillDamageWithSummonRegexList;
+        }
+
+        /// <summary>
+        /// サモンスキル(攻撃対象固定)のダメージのパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSkillDamageFixedSkillWithSummonRegexList()
+        {
+            LinkedList<Regex> AttackSkillDamageFixedSkillWithSummonRegexList = new LinkedList<Regex>();
+            AttackSkillDamageFixedSkillWithSummonRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDamageFixedSkillWithSummonPattern, AION.SkillType.Summon));
+            return AttackSkillDamageFixedSkillWithSummonRegexList;
+        }
+
+        /// <summary>
+        /// ディレイダメージスキルのパターン(自分)のパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSkillDelayDamageWithoutSourceNameRegexList()
+        {
+            LinkedList<Regex> AttackSkillDelayDamageWithoutSourceNameRegexList = new LinkedList<Regex>();
+            AttackSkillDelayDamageWithoutSourceNameRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageWithoutSourceNamePattern, AION.SkillType.DelayDamage));
+            return AttackSkillDelayDamageWithoutSourceNameRegexList;
+        }
+
+        /// <summary>
+        /// ディレイダメージスキルのパターン(他人)のパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSkillDelayDamageWithSourceNameRegexList()
+        {
+            LinkedList<Regex> AttackSkillDelayDamageWithSourceNameRegexList = new LinkedList<Regex>();
+            AttackSkillDelayDamageWithSourceNameRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageWithSourceNamePattern, AION.SkillType.DelayDamage));
+            return AttackSkillDelayDamageWithSourceNameRegexList;
+        }
+
+        /// <summary>
+        /// ディレイダメージスキルのダメージのパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSkillDelayDamageDamageRegexList()
+        {
+            LinkedList<Regex> AttackSkillDelayDamageDamageRegexList = new LinkedList<Regex>();
+            AttackSkillDelayDamageDamageRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageDamagePattern, AION.SkillType.DelayDamage));
+            return AttackSkillDelayDamageDamageRegexList;
+        }
+
+        /// <summary>
+        /// エフェクトダメージスキルのダメージのパターンリストの取得
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetAttackSkillEffectDamageDamageRegexList()
+        {
+            LinkedList<Regex> AttackSkillEffectDamageDamageRegexList = new LinkedList<Regex>();
+            AttackSkillEffectDamageDamageRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillEffectDamageDamagePattern, AION.SkillType.EffectDamage));
+            return AttackSkillEffectDamageDamageRegexList;
+        }
+
+        /// <summary>
+        /// 回避/抵抗した/されたスキルのパターン(他人)
+        /// </summary>
+        /// <returns></returns>
+        private LinkedList<Regex> GetEvasionResistanceWithSourceNameRegexList()
+        {
+            LinkedList<Regex> EvasionResistanceWithSourceNameRegexList = new LinkedList<Regex>();
+            EvasionResistanceWithSourceNameRegexList.AddLast(this.GetReplacedMemberNameRegexList(AION.LogPattern.EvasionResistanceWithSourceNamePattern));
+            EvasionResistanceWithSourceNameRegexList.AddLast(this.GetReplacedMemberNameRegexList(AION.LogPattern.EvadedResistedWithTargetNamePattern));
+            return EvasionResistanceWithSourceNameRegexList;
+        }
+
+        private Regex GetReplacedMemberNameRegexList(string LogPattern)
+        {
             string MemberNameOrString = "";
 
             foreach (string MemberName in this.MemberNameMemberUnitList.Keys)
@@ -1139,24 +1228,16 @@ namespace OpenAIONDPS
                 }
             }
 
-            AttackSkillDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSourceNameReplacedMemberNamePattern.Replace("[[[MemberName]]]", MemberNameOrString), RegexOptions.Compiled));
-            AttackSkillDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSourceNamePattern, RegexOptions.Compiled));
-
-            return AttackSkillDamageWithSourceNameRegexList;
+            return new Regex(LogPattern.Replace("[[[MemberName]]]", MemberNameOrString), RegexOptions.Compiled);
         }
 
-        /// <summary>
-        /// ドットスキルのダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDotDamageRegexList()
+        private Regex GetReplacedSkillNameRegex(string LogPattern, AION.SkillType SkillType)
         {
-            LinkedList<Regex> AttackSkillDotDamageRegexList = new LinkedList<Regex>();
             string SkillNameOrString = "";
 
             foreach (AION.Skill _Skill in AION.SkillList.Values)
             {
-                if (_Skill.SkillType.Equals(AION.SkillType.Dot))
+                if (_Skill.SkillType.Equals(SkillType))
                 {
                     if (String.IsNullOrEmpty(SkillNameOrString))
                     {
@@ -1169,240 +1250,7 @@ namespace OpenAIONDPS
                 }
             }
 
-            AttackSkillDotDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDotDamagePattern.Replace("[[[DotSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSkillDotDamageRegexList;
-        }
-
-        /// <summary>
-        /// 通常攻撃のダメージのパターン(サモン)リストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSimpleDamageWithSummonRegexList()
-        {
-            LinkedList<Regex> AttackSimpleDamageWithSummonPatternRegexList = new LinkedList<Regex>();
-            string SkillNameOrString = "";
-
-            foreach (AION.Skill _Skill in AION.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.Summon))
-                {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
-                    {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
-                    }
-                    else
-                    {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
-                    }
-                }
-            }
-
-            AttackSimpleDamageWithSummonPatternRegexList.AddLast(new Regex(AION.LogPattern.AttackSimpleDamageWithSummonPattern.Replace("[[[SummonSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSimpleDamageWithSummonPatternRegexList;
-        }
-
-        /// <summary>
-        /// スキルのダメージのパターン(サモン)リストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDamageWithSummonRegexList()
-        {
-            LinkedList<Regex> AttackSkillDamageWithSummonRegexList = new LinkedList<Regex>();
-            string SkillNameOrString = "";
-
-            foreach (AION.Skill _Skill in AION.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.Summon))
-                {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
-                    {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
-                    }
-                    else
-                    {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
-                    }
-                }
-            }
-
-            AttackSkillDamageWithSummonRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSummonPattern.Replace("[[[SummonSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSkillDamageWithSummonRegexList;
-        }
-
-        /// <summary>
-        /// サモンスキル(攻撃対象固定)のダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDamageFixedSkillWithSummonRegexList()
-        {
-            LinkedList<Regex> AttackSkillDamageFixedSkillWithSummonRegexList = new LinkedList<Regex>();
-            string SkillNameOrString = "";
-
-            foreach (AION.Skill _Skill in AION.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.Summon))
-                {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
-                    {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
-                    }
-                    else
-                    {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
-                    }
-                }
-            }
-
-            AttackSkillDamageFixedSkillWithSummonRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageFixedSkillWithSummonPattern.Replace("[[[SummonSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSkillDamageFixedSkillWithSummonRegexList;
-        }
-
-        /// <summary>
-        /// ディレイダメージスキルのパターン(自分)のパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDelayDamageWithoutSourceNameRegexList()
-        {
-            LinkedList<Regex> AttackSkillDelayDamageWithoutSourceNameRegexList = new LinkedList<Regex>();
-            string SkillNameOrString = "";
-
-            foreach (AION.Skill _Skill in AION.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.DelayDamage))
-                {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
-                    {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
-                    }
-                    else
-                    {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
-                    }
-                }
-
-            }
-
-            AttackSkillDelayDamageWithoutSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageWithoutSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSkillDelayDamageWithoutSourceNameRegexList;
-        }
-
-        /// <summary>
-        /// ディレイダメージスキルのパターン(他人)のパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDelayDamageWithSourceNameRegexList()
-        {
-            LinkedList<Regex> AttackSkillDelayDamageWithSourceNameRegexList = new LinkedList<Regex>();
-            string SkillNameOrString = "";
-
-            foreach (AION.Skill _Skill in AION.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.DelayDamage))
-                {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
-                    {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
-                    }
-                    else
-                    {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
-                    }
-                }
-            }
-
-            AttackSkillDelayDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageWithSourceNamePattern.Replace("[[[DelayDamageSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSkillDelayDamageWithSourceNameRegexList;
-        }
-
-        /// <summary>
-        /// ディレイダメージスキルのダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDelayDamageDamageRegexList()
-        {
-            LinkedList<Regex> AttackSkillDelayDamageDamageRegexList = new LinkedList<Regex>();
-            string SkillNameOrString = "";
-
-            foreach (AION.Skill _Skill in AION.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.DelayDamage))
-                {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
-                    {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
-                    }
-                    else
-                    {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
-                    }
-                }
-            }
-
-            AttackSkillDelayDamageDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDelayDamageDamagePattern.Replace("[[[DelayDamageSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSkillDelayDamageDamageRegexList;
-        }
-
-        /// <summary>
-        /// エフェクトダメージスキルのダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillEffectDamageDamageRegexList()
-        {
-            LinkedList<Regex> AttackSkillEffectDamageDamageRegexList = new LinkedList<Regex>();
-            string SkillNameOrString = "";
-
-            foreach (AION.Skill _Skill in AION.SkillList.Values)
-            {
-                if (_Skill.SkillType.Equals(AION.SkillType.EffectDamage))
-                {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
-                    {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
-                    }
-                    else
-                    {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
-                    }
-                }
-            }
-
-            AttackSkillEffectDamageDamageRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillEffectDamageDamagePattern.Replace("[[[EffectDamageSkillName]]]", SkillNameOrString), RegexOptions.Compiled));
-
-            return AttackSkillEffectDamageDamageRegexList;
-        }
-
-        /// <summary>
-        /// 回避/抵抗した/されたスキルのパターン(他人)
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetEvasionResistanceWithSourceNameRegexList()
-        {
-            LinkedList<Regex> EvasionResistanceWithSourceNameRegexList = new LinkedList<Regex>();
-            string MemberNameOrString = "";
-
-            foreach (string MemberName in this.MemberNameMemberUnitList.Keys)
-            {
-                if (String.IsNullOrEmpty(MemberNameOrString))
-                {
-                    MemberNameOrString = MemberName;
-                }
-                else
-                {
-                    MemberNameOrString += "|" + MemberName;
-                }
-            }
-
-            EvasionResistanceWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.EvasionResistanceWithSourceNamePattern.Replace("[[[MemberName]]]", MemberNameOrString), RegexOptions.Compiled));
-            EvasionResistanceWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.EvadedResistedWithTargetNamePattern.Replace("[[[MemberName]]]", MemberNameOrString), RegexOptions.Compiled));
-
-            return EvasionResistanceWithSourceNameRegexList;
+            return new Regex(LogPattern.Replace("[[[SkillName]]]", SkillNameOrString), RegexOptions.Compiled);
         }
 
         /// <summary>
