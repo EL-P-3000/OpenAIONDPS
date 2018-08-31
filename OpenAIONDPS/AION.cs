@@ -28,6 +28,9 @@ namespace OpenAIONDPS
             /// </summary>
             public const string LinePattern = @"^(20[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\s[0-9][0-9]:[0-9][0-9]:[0-9][0-9])\s:\s(.*。)";
 
+            /* 攻撃 */
+            public const string AttackDamageToPattern = "ダメージを与えました。$";
+
             /// <summary>
             /// クリティカルヒットのパターン
             /// </summary>
