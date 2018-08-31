@@ -9,11 +9,8 @@ namespace OpenAIONDPS
         {
             private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
             private const string SkillNameEffectedPattern                      = @"(?<SkillName2>.+)";
-            private const string SkillNameReplacedDotSkillNamePattern          = @"(?<SkillName>[[[SkillName]]])";
-            private const string SkillNameReplacedSummonSkillNamePattern       = @"(?<SkillName>[[[SkillName]]])";
-            private const string SkillNameReplacedSummonSkillName2Pattern      = @"(?<SkillName2>[[[SkillName]]])";
-            private const string SkillNameReplacedDelayDamageSkillNamePattern  = @"(?<SkillName>[[[SkillName]]])";
-            private const string SkillNameReplacedEffectDamageSkillNamePattern = @"(?<SkillName>[[[SkillName]]])";
+            private const string SkillNameReplacedSkillNamePattern             = @"(?<SkillName>[[[SkillName]]])";
+            private const string SkillNameReplacedSkillName2Pattern            = @"(?<SkillName2>[[[SkillName]]])";
             private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s]+|攻撃))";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
@@ -56,7 +53,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// 通常攻撃のダメージのパターン(サモン)
             /// </summary>
-            public const string AttackSimpleDamageWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            public const string AttackSimpleDamageWithSummonPattern = "^" + SkillNameReplacedSkillNamePattern + "が" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /* スキル攻撃 */
 
@@ -78,12 +75,12 @@ namespace OpenAIONDPS
             /// <summary>
             /// スキル攻撃のダメージのパターン(サモン)(要スキル名置換)
             /// </summary>
-            public const string AttackSkillDamageWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が使用した" + SkillNameEffectedPattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            public const string AttackSkillDamageWithSummonPattern = "^" + SkillNameReplacedSkillNamePattern + "が使用した" + SkillNameEffectedPattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /// <summary>
             /// スキル攻撃(固定スキル)のダメージのパターン(サモン)(要スキル名置換)
             /// </summary>
-            public const string AttackSkillDamageFixedSkillWithSummonPattern = "^" + SkillNameReplacedSummonSkillNamePattern + "が使用した" + SkillNameReplacedSummonSkillName2Pattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            public const string AttackSkillDamageFixedSkillWithSummonPattern = "^" + SkillNameReplacedSkillNamePattern + "が使用した" + SkillNameReplacedSkillName2Pattern + "(\\sエフェクト|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /* ドットスキル攻撃 */
 
@@ -110,7 +107,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// ドットスキル攻撃のダメージのパターン
             /// </summary>
-            public const string AttackSkillDotDamagePattern = "^" + TargetNamePattern + "(は|が)" + SkillNameReplacedDotSkillNamePattern + @"(\sエフェクト|)の効果により、" + DamagePattern + "の(出血|)ダメージを受けました。";
+            public const string AttackSkillDotDamagePattern = "^" + TargetNamePattern + "(は|が)" + SkillNameReplacedSkillNamePattern + @"(\sエフェクト|)の効果により、" + DamagePattern + "の(出血|)ダメージを受けました。";
 
             /* バフ消去スキル攻撃 */
 
@@ -129,24 +126,24 @@ namespace OpenAIONDPS
             /// <summary>
             /// ディレイダメージスキル攻撃のパターン(自分)
             /// </summary>
-            public const string AttackSkillDelayDamageWithoutSourceNamePattern = "^" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
+            public const string AttackSkillDelayDamageWithoutSourceNamePattern = "^" + SkillNameReplacedSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
 
             /// <summary>
             /// ディレイダメージスキル攻撃のパターン(他人)
             /// </summary>
-            public const string AttackSkillDelayDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
+            public const string AttackSkillDelayDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNameReplacedSkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果が生じました。";
 
             /// <summary>
             /// ディレイダメージスキル攻撃のダメージのパターン
             /// </summary>
-            public const string AttackSkillDelayDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedDelayDamageSkillNamePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
+            public const string AttackSkillDelayDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedSkillNamePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
 
             /* エフェクトダメージスキル攻撃 */
 
             /// <summary>
             /// エフェクトダメージスキル攻撃のダメージのパターン
             /// </summary>
-            public const string AttackSkillEffectDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedEffectDamageSkillNamePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
+            public const string AttackSkillEffectDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedSkillNamePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
 
             /* 反射攻撃 */
 
