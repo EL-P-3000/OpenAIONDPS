@@ -14,6 +14,8 @@ namespace OpenAIONDPS
         private long MaxDamage = 0;
         private long MinDamage = 0;
         private long AttackNumber = 0;
+        private long SkillAttackNumber = 0;
+        private long SimpleAttackNumber = 0;
         private long SkillCriticalNumber = 0;
         private long SimpleCriticalNumber = 0;
         private long EvadeAttackNumber = 0;
@@ -48,6 +50,8 @@ namespace OpenAIONDPS
             this.MaxDamage = 0;
             this.MinDamage = 0;
             this.AttackNumber = 0;
+            this.SkillAttackNumber = 0;
+            this.SimpleAttackNumber = 0;
             this.SkillCriticalNumber = 0;
             this.SimpleCriticalNumber = 0;
             this.EvadeAttackNumber = 0;
@@ -63,6 +67,8 @@ namespace OpenAIONDPS
             this.DamageParSecondLabel.Text = "0";
             this.DamageParAttackNumberLabel.Text = "0";
             this.AttackNumberParSecondLabel.Text = "0";
+            this.SkillAttackNumberLabel.Text = "0";
+            this.SimpleAttackNumberLabel.Text = "0";
             this.SkillCriticalNumberLabel.Text = "0 (0%)";
             this.SimpleCriticalNumberLabel.Text = "0 (0%)";
             this.DamageParTotalDamageLabel.Text = "100%";
@@ -112,7 +118,7 @@ namespace OpenAIONDPS
                 this.UpdateCriticalHit(IsSkill);
             }
             this.UpdateSeconds();
-            this.UpdateAttackNumber();
+            this.UpdateAttackNumber(IsSkill);
             this.UpdateMaxDamage(Damage);
             this.UpdateMinDamage(Damage);
             this.UpdateDamageParSecond();
@@ -122,7 +128,7 @@ namespace OpenAIONDPS
             this.UpdateCriticalHitLabel();
         }
 
-        public void AddEvasion(bool IsSourceNameMember, DateTime Time)
+        public void AddEvasion(bool IsSourceNameMember, bool IsSkill, DateTime Time)
         {
             // 回避した攻撃
             if (IsSourceNameMember)
@@ -139,12 +145,12 @@ namespace OpenAIONDPS
                 }
                 this.EndTime = Time;
 
-                this.UpdateEvadedAttackNumber();
+                this.UpdateEvadedAttackNumber(IsSkill);
             }
 
         }
 
-        public void AddResistance(bool IsSourceNameMember, DateTime Time)
+        public void AddResistance(bool IsSourceNameMember, bool IsSkill, DateTime Time)
         {
             // 回避した攻撃
             if (IsSourceNameMember)
@@ -161,7 +167,7 @@ namespace OpenAIONDPS
                 }
                 this.EndTime = Time;
 
-                this.UpdateResistedAttackNumber();
+                this.UpdateResistedAttackNumber(IsSkill);
             }
 
         }
@@ -183,10 +189,21 @@ namespace OpenAIONDPS
             this.SecondLabel.Text = Math.Ceiling((double)Ticks / 10000000).ToString("#,0");
         }
 
-        private void UpdateAttackNumber()
+        private void UpdateAttackNumber(bool IsSkill)
         {
             this.AttackNumber += 1;
             this.AttackNumberLabel.Text = this.AttackNumber.ToString("#,0");
+
+            if (IsSkill)
+            {
+                this.SkillAttackNumber += 1;
+                this.SkillAttackNumberLabel.Text = this.SkillAttackNumber.ToString("#,0");
+            }
+            else
+            {
+                this.SimpleAttackNumber += 1;
+                this.SimpleAttackNumberLabel.Text = this.SimpleAttackNumber.ToString("#,0");
+            }
         }
 
         private void UpdateMaxDamage(long Damage)
@@ -264,11 +281,11 @@ namespace OpenAIONDPS
             this.EvadeAttackNumberLabel.Text = this.EvadeAttackNumber.ToString("#,0");
         }
 
-        private void UpdateEvadedAttackNumber()
+        private void UpdateEvadedAttackNumber(bool IsSkill)
         {
             this.EvadedAttackNumber += 1;
             this.UpdateSeconds();
-            this.UpdateAttackNumber();
+            this.UpdateAttackNumber(IsSkill);
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
@@ -281,11 +298,11 @@ namespace OpenAIONDPS
             this.ResistAttackNumberLabel.Text = this.EvadeAttackNumber.ToString("#,0");
         }
 
-        private void UpdateResistedAttackNumber()
+        private void UpdateResistedAttackNumber(bool IsSkill)
         {
             this.ResistedAttackNumber += 1;
             this.UpdateSeconds();
-            this.UpdateAttackNumber();
+            this.UpdateAttackNumber(IsSkill);
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
@@ -309,6 +326,8 @@ namespace OpenAIONDPS
             Result += "回数平均ダメージ：\t\t" + this.DamageParAttackNumberLabel.Text + Environment.NewLine;
             Result += "最大ダメージ：\t\t\t" + this.MaxDamageLabel.Text + Environment.NewLine;
             Result += "最小ダメージ：\t\t\t" + this.MinDamageLabel.Text + Environment.NewLine;
+            Result += "攻撃回数(スキル)：\t\t" + this.SkillAttackNumberLabel.Text + Environment.NewLine;
+            Result += "攻撃回数(通常攻撃)：\t\t" + this.SimpleAttackNumberLabel.Text + Environment.NewLine;
             Result += "クリティカル回数(スキル)：\t" + this.SkillCriticalNumberLabel.Text + Environment.NewLine;
             Result += "クリティカル回数(通常攻撃)：\t" + this.SimpleCriticalNumberLabel.Text + Environment.NewLine;
             Result += "攻撃回数／攻撃時間：\t\t" + this.AttackNumberParSecondLabel.Text + Environment.NewLine;
@@ -337,6 +356,8 @@ namespace OpenAIONDPS
             Result += "回数平均ダメージ：\t\t\t" + this.DamageParAttackNumberLabel.Text + Environment.NewLine;
             Result += "最大ダメージ：\t\t\t" + this.MaxDamageLabel.Text + Environment.NewLine;
             Result += "最小ダメージ：\t\t\t" + this.MinDamageLabel.Text + Environment.NewLine;
+            Result += "攻撃回数(スキル)：\t\t\t" + this.SkillAttackNumberLabel.Text + Environment.NewLine;
+            Result += "攻撃回数(通常攻撃)：\t\t" + this.SimpleAttackNumberLabel.Text + Environment.NewLine;
             Result += "クリティカル回数(スキル)：\t\t" + this.SkillCriticalNumberLabel.Text + Environment.NewLine;
             Result += "クリティカル回数(通常攻撃)：\t\t" + this.SimpleCriticalNumberLabel.Text + Environment.NewLine;
             Result += "攻撃回数／攻撃時間：\t\t" + this.AttackNumberParSecondLabel.Text + Environment.NewLine;

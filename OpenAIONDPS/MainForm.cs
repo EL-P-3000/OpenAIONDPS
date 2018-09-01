@@ -669,7 +669,7 @@ namespace OpenAIONDPS
                                         ChatLogActionData.SourceName = AttackSimpleDamageWithSummonMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.TargetName = AttackSimpleDamageWithSummonMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithSummonMatch.Groups["Damage"].Value.Replace(",", ""));
-                                        ChatLogActionData.IsSkill = false;
+                                        //ChatLogActionData.IsSkill = false;
 
                                         this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
@@ -1063,7 +1063,11 @@ namespace OpenAIONDPS
                                     ChatLogActionData.SourceName = ChatLogEvadedResistedMatch.Groups["SourceName"].Value;
                                     ChatLogActionData.TargetName = this.OwnName;
 
-                                    Debug.WriteLine(LogText);
+                                    if (LogTextWithoutTime.IndexOf("攻撃") > 0)
+                                    {
+                                        ChatLogActionData.IsSkill = false;
+                                    }
+
                                     if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                     {
                                         this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
@@ -1410,11 +1414,11 @@ namespace OpenAIONDPS
 
                 if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.IsSkill, ChatLogActionData.Time);
                 }
                 else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.IsSkill, ChatLogActionData.Time);
                 }
 
                 if (this.IsDebug && this.DebugLogFileTextWriter != null)
@@ -1447,11 +1451,11 @@ namespace OpenAIONDPS
 
                 if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.IsSkill, ChatLogActionData.Time);
                 }
                 else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.IsSkill, ChatLogActionData.Time);
                 }
 
                 if (this.IsDebug && this.DebugLogFileTextWriter != null)

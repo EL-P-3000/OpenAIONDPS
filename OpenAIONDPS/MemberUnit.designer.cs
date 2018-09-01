@@ -46,6 +46,8 @@
             this.EvadedAttackNumberLabel = new System.Windows.Forms.Label();
             this.ResistedAttackNumberLabel = new System.Windows.Forms.Label();
             this.ResistAttackNumberLabel = new System.Windows.Forms.Label();
+            this.SimpleAttackNumberLabel = new System.Windows.Forms.Label();
+            this.SkillAttackNumberLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CharacterNameTextBox
@@ -152,7 +154,7 @@
             // 
             // AttackNumberParSecondLabel
             // 
-            this.AttackNumberParSecondLabel.Location = new System.Drawing.Point(639, 6);
+            this.AttackNumberParSecondLabel.Location = new System.Drawing.Point(715, 6);
             this.AttackNumberParSecondLabel.Name = "AttackNumberParSecondLabel";
             this.AttackNumberParSecondLabel.Size = new System.Drawing.Size(70, 12);
             this.AttackNumberParSecondLabel.TabIndex = 12;
@@ -170,7 +172,7 @@
             // 
             // SimpleCriticalNumberLabel
             // 
-            this.SimpleCriticalNumberLabel.Location = new System.Drawing.Point(563, 13);
+            this.SimpleCriticalNumberLabel.Location = new System.Drawing.Point(639, 13);
             this.SimpleCriticalNumberLabel.Name = "SimpleCriticalNumberLabel";
             this.SimpleCriticalNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.SimpleCriticalNumberLabel.TabIndex = 15;
@@ -179,7 +181,7 @@
             // 
             // SkillCriticalNumberLabel
             // 
-            this.SkillCriticalNumberLabel.Location = new System.Drawing.Point(563, 1);
+            this.SkillCriticalNumberLabel.Location = new System.Drawing.Point(639, 1);
             this.SkillCriticalNumberLabel.Name = "SkillCriticalNumberLabel";
             this.SkillCriticalNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.SkillCriticalNumberLabel.TabIndex = 14;
@@ -188,7 +190,7 @@
             // 
             // EvadeAttackNumberLabel
             // 
-            this.EvadeAttackNumberLabel.Location = new System.Drawing.Point(715, 1);
+            this.EvadeAttackNumberLabel.Location = new System.Drawing.Point(791, 1);
             this.EvadeAttackNumberLabel.Name = "EvadeAttackNumberLabel";
             this.EvadeAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.EvadeAttackNumberLabel.TabIndex = 16;
@@ -197,7 +199,7 @@
             // 
             // EvadedAttackNumberLabel
             // 
-            this.EvadedAttackNumberLabel.Location = new System.Drawing.Point(715, 13);
+            this.EvadedAttackNumberLabel.Location = new System.Drawing.Point(791, 13);
             this.EvadedAttackNumberLabel.Name = "EvadedAttackNumberLabel";
             this.EvadedAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.EvadedAttackNumberLabel.TabIndex = 17;
@@ -206,7 +208,7 @@
             // 
             // ResistedAttackNumberLabel
             // 
-            this.ResistedAttackNumberLabel.Location = new System.Drawing.Point(791, 13);
+            this.ResistedAttackNumberLabel.Location = new System.Drawing.Point(867, 13);
             this.ResistedAttackNumberLabel.Name = "ResistedAttackNumberLabel";
             this.ResistedAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.ResistedAttackNumberLabel.TabIndex = 19;
@@ -215,17 +217,37 @@
             // 
             // ResistAttackNumberLabel
             // 
-            this.ResistAttackNumberLabel.Location = new System.Drawing.Point(791, 1);
+            this.ResistAttackNumberLabel.Location = new System.Drawing.Point(867, 1);
             this.ResistAttackNumberLabel.Name = "ResistAttackNumberLabel";
             this.ResistAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.ResistAttackNumberLabel.TabIndex = 18;
             this.ResistAttackNumberLabel.Text = "0";
             this.ResistAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // SimpleAttackNumberLabel
+            // 
+            this.SimpleAttackNumberLabel.Location = new System.Drawing.Point(563, 13);
+            this.SimpleAttackNumberLabel.Name = "SimpleAttackNumberLabel";
+            this.SimpleAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.SimpleAttackNumberLabel.TabIndex = 21;
+            this.SimpleAttackNumberLabel.Text = "0";
+            this.SimpleAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // SkillAttackNumberLabel
+            // 
+            this.SkillAttackNumberLabel.Location = new System.Drawing.Point(563, 1);
+            this.SkillAttackNumberLabel.Name = "SkillAttackNumberLabel";
+            this.SkillAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.SkillAttackNumberLabel.TabIndex = 20;
+            this.SkillAttackNumberLabel.Text = "0";
+            this.SkillAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MemberUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.SimpleAttackNumberLabel);
+            this.Controls.Add(this.SkillAttackNumberLabel);
             this.Controls.Add(this.ResistedAttackNumberLabel);
             this.Controls.Add(this.ResistAttackNumberLabel);
             this.Controls.Add(this.EvadedAttackNumberLabel);
@@ -245,7 +267,7 @@
             this.Controls.Add(this.DamageLabel);
             this.Controls.Add(this.CharacterNameTextBox);
             this.Name = "MemberUnit";
-            this.Size = new System.Drawing.Size(869, 26);
+            this.Size = new System.Drawing.Size(953, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,5 +293,7 @@
         private System.Windows.Forms.Label EvadedAttackNumberLabel;
         private System.Windows.Forms.Label ResistedAttackNumberLabel;
         private System.Windows.Forms.Label ResistAttackNumberLabel;
+        private System.Windows.Forms.Label SimpleAttackNumberLabel;
+        private System.Windows.Forms.Label SkillAttackNumberLabel;
     }
 }
