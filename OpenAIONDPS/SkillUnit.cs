@@ -33,5 +33,25 @@ namespace OpenAIONDPS
             this.Damage = 0;
             this.DamageLabel.Text = "0";
         }
+
+        public string GetResult()
+        {
+            string Result = "";
+
+            try
+            {
+                if (String.IsNullOrEmpty(this.DamageLabel.Text) || this.DamageLabel.Text.Equals("0"))
+                {
+                    return Result;
+                }
+
+                Result += this.NameLabel.Text + "： " + this.DamageLabel.Text;
+            }
+            catch
+            {
+            }
+
+            return Result;
+        }
     }
 }

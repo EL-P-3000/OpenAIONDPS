@@ -1575,52 +1575,72 @@ namespace OpenAIONDPS
 
         private void CopyResultButton_Click(object sender, EventArgs e)
         {
-            string Results = "";
-
-            if (this.MemberNameMemberUnitList != null)
-            {
-                foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
-                {
-                    if (!String.IsNullOrEmpty(Results))
-                    {
-                        Results += Environment.NewLine;
-                        Results += Environment.NewLine;
-                    }
-
-                    Results += _MemberUnit.GetResult();
-                }
-
-                Results += Environment.NewLine;
-                Results += Environment.NewLine;
-                Results += "総ダメージ合計：" + this.TotalDamageLabel.Text;
-            }
-
-            Clipboard.SetText(Results);
+            this.CopyResult(false);
         }
 
         private void CopyResultForSkypeButton_Click(object sender, EventArgs e)
         {
-            string Results = "";
+            this.CopyResult(true);
+        }
 
-            if (this.MemberNameMemberUnitList != null)
+        private void CopyResult(bool IsSkype)
+        {
+            string MemberResults = "";
+            string SkillResults = "";
+
+            if (this.MemberNameMemberUnitList != null && this.MemberNameMemberUnitList.Count > 0 && this.SkillUnitList != null && this.SkillUnitList.Count > 0)
             {
                 foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
                 {
-                    if (!String.IsNullOrEmpty(Results))
+                    string MemberResult = "";
+
+                    if (IsSkype)
                     {
-                        Results += Environment.NewLine;
-                        Results += Environment.NewLine;
+                        MemberResult = _MemberUnit.GetResultForSkype();
+                    }
+                    else
+                    {
+                        MemberResult = _MemberUnit.GetResult();
                     }
 
-                    Results += _MemberUnit.GetResultForSkype();
+                    if (String.IsNullOrEmpty(MemberResult))
+                    {
+                        continue;
+                    }
+
+                    if (!String.IsNullOrEmpty(MemberResults))
+                    {
+                        MemberResults += Environment.NewLine;
+                        MemberResults += Environment.NewLine;
+                    }
+                    MemberResults += MemberResult;
                 }
 
-                Results += Environment.NewLine;
-                Results += Environment.NewLine;
-                Results += "総ダメージ合計：" + this.TotalDamageLabel.Text;
+                MemberResults += Environment.NewLine;
+                MemberResults += Environment.NewLine;
+                MemberResults += "総ダメージ合計：" + this.TotalDamageLabel.Text;
+
+                foreach (SkillUnit _SkillUnit in this.SkillUnitList.Values)
+                {
+                    string SkillResult = _SkillUnit.GetResult();
+
+                    if (String.IsNullOrEmpty(SkillResult))
+                    {
+                        continue;
+                    }
+
+                    if (String.IsNullOrEmpty(SkillResults))
+                    {
+                        SkillResults += Environment.NewLine;
+                    }
+
+                    SkillResults += Environment.NewLine;
+                    SkillResults += SkillResult;
+
+                }
             }
 
-            Clipboard.SetText(Results);
+            Clipboard.SetText(MemberResults + SkillResults);
         }
 
         /// <summary>
