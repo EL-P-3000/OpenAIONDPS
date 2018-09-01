@@ -211,10 +211,29 @@ namespace OpenAIONDPS
 
         private void ClearChatLogFile()
         {
-            StreamWriter ChatLogFileStreamWriter = new StreamWriter(Properties.Settings.Default.ChatLogPath);
-            ChatLogFileStreamWriter.Write("");
-            ChatLogFileStreamWriter.Flush();
-            ChatLogFileStreamWriter.Close();
+            bool IsSuccess = false;
+            int ExceptionCounter = 3;
+
+            while (!IsSuccess)
+            {
+                try
+                {
+                    StreamWriter ChatLogFileStreamWriter = new StreamWriter(Properties.Settings.Default.ChatLogPath);
+                    ChatLogFileStreamWriter.Write("");
+                    ChatLogFileStreamWriter.Flush();
+                    ChatLogFileStreamWriter.Close();
+                    IsSuccess = true;
+                }
+                catch
+                {
+                    ExceptionCounter -= 1;
+                    if (ExceptionCounter <= 0)
+                    {
+                        IsSuccess = true;
+                    }
+                    Thread.Sleep(50);
+                }
+            }
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -455,6 +474,8 @@ namespace OpenAIONDPS
             {
                 using (StreamReader ChatLogStreamReader = new StreamReader(ChatLogFileStream, Encoding.GetEncoding("Shift_JIS")))
                 {
+                    ChatLogStreamReader.ReadToEnd();
+
                     while (this.StopFlag == false)
                     {
                         try
