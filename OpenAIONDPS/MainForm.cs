@@ -474,7 +474,10 @@ namespace OpenAIONDPS
             {
                 using (StreamReader ChatLogStreamReader = new StreamReader(ChatLogFileStream, Encoding.GetEncoding("Shift_JIS")))
                 {
-                    ChatLogStreamReader.ReadToEnd();
+                    if (!this.IsCalcLogFile)
+                    {
+                        ChatLogStreamReader.ReadToEnd();
+                    }
 
                     while (this.StopFlag == false)
                     {
