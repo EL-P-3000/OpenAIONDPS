@@ -238,6 +238,10 @@ namespace OpenAIONDPS
 
         private void StopButton_Click(object sender, EventArgs e)
         {
+            if (this.CalcTimer.Enabled)
+            {
+                this.StopCalcTimer();
+            }
             this.StopThread();
         }
 
@@ -1475,8 +1479,8 @@ namespace OpenAIONDPS
 
             if (this.CalcRemainingTime <= 0)
             {
-                this.CalcTimer.Stop();
                 this.StopThread();
+                this.StopCalcTimer();
             }
         }
 
@@ -1489,6 +1493,19 @@ namespace OpenAIONDPS
         {
             this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
             this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+        }
+
+        /// <summary>
+        /// 計測停止
+        /// </summary>
+        private void StopCalcTimer()
+        {
+            if (this.CalcTimer.Enabled)
+            {
+                this.CalcTimer.Stop();
+                this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
+                this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+            }
         }
 
         /* ログファイルからの計測 */

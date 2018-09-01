@@ -84,6 +84,7 @@
             this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
             this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
+            this.CopyResultButton = new System.Windows.Forms.Button();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -636,7 +637,7 @@
             // 
             // CalcFromLogButton
             // 
-            this.CalcFromLogButton.Location = new System.Drawing.Point(255, 12);
+            this.CalcFromLogButton.Location = new System.Drawing.Point(536, 12);
             this.CalcFromLogButton.Name = "CalcFromLogButton";
             this.CalcFromLogButton.Size = new System.Drawing.Size(75, 23);
             this.CalcFromLogButton.TabIndex = 26;
@@ -700,11 +701,21 @@
             this.CalcRemainingTimeLabel.Text = "300";
             this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // CopyResultButton
+            // 
+            this.CopyResultButton.Location = new System.Drawing.Point(255, 12);
+            this.CopyResultButton.Name = "CopyResultButton";
+            this.CopyResultButton.Size = new System.Drawing.Size(75, 23);
+            this.CopyResultButton.TabIndex = 31;
+            this.CopyResultButton.Text = "コピー";
+            this.CopyResultButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 821);
+            this.Controls.Add(this.CopyResultButton);
             this.Controls.Add(this.CalcRemainingTimeLabel);
             this.Controls.Add(this.CalcTimerMinutesNumericUpDown);
             this.Controls.Add(this.CalcTimeCheckBox);
@@ -788,6 +799,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button CopyResultButton;
     }
 }
 
