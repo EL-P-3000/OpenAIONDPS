@@ -1573,6 +1573,56 @@ namespace OpenAIONDPS
 
         /* その他 */
 
+        private void CopyResultButton_Click(object sender, EventArgs e)
+        {
+            string Results = "";
+
+            if (this.MemberNameMemberUnitList != null)
+            {
+                foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
+                {
+                    if (!String.IsNullOrEmpty(Results))
+                    {
+                        Results += Environment.NewLine;
+                        Results += Environment.NewLine;
+                    }
+
+                    Results += _MemberUnit.GetResult();
+                }
+
+                Results += Environment.NewLine;
+                Results += Environment.NewLine;
+                Results += "総ダメージ合計：" + this.TotalDamageLabel.Text;
+            }
+
+            Clipboard.SetText(Results);
+        }
+
+        private void CopyResultForSkypeButton_Click(object sender, EventArgs e)
+        {
+            string Results = "";
+
+            if (this.MemberNameMemberUnitList != null)
+            {
+                foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
+                {
+                    if (!String.IsNullOrEmpty(Results))
+                    {
+                        Results += Environment.NewLine;
+                        Results += Environment.NewLine;
+                    }
+
+                    Results += _MemberUnit.GetResultForSkype();
+                }
+
+                Results += Environment.NewLine;
+                Results += Environment.NewLine;
+                Results += "総ダメージ合計：" + this.TotalDamageLabel.Text;
+            }
+
+            Clipboard.SetText(Results);
+        }
+
         /// <summary>
         /// 最前面表示イベント
         /// </summary>

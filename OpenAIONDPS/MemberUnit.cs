@@ -291,5 +291,61 @@ namespace OpenAIONDPS
             this.UpdateAttackNumberParSecond();
             this.ResistedAttackNumberLabel.Text = this.ResistedAttackNumber.ToString("#,0") + " (" + Math.Round((1.0 * this.ResistedAttackNumber * 100 / this.AttackNumber), 0, MidpointRounding.AwayFromZero) + "%)";
         }
+
+        public string GetResult()
+        {
+            string Result = "";
+
+            if (String.IsNullOrEmpty(this.CharacterNameTextBox.Text))
+            {
+                return Result;
+            }
+
+            Result += "■" + this.CharacterNameTextBox.Text + Environment.NewLine;
+            Result += "総ダメージ：\t\t\t" + this.DamageLabel.Text + " (" + this.DamageParTotalDamageLabel.Text + ")" + Environment.NewLine; ;
+            Result += "攻撃時間：\t\t\t" + this.SecondLabel.Text + Environment.NewLine;
+            Result += "攻撃回数：\t\t\t" + this.AttackNumberLabel.Text + Environment.NewLine;
+            Result += "秒間平均ダメージ：\t\t" + this.DamageParSecondLabel.Text + Environment.NewLine;
+            Result += "回数平均ダメージ：\t\t" + this.DamageParAttackNumberLabel.Text + Environment.NewLine;
+            Result += "最大ダメージ：\t\t\t" + this.MaxDamageLabel.Text + Environment.NewLine;
+            Result += "最小ダメージ：\t\t\t" + this.MinDamageLabel.Text + Environment.NewLine;
+            Result += "クリティカル回数(スキル)：\t" + this.SkillCriticalNumberLabel.Text + Environment.NewLine;
+            Result += "クリティカル回数(通常攻撃)：\t" + this.SimpleCriticalNumberLabel.Text + Environment.NewLine;
+            Result += "攻撃回数／攻撃時間：\t\t" + this.AttackNumberParSecondLabel.Text + Environment.NewLine;
+            Result += "回避した回数：\t\t\t" + this.EvadeAttackNumberLabel.Text + Environment.NewLine;
+            Result += "回避された回数：\t\t" + this.EvadedAttackNumberLabel.Text + Environment.NewLine;
+            Result += "抵抗した回数：\t\t\t" + this.ResistAttackNumberLabel.Text + Environment.NewLine;
+            Result += "抵抗された回数：\t\t" + this.ResistedAttackNumberLabel.Text;
+
+            return Result;
+        }
+
+        public string GetResultForSkype()
+        {
+            string Result = "";
+
+            if (String.IsNullOrEmpty(this.CharacterNameTextBox.Text))
+            {
+                return Result;
+            }
+
+            Result += "■" + this.CharacterNameTextBox.Text + Environment.NewLine;
+            Result += "総ダメージ：\t\t\t" + this.DamageLabel.Text + " (" + this.DamageParTotalDamageLabel.Text + ")" + Environment.NewLine; ;
+            Result += "攻撃時間：\t\t\t" + this.SecondLabel.Text + Environment.NewLine;
+            Result += "攻撃回数：\t\t\t" + this.AttackNumberLabel.Text + Environment.NewLine;
+            Result += "秒間平均ダメージ：\t\t\t" + this.DamageParSecondLabel.Text + Environment.NewLine;
+            Result += "回数平均ダメージ：\t\t\t" + this.DamageParAttackNumberLabel.Text + Environment.NewLine;
+            Result += "最大ダメージ：\t\t\t" + this.MaxDamageLabel.Text + Environment.NewLine;
+            Result += "最小ダメージ：\t\t\t" + this.MinDamageLabel.Text + Environment.NewLine;
+            Result += "クリティカル回数(スキル)：\t\t" + this.SkillCriticalNumberLabel.Text + Environment.NewLine;
+            Result += "クリティカル回数(通常攻撃)：\t\t" + this.SimpleCriticalNumberLabel.Text + Environment.NewLine;
+            Result += "攻撃回数／攻撃時間：\t\t" + this.AttackNumberParSecondLabel.Text + Environment.NewLine;
+            Result += "回避した回数：\t\t\t" + this.EvadeAttackNumberLabel.Text + Environment.NewLine;
+            Result += "回避された回数：\t\t\t" + this.EvadedAttackNumberLabel.Text + Environment.NewLine;
+            Result += "抵抗した回数：\t\t\t" + this.ResistAttackNumberLabel.Text + Environment.NewLine;
+            Result += "抵抗された回数：\t\t\t" + this.ResistedAttackNumberLabel.Text;
+
+            return Result;
+        }
     }
 }
