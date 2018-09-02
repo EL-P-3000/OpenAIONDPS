@@ -59,6 +59,7 @@ namespace OpenAIONDPS
             foreach (AION.Skill _Skill in AION.SkillList.Values)
             {
                 SkillUnit _SkillUnit = new SkillUnit();
+                _SkillUnit.SetJob(_Skill.Job);
                 _SkillUnit.SetName(_Skill.Name);
                 SkillUnitList.Add(_Skill.Name, _SkillUnit);
 

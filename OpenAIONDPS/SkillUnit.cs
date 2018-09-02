@@ -12,6 +12,11 @@ namespace OpenAIONDPS
             InitializeComponent();
         }
 
+        public void SetJob(AION.JobType JobType)
+        {
+            this.JobLabel.Text = AION.GetJobName(JobType);
+        }
+
         public void SetName(string Name)
         {
             this.NameLabel.Text = Name;
