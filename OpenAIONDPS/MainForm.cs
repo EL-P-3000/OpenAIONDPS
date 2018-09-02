@@ -1622,7 +1622,7 @@ namespace OpenAIONDPS
 
                 MemberResults += Environment.NewLine;
                 MemberResults += Environment.NewLine;
-                MemberResults += "総ダメージ合計：" + this.TotalDamageLabel.Text;
+                MemberResults += "■総ダメージ合計： " + this.TotalDamageLabel.Text;
 
                 foreach (SkillUnit _SkillUnit in this.SkillUnitList.Values)
                 {
@@ -1636,6 +1636,8 @@ namespace OpenAIONDPS
                     if (String.IsNullOrEmpty(SkillResults))
                     {
                         SkillResults += Environment.NewLine;
+                        SkillResults += Environment.NewLine;
+                        SkillResults += "■以下は使用者を特定できないスキルの一覧";
                     }
 
                     SkillResults += Environment.NewLine;
