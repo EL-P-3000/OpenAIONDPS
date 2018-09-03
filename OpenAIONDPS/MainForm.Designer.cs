@@ -49,7 +49,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.LimitedTargetCheckBox = new System.Windows.Forms.CheckBox();
-            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.FavoriteMemberButton = new System.Windows.Forms.Button();
             this.DisableJobRadioButton = new System.Windows.Forms.RadioButton();
             this.EnableJobRadioButton = new System.Windows.Forms.RadioButton();
@@ -67,6 +66,15 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.DebugCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalcFromLogButton = new System.Windows.Forms.Button();
+            this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
+            this.CopyResultButton = new System.Windows.Forms.Button();
+            this.CopyResultForSkypeButton = new System.Windows.Forms.Button();
+            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.Member01 = new OpenAIONDPS.MemberUnit();
             this.Member02 = new OpenAIONDPS.MemberUnit();
             this.Member03 = new OpenAIONDPS.MemberUnit();
@@ -79,14 +87,6 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
-            this.DebugCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcFromLogButton = new System.Windows.Forms.Button();
-            this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
-            this.CopyResultButton = new System.Windows.Forms.Button();
-            this.CopyResultForSkypeButton = new System.Windows.Forms.Button();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -354,15 +354,6 @@
             this.LimitedTargetCheckBox.Text = "対象限定";
             this.LimitedTargetCheckBox.UseVisualStyleBackColor = true;
             // 
-            // FavoriteMemberList
-            // 
-            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FavoriteMemberList.Location = new System.Drawing.Point(247, 58);
-            this.FavoriteMemberList.Name = "FavoriteMemberList";
-            this.FavoriteMemberList.Size = new System.Drawing.Size(522, 345);
-            this.FavoriteMemberList.TabIndex = 25;
-            this.FavoriteMemberList.Visible = false;
-            // 
             // FavoriteMemberButton
             // 
             this.FavoriteMemberButton.Location = new System.Drawing.Point(53, 30);
@@ -534,6 +525,111 @@
             this.label17.Text = "通常攻撃";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // DebugCheckBox
+            // 
+            this.DebugCheckBox.AutoSize = true;
+            this.DebugCheckBox.Location = new System.Drawing.Point(375, 45);
+            this.DebugCheckBox.Name = "DebugCheckBox";
+            this.DebugCheckBox.Size = new System.Drawing.Size(114, 16);
+            this.DebugCheckBox.TabIndex = 25;
+            this.DebugCheckBox.Text = "デバッグ用ログ出力";
+            this.DebugCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // CalcFromLogButton
+            // 
+            this.CalcFromLogButton.Location = new System.Drawing.Point(93, 41);
+            this.CalcFromLogButton.Name = "CalcFromLogButton";
+            this.CalcFromLogButton.Size = new System.Drawing.Size(75, 23);
+            this.CalcFromLogButton.TabIndex = 26;
+            this.CalcFromLogButton.Text = "ログから計測";
+            this.CalcFromLogButton.UseVisualStyleBackColor = true;
+            this.CalcFromLogButton.Click += new System.EventHandler(this.CalcFromLogButton_Click);
+            // 
+            // AlwaysOnTopCheckBox
+            // 
+            this.AlwaysOnTopCheckBox.AutoSize = true;
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(285, 45);
+            this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
+            this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
+            this.AlwaysOnTopCheckBox.TabIndex = 27;
+            this.AlwaysOnTopCheckBox.Text = "最前面表示";
+            this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
+            this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
+            // 
+            // CalcTimeCheckBox
+            // 
+            this.CalcTimeCheckBox.AutoSize = true;
+            this.CalcTimeCheckBox.Location = new System.Drawing.Point(285, 16);
+            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
+            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
+            this.CalcTimeCheckBox.TabIndex = 28;
+            this.CalcTimeCheckBox.Text = "計測時間(分)";
+            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // CalcTimerMinutesNumericUpDown
+            // 
+            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(377, 13);
+            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
+            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
+            this.CalcTimerMinutesNumericUpDown.TabIndex = 29;
+            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
+            // 
+            // CalcRemainingTimeLabel
+            // 
+            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(425, 12);
+            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
+            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
+            this.CalcRemainingTimeLabel.TabIndex = 30;
+            this.CalcRemainingTimeLabel.Text = "300";
+            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CopyResultButton
+            // 
+            this.CopyResultButton.Location = new System.Drawing.Point(174, 12);
+            this.CopyResultButton.Name = "CopyResultButton";
+            this.CopyResultButton.Size = new System.Drawing.Size(105, 23);
+            this.CopyResultButton.TabIndex = 31;
+            this.CopyResultButton.Text = "コピー";
+            this.CopyResultButton.UseVisualStyleBackColor = true;
+            this.CopyResultButton.Click += new System.EventHandler(this.CopyResultButton_Click);
+            // 
+            // CopyResultForSkypeButton
+            // 
+            this.CopyResultForSkypeButton.Location = new System.Drawing.Point(174, 41);
+            this.CopyResultForSkypeButton.Name = "CopyResultForSkypeButton";
+            this.CopyResultForSkypeButton.Size = new System.Drawing.Size(105, 23);
+            this.CopyResultForSkypeButton.TabIndex = 32;
+            this.CopyResultForSkypeButton.Text = "コピー (Skype用)";
+            this.CopyResultForSkypeButton.UseVisualStyleBackColor = true;
+            this.CopyResultForSkypeButton.Click += new System.EventHandler(this.CopyResultForSkypeButton_Click);
+            // 
+            // FavoriteMemberList
+            // 
+            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FavoriteMemberList.Location = new System.Drawing.Point(247, 58);
+            this.FavoriteMemberList.Name = "FavoriteMemberList";
+            this.FavoriteMemberList.Size = new System.Drawing.Size(522, 345);
+            this.FavoriteMemberList.TabIndex = 25;
+            this.FavoriteMemberList.Visible = false;
+            // 
             // Member01
             // 
             this.Member01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -642,102 +738,6 @@
             this.Member12.Size = new System.Drawing.Size(934, 26);
             this.Member12.TabIndex = 12;
             // 
-            // DebugCheckBox
-            // 
-            this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(375, 45);
-            this.DebugCheckBox.Name = "DebugCheckBox";
-            this.DebugCheckBox.Size = new System.Drawing.Size(114, 16);
-            this.DebugCheckBox.TabIndex = 25;
-            this.DebugCheckBox.Text = "デバッグ用ログ出力";
-            this.DebugCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // CalcFromLogButton
-            // 
-            this.CalcFromLogButton.Location = new System.Drawing.Point(93, 41);
-            this.CalcFromLogButton.Name = "CalcFromLogButton";
-            this.CalcFromLogButton.Size = new System.Drawing.Size(75, 23);
-            this.CalcFromLogButton.TabIndex = 26;
-            this.CalcFromLogButton.Text = "ログから計測";
-            this.CalcFromLogButton.UseVisualStyleBackColor = true;
-            this.CalcFromLogButton.Click += new System.EventHandler(this.CalcFromLogButton_Click);
-            // 
-            // AlwaysOnTopCheckBox
-            // 
-            this.AlwaysOnTopCheckBox.AutoSize = true;
-            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(285, 45);
-            this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
-            this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
-            this.AlwaysOnTopCheckBox.TabIndex = 27;
-            this.AlwaysOnTopCheckBox.Text = "最前面表示";
-            this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
-            this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
-            // 
-            // CalcTimeCheckBox
-            // 
-            this.CalcTimeCheckBox.AutoSize = true;
-            this.CalcTimeCheckBox.Location = new System.Drawing.Point(285, 16);
-            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
-            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
-            this.CalcTimeCheckBox.TabIndex = 28;
-            this.CalcTimeCheckBox.Text = "計測時間(分)";
-            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // CalcTimerMinutesNumericUpDown
-            // 
-            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(377, 13);
-            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
-            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
-            this.CalcTimerMinutesNumericUpDown.TabIndex = 29;
-            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
-            // 
-            // CalcRemainingTimeLabel
-            // 
-            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
-            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(425, 12);
-            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
-            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
-            this.CalcRemainingTimeLabel.TabIndex = 30;
-            this.CalcRemainingTimeLabel.Text = "300";
-            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CopyResultButton
-            // 
-            this.CopyResultButton.Location = new System.Drawing.Point(174, 12);
-            this.CopyResultButton.Name = "CopyResultButton";
-            this.CopyResultButton.Size = new System.Drawing.Size(105, 23);
-            this.CopyResultButton.TabIndex = 31;
-            this.CopyResultButton.Text = "コピー";
-            this.CopyResultButton.UseVisualStyleBackColor = true;
-            this.CopyResultButton.Click += new System.EventHandler(this.CopyResultButton_Click);
-            // 
-            // CopyResultForSkypeButton
-            // 
-            this.CopyResultForSkypeButton.Location = new System.Drawing.Point(174, 41);
-            this.CopyResultForSkypeButton.Name = "CopyResultForSkypeButton";
-            this.CopyResultForSkypeButton.Size = new System.Drawing.Size(105, 23);
-            this.CopyResultForSkypeButton.TabIndex = 32;
-            this.CopyResultForSkypeButton.Text = "コピー (Skype用)";
-            this.CopyResultForSkypeButton.UseVisualStyleBackColor = true;
-            this.CopyResultForSkypeButton.Click += new System.EventHandler(this.CopyResultForSkypeButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -758,7 +758,7 @@
             this.Controls.Add(this.StartButton);
             this.MaximumSize = new System.Drawing.Size(990, 850);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.17";
+            this.Text = "Open AION DPS 1.0.18";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
