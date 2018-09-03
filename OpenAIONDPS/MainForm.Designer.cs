@@ -79,7 +79,6 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
-            this.AION64bitButton = new System.Windows.Forms.Button();
             this.DebugCheckBox = new System.Windows.Forms.CheckBox();
             this.CalcFromLogButton = new System.Windows.Forms.Button();
             this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
@@ -643,17 +642,6 @@
             this.Member12.Size = new System.Drawing.Size(934, 26);
             this.Member12.TabIndex = 12;
             // 
-            // AION64bitButton
-            // 
-            this.AION64bitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AION64bitButton.Location = new System.Drawing.Point(887, 12);
-            this.AION64bitButton.Name = "AION64bitButton";
-            this.AION64bitButton.Size = new System.Drawing.Size(75, 23);
-            this.AION64bitButton.TabIndex = 24;
-            this.AION64bitButton.Text = "64bit起動";
-            this.AION64bitButton.UseVisualStyleBackColor = true;
-            this.AION64bitButton.Click += new System.EventHandler(this.AION64bitButton_Click);
-            // 
             // DebugCheckBox
             // 
             this.DebugCheckBox.AutoSize = true;
@@ -763,7 +751,6 @@
             this.Controls.Add(this.AlwaysOnTopCheckBox);
             this.Controls.Add(this.CalcFromLogButton);
             this.Controls.Add(this.DebugCheckBox);
-            this.Controls.Add(this.AION64bitButton);
             this.Controls.Add(this.MemberGroupBox);
             this.Controls.Add(this.SkillListFlowLayoutPanel);
             this.Controls.Add(this.FileButton);
@@ -813,7 +800,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label TotalDamageLabel;
-        private System.Windows.Forms.Button AION64bitButton;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RadioButton DisableJobRadioButton;

@@ -1673,43 +1673,6 @@ namespace OpenAIONDPS
         }
 
         /// <summary>
-        /// クライアントを64bitで起動イベント
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AION64bitButton_Click(object sender, EventArgs e)
-        {
-            string BinRelativePath = "bin64\\aion.bin";
-            string Arguments = "-ip:106.186.46.90 -np:106.186.66.51 -ingamebrowser -lbox -loginex -ncping -nosarefund -F2P -hidepromo -logincnt:3 -nobs -npsa -60f2p -dnpshop /SessKey:\"\" /CompanyID:\"14\" /ChannelGroupIndex:\" - 1\"";
-
-            if (File.Exists(Properties.Settings.Default.InstallDirectory + BinRelativePath))
-            {
-                System.Diagnostics.Process.Start("cmd.exe", "/c start \"\" \"" + Properties.Settings.Default.InstallDirectory + BinRelativePath + "\" " + Arguments);
-            }
-            else
-            {
-                FolderBrowserDialog AIONFolder = new FolderBrowserDialog();
-                AIONFolder.Description = @"AIONをインストールしたフォルダを選択してください。";
-                AIONFolder.Description += Environment.NewLine + @"デフォルト: C:\Program Files (x86)\The Tower of AION\";
-
-                if (AIONFolder.ShowDialog(this) == DialogResult.OK)
-                {
-                    Properties.Settings.Default.InstallDirectory = AIONFolder.SelectedPath + "\\";
-                    Properties.Settings.Default.Save();
-
-                    if (File.Exists(Properties.Settings.Default.InstallDirectory + BinRelativePath))
-                    {
-                        System.Diagnostics.Process.Start("cmd.exe", "/c start \"\" \"" + Properties.Settings.Default.InstallDirectory + BinRelativePath + "\" " + Arguments);
-                    }
-                    else
-                    {
-                        MessageBox.Show("ファイルが存在しません。", "エラー");
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// メンバー登録画面表示イベント
         /// </summary>
         /// <param name="sender"></param>
