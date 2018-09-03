@@ -11,5 +11,5 @@ https://github.com/EL-P-3000/OpenAIONDPS
 最新版  
 https://github.com/EL-P-3000/OpenAIONDPS/releases/latest
 
-使い方 (Wiki)  
+利用方法 (Wiki)  
 https://github.com/EL-P-3000/OpenAIONDPS/wiki
