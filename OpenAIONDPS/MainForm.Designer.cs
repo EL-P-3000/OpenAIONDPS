@@ -87,6 +87,10 @@
             this.Member10 = new OpenAIONDPS.MemberUnit();
             this.Member11 = new OpenAIONDPS.MemberUnit();
             this.Member12 = new OpenAIONDPS.MemberUnit();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -738,11 +742,53 @@
             this.Member12.Size = new System.Drawing.Size(934, 26);
             this.Member12.TabIndex = 12;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(694, 17);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(268, 12);
+            this.linkLabel1.TabIndex = 33;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/EL-P-3000/OpenAIONDPS/wiki";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(628, 46);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(60, 12);
+            this.label28.TabIndex = 34;
+            this.label28.Text = "ソースコード";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(628, 17);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(50, 12);
+            this.label29.TabIndex = 35;
+            this.label29.Text = "マニュアル";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(694, 46);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(242, 12);
+            this.linkLabel2.TabIndex = 36;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "https://github.com/EL-P-3000/OpenAIONDPS";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 811);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.CopyResultForSkypeButton);
             this.Controls.Add(this.CopyResultButton);
             this.Controls.Add(this.CalcRemainingTimeLabel);
@@ -832,6 +878,10 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 
