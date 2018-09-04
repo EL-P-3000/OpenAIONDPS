@@ -1785,5 +1785,15 @@ namespace OpenAIONDPS
                 this.PrintDebugMessage(Ex.Message + Environment.NewLine + Ex.StackTrace);
             }
         }
+
+        private void ProjectTopLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.ProjectTopLinkLabel.Text);
+        }
+
+        private void ProjectManualLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.ProjectManualLinkLabel.Text);
+        }
     }
 }

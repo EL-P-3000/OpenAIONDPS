@@ -87,10 +87,10 @@
             this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
             this.CopyResultButton = new System.Windows.Forms.Button();
             this.CopyResultForSkypeButton = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.ProjectManualLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.ProjectTopLinkLabel = new System.Windows.Forms.LinkLabel();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -742,15 +742,16 @@
             this.CopyResultForSkypeButton.UseVisualStyleBackColor = true;
             this.CopyResultForSkypeButton.Click += new System.EventHandler(this.CopyResultForSkypeButton_Click);
             // 
-            // linkLabel1
+            // ProjectManualLinkLabel
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(694, 17);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(268, 12);
-            this.linkLabel1.TabIndex = 33;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/EL-P-3000/OpenAIONDPS/wiki";
+            this.ProjectManualLinkLabel.AutoSize = true;
+            this.ProjectManualLinkLabel.Location = new System.Drawing.Point(694, 17);
+            this.ProjectManualLinkLabel.Name = "ProjectManualLinkLabel";
+            this.ProjectManualLinkLabel.Size = new System.Drawing.Size(268, 12);
+            this.ProjectManualLinkLabel.TabIndex = 33;
+            this.ProjectManualLinkLabel.TabStop = true;
+            this.ProjectManualLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS/wiki";
+            this.ProjectManualLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectManualLinkLabel_LinkClicked);
             // 
             // label28
             // 
@@ -770,25 +771,26 @@
             this.label29.TabIndex = 35;
             this.label29.Text = "マニュアル";
             // 
-            // linkLabel2
+            // ProjectTopLinkLabel
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(694, 46);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(242, 12);
-            this.linkLabel2.TabIndex = 36;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "https://github.com/EL-P-3000/OpenAIONDPS";
+            this.ProjectTopLinkLabel.AutoSize = true;
+            this.ProjectTopLinkLabel.Location = new System.Drawing.Point(694, 46);
+            this.ProjectTopLinkLabel.Name = "ProjectTopLinkLabel";
+            this.ProjectTopLinkLabel.Size = new System.Drawing.Size(242, 12);
+            this.ProjectTopLinkLabel.TabIndex = 36;
+            this.ProjectTopLinkLabel.TabStop = true;
+            this.ProjectTopLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS";
+            this.ProjectTopLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectTopLinkLabel_LinkClicked);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 811);
-            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.ProjectTopLinkLabel);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.ProjectManualLinkLabel);
             this.Controls.Add(this.CopyResultForSkypeButton);
             this.Controls.Add(this.CopyResultButton);
             this.Controls.Add(this.CalcRemainingTimeLabel);
@@ -878,10 +880,10 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel ProjectManualLinkLabel;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel ProjectTopLinkLabel;
     }
 }
 
