@@ -118,7 +118,7 @@ namespace OpenAIONDPS
             }
         }
 
-        private void FileButton_Click(object sender, EventArgs e)
+        private void OpenLogFileButton_Click(object sender, EventArgs e)
         {
             ShowFileOpenWindow();
         }
@@ -199,6 +199,8 @@ namespace OpenAIONDPS
 
             this.StartButton.Enabled = false;
             this.StopButton.Enabled = true;
+            this.OpenLogFileButton.Enabled = false;
+            this.CalcFromLogFileButton.Enabled = false;
             this.FavoriteMemberButton.Enabled = false;
             this.IsRunning = true;
             this.StopFlag = false;
@@ -284,6 +286,8 @@ namespace OpenAIONDPS
 
             this.StartButton.Enabled = true;
             this.StopButton.Enabled = false;
+            this.OpenLogFileButton.Enabled = true;
+            this.CalcFromLogFileButton.Enabled = true;
             this.FavoriteMemberButton.Enabled = true;
         }
 
@@ -441,7 +445,7 @@ namespace OpenAIONDPS
             Delegate UpdateDataDelegate = new Action<ActionData>(UpdateDamageData);
             Delegate UpdateEvasionDelegate = new Action<ActionData>(UpdateEvasion);
             Delegate UpdateResistanceDelegate = new Action<ActionData>(UpdateResistance);
-            Delegate CalcFromLogEndDelegate = new Action(CalcFromLogEnd);
+            Delegate CalcFromLogEndDelegate = new Action(CalcFromLogFileEnd);
             string LogFilePath = Properties.Settings.Default.ChatLogPath;
             string LogText = "";
             string LogTextWithoutTime = "";
@@ -1537,7 +1541,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CalcFromLogButton_Click(object sender, EventArgs e)
+        private void CalcFromLogFileButton_Click(object sender, EventArgs e)
         {
             if (this.IsRunning == true)
             {
@@ -1557,6 +1561,8 @@ namespace OpenAIONDPS
 
                 this.StartButton.Enabled = false;
                 this.StopButton.Enabled = false;
+                this.OpenLogFileButton.Enabled = false;
+                this.CalcFromLogFileButton.Enabled = false;
                 this.FavoriteMemberButton.Enabled = false;
                 this.IsRunning = true;
                 this.StopFlag = false;
@@ -1578,7 +1584,7 @@ namespace OpenAIONDPS
         /// <summary>
         /// ログファイルから測定終了
         /// </summary>
-        public void CalcFromLogEnd()
+        public void CalcFromLogFileEnd()
         {
             this.CloseDebugLogFile();
             this.IsDebug = false;
@@ -1588,6 +1594,8 @@ namespace OpenAIONDPS
 
             this.StartButton.Enabled = true;
             this.StopButton.Enabled = false;
+            this.OpenLogFileButton.Enabled = true;
+            this.CalcFromLogFileButton.Enabled = true;
             this.FavoriteMemberButton.Enabled = true;
 
             this.IsCalcLogFile = false;
