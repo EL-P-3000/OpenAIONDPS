@@ -165,7 +165,7 @@ namespace OpenAIONDPS
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control == true && e.KeyCode == Keys.F1)
+            if (e.Control == true && e.KeyCode == Keys.Q)
             {
                 if (this.IsRunning)
                 {
