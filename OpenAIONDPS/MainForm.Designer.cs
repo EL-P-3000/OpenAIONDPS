@@ -756,11 +756,13 @@
             this.Controls.Add(this.FileButton);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(990, 850);
             this.Name = "MainForm";
             this.Text = "Open AION DPS 1.0.18";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.MemberGroupBox.ResumeLayout(false);
             this.MemberGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).EndInit();

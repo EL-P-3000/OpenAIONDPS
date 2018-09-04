@@ -52,6 +52,8 @@ namespace OpenAIONDPS
 
             this.AlwaysOnTopCheckBox.Checked = Properties.Settings.Default.AlwaysOnTop;
             this.TopMost = Properties.Settings.Default.AlwaysOnTop;
+
+            this.Focus();
         }
 
         private void InitSkillUnit()
@@ -157,6 +159,21 @@ namespace OpenAIONDPS
                         _MemberUnit.SetJobType(Job);
                         break;
                     }
+                }
+            }
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.F1)
+            {
+                if (this.IsRunning)
+                {
+                    this.StopThread();
+                }
+                else
+                {
+                    this.StartThread();
                 }
             }
         }
