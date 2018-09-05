@@ -266,12 +266,12 @@ namespace OpenAIONDPS
         {
             if (this.SkillCriticalNumber > 0)
             {
-                this.SkillCriticalNumberLabel.Text = this.SkillCriticalNumber.ToString("#,0") + " (" + (1.0 * this.SkillCriticalNumber * 100/ this.AttackNumber).ToString("F2") + "%)";
+                this.SkillCriticalNumberLabel.Text = this.SkillCriticalNumber.ToString("#,0") + " (" + (1.0 * this.SkillCriticalNumber * 100/ this.SkillAttackNumber).ToString("F2") + "%)";
             }
 
             if (this.SimpleCriticalNumber > 0)
             {
-                this.SimpleCriticalNumberLabel.Text = this.SimpleCriticalNumber.ToString("#,0") + " (" + (1.0 * this.SimpleCriticalNumber * 100 / this.AttackNumber).ToString("F2") + "%)";
+                this.SimpleCriticalNumberLabel.Text = this.SimpleCriticalNumber.ToString("#,0") + " (" + (1.0 * this.SimpleCriticalNumber * 100 / this.SimpleAttackNumber).ToString("F2") + "%)";
             }
         }
 
