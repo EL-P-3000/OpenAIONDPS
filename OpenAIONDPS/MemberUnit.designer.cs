@@ -203,7 +203,7 @@
             this.EvadedAttackNumberLabel.Name = "EvadedAttackNumberLabel";
             this.EvadedAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.EvadedAttackNumberLabel.TabIndex = 17;
-            this.EvadedAttackNumberLabel.Text = "0";
+            this.EvadedAttackNumberLabel.Text = "0 (0%)";
             this.EvadedAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ResistedAttackNumberLabel
@@ -212,7 +212,7 @@
             this.ResistedAttackNumberLabel.Name = "ResistedAttackNumberLabel";
             this.ResistedAttackNumberLabel.Size = new System.Drawing.Size(70, 12);
             this.ResistedAttackNumberLabel.TabIndex = 19;
-            this.ResistedAttackNumberLabel.Text = "0";
+            this.ResistedAttackNumberLabel.Text = "0 (0%)";
             this.ResistedAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ResistAttackNumberLabel
