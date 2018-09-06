@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -39,6 +40,16 @@ namespace OpenAIONDPS
         private bool IsCalcLogFile = false;
         private string CalcLogFilePath = "";
 
+        /* ホットキー */
+
+        [DllImport("user32.dll")]
+        extern static int RegisterHotKey(IntPtr hWnd, int id, int modKey, int key);
+        [DllImport("user32.dll")]
+        extern static int UnregisterHotKey(IntPtr hWnd, int id);
+        private const int HOTKEY_ID = 0x0001;
+        private const int MOD_CONTROL = 0x0002;
+        private const int WM_HOTKEY = 0x0312;
+
         public MainForm()
         {
             InitializeComponent();
@@ -53,7 +64,13 @@ namespace OpenAIONDPS
             this.AlwaysOnTopCheckBox.Checked = Properties.Settings.Default.AlwaysOnTop;
             this.TopMost = Properties.Settings.Default.AlwaysOnTop;
 
-            this.Focus();
+            try
+            {
+                RegisterHotKey(Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.F1);
+            }
+            catch
+            {
+            }
         }
 
         private void InitSkillUnit()
@@ -79,6 +96,14 @@ namespace OpenAIONDPS
         {
             Properties.Settings.Default.Save();
             this.StopThread();
+
+            try
+            {
+                UnregisterHotKey(Handle, HOTKEY_ID);
+            }
+            catch
+            {
+            }
         }
 
         private void ClearData()
@@ -159,21 +184,6 @@ namespace OpenAIONDPS
                         _MemberUnit.SetJobType(Job);
                         break;
                     }
-                }
-            }
-        }
-
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control == true && e.KeyCode == Keys.Q)
-            {
-                if (this.IsRunning)
-                {
-                    this.StopThread();
-                }
-                else
-                {
-                    this.StartThread();
                 }
             }
         }
@@ -289,6 +299,27 @@ namespace OpenAIONDPS
             this.OpenLogFileButton.Enabled = true;
             this.CalcFromLogFileButton.Enabled = true;
             this.FavoriteMemberButton.Enabled = true;
+        }
+
+        protected override void WndProc(ref Message message)
+        {
+
+            base.WndProc(ref message);
+
+            if (message.Msg == WM_HOTKEY)
+            {
+                if (((int)message.WParam) == HOTKEY_ID)
+                {
+                    if (this.IsRunning)
+                    {
+                        this.StopThread();
+                    }
+                    else
+                    {
+                        this.StartThread();
+                    }
+                }
+            }
         }
 
         /* ログのパターン
