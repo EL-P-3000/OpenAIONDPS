@@ -41,7 +41,6 @@ namespace OpenAIONDPS
         private string CalcLogFilePath = "";
 
         /* ホットキー */
-
         [DllImport("user32.dll")]
         extern static int RegisterHotKey(IntPtr hWnd, int id, int modKey, int key);
         [DllImport("user32.dll")]
@@ -64,13 +63,7 @@ namespace OpenAIONDPS
             this.AlwaysOnTopCheckBox.Checked = Properties.Settings.Default.AlwaysOnTop;
             this.TopMost = Properties.Settings.Default.AlwaysOnTop;
 
-            try
-            {
-                RegisterHotKey(Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.F1);
-            }
-            catch
-            {
-            }
+            RegisterHotKey(Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.F1);
         }
 
         private void InitSkillUnit()
@@ -97,13 +90,7 @@ namespace OpenAIONDPS
             Properties.Settings.Default.Save();
             this.StopThread();
 
-            try
-            {
-                UnregisterHotKey(Handle, HOTKEY_ID);
-            }
-            catch
-            {
-            }
+            UnregisterHotKey(Handle, HOTKEY_ID);
         }
 
         private void ClearData()
