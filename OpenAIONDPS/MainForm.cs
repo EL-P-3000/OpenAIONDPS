@@ -1847,6 +1847,8 @@ namespace OpenAIONDPS
             }
         }
 
+        /* スキル別ダメージ一覧 */
+
         private void SetSkillDamageList()
         {
             this.SkillDamageListDataGridView.Rows.Clear();
