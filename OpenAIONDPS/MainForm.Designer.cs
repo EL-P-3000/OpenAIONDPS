@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
@@ -200,7 +200,7 @@
             this.MemberGroupBox.Controls.Add(this.Member12);
             this.MemberGroupBox.Location = new System.Drawing.Point(6, 6);
             this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Size = new System.Drawing.Size(960, 481);
+            this.MemberGroupBox.Size = new System.Drawing.Size(952, 481);
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
@@ -684,10 +684,10 @@
             // 
             this.MenuTabControl.Controls.Add(this.MemberDamageListTabPage);
             this.MenuTabControl.Controls.Add(this.SkillDamageListTabPage);
-            this.MenuTabControl.Location = new System.Drawing.Point(0, 80);
+            this.MenuTabControl.Location = new System.Drawing.Point(4, 80);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(980, 749);
+            this.MenuTabControl.Size = new System.Drawing.Size(973, 748);
             this.MenuTabControl.TabIndex = 37;
             this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
             // 
@@ -698,7 +698,7 @@
             this.MemberDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.MemberDamageListTabPage.Name = "MemberDamageListTabPage";
             this.MemberDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MemberDamageListTabPage.Size = new System.Drawing.Size(972, 723);
+            this.MemberDamageListTabPage.Size = new System.Drawing.Size(965, 722);
             this.MemberDamageListTabPage.TabIndex = 0;
             this.MemberDamageListTabPage.Text = "メンバー別ダメージ一覧";
             this.MemberDamageListTabPage.UseVisualStyleBackColor = true;
@@ -711,7 +711,7 @@
             this.SkillListFlowLayoutPanel.AutoScroll = true;
             this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(3, 492);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
-            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(963, 225);
+            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(956, 224);
             this.SkillListFlowLayoutPanel.TabIndex = 20;
             // 
             // SkillDamageListTabPage
@@ -756,8 +756,8 @@
             // 
             // SkillNameColumn
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle37;
             this.SkillNameColumn.HeaderText = "スキル名";
             this.SkillNameColumn.Name = "SkillNameColumn";
             this.SkillNameColumn.ReadOnly = true;
@@ -765,40 +765,40 @@
             // 
             // DamageColumn
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle38;
             this.DamageColumn.HeaderText = "総ダメージ";
             this.DamageColumn.Name = "DamageColumn";
             this.DamageColumn.ReadOnly = true;
             // 
             // AttackNumberColumn
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle39;
             this.AttackNumberColumn.HeaderText = "回数";
             this.AttackNumberColumn.Name = "AttackNumberColumn";
             this.AttackNumberColumn.ReadOnly = true;
             // 
             // MaxDamageColumn
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle40;
             this.MaxDamageColumn.HeaderText = "MAXダメージ";
             this.MaxDamageColumn.Name = "MaxDamageColumn";
             this.MaxDamageColumn.ReadOnly = true;
             // 
             // MinDamageColumn
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle41;
             this.MinDamageColumn.HeaderText = "MINダメージ";
             this.MinDamageColumn.Name = "MinDamageColumn";
             this.MinDamageColumn.ReadOnly = true;
             // 
             // DamageParAttackNumber
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle42;
             this.DamageParAttackNumber.HeaderText = "平均ダメージ";
             this.DamageParAttackNumber.Name = "DamageParAttackNumber";
             this.DamageParAttackNumber.ReadOnly = true;
@@ -828,7 +828,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member01.Location = new System.Drawing.Point(6, 58);
             this.Member01.Name = "Member01";
-            this.Member01.Size = new System.Drawing.Size(944, 26);
+            this.Member01.Size = new System.Drawing.Size(936, 26);
             this.Member01.TabIndex = 1;
             // 
             // Member02
@@ -837,7 +837,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member02.Location = new System.Drawing.Point(6, 87);
             this.Member02.Name = "Member02";
-            this.Member02.Size = new System.Drawing.Size(944, 26);
+            this.Member02.Size = new System.Drawing.Size(936, 26);
             this.Member02.TabIndex = 2;
             // 
             // Member03
@@ -846,7 +846,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member03.Location = new System.Drawing.Point(6, 116);
             this.Member03.Name = "Member03";
-            this.Member03.Size = new System.Drawing.Size(944, 26);
+            this.Member03.Size = new System.Drawing.Size(936, 26);
             this.Member03.TabIndex = 3;
             // 
             // Member04
@@ -855,7 +855,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member04.Location = new System.Drawing.Point(6, 145);
             this.Member04.Name = "Member04";
-            this.Member04.Size = new System.Drawing.Size(944, 26);
+            this.Member04.Size = new System.Drawing.Size(936, 26);
             this.Member04.TabIndex = 4;
             // 
             // Member05
@@ -864,7 +864,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member05.Location = new System.Drawing.Point(6, 174);
             this.Member05.Name = "Member05";
-            this.Member05.Size = new System.Drawing.Size(944, 26);
+            this.Member05.Size = new System.Drawing.Size(936, 26);
             this.Member05.TabIndex = 5;
             // 
             // Member06
@@ -873,7 +873,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member06.Location = new System.Drawing.Point(6, 203);
             this.Member06.Name = "Member06";
-            this.Member06.Size = new System.Drawing.Size(944, 26);
+            this.Member06.Size = new System.Drawing.Size(936, 26);
             this.Member06.TabIndex = 6;
             // 
             // Member07
@@ -882,7 +882,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member07.Location = new System.Drawing.Point(6, 232);
             this.Member07.Name = "Member07";
-            this.Member07.Size = new System.Drawing.Size(944, 26);
+            this.Member07.Size = new System.Drawing.Size(936, 26);
             this.Member07.TabIndex = 7;
             // 
             // Member08
@@ -891,7 +891,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member08.Location = new System.Drawing.Point(6, 261);
             this.Member08.Name = "Member08";
-            this.Member08.Size = new System.Drawing.Size(944, 26);
+            this.Member08.Size = new System.Drawing.Size(936, 26);
             this.Member08.TabIndex = 8;
             // 
             // Member09
@@ -900,7 +900,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member09.Location = new System.Drawing.Point(6, 290);
             this.Member09.Name = "Member09";
-            this.Member09.Size = new System.Drawing.Size(944, 26);
+            this.Member09.Size = new System.Drawing.Size(936, 26);
             this.Member09.TabIndex = 9;
             // 
             // Member10
@@ -909,7 +909,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member10.Location = new System.Drawing.Point(6, 319);
             this.Member10.Name = "Member10";
-            this.Member10.Size = new System.Drawing.Size(944, 26);
+            this.Member10.Size = new System.Drawing.Size(936, 26);
             this.Member10.TabIndex = 10;
             // 
             // Member11
@@ -918,7 +918,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member11.Location = new System.Drawing.Point(6, 348);
             this.Member11.Name = "Member11";
-            this.Member11.Size = new System.Drawing.Size(944, 26);
+            this.Member11.Size = new System.Drawing.Size(936, 26);
             this.Member11.TabIndex = 11;
             // 
             // Member12
@@ -927,7 +927,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member12.Location = new System.Drawing.Point(6, 377);
             this.Member12.Name = "Member12";
-            this.Member12.Size = new System.Drawing.Size(944, 26);
+            this.Member12.Size = new System.Drawing.Size(936, 26);
             this.Member12.TabIndex = 12;
             // 
             // MainForm
