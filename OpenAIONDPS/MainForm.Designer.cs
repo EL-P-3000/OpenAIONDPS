@@ -768,44 +768,40 @@
             // 
             // ProjectManualLinkLabel
             // 
-            this.ProjectManualLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectManualLinkLabel.AutoSize = true;
             this.ProjectManualLinkLabel.Location = new System.Drawing.Point(699, 17);
             this.ProjectManualLinkLabel.Name = "ProjectManualLinkLabel";
             this.ProjectManualLinkLabel.Size = new System.Drawing.Size(268, 12);
-            this.ProjectManualLinkLabel.TabIndex = 33;
+            this.ProjectManualLinkLabel.TabIndex = 0;
             this.ProjectManualLinkLabel.TabStop = true;
             this.ProjectManualLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS/wiki";
             this.ProjectManualLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectManualLinkLabel_LinkClicked);
             // 
             // label28
             // 
-            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(633, 46);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(60, 12);
-            this.label28.TabIndex = 34;
+            this.label28.TabIndex = 0;
             this.label28.Text = "ソースコード";
             // 
             // label29
             // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(633, 17);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(50, 12);
-            this.label29.TabIndex = 35;
+            this.label29.TabIndex = 0;
             this.label29.Text = "マニュアル";
             // 
             // ProjectTopLinkLabel
             // 
-            this.ProjectTopLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectTopLinkLabel.AutoSize = true;
             this.ProjectTopLinkLabel.Location = new System.Drawing.Point(699, 46);
             this.ProjectTopLinkLabel.Name = "ProjectTopLinkLabel";
             this.ProjectTopLinkLabel.Size = new System.Drawing.Size(242, 12);
-            this.ProjectTopLinkLabel.TabIndex = 36;
+            this.ProjectTopLinkLabel.TabIndex = 0;
             this.ProjectTopLinkLabel.TabStop = true;
             this.ProjectTopLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS";
             this.ProjectTopLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectTopLinkLabel_LinkClicked);
