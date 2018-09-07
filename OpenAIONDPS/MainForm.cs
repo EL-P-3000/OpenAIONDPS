@@ -181,6 +181,19 @@ namespace OpenAIONDPS
                 {
                     MemberUnit _MemberUnit = (MemberUnit)_Control;
                     _MemberUnit.Clear();
+                    if (!String.IsNullOrEmpty(_MemberUnit.GetMemberName()) && _MemberUnit.GetMemberName().Equals(Name))
+                    {
+                        return;
+                    }
+                }
+            }
+
+            foreach (Control _Control in this.MemberGroupBox.Controls)
+            {
+                if (_Control.GetType().Name.Equals("MemberUnit"))
+                {
+                    MemberUnit _MemberUnit = (MemberUnit)_Control;
+                    _MemberUnit.Clear();
                     if (String.IsNullOrEmpty(_MemberUnit.GetMemberName()))
                     {
                         _MemberUnit.SetMemberName(Name);
