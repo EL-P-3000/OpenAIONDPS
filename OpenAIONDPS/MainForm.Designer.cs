@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
@@ -756,8 +756,8 @@
             // 
             // SkillNameColumn
             // 
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle43;
             this.SkillNameColumn.HeaderText = "スキル名";
             this.SkillNameColumn.Name = "SkillNameColumn";
             this.SkillNameColumn.ReadOnly = true;
@@ -765,40 +765,40 @@
             // 
             // DamageColumn
             // 
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle44;
             this.DamageColumn.HeaderText = "総ダメージ";
             this.DamageColumn.Name = "DamageColumn";
             this.DamageColumn.ReadOnly = true;
             // 
             // AttackNumberColumn
             // 
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle45;
             this.AttackNumberColumn.HeaderText = "回数";
             this.AttackNumberColumn.Name = "AttackNumberColumn";
             this.AttackNumberColumn.ReadOnly = true;
             // 
             // MaxDamageColumn
             // 
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle46;
             this.MaxDamageColumn.HeaderText = "MAXダメージ";
             this.MaxDamageColumn.Name = "MaxDamageColumn";
             this.MaxDamageColumn.ReadOnly = true;
             // 
             // MinDamageColumn
             // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle47;
             this.MinDamageColumn.HeaderText = "MINダメージ";
             this.MinDamageColumn.Name = "MinDamageColumn";
             this.MinDamageColumn.ReadOnly = true;
             // 
             // DamageParAttackNumber
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle48;
             this.DamageParAttackNumber.HeaderText = "平均ダメージ";
             this.DamageParAttackNumber.Name = "DamageParAttackNumber";
             this.DamageParAttackNumber.ReadOnly = true;
@@ -954,7 +954,7 @@
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(995, 870);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.21";
+            this.Text = "Open AION DPS 1.0.22";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
