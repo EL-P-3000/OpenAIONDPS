@@ -326,6 +326,7 @@ namespace OpenAIONDPS
             public long MaxDamage = 0;
             public long MinDamage = 0;
             public bool IsCriticalHit = false;
+            private bool IsStart = false;
 
             public Skill(string Name, JobType Job, SkillType SkillType)
             {
@@ -341,6 +342,8 @@ namespace OpenAIONDPS
                 this.UpdateAttackNumber();
                 this.UpdateMaxDamage(Damage);
                 this.UpdateMinDamage(Damage);
+
+                this.IsStart = true;
             }
 
             private void UpdateDamage(long Damage)
@@ -355,7 +358,7 @@ namespace OpenAIONDPS
 
             private void UpdateMaxDamage(long Damage)
             {
-                if (this.MaxDamage == 0 || this.MaxDamage < Damage)
+                if (!this.IsStart || this.MaxDamage < Damage)
                 {
                     this.MaxDamage = Damage;
                 }
@@ -363,7 +366,7 @@ namespace OpenAIONDPS
 
             private void UpdateMinDamage(long Damage)
             {
-                if (this.MinDamage == 0 || this.MinDamage > Damage)
+                if (!this.IsStart || this.MinDamage > Damage)
                 {
                     this.MinDamage = Damage;
                 }
