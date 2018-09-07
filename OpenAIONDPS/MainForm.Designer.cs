@@ -38,6 +38,7 @@
             this.StopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.ClearButton = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -110,7 +111,6 @@
             this.MinDamageColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DamageParAttackNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaveImageButton = new System.Windows.Forms.Button();
-            this.ClearButton = new System.Windows.Forms.Button();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.MenuTabControl.SuspendLayout();
@@ -207,6 +207,16 @@
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(871, 452);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearButton.TabIndex = 54;
+            this.ClearButton.Text = "クリア";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // label27
             // 
@@ -943,16 +953,6 @@
             this.SaveImageButton.UseVisualStyleBackColor = true;
             this.SaveImageButton.Click += new System.EventHandler(this.SaveImageButton_Click);
             // 
-            // ClearButton
-            // 
-            this.ClearButton.Location = new System.Drawing.Point(871, 452);
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(75, 23);
-            this.ClearButton.TabIndex = 54;
-            this.ClearButton.Text = "クリア";
-            this.ClearButton.UseVisualStyleBackColor = true;
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -978,7 +978,7 @@
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(995, 870);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.23";
+            this.Text = "Open AION DPS 1.0.24";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
