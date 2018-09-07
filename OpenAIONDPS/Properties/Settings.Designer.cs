@@ -634,5 +634,17 @@ namespace OpenAIONDPS.Properties {
                 this["AlwaysOnTop"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SaveResultDirectory {
+            get {
+                return ((string)(this["SaveResultDirectory"]));
+            }
+            set {
+                this["SaveResultDirectory"] = value;
+            }
+        }
     }
 }

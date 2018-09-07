@@ -1879,14 +1879,22 @@ namespace OpenAIONDPS
 
         private void SaveSkillListImageButton_Click(object sender, EventArgs e)
         {
+            string SaveResultDirectory = Properties.Settings.Default.SaveResultDirectory;
+
+            if (String.IsNullOrEmpty(SaveResultDirectory))
+            {
+                SaveResultDirectory = this.ApplicationDirectory;
+                Properties.Settings.Default.SaveResultDirectory = this.ApplicationDirectory;
+                Properties.Settings.Default.Save();
+            }
+
             try
             {
                 SaveFileDialog SkillListSaveFileDialog = new SaveFileDialog();
-                SkillListSaveFileDialog.FileName = "スキル一覧.jpg";
-                SkillListSaveFileDialog.InitialDirectory = this.ApplicationDirectory;
-                SkillListSaveFileDialog.Filter = "JPEG(*.jpg)|*.jpg";
+                SkillListSaveFileDialog.FileName = "スキル一覧.png";
+                SkillListSaveFileDialog.InitialDirectory = SaveResultDirectory;
+                SkillListSaveFileDialog.Filter = "PNG(*.png)|*.png";
                 SkillListSaveFileDialog.Title = "保存先を指定してください。";
-                SkillListSaveFileDialog.RestoreDirectory = true;
 
                 if (SkillListSaveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -1902,11 +1910,14 @@ namespace OpenAIONDPS
 
                     Bitmap SkillListBitmap = new Bitmap(ScreenShotWidth, ScreenShotHeight);
                     this.SkillDamageListDataGridView.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, ScreenShotWidth, ScreenShotHeight));
-                    SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
 
                     this.SkillDamageListDataGridView.Width = OriginalWidth;
                     this.SkillDamageListDataGridView.Height = OriginalHeight;
                     this.SkillDamageListDataGridView.ScrollBars = ScrollBars.Both;
+
+                    Properties.Settings.Default.SaveResultDirectory = Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\";
+                    Properties.Settings.Default.Save();
                 }
             }
             catch
