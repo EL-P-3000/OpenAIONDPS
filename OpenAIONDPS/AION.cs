@@ -323,10 +323,12 @@ namespace OpenAIONDPS
             public SkillType SkillType = SkillType.Others;
             public long Damage = 0;
             public long AttackNumber = 0;
-            public long MaxDamage = 0;
-            public long MinDamage = 0;
-            public bool IsCriticalHit = false;
-            private bool IsStart = false;
+            public long MaxDamageWithCritical = 0;
+            public long MinDamageWithCritical = 0;
+            public long MaxDamageWithoutCritical = 0;
+            public long MinDamageWithoutCritical = 0;
+            private bool IsStartWithCritical = false;
+            private bool IsStartWithoutCritical = false;
 
             public Skill(string Name, JobType Job, SkillType SkillType)
             {
@@ -337,13 +339,19 @@ namespace OpenAIONDPS
 
             public void AddDamage(long Damage, bool IsCriticalHit)
             {
-                this.IsCriticalHit = IsCriticalHit;
                 this.UpdateDamage(Damage);
                 this.UpdateAttackNumber();
-                this.UpdateMaxDamage(Damage);
-                this.UpdateMinDamage(Damage);
+                this.UpdateMaxDamage(Damage, IsCriticalHit);
+                this.UpdateMinDamage(Damage, IsCriticalHit);
 
-                this.IsStart = true;
+                if (IsCriticalHit)
+                {
+                    this.IsStartWithCritical = true;
+                }
+                else
+                {
+                    this.IsStartWithoutCritical = true;
+                }
             }
 
             private void UpdateDamage(long Damage)
@@ -356,19 +364,39 @@ namespace OpenAIONDPS
                 this.AttackNumber += 1;
             }
 
-            private void UpdateMaxDamage(long Damage)
+            private void UpdateMaxDamage(long Damage, bool IsCriticalHit)
             {
-                if (!this.IsStart || this.MaxDamage < Damage)
+                if (IsCriticalHit)
                 {
-                    this.MaxDamage = Damage;
+                    if (!this.IsStartWithCritical || this.MaxDamageWithCritical < Damage)
+                    {
+                        this.MaxDamageWithCritical = Damage;
+                    }
+                }
+                else
+                {
+                    if (!this.IsStartWithoutCritical || this.MaxDamageWithoutCritical < Damage)
+                    {
+                        this.MaxDamageWithoutCritical = Damage;
+                    }
                 }
             }
 
-            private void UpdateMinDamage(long Damage)
+            private void UpdateMinDamage(long Damage, bool IsCriticalHit)
             {
-                if (!this.IsStart || this.MinDamage > Damage)
+                if (IsCriticalHit)
                 {
-                    this.MinDamage = Damage;
+                    if (!this.IsStartWithCritical || this.MinDamageWithCritical > Damage)
+                    {
+                        this.MinDamageWithCritical = Damage;
+                    }
+                }
+                else
+                {
+                    if (!this.IsStartWithoutCritical || this.MinDamageWithoutCritical > Damage)
+                    {
+                        this.MinDamageWithoutCritical = Damage;
+                    }
                 }
             }
         }

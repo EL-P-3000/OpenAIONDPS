@@ -1933,8 +1933,10 @@ namespace OpenAIONDPS
                                 _Skill.Name,
                                 _Skill.Damage.ToString("#,0"),
                                 _Skill.AttackNumber.ToString("#,0"),
-                                _Skill.MaxDamage.ToString("#,0"),
-                                _Skill.MinDamage.ToString("#,0"),
+                                _Skill.MaxDamageWithoutCritical.ToString("#,0"),
+                                _Skill.MinDamageWithoutCritical.ToString("#,0"),
+                                _Skill.MaxDamageWithCritical.ToString("#,0"),
+                                _Skill.MinDamageWithCritical.ToString("#,0"),
                                 (_Skill.Damage / _Skill.AttackNumber).ToString("#,0"),
                             }
                         );
