@@ -74,7 +74,7 @@ namespace OpenAIONDPS
             this.SimpleAttackNumberLabel.Text = "0";
             this.SkillCriticalNumberLabel.Text = "0 (0%)";
             this.SimpleCriticalNumberLabel.Text = "0 (0%)";
-            this.DamageParTotalDamageLabel.Text = "100%";
+            this.DamageParTotalDamageLabel.Text = "0%";
             this.EvadeAttackNumberLabel.Text = "0";
             this.EvadedAttackNumberLabel.Text = "0 (0%)";
             this.ResistAttackNumberLabel.Text = "0";

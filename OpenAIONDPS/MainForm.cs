@@ -95,7 +95,7 @@ namespace OpenAIONDPS
             UnregisterHotKey(Handle, HOTKEY_ID);
         }
 
-        private void ClearData()
+        private void ClearData(bool IsDeleteMemberName)
         {
             this.JobTypeNumberOfMemberList.Clear();
             foreach (AION.JobType Job in Enum.GetValues(typeof(AION.JobType)))
@@ -111,12 +111,24 @@ namespace OpenAIONDPS
                     MemberUnit _MemberUnit = (MemberUnit)_Control;
                     string MemberName = _MemberUnit.GetMemberName();
                     _MemberUnit.Clear();
-                    if (!String.IsNullOrEmpty(MemberName) && !this.MemberNameMemberUnitList.ContainsKey(MemberName))
+
+                    if (IsDeleteMemberName)
                     {
-                        this.MemberNameMemberUnitList.Add(MemberName, _MemberUnit);
-                        if (_MemberUnit.GetJob() != AION.JobType.None)
+                        if (!String.IsNullOrEmpty(MemberName) && !MemberName.Equals(this.OwnName))
                         {
-                            this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
+                            _MemberUnit.SetMemberName("");
+                            _MemberUnit.SetJobType(AION.JobType.None);
+                        }
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(MemberName) && !this.MemberNameMemberUnitList.ContainsKey(MemberName))
+                        {
+                            this.MemberNameMemberUnitList.Add(MemberName, _MemberUnit);
+                            if (_MemberUnit.GetJob() != AION.JobType.None)
+                            {
+                                this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
+                            }
                         }
                     }
                 }
@@ -130,6 +142,8 @@ namespace OpenAIONDPS
                     _SkillUnit.Clear();
                 }
             }
+
+            this.SkillDamageListDataGridView.Rows.Clear();
         }
 
         private void OpenLogFileButton_Click(object sender, EventArgs e)
@@ -204,7 +218,7 @@ namespace OpenAIONDPS
             this.IsRunning = true;
             this.StopFlag = false;
 
-            this.ClearData();
+            this.ClearData(false);
 
             // デバッグ
             this.OpenDebugLogFile();
@@ -1594,7 +1608,7 @@ namespace OpenAIONDPS
                 this.IsRunning = true;
                 this.StopFlag = false;
 
-                this.ClearData();
+                this.ClearData(false);
 
                 this.TotalDamage = 0;
                 this.TotalDamageLabel.Text = "0";
@@ -1773,6 +1787,11 @@ namespace OpenAIONDPS
             {
                 FavoriteMemberList.Visible = true;
             }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.ClearData(true);
         }
 
         /* デバッグ関係 */
