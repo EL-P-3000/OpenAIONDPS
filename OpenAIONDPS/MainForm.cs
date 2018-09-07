@@ -633,11 +633,13 @@ namespace OpenAIONDPS
                                     else if (AttackReflectionDamageWithSourceNameMatch.Success)
                                     {
                                         ChatLogActionData.SourceName = AttackReflectionDamageWithSourceNameMatch.Groups["SourceName"].Value;
+                                        ChatLogActionData.SkillName = "反射";
                                         _Match = AttackReflectionDamageWithSourceNameMatch;
                                     }
                                     else
                                     {
                                         ChatLogActionData.SourceName = this.OwnName;
+                                        ChatLogActionData.SkillName = "反射";
                                         _Match = AttackReflectionDamageWithoutSourceNameMatch;
                                     }
 
