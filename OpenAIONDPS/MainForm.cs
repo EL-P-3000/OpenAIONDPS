@@ -1644,7 +1644,7 @@ namespace OpenAIONDPS
             try
             {
                 SaveFileDialog SkillListSaveFileDialog = new SaveFileDialog();
-                SkillListSaveFileDialog.FileName = "DPS-Result.png";
+                SkillListSaveFileDialog.FileName = "DPS-Result-" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".png";
                 SkillListSaveFileDialog.InitialDirectory = SaveResultDirectory;
                 SkillListSaveFileDialog.Filter = "PNG(*.png)|*.png";
                 SkillListSaveFileDialog.Title = "保存先を指定してください。";
@@ -1925,7 +1925,7 @@ namespace OpenAIONDPS
             try
             {
                 SaveFileDialog SkillListSaveFileDialog = new SaveFileDialog();
-                SkillListSaveFileDialog.FileName = "スキル一覧.png";
+                SkillListSaveFileDialog.FileName = "DPS-Result-Skill-" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".png";
                 SkillListSaveFileDialog.InitialDirectory = SaveResultDirectory;
                 SkillListSaveFileDialog.Filter = "PNG(*.png)|*.png";
                 SkillListSaveFileDialog.Title = "保存先を指定してください。";
