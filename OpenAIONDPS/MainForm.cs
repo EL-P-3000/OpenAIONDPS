@@ -1630,6 +1630,40 @@ namespace OpenAIONDPS
 
         /* その他 */
 
+        private void SaveImageButton_Click(object sender, EventArgs e)
+        {
+            string SaveResultDirectory = Properties.Settings.Default.SaveResultDirectory;
+
+            if (String.IsNullOrEmpty(SaveResultDirectory))
+            {
+                SaveResultDirectory = this.ApplicationDirectory;
+                Properties.Settings.Default.SaveResultDirectory = this.ApplicationDirectory;
+                Properties.Settings.Default.Save();
+            }
+
+            try
+            {
+                SaveFileDialog SkillListSaveFileDialog = new SaveFileDialog();
+                SkillListSaveFileDialog.FileName = "DPS-Result.png";
+                SkillListSaveFileDialog.InitialDirectory = SaveResultDirectory;
+                SkillListSaveFileDialog.Filter = "PNG(*.png)|*.png";
+                SkillListSaveFileDialog.Title = "保存先を指定してください。";
+
+                if (SkillListSaveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap SkillListBitmap = new Bitmap(this.Width, this.Height);
+                    this.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, this.Width, this.Height));
+                    SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+
+                    Properties.Settings.Default.SaveResultDirectory = Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\";
+                    Properties.Settings.Default.Save();
+                }
+            }
+            catch
+            {
+            }
+        }
+
         private void CopyResultButton_Click(object sender, EventArgs e)
         {
             this.CopyResult(false);

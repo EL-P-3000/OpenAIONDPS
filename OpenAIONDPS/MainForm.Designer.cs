@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
@@ -87,6 +87,7 @@
             this.MemberDamageListTabPage = new System.Windows.Forms.TabPage();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SkillDamageListTabPage = new System.Windows.Forms.TabPage();
+            this.SaveSkillListImageButton = new System.Windows.Forms.Button();
             this.SkillDamageListDataGridView = new System.Windows.Forms.DataGridView();
             this.MemberNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SkillNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,7 +96,7 @@
             this.MaxDamageColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MinDamageColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DamageParAttackNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaveSkillListImageButton = new System.Windows.Forms.Button();
+            this.SaveImageButton = new System.Windows.Forms.Button();
             this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.Member01 = new OpenAIONDPS.MemberUnit();
             this.Member02 = new OpenAIONDPS.MemberUnit();
@@ -143,7 +144,7 @@
             this.OpenLogFileButton.Location = new System.Drawing.Point(12, 41);
             this.OpenLogFileButton.Name = "OpenLogFileButton";
             this.OpenLogFileButton.Size = new System.Drawing.Size(75, 23);
-            this.OpenLogFileButton.TabIndex = 2;
+            this.OpenLogFileButton.TabIndex = 4;
             this.OpenLogFileButton.Text = "ログファイル";
             this.OpenLogFileButton.UseVisualStyleBackColor = true;
             this.OpenLogFileButton.Click += new System.EventHandler(this.OpenLogFileButton_Click);
@@ -287,7 +288,7 @@
             this.LimitedTargetNameComboBox.Location = new System.Drawing.Point(81, 455);
             this.LimitedTargetNameComboBox.Name = "LimitedTargetNameComboBox";
             this.LimitedTargetNameComboBox.Size = new System.Drawing.Size(203, 20);
-            this.LimitedTargetNameComboBox.TabIndex = 46;
+            this.LimitedTargetNameComboBox.TabIndex = 28;
             // 
             // label21
             // 
@@ -365,7 +366,7 @@
             this.LimitedTargetCheckBox.Location = new System.Drawing.Point(6, 457);
             this.LimitedTargetCheckBox.Name = "LimitedTargetCheckBox";
             this.LimitedTargetCheckBox.Size = new System.Drawing.Size(72, 16);
-            this.LimitedTargetCheckBox.TabIndex = 37;
+            this.LimitedTargetCheckBox.TabIndex = 27;
             this.LimitedTargetCheckBox.Text = "対象限定";
             this.LimitedTargetCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -374,7 +375,7 @@
             this.FavoriteMemberButton.Location = new System.Drawing.Point(53, 30);
             this.FavoriteMemberButton.Name = "FavoriteMemberButton";
             this.FavoriteMemberButton.Size = new System.Drawing.Size(75, 23);
-            this.FavoriteMemberButton.TabIndex = 25;
+            this.FavoriteMemberButton.TabIndex = 12;
             this.FavoriteMemberButton.Text = "登録";
             this.FavoriteMemberButton.UseVisualStyleBackColor = true;
             this.FavoriteMemberButton.Click += new System.EventHandler(this.FavoriteMemberButton_Click);
@@ -386,7 +387,7 @@
             this.DisableJobRadioButton.Location = new System.Drawing.Point(84, 433);
             this.DisableJobRadioButton.Name = "DisableJobRadioButton";
             this.DisableJobRadioButton.Size = new System.Drawing.Size(72, 16);
-            this.DisableJobRadioButton.TabIndex = 35;
+            this.DisableJobRadioButton.TabIndex = 26;
             this.DisableJobRadioButton.Text = "ジョブ無効";
             this.DisableJobRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -398,7 +399,7 @@
             this.EnableJobRadioButton.Location = new System.Drawing.Point(6, 433);
             this.EnableJobRadioButton.Name = "EnableJobRadioButton";
             this.EnableJobRadioButton.Size = new System.Drawing.Size(72, 16);
-            this.EnableJobRadioButton.TabIndex = 34;
+            this.EnableJobRadioButton.TabIndex = 25;
             this.EnableJobRadioButton.TabStop = true;
             this.EnableJobRadioButton.Text = "ジョブ有効";
             this.EnableJobRadioButton.UseVisualStyleBackColor = true;
@@ -543,10 +544,10 @@
             // DebugCheckBox
             // 
             this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(375, 45);
+            this.DebugCheckBox.Location = new System.Drawing.Point(456, 45);
             this.DebugCheckBox.Name = "DebugCheckBox";
             this.DebugCheckBox.Size = new System.Drawing.Size(114, 16);
-            this.DebugCheckBox.TabIndex = 25;
+            this.DebugCheckBox.TabIndex = 10;
             this.DebugCheckBox.Text = "デバッグ用ログ出力";
             this.DebugCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -555,7 +556,7 @@
             this.CalcFromLogFileButton.Location = new System.Drawing.Point(93, 41);
             this.CalcFromLogFileButton.Name = "CalcFromLogFileButton";
             this.CalcFromLogFileButton.Size = new System.Drawing.Size(75, 23);
-            this.CalcFromLogFileButton.TabIndex = 26;
+            this.CalcFromLogFileButton.TabIndex = 5;
             this.CalcFromLogFileButton.Text = "ログから計測";
             this.CalcFromLogFileButton.UseVisualStyleBackColor = true;
             this.CalcFromLogFileButton.Click += new System.EventHandler(this.CalcFromLogFileButton_Click);
@@ -563,10 +564,10 @@
             // AlwaysOnTopCheckBox
             // 
             this.AlwaysOnTopCheckBox.AutoSize = true;
-            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(285, 45);
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(366, 45);
             this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
             this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
-            this.AlwaysOnTopCheckBox.TabIndex = 27;
+            this.AlwaysOnTopCheckBox.TabIndex = 9;
             this.AlwaysOnTopCheckBox.Text = "最前面表示";
             this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
             this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
@@ -574,16 +575,16 @@
             // CalcTimeCheckBox
             // 
             this.CalcTimeCheckBox.AutoSize = true;
-            this.CalcTimeCheckBox.Location = new System.Drawing.Point(285, 16);
+            this.CalcTimeCheckBox.Location = new System.Drawing.Point(366, 16);
             this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
             this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
-            this.CalcTimeCheckBox.TabIndex = 28;
+            this.CalcTimeCheckBox.TabIndex = 7;
             this.CalcTimeCheckBox.Text = "計測時間(分)";
             this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
             // 
             // CalcTimerMinutesNumericUpDown
             // 
-            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(377, 13);
+            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(458, 13);
             this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -596,7 +597,7 @@
             0});
             this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
             this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
-            this.CalcTimerMinutesNumericUpDown.TabIndex = 29;
+            this.CalcTimerMinutesNumericUpDown.TabIndex = 8;
             this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
             5,
@@ -609,7 +610,7 @@
             // 
             this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
-            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(425, 12);
+            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(506, 12);
             this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
             this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
             this.CalcRemainingTimeLabel.TabIndex = 30;
@@ -618,20 +619,20 @@
             // 
             // CopyResultButton
             // 
-            this.CopyResultButton.Location = new System.Drawing.Point(174, 12);
+            this.CopyResultButton.Location = new System.Drawing.Point(255, 12);
             this.CopyResultButton.Name = "CopyResultButton";
             this.CopyResultButton.Size = new System.Drawing.Size(105, 23);
-            this.CopyResultButton.TabIndex = 31;
+            this.CopyResultButton.TabIndex = 3;
             this.CopyResultButton.Text = "コピー";
             this.CopyResultButton.UseVisualStyleBackColor = true;
             this.CopyResultButton.Click += new System.EventHandler(this.CopyResultButton_Click);
             // 
             // CopyResultForSkypeButton
             // 
-            this.CopyResultForSkypeButton.Location = new System.Drawing.Point(174, 41);
+            this.CopyResultForSkypeButton.Location = new System.Drawing.Point(255, 41);
             this.CopyResultForSkypeButton.Name = "CopyResultForSkypeButton";
             this.CopyResultForSkypeButton.Size = new System.Drawing.Size(105, 23);
-            this.CopyResultForSkypeButton.TabIndex = 32;
+            this.CopyResultForSkypeButton.TabIndex = 6;
             this.CopyResultForSkypeButton.Text = "コピー (Skype用)";
             this.CopyResultForSkypeButton.UseVisualStyleBackColor = true;
             this.CopyResultForSkypeButton.Click += new System.EventHandler(this.CopyResultForSkypeButton_Click);
@@ -688,7 +689,7 @@
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
             this.MenuTabControl.Size = new System.Drawing.Size(973, 748);
-            this.MenuTabControl.TabIndex = 37;
+            this.MenuTabControl.TabIndex = 11;
             this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
             // 
             // MemberDamageListTabPage
@@ -712,7 +713,7 @@
             this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(3, 492);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
             this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(956, 224);
-            this.SkillListFlowLayoutPanel.TabIndex = 20;
+            this.SkillListFlowLayoutPanel.TabIndex = 29;
             // 
             // SkillDamageListTabPage
             // 
@@ -721,10 +722,20 @@
             this.SkillDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.SkillDamageListTabPage.Name = "SkillDamageListTabPage";
             this.SkillDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SkillDamageListTabPage.Size = new System.Drawing.Size(972, 723);
+            this.SkillDamageListTabPage.Size = new System.Drawing.Size(965, 722);
             this.SkillDamageListTabPage.TabIndex = 1;
             this.SkillDamageListTabPage.Text = "スキル別ダメージ一覧";
             this.SkillDamageListTabPage.UseVisualStyleBackColor = true;
+            // 
+            // SaveSkillListImageButton
+            // 
+            this.SaveSkillListImageButton.Location = new System.Drawing.Point(6, 6);
+            this.SaveSkillListImageButton.Name = "SaveSkillListImageButton";
+            this.SaveSkillListImageButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveSkillListImageButton.TabIndex = 1;
+            this.SaveSkillListImageButton.Text = "保存";
+            this.SaveSkillListImageButton.UseVisualStyleBackColor = true;
+            this.SaveSkillListImageButton.Click += new System.EventHandler(this.SaveSkillListImageButton_Click);
             // 
             // SkillDamageListDataGridView
             // 
@@ -756,8 +767,8 @@
             // 
             // SkillNameColumn
             // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle31;
             this.SkillNameColumn.HeaderText = "スキル名";
             this.SkillNameColumn.Name = "SkillNameColumn";
             this.SkillNameColumn.ReadOnly = true;
@@ -765,53 +776,53 @@
             // 
             // DamageColumn
             // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle32;
             this.DamageColumn.HeaderText = "総ダメージ";
             this.DamageColumn.Name = "DamageColumn";
             this.DamageColumn.ReadOnly = true;
             // 
             // AttackNumberColumn
             // 
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle33;
             this.AttackNumberColumn.HeaderText = "回数";
             this.AttackNumberColumn.Name = "AttackNumberColumn";
             this.AttackNumberColumn.ReadOnly = true;
             // 
             // MaxDamageColumn
             // 
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle34;
             this.MaxDamageColumn.HeaderText = "MAXダメージ";
             this.MaxDamageColumn.Name = "MaxDamageColumn";
             this.MaxDamageColumn.ReadOnly = true;
             // 
             // MinDamageColumn
             // 
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle35;
             this.MinDamageColumn.HeaderText = "MINダメージ";
             this.MinDamageColumn.Name = "MinDamageColumn";
             this.MinDamageColumn.ReadOnly = true;
             // 
             // DamageParAttackNumber
             // 
-            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle36;
             this.DamageParAttackNumber.HeaderText = "平均ダメージ";
             this.DamageParAttackNumber.Name = "DamageParAttackNumber";
             this.DamageParAttackNumber.ReadOnly = true;
             // 
-            // SaveSkillListImageButton
+            // SaveImageButton
             // 
-            this.SaveSkillListImageButton.Location = new System.Drawing.Point(6, 6);
-            this.SaveSkillListImageButton.Name = "SaveSkillListImageButton";
-            this.SaveSkillListImageButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveSkillListImageButton.TabIndex = 1;
-            this.SaveSkillListImageButton.Text = "保存";
-            this.SaveSkillListImageButton.UseVisualStyleBackColor = true;
-            this.SaveSkillListImageButton.Click += new System.EventHandler(this.SaveSkillListImageButton_Click);
+            this.SaveImageButton.Location = new System.Drawing.Point(174, 12);
+            this.SaveImageButton.Name = "SaveImageButton";
+            this.SaveImageButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveImageButton.TabIndex = 2;
+            this.SaveImageButton.Text = "保存(画像)";
+            this.SaveImageButton.UseVisualStyleBackColor = true;
+            this.SaveImageButton.Click += new System.EventHandler(this.SaveImageButton_Click);
             // 
             // FavoriteMemberList
             // 
@@ -819,7 +830,7 @@
             this.FavoriteMemberList.Location = new System.Drawing.Point(247, 58);
             this.FavoriteMemberList.Name = "FavoriteMemberList";
             this.FavoriteMemberList.Size = new System.Drawing.Size(522, 345);
-            this.FavoriteMemberList.TabIndex = 25;
+            this.FavoriteMemberList.TabIndex = 30;
             this.FavoriteMemberList.Visible = false;
             // 
             // Member01
@@ -829,7 +840,7 @@
             this.Member01.Location = new System.Drawing.Point(6, 58);
             this.Member01.Name = "Member01";
             this.Member01.Size = new System.Drawing.Size(936, 26);
-            this.Member01.TabIndex = 1;
+            this.Member01.TabIndex = 13;
             // 
             // Member02
             // 
@@ -838,7 +849,7 @@
             this.Member02.Location = new System.Drawing.Point(6, 87);
             this.Member02.Name = "Member02";
             this.Member02.Size = new System.Drawing.Size(936, 26);
-            this.Member02.TabIndex = 2;
+            this.Member02.TabIndex = 14;
             // 
             // Member03
             // 
@@ -847,7 +858,7 @@
             this.Member03.Location = new System.Drawing.Point(6, 116);
             this.Member03.Name = "Member03";
             this.Member03.Size = new System.Drawing.Size(936, 26);
-            this.Member03.TabIndex = 3;
+            this.Member03.TabIndex = 15;
             // 
             // Member04
             // 
@@ -856,7 +867,7 @@
             this.Member04.Location = new System.Drawing.Point(6, 145);
             this.Member04.Name = "Member04";
             this.Member04.Size = new System.Drawing.Size(936, 26);
-            this.Member04.TabIndex = 4;
+            this.Member04.TabIndex = 16;
             // 
             // Member05
             // 
@@ -865,7 +876,7 @@
             this.Member05.Location = new System.Drawing.Point(6, 174);
             this.Member05.Name = "Member05";
             this.Member05.Size = new System.Drawing.Size(936, 26);
-            this.Member05.TabIndex = 5;
+            this.Member05.TabIndex = 17;
             // 
             // Member06
             // 
@@ -874,7 +885,7 @@
             this.Member06.Location = new System.Drawing.Point(6, 203);
             this.Member06.Name = "Member06";
             this.Member06.Size = new System.Drawing.Size(936, 26);
-            this.Member06.TabIndex = 6;
+            this.Member06.TabIndex = 18;
             // 
             // Member07
             // 
@@ -883,7 +894,7 @@
             this.Member07.Location = new System.Drawing.Point(6, 232);
             this.Member07.Name = "Member07";
             this.Member07.Size = new System.Drawing.Size(936, 26);
-            this.Member07.TabIndex = 7;
+            this.Member07.TabIndex = 19;
             // 
             // Member08
             // 
@@ -892,7 +903,7 @@
             this.Member08.Location = new System.Drawing.Point(6, 261);
             this.Member08.Name = "Member08";
             this.Member08.Size = new System.Drawing.Size(936, 26);
-            this.Member08.TabIndex = 8;
+            this.Member08.TabIndex = 20;
             // 
             // Member09
             // 
@@ -901,7 +912,7 @@
             this.Member09.Location = new System.Drawing.Point(6, 290);
             this.Member09.Name = "Member09";
             this.Member09.Size = new System.Drawing.Size(936, 26);
-            this.Member09.TabIndex = 9;
+            this.Member09.TabIndex = 21;
             // 
             // Member10
             // 
@@ -910,7 +921,7 @@
             this.Member10.Location = new System.Drawing.Point(6, 319);
             this.Member10.Name = "Member10";
             this.Member10.Size = new System.Drawing.Size(936, 26);
-            this.Member10.TabIndex = 10;
+            this.Member10.TabIndex = 22;
             // 
             // Member11
             // 
@@ -919,7 +930,7 @@
             this.Member11.Location = new System.Drawing.Point(6, 348);
             this.Member11.Name = "Member11";
             this.Member11.Size = new System.Drawing.Size(936, 26);
-            this.Member11.TabIndex = 11;
+            this.Member11.TabIndex = 23;
             // 
             // Member12
             // 
@@ -928,13 +939,14 @@
             this.Member12.Location = new System.Drawing.Point(6, 377);
             this.Member12.Name = "Member12";
             this.Member12.Size = new System.Drawing.Size(936, 26);
-            this.Member12.TabIndex = 12;
+            this.Member12.TabIndex = 24;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 831);
+            this.Controls.Add(this.SaveImageButton);
             this.Controls.Add(this.MenuTabControl);
             this.Controls.Add(this.ProjectTopLinkLabel);
             this.Controls.Add(this.label29);
@@ -1046,6 +1058,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MinDamageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DamageParAttackNumber;
         private System.Windows.Forms.Button SaveSkillListImageButton;
+        private System.Windows.Forms.Button SaveImageButton;
     }
 }
 
