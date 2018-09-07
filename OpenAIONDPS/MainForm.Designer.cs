@@ -870,6 +870,9 @@
             // 
             this.SkillDamageListDataGridView.AllowUserToAddRows = false;
             this.SkillDamageListDataGridView.AllowUserToDeleteRows = false;
+            this.SkillDamageListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SkillDamageListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SkillDamageListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MemberNameColumn,
@@ -884,7 +887,7 @@
             this.SkillDamageListDataGridView.ReadOnly = true;
             this.SkillDamageListDataGridView.RowHeadersVisible = false;
             this.SkillDamageListDataGridView.RowTemplate.Height = 21;
-            this.SkillDamageListDataGridView.Size = new System.Drawing.Size(960, 682);
+            this.SkillDamageListDataGridView.Size = new System.Drawing.Size(953, 682);
             this.SkillDamageListDataGridView.TabIndex = 0;
             // 
             // MemberNameColumn
