@@ -14,7 +14,7 @@ namespace OpenAIONDPS
         public string TargetName = "";
         public long Damage = 0;
         public bool IsSkill = true;
-        public bool CriticalHit = false;
+        public bool IsCriticalHit = false;
         public DateTime Time = DateTime.Now;
     }
 }

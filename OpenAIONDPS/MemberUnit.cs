@@ -6,6 +6,7 @@ namespace OpenAIONDPS
 {
     public partial class MemberUnit : UserControl
     {
+        private Dictionary<string, AION.Skill> SkillList = new Dictionary<string, AION.Skill>();
         private static DateTime DefaultTime = new DateTime(0);
         private DateTime StartTime = DefaultTime;
         private DateTime EndTime = DefaultTime;
@@ -42,6 +43,8 @@ namespace OpenAIONDPS
 
         public void Clear()
         {
+            this.SkillList.Clear();
+
             this.StartTime = DefaultTime;
             this.EndTime = DefaultTime;
             this.StartFlag = false;
@@ -93,6 +96,11 @@ namespace OpenAIONDPS
             return this.CharacterNameTextBox.Text;
         }
 
+        public Dictionary<string, AION.Skill> GetSkillList()
+        {
+            return this.SkillList;
+        }
+
         public void SetJobType(AION.JobType Job)
         {
             this.JobComboBox.SelectedValue = Job;
@@ -103,29 +111,44 @@ namespace OpenAIONDPS
             return (AION.JobType)this.JobComboBox.SelectedValue;
         }
 
-        public void AddDamage(long Damage, bool IsSkill, bool IsCritical, DateTime Time)
+        public void AddDamage(ActionData Data)
         {
             if (!this.IsStart())
             {
-                this.StartFlag = true;
-                this.StartTime = Time;
+                this.StartTime = Data.Time;
             }
-            this.EndTime = Time;
+            this.EndTime = Data.Time;
 
-            this.UpdateDamage(Damage);
-            if (IsCritical)
+            this.UpdateDamage(Data.Damage);
+            if (Data.IsCriticalHit)
             {
-                this.UpdateCriticalHit(IsSkill);
+                this.UpdateCriticalHit(Data.IsSkill);
             }
             this.UpdateSeconds();
-            this.UpdateAttackNumber(IsSkill);
-            this.UpdateMaxDamage(Damage);
-            this.UpdateMinDamage(Damage);
+            this.UpdateAttackNumber(Data.IsSkill);
+            this.UpdateMaxDamage(Data.Damage);
+            this.UpdateMinDamage(Data.Damage);
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
 
             this.UpdateCriticalHitLabel();
+
+            if (this.SkillList != null)
+            {
+                if (!this.SkillList.ContainsKey(Data.SkillName))
+                {
+                    AION.Skill _Skill = new AION.Skill(Data.SkillName, this.GetJob(), AION.SkillType.Others);
+                    this.SkillList.Add(Data.SkillName, _Skill);
+                }
+
+                this.SkillList[Data.SkillName].AddDamage(Data.Damage, Data.IsCriticalHit);
+            }
+
+            if (!this.IsStart())
+            {
+                this.StartFlag = true;
+            }
         }
 
         public void AddEvasion(bool IsSourceNameMember, bool IsSkill, DateTime Time)
@@ -147,7 +170,6 @@ namespace OpenAIONDPS
 
                 this.UpdateEvadedAttackNumber(IsSkill);
             }
-
         }
 
         public void AddResistance(bool IsSourceNameMember, bool IsSkill, DateTime Time)
@@ -169,7 +191,6 @@ namespace OpenAIONDPS
 
                 this.UpdateResistedAttackNumber(IsSkill);
             }
-
         }
 
         private void UpdateDamage(long Damage)
@@ -208,7 +229,7 @@ namespace OpenAIONDPS
 
         private void UpdateMaxDamage(long Damage)
         {
-            if (this.MaxDamage == 0 || this.MaxDamage < Damage)
+            if (!this.IsStart() || this.MaxDamage < Damage)
             {
                 this.MaxDamage = Damage;
                 this.MaxDamageLabel.Text = this.MaxDamage.ToString("#,0");
@@ -217,7 +238,7 @@ namespace OpenAIONDPS
 
         private void UpdateMinDamage(long Damage)
         {
-            if (this.MinDamage == 0 || this.MinDamage > Damage)
+            if (!this.IsStart() || this.MinDamage > Damage)
             {
                 this.MinDamage = Damage;
                 this.MinDamageLabel.Text = this.MinDamage.ToString("#,0");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -27,6 +28,7 @@ namespace OpenAIONDPS
 
         /* メンバー＆スキル一覧 */
         private string OwnName = "自分";
+        private string SimpleDamageName = "通常攻撃";
         private Dictionary<string, MemberUnit> MemberNameMemberUnitList = new Dictionary<string, MemberUnit>();
         private Dictionary<AION.JobType, int> JobTypeNumberOfMemberList = new Dictionary<AION.JobType, int>();
         private Dictionary<string, SkillUnit> SkillUnitList = new Dictionary<string, SkillUnit>();
@@ -533,12 +535,19 @@ namespace OpenAIONDPS
                                 break;
                             }
 
+                            // ログファイルから計算の場合はイベント処理を挟む
+                            if (this.IsCalcLogFile)
+                            {
+                                Application.DoEvents();
+                            }
+
                             LogText = ChatLogStreamReader.ReadLine();
                             LogTextWithoutTime = "";
 
                             // ラインの取得
                             if (String.IsNullOrEmpty(LogText))
                             {
+                                Application.DoEvents();
                                 continue;
                             }
 
@@ -573,7 +582,7 @@ namespace OpenAIONDPS
                             Match CriticalHitMatch = CriticalHitRegex.Match(LogTextWithoutTime);
                             if (CriticalHitMatch.Success)
                             {
-                                ChatLogActionData.CriticalHit = true;
+                                ChatLogActionData.IsCriticalHit = true;
                                 LogTextWithoutTime = CriticalHitMatch.Groups[1].Value;
                             }
 
@@ -726,7 +735,7 @@ namespace OpenAIONDPS
                                 if (AttackCriticalHitDamageMatch.Success)
                                 {
                                     ChatLogActionData.SourceName = this.OwnName;
-                                    ChatLogActionData.SkillName = AttackCriticalHitDamageMatch.Groups["SkillName"].Value;
+                                    ChatLogActionData.SkillName = this.SimpleDamageName;
                                     ChatLogActionData.TargetName = AttackCriticalHitDamageMatch.Groups["TargetName"].Value;
                                     ChatLogActionData.Damage = long.Parse(AttackCriticalHitDamageMatch.Groups["Damage"].Value.Replace(",", ""));
                                     ChatLogActionData.IsSkill = false;
@@ -745,7 +754,7 @@ namespace OpenAIONDPS
                                     {
                                         AttackSimpleDamageWithSourceNameMatchFlag = true;
                                         ChatLogActionData.SourceName = AttackSimpleDamageWithSourceNameMatch.Groups["SourceName"].Value;
-                                        ChatLogActionData.SkillName = AttackSimpleDamageWithSourceNameMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.SkillName = this.SimpleDamageName;
                                         ChatLogActionData.TargetName = AttackSimpleDamageWithSourceNameMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
                                         ChatLogActionData.IsSkill = false;
@@ -765,7 +774,7 @@ namespace OpenAIONDPS
                                 if (AttackSimpleDamageWithoutSourceNameMatch.Success)
                                 {
                                     ChatLogActionData.SourceName = this.OwnName;
-                                    ChatLogActionData.SkillName = AttackSimpleDamageWithoutSourceNameMatch.Groups["SkillName"].Value;
+                                    ChatLogActionData.SkillName = this.SimpleDamageName;
                                     ChatLogActionData.TargetName = AttackSimpleDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
                                     ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
                                     ChatLogActionData.IsSkill = false;
@@ -1356,7 +1365,7 @@ namespace OpenAIONDPS
                             if (_MemberUnit.GetJob() == Job)
                             {
                                 this.UpdateTotalDamage(ChatLogActionData.Damage);
-                                _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                                _MemberUnit.AddDamage(ChatLogActionData);
                                 UpdateTotalDamageFlag = true;
                                 break;
                             }
@@ -1383,7 +1392,7 @@ namespace OpenAIONDPS
                             if (_MemberUnit.GetJob() == Job)
                             {
                                 this.UpdateTotalDamage(ChatLogActionData.Damage);
-                                _MemberUnit.AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                                _MemberUnit.AddDamage(ChatLogActionData);
                                 UpdateTotalDamageFlag = true;
                                 break;
                             }
@@ -1401,7 +1410,7 @@ namespace OpenAIONDPS
                 else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
                 {
                     this.UpdateTotalDamage(ChatLogActionData.Damage);
-                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsSkill, ChatLogActionData.CriticalHit, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData);
                     UpdateTotalDamageFlag = true;
                 }
 
@@ -1812,6 +1821,82 @@ namespace OpenAIONDPS
         private void ProjectManualLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(this.ProjectManualLinkLabel.Text);
+        }
+
+        /* タブ関係 */
+
+        private void MenuTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.MenuTabControl.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    this.SetSkillDamageList();
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        private void SetSkillDamageList()
+        {
+            this.SkillDamageListDataGridView.Rows.Clear();
+
+            if (this.MemberNameMemberUnitList != null && this.MemberNameMemberUnitList.Count >= 1)
+            {
+                foreach (MemberUnit _MemberUnit in MemberNameMemberUnitList.Values)
+                {
+                    Dictionary<string, AION.Skill> SkillList = _MemberUnit.GetSkillList();
+
+                    foreach (AION.Skill _Skill in SkillList.Values)
+                    {
+                        this.SkillDamageListDataGridView.Rows.Add(
+                            new string[] {
+                                _MemberUnit.GetMemberName(),
+                                _Skill.Name,
+                                _Skill.Damage.ToString("#,0"),
+                                _Skill.AttackNumber.ToString("#,0"),
+                                _Skill.MaxDamage.ToString("#,0"),
+                                _Skill.MinDamage.ToString("#,0"),
+                                (_Skill.Damage / _Skill.AttackNumber).ToString("#,0"),
+                            }
+                        );
+                    }
+                }
+            }
+        }
+
+        private void SaveSkillListImageButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog SkillListSaveFileDialog = new SaveFileDialog();
+                SkillListSaveFileDialog.FileName = "スキル一覧.jpg";
+                SkillListSaveFileDialog.InitialDirectory = this.ApplicationDirectory;
+                SkillListSaveFileDialog.Filter = "JPEG(*.jpg)|*.jpg";
+                SkillListSaveFileDialog.Title = "保存先を指定してください。";
+                SkillListSaveFileDialog.RestoreDirectory = true;
+
+                if (SkillListSaveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.SkillDamageListDataGridView.CurrentCell = null;
+                    int OriginalHeight = this.SkillDamageListDataGridView.Height;
+
+                    int ScreenShotWidth = this.SkillDamageListDataGridView.Width;
+                    int ScreenShotHeight = this.SkillDamageListDataGridView.Rows.GetRowsHeight(DataGridViewElementStates.None) + this.SkillDamageListDataGridView.Rows[0].Height;
+                    this.SkillDamageListDataGridView.Height = ScreenShotHeight;
+
+                    Bitmap SkillListBitmap = new Bitmap(ScreenShotWidth, ScreenShotHeight);
+                    this.SkillDamageListDataGridView.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, ScreenShotWidth, ScreenShotHeight));
+                    SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                    this.SkillDamageListDataGridView.Height = OriginalHeight;
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }
