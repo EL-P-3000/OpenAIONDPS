@@ -742,6 +742,7 @@
             this.SkillDamageListDataGridView.Location = new System.Drawing.Point(6, 35);
             this.SkillDamageListDataGridView.Name = "SkillDamageListDataGridView";
             this.SkillDamageListDataGridView.ReadOnly = true;
+            this.SkillDamageListDataGridView.RowHeadersVisible = false;
             this.SkillDamageListDataGridView.RowTemplate.Height = 21;
             this.SkillDamageListDataGridView.Size = new System.Drawing.Size(960, 682);
             this.SkillDamageListDataGridView.TabIndex = 0;

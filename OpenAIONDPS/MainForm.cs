@@ -1832,7 +1832,15 @@ namespace OpenAIONDPS
                 case 0:
                     break;
                 case 1:
-                    this.SetSkillDamageList();
+                    if (this.IsRunning)
+                    {
+                        MessageBox.Show("計測を停止してから表示してください。", "注意");
+                        this.MenuTabControl.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        this.SetSkillDamageList();
+                    }
                     break;
                 default:
                     return;
@@ -1881,17 +1889,22 @@ namespace OpenAIONDPS
                 if (SkillListSaveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     this.SkillDamageListDataGridView.CurrentCell = null;
+                    int OriginalWidth = this.SkillDamageListDataGridView.Width;
                     int OriginalHeight = this.SkillDamageListDataGridView.Height;
 
-                    int ScreenShotWidth = this.SkillDamageListDataGridView.Width;
+                    int ScreenShotWidth = this.SkillDamageListDataGridView.Columns.GetColumnsWidth(DataGridViewElementStates.None);
                     int ScreenShotHeight = this.SkillDamageListDataGridView.Rows.GetRowsHeight(DataGridViewElementStates.None) + this.SkillDamageListDataGridView.Rows[0].Height;
+                    this.SkillDamageListDataGridView.ScrollBars = ScrollBars.None;
+                    this.SkillDamageListDataGridView.Width = ScreenShotWidth;
                     this.SkillDamageListDataGridView.Height = ScreenShotHeight;
 
                     Bitmap SkillListBitmap = new Bitmap(ScreenShotWidth, ScreenShotHeight);
                     this.SkillDamageListDataGridView.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, ScreenShotWidth, ScreenShotHeight));
                     SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
 
+                    this.SkillDamageListDataGridView.Width = OriginalWidth;
                     this.SkillDamageListDataGridView.Height = OriginalHeight;
+                    this.SkillDamageListDataGridView.ScrollBars = ScrollBars.Both;
                 }
             }
             catch
