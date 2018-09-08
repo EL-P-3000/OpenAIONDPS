@@ -29,6 +29,7 @@ namespace OpenAIONDPS
         /* メンバー＆スキル一覧 */
         private string OwnName = "自分";
         private string SimpleDamageName = "通常攻撃";
+        private string ReflectDamageName = "反射";
         private Dictionary<string, MemberUnit> MemberNameMemberUnitList = new Dictionary<string, MemberUnit>();
         private Dictionary<AION.JobType, int> JobTypeNumberOfMemberList = new Dictionary<AION.JobType, int>();
         private Dictionary<string, SkillUnit> SkillUnitList = new Dictionary<string, SkillUnit>();
@@ -633,13 +634,13 @@ namespace OpenAIONDPS
                                     else if (AttackReflectionDamageWithSourceNameMatch.Success)
                                     {
                                         ChatLogActionData.SourceName = AttackReflectionDamageWithSourceNameMatch.Groups["SourceName"].Value;
-                                        ChatLogActionData.SkillName = "反射";
+                                        ChatLogActionData.SkillName = ReflectDamageName;
                                         _Match = AttackReflectionDamageWithSourceNameMatch;
                                     }
                                     else
                                     {
                                         ChatLogActionData.SourceName = this.OwnName;
-                                        ChatLogActionData.SkillName = "反射";
+                                        ChatLogActionData.SkillName = ReflectDamageName;
                                         _Match = AttackReflectionDamageWithoutSourceNameMatch;
                                     }
 
