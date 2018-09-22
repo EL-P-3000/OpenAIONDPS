@@ -625,6 +625,582 @@ namespace OpenAIONDPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName25 {
+            get {
+                return ((string)(this["FavoriteMemberName25"]));
+            }
+            set {
+                this["FavoriteMemberName25"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob25 {
+            get {
+                return ((string)(this["FavoriteMemberJob25"]));
+            }
+            set {
+                this["FavoriteMemberJob25"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName26 {
+            get {
+                return ((string)(this["FavoriteMemberName26"]));
+            }
+            set {
+                this["FavoriteMemberName26"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob26 {
+            get {
+                return ((string)(this["FavoriteMemberJob26"]));
+            }
+            set {
+                this["FavoriteMemberJob26"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName27 {
+            get {
+                return ((string)(this["FavoriteMemberName27"]));
+            }
+            set {
+                this["FavoriteMemberName27"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob27 {
+            get {
+                return ((string)(this["FavoriteMemberJob27"]));
+            }
+            set {
+                this["FavoriteMemberJob27"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName28 {
+            get {
+                return ((string)(this["FavoriteMemberName28"]));
+            }
+            set {
+                this["FavoriteMemberName28"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob28 {
+            get {
+                return ((string)(this["FavoriteMemberJob28"]));
+            }
+            set {
+                this["FavoriteMemberJob28"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName29 {
+            get {
+                return ((string)(this["FavoriteMemberName29"]));
+            }
+            set {
+                this["FavoriteMemberName29"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob29 {
+            get {
+                return ((string)(this["FavoriteMemberJob29"]));
+            }
+            set {
+                this["FavoriteMemberJob29"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName30 {
+            get {
+                return ((string)(this["FavoriteMemberName30"]));
+            }
+            set {
+                this["FavoriteMemberName30"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob30 {
+            get {
+                return ((string)(this["FavoriteMemberJob30"]));
+            }
+            set {
+                this["FavoriteMemberJob30"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName31 {
+            get {
+                return ((string)(this["FavoriteMemberName31"]));
+            }
+            set {
+                this["FavoriteMemberName31"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob31 {
+            get {
+                return ((string)(this["FavoriteMemberJob31"]));
+            }
+            set {
+                this["FavoriteMemberJob31"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName32 {
+            get {
+                return ((string)(this["FavoriteMemberName32"]));
+            }
+            set {
+                this["FavoriteMemberName32"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob32 {
+            get {
+                return ((string)(this["FavoriteMemberJob32"]));
+            }
+            set {
+                this["FavoriteMemberJob32"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName33 {
+            get {
+                return ((string)(this["FavoriteMemberName33"]));
+            }
+            set {
+                this["FavoriteMemberName33"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob33 {
+            get {
+                return ((string)(this["FavoriteMemberJob33"]));
+            }
+            set {
+                this["FavoriteMemberJob33"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName34 {
+            get {
+                return ((string)(this["FavoriteMemberName34"]));
+            }
+            set {
+                this["FavoriteMemberName34"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob34 {
+            get {
+                return ((string)(this["FavoriteMemberJob34"]));
+            }
+            set {
+                this["FavoriteMemberJob34"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName35 {
+            get {
+                return ((string)(this["FavoriteMemberName35"]));
+            }
+            set {
+                this["FavoriteMemberName35"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob35 {
+            get {
+                return ((string)(this["FavoriteMemberJob35"]));
+            }
+            set {
+                this["FavoriteMemberJob35"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName36 {
+            get {
+                return ((string)(this["FavoriteMemberName36"]));
+            }
+            set {
+                this["FavoriteMemberName36"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob36 {
+            get {
+                return ((string)(this["FavoriteMemberJob36"]));
+            }
+            set {
+                this["FavoriteMemberJob36"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName37 {
+            get {
+                return ((string)(this["FavoriteMemberName37"]));
+            }
+            set {
+                this["FavoriteMemberName37"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob37 {
+            get {
+                return ((string)(this["FavoriteMemberJob37"]));
+            }
+            set {
+                this["FavoriteMemberJob37"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName38 {
+            get {
+                return ((string)(this["FavoriteMemberName38"]));
+            }
+            set {
+                this["FavoriteMemberName38"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob38 {
+            get {
+                return ((string)(this["FavoriteMemberJob38"]));
+            }
+            set {
+                this["FavoriteMemberJob38"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName39 {
+            get {
+                return ((string)(this["FavoriteMemberName39"]));
+            }
+            set {
+                this["FavoriteMemberName39"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob39 {
+            get {
+                return ((string)(this["FavoriteMemberJob39"]));
+            }
+            set {
+                this["FavoriteMemberJob39"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName40 {
+            get {
+                return ((string)(this["FavoriteMemberName40"]));
+            }
+            set {
+                this["FavoriteMemberName40"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob40 {
+            get {
+                return ((string)(this["FavoriteMemberJob40"]));
+            }
+            set {
+                this["FavoriteMemberJob40"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName41 {
+            get {
+                return ((string)(this["FavoriteMemberName41"]));
+            }
+            set {
+                this["FavoriteMemberName41"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob41 {
+            get {
+                return ((string)(this["FavoriteMemberJob41"]));
+            }
+            set {
+                this["FavoriteMemberJob41"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName42 {
+            get {
+                return ((string)(this["FavoriteMemberName42"]));
+            }
+            set {
+                this["FavoriteMemberName42"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob42 {
+            get {
+                return ((string)(this["FavoriteMemberJob42"]));
+            }
+            set {
+                this["FavoriteMemberJob42"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName43 {
+            get {
+                return ((string)(this["FavoriteMemberName43"]));
+            }
+            set {
+                this["FavoriteMemberName43"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob43 {
+            get {
+                return ((string)(this["FavoriteMemberJob43"]));
+            }
+            set {
+                this["FavoriteMemberJob43"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName44 {
+            get {
+                return ((string)(this["FavoriteMemberName44"]));
+            }
+            set {
+                this["FavoriteMemberName44"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob44 {
+            get {
+                return ((string)(this["FavoriteMemberJob44"]));
+            }
+            set {
+                this["FavoriteMemberJob44"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName45 {
+            get {
+                return ((string)(this["FavoriteMemberName45"]));
+            }
+            set {
+                this["FavoriteMemberName45"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob45 {
+            get {
+                return ((string)(this["FavoriteMemberJob45"]));
+            }
+            set {
+                this["FavoriteMemberJob45"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName46 {
+            get {
+                return ((string)(this["FavoriteMemberName46"]));
+            }
+            set {
+                this["FavoriteMemberName46"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob46 {
+            get {
+                return ((string)(this["FavoriteMemberJob46"]));
+            }
+            set {
+                this["FavoriteMemberJob46"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName47 {
+            get {
+                return ((string)(this["FavoriteMemberName47"]));
+            }
+            set {
+                this["FavoriteMemberName47"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob47 {
+            get {
+                return ((string)(this["FavoriteMemberJob47"]));
+            }
+            set {
+                this["FavoriteMemberJob47"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberName48 {
+            get {
+                return ((string)(this["FavoriteMemberName48"]));
+            }
+            set {
+                this["FavoriteMemberName48"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FavoriteMemberJob48 {
+            get {
+                return ((string)(this["FavoriteMemberJob48"]));
+            }
+            set {
+                this["FavoriteMemberJob48"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AlwaysOnTop {
             get {

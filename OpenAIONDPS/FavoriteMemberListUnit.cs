@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace OpenAIONDPS
@@ -17,7 +12,15 @@ namespace OpenAIONDPS
         {
             InitializeComponent();
 
-            foreach (Control _Control in this.Controls)
+            this.InitiallizeComponent2(this.MemberGroup1GroupBox.Controls);
+            this.InitiallizeComponent2(this.MemberGroup2GroupBox.Controls);
+            this.InitiallizeComponent2(this.MemberGroup3GroupBox.Controls);
+            this.InitiallizeComponent2(this.MemberGroup4GroupBox.Controls);
+        }
+
+        private void InitiallizeComponent2(ControlCollection _Controls)
+        {
+            foreach (Control _Control in _Controls)
             {
                 if (_Control.GetType().Name.Equals("Button"))
                 {
@@ -64,40 +67,99 @@ namespace OpenAIONDPS
             {
                 int ID = int.Parse((string)((Button)sender).Tag);
 
-                foreach (Control _Control in this.Controls)
+                ControlCollection _Controls = null;
+                if ((ID >= 1 && ID <= 11) || ID == 101)
                 {
-                    if (_Control.GetType().Name.Equals("TextBox"))
-                    {
-                        if (int.Parse((string)((TextBox)_Control).Tag) == ID)
-                        {
-                            Name = ((TextBox)_Control).Text;
-                        }
-                    }
-                    else if (_Control.GetType().Name.Equals("ComboBox"))
-                    {
-                        if (int.Parse((string)((ComboBox)_Control).Tag) == ID)
-                        {
-                            JobType = (AION.JobType)((ComboBox)_Control).SelectedValue;
-                        }
-                    }
+                    _Controls = this.MemberGroup1GroupBox.Controls;
+                }
+                else if ((ID >= 12 && ID <= 22) || ID == 102)
+                {
+                    _Controls = this.MemberGroup2GroupBox.Controls;
+                }
+                else if ((ID >= 23 && ID <= 33) || ID == 103)
+                {
+                    _Controls = this.MemberGroup3GroupBox.Controls;
+                }
+                else
+                {
+                    _Controls = this.MemberGroup4GroupBox.Controls;
                 }
 
-                if (!String.IsNullOrEmpty(Name))
+                if (ID < 100)
                 {
-                    _MainForm.InsertMember(Name, JobType);
+                    foreach (Control _Control in _Controls)
+                    {
+                        if (_Control.GetType().Name.Equals("TextBox"))
+                        {
+                            if (int.Parse((string)((TextBox)_Control).Tag) == ID)
+                            {
+                                Name = ((TextBox)_Control).Text;
+                            }
+                        }
+                        else if (_Control.GetType().Name.Equals("ComboBox"))
+                        {
+                            if (int.Parse((string)((ComboBox)_Control).Tag) == ID)
+                            {
+                                JobType = (AION.JobType)((ComboBox)_Control).SelectedValue;
+                            }
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(Name))
+                    {
+                        _MainForm.InsertMember(Name, JobType);
+                    }
+                }
+                else if (ID >= 101 && ID < 200)
+                {
+                    int MinID = 11 * (ID - 101) + 1;
+                    int MaxID = MinID + 11;
+
+                    for (int i = MinID; i <= MaxID; i++)
+                    {
+                        foreach (Control _Control in _Controls)
+                        {
+                            if (_Control.GetType().Name.Equals("TextBox"))
+                            {
+                                if (int.Parse((string)((TextBox)_Control).Tag) == i)
+                                {
+                                    Name = ((TextBox)_Control).Text;
+                                }
+                            }
+                            else if (_Control.GetType().Name.Equals("ComboBox"))
+                            {
+                                if (int.Parse((string)((ComboBox)_Control).Tag) == i)
+                                {
+                                    JobType = (AION.JobType)((ComboBox)_Control).SelectedValue;
+                                }
+                            }
+                        }
+
+                        if (!String.IsNullOrEmpty(Name))
+                        {
+                            _MainForm.InsertMember(Name, JobType);
+                        }
+                    }
                 }
             }
         }
 
-
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            foreach (Control _Control in this.Controls)
+            this.Save(this.MemberGroup1GroupBox.Controls);
+            this.Save(this.MemberGroup2GroupBox.Controls);
+            this.Save(this.MemberGroup3GroupBox.Controls);
+            this.Save(this.MemberGroup4GroupBox.Controls);
+        }
+
+        private void Save(ControlCollection Controls)
+        {
+            foreach (Control _Control in Controls)
             {
                 if (_Control.GetType().Name.Equals("TextBox"))
                 {
                     TextBox _TextBox = (TextBox)_Control;
-                    this.SavePropertyMemberName(int.Parse((string)_TextBox.Tag) , _TextBox.Text);
+                    this.SavePropertyMemberName(int.Parse((string)_TextBox.Tag), _TextBox.Text);
                 }
                 else if (_Control.GetType().Name.Equals("ComboBox"))
                 {
@@ -114,7 +176,15 @@ namespace OpenAIONDPS
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            foreach (Control _Control in this.Controls)
+            this.Clear(this.MemberGroup1GroupBox.Controls);
+            this.Clear(this.MemberGroup2GroupBox.Controls);
+            this.Clear(this.MemberGroup3GroupBox.Controls);
+            this.Clear(this.MemberGroup4GroupBox.Controls);
+        }
+
+        private void Clear(ControlCollection Controls)
+        {
+            foreach (Control _Control in Controls)
             {
                 if (_Control.GetType().Name.Equals("TextBox"))
                 {
@@ -183,6 +253,54 @@ namespace OpenAIONDPS
                     return Properties.Settings.Default.FavoriteMemberName23;
                 case 24:
                     return Properties.Settings.Default.FavoriteMemberName24;
+                case 25:
+                    return Properties.Settings.Default.FavoriteMemberName25;
+                case 26:
+                    return Properties.Settings.Default.FavoriteMemberName26;
+                case 27:
+                    return Properties.Settings.Default.FavoriteMemberName27;
+                case 28:
+                    return Properties.Settings.Default.FavoriteMemberName28;
+                case 29:
+                    return Properties.Settings.Default.FavoriteMemberName29;
+                case 30:
+                    return Properties.Settings.Default.FavoriteMemberName30;
+                case 31:
+                    return Properties.Settings.Default.FavoriteMemberName31;
+                case 32:
+                    return Properties.Settings.Default.FavoriteMemberName32;
+                case 33:
+                    return Properties.Settings.Default.FavoriteMemberName33;
+                case 34:
+                    return Properties.Settings.Default.FavoriteMemberName34;
+                case 35:
+                    return Properties.Settings.Default.FavoriteMemberName35;
+                case 36:
+                    return Properties.Settings.Default.FavoriteMemberName36;
+                case 37:
+                    return Properties.Settings.Default.FavoriteMemberName37;
+                case 38:
+                    return Properties.Settings.Default.FavoriteMemberName38;
+                case 39:
+                    return Properties.Settings.Default.FavoriteMemberName39;
+                case 40:
+                    return Properties.Settings.Default.FavoriteMemberName40;
+                case 41:
+                    return Properties.Settings.Default.FavoriteMemberName41;
+                case 42:
+                    return Properties.Settings.Default.FavoriteMemberName42;
+                case 43:
+                    return Properties.Settings.Default.FavoriteMemberName43;
+                case 44:
+                    return Properties.Settings.Default.FavoriteMemberName44;
+                case 45:
+                    return Properties.Settings.Default.FavoriteMemberName45;
+                case 46:
+                    return Properties.Settings.Default.FavoriteMemberName46;
+                case 47:
+                    return Properties.Settings.Default.FavoriteMemberName47;
+                case 48:
+                    return Properties.Settings.Default.FavoriteMemberName48;
                 default:
                     return "";
             }
@@ -240,6 +358,54 @@ namespace OpenAIONDPS
                     return Properties.Settings.Default.FavoriteMemberJob23;
                 case 24:
                     return Properties.Settings.Default.FavoriteMemberJob24;
+                case 25:
+                    return Properties.Settings.Default.FavoriteMemberJob25;
+                case 26:
+                    return Properties.Settings.Default.FavoriteMemberJob26;
+                case 27:
+                    return Properties.Settings.Default.FavoriteMemberJob27;
+                case 28:
+                    return Properties.Settings.Default.FavoriteMemberJob28;
+                case 29:
+                    return Properties.Settings.Default.FavoriteMemberJob29;
+                case 30:
+                    return Properties.Settings.Default.FavoriteMemberJob30;
+                case 31:
+                    return Properties.Settings.Default.FavoriteMemberJob31;
+                case 32:
+                    return Properties.Settings.Default.FavoriteMemberJob32;
+                case 33:
+                    return Properties.Settings.Default.FavoriteMemberJob33;
+                case 34:
+                    return Properties.Settings.Default.FavoriteMemberJob34;
+                case 35:
+                    return Properties.Settings.Default.FavoriteMemberJob35;
+                case 36:
+                    return Properties.Settings.Default.FavoriteMemberJob36;
+                case 37:
+                    return Properties.Settings.Default.FavoriteMemberJob37;
+                case 38:
+                    return Properties.Settings.Default.FavoriteMemberJob38;
+                case 39:
+                    return Properties.Settings.Default.FavoriteMemberJob39;
+                case 40:
+                    return Properties.Settings.Default.FavoriteMemberJob40;
+                case 41:
+                    return Properties.Settings.Default.FavoriteMemberJob41;
+                case 42:
+                    return Properties.Settings.Default.FavoriteMemberJob42;
+                case 43:
+                    return Properties.Settings.Default.FavoriteMemberJob43;
+                case 44:
+                    return Properties.Settings.Default.FavoriteMemberJob44;
+                case 45:
+                    return Properties.Settings.Default.FavoriteMemberJob45;
+                case 46:
+                    return Properties.Settings.Default.FavoriteMemberJob46;
+                case 47:
+                    return Properties.Settings.Default.FavoriteMemberJob47;
+                case 48:
+                    return Properties.Settings.Default.FavoriteMemberJob48;
                 default:
                     return "";
             }
@@ -321,6 +487,78 @@ namespace OpenAIONDPS
                 case 24:
                     Properties.Settings.Default.FavoriteMemberName24 = Name;
                     break;
+                case 25:
+                    Properties.Settings.Default.FavoriteMemberName25 = Name;
+                    break;
+                case 26:
+                    Properties.Settings.Default.FavoriteMemberName26 = Name;
+                    break;
+                case 27:
+                    Properties.Settings.Default.FavoriteMemberName27 = Name;
+                    break;
+                case 28:
+                    Properties.Settings.Default.FavoriteMemberName28 = Name;
+                    break;
+                case 29:
+                    Properties.Settings.Default.FavoriteMemberName29 = Name;
+                    break;
+                case 30:
+                    Properties.Settings.Default.FavoriteMemberName30 = Name;
+                    break;
+                case 31:
+                    Properties.Settings.Default.FavoriteMemberName31 = Name;
+                    break;
+                case 32:
+                    Properties.Settings.Default.FavoriteMemberName32 = Name;
+                    break;
+                case 33:
+                    Properties.Settings.Default.FavoriteMemberName33 = Name;
+                    break;
+                case 34:
+                    Properties.Settings.Default.FavoriteMemberName34 = Name;
+                    break;
+                case 35:
+                    Properties.Settings.Default.FavoriteMemberName35 = Name;
+                    break;
+                case 36:
+                    Properties.Settings.Default.FavoriteMemberName36 = Name;
+                    break;
+                case 37:
+                    Properties.Settings.Default.FavoriteMemberName37 = Name;
+                    break;
+                case 38:
+                    Properties.Settings.Default.FavoriteMemberName38 = Name;
+                    break;
+                case 39:
+                    Properties.Settings.Default.FavoriteMemberName39 = Name;
+                    break;
+                case 40:
+                    Properties.Settings.Default.FavoriteMemberName40 = Name;
+                    break;
+                case 41:
+                    Properties.Settings.Default.FavoriteMemberName41 = Name;
+                    break;
+                case 42:
+                    Properties.Settings.Default.FavoriteMemberName42 = Name;
+                    break;
+                case 43:
+                    Properties.Settings.Default.FavoriteMemberName43 = Name;
+                    break;
+                case 44:
+                    Properties.Settings.Default.FavoriteMemberName44 = Name;
+                    break;
+                case 45:
+                    Properties.Settings.Default.FavoriteMemberName45 = Name;
+                    break;
+                case 46:
+                    Properties.Settings.Default.FavoriteMemberName46 = Name;
+                    break;
+                case 47:
+                    Properties.Settings.Default.FavoriteMemberName47 = Name;
+                    break;
+                case 48:
+                    Properties.Settings.Default.FavoriteMemberName48 = Name;
+                    break;
             }
 
             Properties.Settings.Default.Save();
@@ -401,6 +639,78 @@ namespace OpenAIONDPS
                     break;
                 case 24:
                     Properties.Settings.Default.FavoriteMemberJob24 = Job;
+                    break;
+                case 25:
+                    Properties.Settings.Default.FavoriteMemberJob25 = Job;
+                    break;
+                case 26:
+                    Properties.Settings.Default.FavoriteMemberJob26 = Job;
+                    break;
+                case 27:
+                    Properties.Settings.Default.FavoriteMemberJob27 = Job;
+                    break;
+                case 28:
+                    Properties.Settings.Default.FavoriteMemberJob28 = Job;
+                    break;
+                case 29:
+                    Properties.Settings.Default.FavoriteMemberJob29 = Job;
+                    break;
+                case 30:
+                    Properties.Settings.Default.FavoriteMemberJob30 = Job;
+                    break;
+                case 31:
+                    Properties.Settings.Default.FavoriteMemberJob31 = Job;
+                    break;
+                case 32:
+                    Properties.Settings.Default.FavoriteMemberJob32 = Job;
+                    break;
+                case 33:
+                    Properties.Settings.Default.FavoriteMemberJob33 = Job;
+                    break;
+                case 34:
+                    Properties.Settings.Default.FavoriteMemberJob34 = Job;
+                    break;
+                case 35:
+                    Properties.Settings.Default.FavoriteMemberJob35 = Job;
+                    break;
+                case 36:
+                    Properties.Settings.Default.FavoriteMemberJob36 = Job;
+                    break;
+                case 37:
+                    Properties.Settings.Default.FavoriteMemberJob37 = Job;
+                    break;
+                case 38:
+                    Properties.Settings.Default.FavoriteMemberJob38 = Job;
+                    break;
+                case 39:
+                    Properties.Settings.Default.FavoriteMemberJob39 = Job;
+                    break;
+                case 40:
+                    Properties.Settings.Default.FavoriteMemberJob40 = Job;
+                    break;
+                case 41:
+                    Properties.Settings.Default.FavoriteMemberJob41 = Job;
+                    break;
+                case 42:
+                    Properties.Settings.Default.FavoriteMemberJob42 = Job;
+                    break;
+                case 43:
+                    Properties.Settings.Default.FavoriteMemberJob43 = Job;
+                    break;
+                case 44:
+                    Properties.Settings.Default.FavoriteMemberJob44 = Job;
+                    break;
+                case 45:
+                    Properties.Settings.Default.FavoriteMemberJob45 = Job;
+                    break;
+                case 46:
+                    Properties.Settings.Default.FavoriteMemberJob46 = Job;
+                    break;
+                case 47:
+                    Properties.Settings.Default.FavoriteMemberJob47 = Job;
+                    break;
+                case 48:
+                    Properties.Settings.Default.FavoriteMemberJob48 = Job;
                     break;
             }
 
