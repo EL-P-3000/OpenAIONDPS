@@ -59,7 +59,31 @@ namespace OpenAIONDPS
             }
         }
 
-        public static T ReadValue<T>(string Key)
+        public static string ReadMemberName(int ID)
+        {
+            try
+            {
+                return Registry.ReadValue<string>("MemberName" + ID.ToString("D3"));
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static string ReadMemberJob(int ID)
+        {
+            try
+            {
+                return Registry.ReadValue<string>("MemberJob" + ID.ToString("D3"));
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        private static T ReadValue<T>(string Key)
         {
             try
             {
@@ -107,7 +131,29 @@ namespace OpenAIONDPS
             WriteValue<bool>(AlwaysOnTopKeyName, Value);
         }
 
-        public static void WriteValue<T>(string Key, T Value)
+        public static void WriteMemberName(int ID, string Name)
+        {
+            try
+            {
+                Registry.WriteValue("MemberName" + ID.ToString("D3"), Name);
+            }
+            catch
+            {
+            }
+        }
+
+        public static void WriteMemberJob(int ID, string Job)
+        {
+            try
+            {
+                Registry.WriteValue("MemberJob" + ID.ToString("D3"), Job);
+            }
+            catch
+            {
+            }
+        }
+
+        private static void WriteValue<T>(string Key, T Value)
         {
             try
             {

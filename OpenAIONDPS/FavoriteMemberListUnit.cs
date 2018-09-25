@@ -211,7 +211,7 @@ namespace OpenAIONDPS
         {
             try
             {
-                return Registry.ReadValue<string>("MemberName" + ID.ToString("D3"));
+                return Registry.ReadMemberName(ID);
             }
             catch
             {
@@ -223,7 +223,7 @@ namespace OpenAIONDPS
         {
             try
             {
-                return Registry.ReadValue<string>("MemberJob" + ID.ToString("D3"));
+                return Registry.ReadMemberJob(ID);
             }
             catch
             {
@@ -235,7 +235,7 @@ namespace OpenAIONDPS
         {
             try
             {
-                Registry.WriteValue("MemberName" + ID.ToString("D3"), Name);
+                Registry.WriteMemberName(ID, Name);
             }
             catch
             {
@@ -246,7 +246,7 @@ namespace OpenAIONDPS
         {
             try
             {
-                Registry.WriteValue("MemberJob" + ID.ToString("D3"), Job);
+                Registry.WriteMemberJob(ID, Job);
             }
             catch
             {
