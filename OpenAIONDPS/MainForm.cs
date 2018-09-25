@@ -63,8 +63,8 @@ namespace OpenAIONDPS
             this.FavoriteMemberList.SetMainForm(this);
             this.Member01.SetMemberName(this.OwnName);
 
-            this.AlwaysOnTopCheckBox.Checked = Properties.Settings.Default.AlwaysOnTop;
-            this.TopMost = Properties.Settings.Default.AlwaysOnTop;
+            this.AlwaysOnTopCheckBox.Checked = Registry.ReadAlwaysOnTop();
+            this.TopMost = this.AlwaysOnTopCheckBox.Checked;
 
             RegisterHotKey(Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.F1);
         }
@@ -90,9 +90,7 @@ namespace OpenAIONDPS
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.Save();
             this.StopThread();
-
             UnregisterHotKey(Handle, HOTKEY_ID);
         }
 
@@ -163,9 +161,8 @@ namespace OpenAIONDPS
 
             if (Dialog.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.ChatLogPath = Dialog.FileName;
-                Properties.Settings.Default.InstallDirectory = Path.GetDirectoryName(Dialog.FileName) + "\\";
-                Properties.Settings.Default.Save();
+                Registry.WriteChatLogPath(Dialog.FileName);
+                Registry.WriteInstallDirectory(Path.GetDirectoryName(Dialog.FileName) + "\\");
             }
         }
 
@@ -218,10 +215,17 @@ namespace OpenAIONDPS
                 return;
             }
 
-            if (!File.Exists(Properties.Settings.Default.ChatLogPath))
+            try
             {
-                MessageBox.Show("ログファイルを選択してください。", "エラー");
-                return;
+                if (!File.Exists(Registry.ReadChatLogPath()))
+                {
+                    MessageBox.Show("ログファイルを選択してください。", "エラー");
+                    return;
+                }
+            }
+            catch
+            {
+
             }
 
             this.StartButton.Enabled = false;
@@ -265,7 +269,7 @@ namespace OpenAIONDPS
             {
                 try
                 {
-                    StreamWriter ChatLogFileStreamWriter = new StreamWriter(Properties.Settings.Default.ChatLogPath);
+                    StreamWriter ChatLogFileStreamWriter = new StreamWriter(Registry.ReadChatLogPath());
                     ChatLogFileStreamWriter.Write("");
                     ChatLogFileStreamWriter.Flush();
                     ChatLogFileStreamWriter.Close();
@@ -519,7 +523,7 @@ namespace OpenAIONDPS
             Delegate UpdateEvasionDelegate = new Action<ActionData>(UpdateEvasion);
             Delegate UpdateResistanceDelegate = new Action<ActionData>(UpdateResistance);
             Delegate CalcFromLogEndDelegate = new Action(CalcFromLogFileEnd);
-            string LogFilePath = Properties.Settings.Default.ChatLogPath;
+            string LogFilePath = Registry.ReadChatLogPath();
             string LogText = "";
             string LogTextWithoutTime = "";
             ActionData ChatLogActionData = null;
@@ -1512,13 +1516,12 @@ namespace OpenAIONDPS
 
         private void SaveImageButton_Click(object sender, EventArgs e)
         {
-            string SaveResultDirectory = Properties.Settings.Default.SaveResultDirectory;
+            string SaveResultDirectory = Registry.ReadSaveResultDirectory();
 
             if (String.IsNullOrEmpty(SaveResultDirectory))
             {
                 SaveResultDirectory = this.ApplicationDirectory;
-                Properties.Settings.Default.SaveResultDirectory = this.ApplicationDirectory;
-                Properties.Settings.Default.Save();
+                Registry.WriteSaveResultDirectory(this.ApplicationDirectory);
             }
 
             try
@@ -1535,8 +1538,7 @@ namespace OpenAIONDPS
                     this.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, this.Width, this.Height));
                     SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
 
-                    Properties.Settings.Default.SaveResultDirectory = Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\";
-                    Properties.Settings.Default.Save();
+                    Registry.WriteSaveResultDirectory(Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\");
                 }
             }
             catch
@@ -1626,14 +1628,12 @@ namespace OpenAIONDPS
             if (this.AlwaysOnTopCheckBox.Checked)
             {
                 this.TopMost = true;
-                Properties.Settings.Default.AlwaysOnTop = true;
-                Properties.Settings.Default.Save();
+                Registry.WriteAlwaysOnTop(true);
             }
             else
             {
                 this.TopMost = false;
-                Properties.Settings.Default.AlwaysOnTop = false;
-                Properties.Settings.Default.Save();
+                Registry.WriteAlwaysOnTop(false);
             }
 
         }
@@ -1800,13 +1800,12 @@ namespace OpenAIONDPS
 
         private void SaveSkillListImageButton_Click(object sender, EventArgs e)
         {
-            string SaveResultDirectory = Properties.Settings.Default.SaveResultDirectory;
+            string SaveResultDirectory = Registry.ReadSaveResultDirectory();
 
             if (String.IsNullOrEmpty(SaveResultDirectory))
             {
                 SaveResultDirectory = this.ApplicationDirectory;
-                Properties.Settings.Default.SaveResultDirectory = this.ApplicationDirectory;
-                Properties.Settings.Default.Save();
+                Registry.WriteSaveResultDirectory(this.ApplicationDirectory);
             }
 
             try
@@ -1837,8 +1836,7 @@ namespace OpenAIONDPS
                     this.SkillDamageListDataGridView.Height = OriginalHeight;
                     this.SkillDamageListDataGridView.ScrollBars = ScrollBars.Both;
 
-                    Properties.Settings.Default.SaveResultDirectory = Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\";
-                    Properties.Settings.Default.Save();
+                    Registry.WriteSaveResultDirectory(Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\");
                 }
             }
             catch
