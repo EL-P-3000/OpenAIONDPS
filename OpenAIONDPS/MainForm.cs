@@ -388,7 +388,10 @@ namespace OpenAIONDPS
 
         // 通常攻撃のダメージのパターン(他人)は計測開始時に取得
 
-        // 通常攻撃のダメージのパターン(サモン)は計測開始時に取得
+        /// <summary>
+        /// 通常攻撃のダメージのパターン(サモン)
+        /// </summary>
+        private static readonly Regex AttackSimpleDamageWithSummonRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSimpleDamageWithSummonPattern, AION.SkillType.Summon);
 
         /// <summary>
         /// 通常攻撃(クリティカルヒット)のダメージのパターン(自分)
@@ -402,7 +405,16 @@ namespace OpenAIONDPS
 
         // スキルダメージのパターン(他人)は計測開始時に取得
 
-        // スキルダメージのパターン(サモン)は計測開始時に取得
+        /// <summary>
+        /// スキルのダメージのパターン(サモン)
+        /// </summary>
+        private static readonly Regex AttackSkillDamageWithSummonRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDamageWithSummonPattern, AION.SkillType.Summon);
+
+        /// <summary>
+        /// スキル攻撃(スキル固定)のダメージのパターン(サモン)
+        /// </summary>
+        private static readonly Regex AttackSkillDamageFixedSkillWithSummonRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDamageFixedSkillWithSummonPattern, AION.SkillType.Summon);
+
 
         /// <summary>
         /// ドットスキルの成功のパターン(自分)
@@ -424,9 +436,10 @@ namespace OpenAIONDPS
         /// </summary>
         private static readonly Regex AttackSkillDotEffectMelodyWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDotEffectMelodyWithSourceNamePattern, RegexOptions.Compiled);
 
-        // ドットスキルのダメージのパターンは計測開始時に取得
-
-        // サモンスキル(攻撃対象固定)のダメージのパターンは計測開始時に取得
+        /// <summary>
+        /// ドットスキルのダメージのパターン
+        /// </summary>
+        private static readonly Regex AttackSkillDotDamageRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDotDamagePattern, AION.SkillType.Dot);
 
         /// <summary>
         /// デバフダメージスキルのダメージのパターン(自分)
@@ -440,13 +453,25 @@ namespace OpenAIONDPS
         private static readonly Regex AttackSkillReleaseBuffDamageWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillReleaseBuffDamageWithSourceNamePattern, RegexOptions.Compiled);
         private static readonly Regex AttackSkillDebuffDamageWithSourceNameRegex = new Regex(AION.LogPattern.AttackSkillDebuffDamageWithSourceNamePattern, RegexOptions.Compiled);
 
-        // ディレイダメージスキルのパターン(自分)は計測開始時に取得
+        /// <summary>
+        /// ディレイダメージスキルのパターン(自分)
+        /// </summary>
+        private static readonly Regex AttackSkillDelayDamageWithoutSourceNameRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageWithoutSourceNamePattern, AION.SkillType.DelayDamage);
 
-        // ディレイダメージスキルのパターン(他人)は計測開始時に取得
+        /// <summary>
+        /// ディレイダメージスキルのパターン(他人)
+        /// </summary>
+        private static readonly Regex AttackSkillDelayDamageWithSourceNameRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageWithSourceNamePattern, AION.SkillType.DelayDamage);
 
-        // ディレイダメージスキルのダメージのパターンは計測開始時に取得
+        /// <summary>
+        /// ディレイダメージスキルのダメージのパターン
+        /// </summary>
+        private static readonly Regex AttackSkillDelayDamageDamageRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageDamagePattern, AION.SkillType.DelayDamage);
 
-        // エフェクトダメージスキルのダメージのパターンは計測開始時に取得
+        /// <summary>
+        /// エフェクトダメージスキルのダメージのパターン
+        /// </summary>
+        private static readonly Regex AttackSkillEffectDamageDamageRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillEffectDamageDamagePattern, AION.SkillType.EffectDamage);
 
         /// <summary>
         /// 反射のダメージのパターン(自分)
@@ -508,32 +533,8 @@ namespace OpenAIONDPS
             // 通常攻撃のダメージのパターン(他人)
             LinkedList<Regex> AttackSimpleDamageWithSourceNameRegexList = this.GetAttackSimpleDamageWithSourceNameRegexList();
 
-            // 通常攻撃のダメージのパターン(サモン)
-            LinkedList<Regex> AttackSimpleDamageWithSummonRegexList = this.GetAttackSimpleDamageWithSummonRegexList();
-
             // スキルダメージのパターン(他人)
             LinkedList<Regex> AttackSkillDamageWithSourceNameRegexList = this.GetAttackSkillDamageWithSourceNameRegexList();
-
-            // スキルのダメージのパターン(サモン)
-            LinkedList<Regex> AttackSkillDamageWithSummonRegexList = this.GetAttackSkillDamageWithSummonRegexList();
-
-            // ドットスキルのダメージのパターン
-            LinkedList<Regex> AttackSkillDotDamageRegexList = this.GetAttackSkillDotDamageRegexList();
-
-            // スキル攻撃(スキル固定)のダメージのパターン(サモン)
-            LinkedList<Regex> AttackSkillDamageFixedSkillWithSummonRegexList = this.GetAttackSkillDamageFixedSkillWithSummonRegexList();
-
-            // ディレイダメージスキルのパターン(自分)
-            LinkedList<Regex> AttackSkillDelayDamageWithoutSourceNameRegexList = this.GetAttackSkillDelayDamageWithoutSourceNameRegexList();
-
-            // ディレイダメージスキルのパターン(他人)
-            LinkedList<Regex> AttackSkillDelayDamageWithSourceNameRegexList = this.GetAttackSkillDelayDamageWithSourceNameRegexList();
-
-            // ディレイダメージスキルのダメージのパターン
-            LinkedList<Regex> AttackSkillDelayDamageDamageRegexList = this.GetAttackSkillDelayDamageDamageRegexList();
-
-            // エフェクトダメージスキルのダメージのパターン
-            LinkedList<Regex> AttackSkillEffectDamageDamageRegexList = this.GetAttackSkillEffectDamageDamageRegexList();
 
             // 回避/抵抗した/された攻撃のパターン(他人)リスト
             LinkedList<Regex> EvasionResistanceWithSourceNameRegexList = this.GetEvasionResistanceWithSourceNameRegexList();
@@ -544,122 +545,120 @@ namespace OpenAIONDPS
                 LogFilePath = this.CalcLogFilePath;
             }
 
-            using (FileStream ChatLogFileStream = new FileStream(LogFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            try
             {
-                using (StreamReader ChatLogStreamReader = new StreamReader(ChatLogFileStream, Encoding.GetEncoding("Shift_JIS")))
+                using (FileStream ChatLogFileStream = new FileStream(LogFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
-                    if (!this.IsCalcLogFile)
+                    using (StreamReader ChatLogStreamReader = new StreamReader(ChatLogFileStream, Encoding.GetEncoding("Shift_JIS")))
                     {
-                        ChatLogStreamReader.ReadToEnd();
-                    }
-
-                    while (this.StopFlag == false)
-                    {
-                        try
+                        if (!this.IsCalcLogFile)
                         {
-                            // ログファイルから計算の場合はファイルの最後で終了
-                            if (this.IsCalcLogFile && ChatLogStreamReader.EndOfStream == true)
+                            ChatLogStreamReader.ReadToEnd();
+                        }
+
+                        while (this.StopFlag == false)
+                        {
+                            try
                             {
-                                break;
-                            }
-
-                            // ログファイルから計算の場合はイベント処理を挟む
-                            if (this.IsCalcLogFile)
-                            {
-                                Application.DoEvents();
-                            }
-
-                            LogText = ChatLogStreamReader.ReadLine();
-                            LogTextWithoutTime = "";
-
-                            // ラインの取得
-                            if (String.IsNullOrEmpty(LogText))
-                            {
-                                Application.DoEvents();
-                                continue;
-                            }
-
-                            // 正しいフォーマットのラインの取得
-                            Match ChatLogLineMatch = ChatLogLineRegex.Match(LogText);
-                            if (!ChatLogLineMatch.Success)
-                            {
-                                continue;
-                            }
-
-                            ChatLogActionData = new ActionData();
-                            ChatLogActionData.LogText = LogText;
-                            ChatLogActionData.SourceName = OwnName;
-
-                            // ログファイルから計算の場合は時刻を取得
-                            if (this.IsCalcLogFile)
-                            {
-                                ChatLogActionData.Time = DateTime.ParseExact(ChatLogLineMatch.Groups[1].Value, "yyyy.MM.dd HH:mm:ss", null);
-                            }
-
-                            // 時刻をラインから削除
-                            LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
-
-                            // 回復のパターンは対象外
-                            Match HealCommonMatch = HealCommonRegex.Match(LogTextWithoutTime);
-                            if (HealCommonMatch.Success)
-                            {
-                                continue;
-                            }
-
-                            // クリティカルヒット！
-                            Match CriticalHitMatch = CriticalHitRegex.Match(LogTextWithoutTime);
-                            if (CriticalHitMatch.Success)
-                            {
-                                ChatLogActionData.IsCriticalHit = true;
-                                LogTextWithoutTime = CriticalHitMatch.Groups[1].Value;
-                            }
-
-                            // "ダメージを与えました。"の判定 (負荷軽減のため)
-                            Match AttackDamageToMatch = AttackDamageToRegex.Match(LogTextWithoutTime);
-                            if (AttackDamageToMatch.Success)
-                            {
-                                // 反射のダメージ
-                                Match AttackReflectionDamageWithDisciplineEnergyMatch = AttackReflectionDamageWithDisciplineEnergyRegex.Match(LogTextWithoutTime);
-                                Match AttackReflectionDamageWithSourceNameMatch = AttackReflectionDamageWithSourceNameRegex.Match(LogTextWithoutTime);
-                                Match AttackReflectionDamageWithoutSourceNameMatch = AttackReflectionDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                if (AttackReflectionDamageWithDisciplineEnergyMatch.Success || AttackReflectionDamageWithSourceNameMatch.Success || AttackReflectionDamageWithoutSourceNameMatch.Success)
+                                // ログファイルから計算の場合はファイルの最後で終了
+                                if (this.IsCalcLogFile && ChatLogStreamReader.EndOfStream == true)
                                 {
-                                    Match _Match = null;
-                                    if (AttackReflectionDamageWithDisciplineEnergyMatch.Success)
-                                    {
-                                        ChatLogActionData.SourceName = "ディシプリン エネルギー";
-                                        ChatLogActionData.SkillName = "ディシプリン エネルギー";
-                                        _Match = AttackReflectionDamageWithSourceNameMatch;
-                                    }
-                                    else if (AttackReflectionDamageWithSourceNameMatch.Success)
-                                    {
-                                        ChatLogActionData.SourceName = AttackReflectionDamageWithSourceNameMatch.Groups["SourceName"].Value;
-                                        ChatLogActionData.SkillName = ReflectDamageName;
-                                        _Match = AttackReflectionDamageWithSourceNameMatch;
-                                    }
-                                    else
-                                    {
-                                        ChatLogActionData.SourceName = this.OwnName;
-                                        ChatLogActionData.SkillName = ReflectDamageName;
-                                        _Match = AttackReflectionDamageWithoutSourceNameMatch;
-                                    }
+                                    break;
+                                }
 
-                                    ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
-                                    ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
+                                // ログファイルから計算の場合はイベント処理を挟む
+                                if (this.IsCalcLogFile)
+                                {
+                                    Application.DoEvents();
+                                }
 
-                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
+                                LogText = ChatLogStreamReader.ReadLine();
+                                LogTextWithoutTime = "";
 
+                                // ラインの取得
+                                if (String.IsNullOrEmpty(LogText))
+                                {
+                                    Application.DoEvents();
                                     continue;
                                 }
 
-                                // スキル攻撃(固定スキル)のダメージ(サモン)
-                                bool AttackSkillDamageFixedSkillWithSummonMatchFlag = false;
-                                foreach (Regex AttackSkillDamageFixedSkillWithSummonRegex in AttackSkillDamageFixedSkillWithSummonRegexList)
+                                // 正しいフォーマットのラインの取得
+                                Match ChatLogLineMatch = ChatLogLineRegex.Match(LogText);
+                                if (!ChatLogLineMatch.Success)
                                 {
+                                    continue;
+                                }
+
+                                ChatLogActionData = new ActionData();
+                                ChatLogActionData.LogText = LogText;
+                                ChatLogActionData.SourceName = OwnName;
+
+                                // ログファイルから計算の場合は時刻を取得
+                                if (this.IsCalcLogFile)
+                                {
+                                    ChatLogActionData.Time = DateTime.ParseExact(ChatLogLineMatch.Groups[1].Value, "yyyy.MM.dd HH:mm:ss", null);
+                                }
+
+                                // 時刻をラインから削除
+                                LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
+
+                                // 回復のパターンは対象外
+                                Match HealCommonMatch = HealCommonRegex.Match(LogTextWithoutTime);
+                                if (HealCommonMatch.Success)
+                                {
+                                    continue;
+                                }
+
+                                // クリティカルヒット！
+                                Match CriticalHitMatch = CriticalHitRegex.Match(LogTextWithoutTime);
+                                if (CriticalHitMatch.Success)
+                                {
+                                    ChatLogActionData.IsCriticalHit = true;
+                                    LogTextWithoutTime = CriticalHitMatch.Groups[1].Value;
+                                }
+
+                                // "ダメージを与えました。"の判定 (負荷軽減のため)
+                                Match AttackDamageToMatch = AttackDamageToRegex.Match(LogTextWithoutTime);
+                                if (AttackDamageToMatch.Success)
+                                {
+                                    // 反射のダメージ
+                                    Match AttackReflectionDamageWithDisciplineEnergyMatch = AttackReflectionDamageWithDisciplineEnergyRegex.Match(LogTextWithoutTime);
+                                    Match AttackReflectionDamageWithSourceNameMatch = AttackReflectionDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match AttackReflectionDamageWithoutSourceNameMatch = AttackReflectionDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (AttackReflectionDamageWithDisciplineEnergyMatch.Success || AttackReflectionDamageWithSourceNameMatch.Success || AttackReflectionDamageWithoutSourceNameMatch.Success)
+                                    {
+                                        Match _Match = null;
+                                        if (AttackReflectionDamageWithDisciplineEnergyMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = "ディシプリン エネルギー";
+                                            ChatLogActionData.SkillName = "ディシプリン エネルギー";
+                                            _Match = AttackReflectionDamageWithSourceNameMatch;
+                                        }
+                                        else if (AttackReflectionDamageWithSourceNameMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = AttackReflectionDamageWithSourceNameMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.SkillName = ReflectDamageName;
+                                            _Match = AttackReflectionDamageWithSourceNameMatch;
+                                        }
+                                        else
+                                        {
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                            ChatLogActionData.SkillName = ReflectDamageName;
+                                            _Match = AttackReflectionDamageWithoutSourceNameMatch;
+                                        }
+
+                                        ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
+
+                                        this.Invoke(UpdateDataDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
+                                    // スキル攻撃(固定スキル)のダメージ(サモン)
                                     Match AttackSkillDamageFixedSkillWithSummonMatch = AttackSkillDamageFixedSkillWithSummonRegex.Match(LogTextWithoutTime);
                                     if (AttackSkillDamageFixedSkillWithSummonMatch.Success)
                                     {
-                                        AttackSkillDamageFixedSkillWithSummonMatchFlag = true;
                                         ChatLogActionData.SourceName = AttackSkillDamageFixedSkillWithSummonMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.SkillName = AttackSkillDamageFixedSkillWithSummonMatch.Groups["SkillName2"].Value;
                                         ChatLogActionData.TargetName = AttackSkillDamageFixedSkillWithSummonMatch.Groups["TargetName"].Value;
@@ -667,23 +666,13 @@ namespace OpenAIONDPS
 
                                         this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
-                                        break;
+                                        continue;
                                     }
-                                }
-                                if (AttackSkillDamageFixedSkillWithSummonMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // スキル攻撃のダメージ(サモン)
-                                bool AttackSkillDamageWithSummonMatchFlag = false;
-                                foreach (Regex AttackSkillDamageWithSummonRegex in AttackSkillDamageWithSummonRegexList)
-                                {
+                                    // スキル攻撃のダメージ(サモン)
                                     Match AttackSkillDamageWithSummonMatch = AttackSkillDamageWithSummonRegex.Match(LogTextWithoutTime);
                                     if (AttackSkillDamageWithSummonMatch.Success)
                                     {
-                                        Debug.WriteLine(LogText);
-                                        AttackSkillDamageWithSummonMatchFlag = true;
                                         ChatLogActionData.SourceName = AttackSkillDamageWithSummonMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.SkillName = AttackSkillDamageWithSummonMatch.Groups["SkillName2"].Value;
                                         ChatLogActionData.TargetName = AttackSkillDamageWithSummonMatch.Groups["TargetName"].Value;
@@ -691,258 +680,231 @@ namespace OpenAIONDPS
 
                                         this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
-                                        break;
+                                        continue;
                                     }
-                                }
-                                if (AttackSkillDamageWithSummonMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // スキル攻撃のダメージ(他人)
-                                bool AttackSkillDamageWithSourceNameMatchFlag = false;
-                                foreach (Regex AttackSkillDamageWithSourceNameRegex in AttackSkillDamageWithSourceNameRegexList)
-                                {
-                                    Match AttackSkillDamageWithSourceNameMatch = AttackSkillDamageWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (AttackSkillDamageWithSourceNameMatch.Success)
+                                    // スキル攻撃のダメージ(他人)
+                                    bool AttackSkillDamageWithSourceNameMatchFlag = false;
+                                    foreach (Regex AttackSkillDamageWithSourceNameRegex in AttackSkillDamageWithSourceNameRegexList)
                                     {
-                                        AttackSkillDamageWithSourceNameMatchFlag = true;
-                                        ChatLogActionData.SourceName = AttackSkillDamageWithSourceNameMatch.Groups["SourceName"].Value;
-                                        ChatLogActionData.SkillName = AttackSkillDamageWithSourceNameMatch.Groups["SkillName"].Value;
-                                        ChatLogActionData.TargetName = AttackSkillDamageWithSourceNameMatch.Groups["TargetName"].Value;
-                                        ChatLogActionData.Damage = long.Parse(AttackSkillDamageWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+                                        Match AttackSkillDamageWithSourceNameMatch = AttackSkillDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                                        if (AttackSkillDamageWithSourceNameMatch.Success)
+                                        {
+                                            AttackSkillDamageWithSourceNameMatchFlag = true;
+                                            ChatLogActionData.SourceName = AttackSkillDamageWithSourceNameMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.SkillName = AttackSkillDamageWithSourceNameMatch.Groups["SkillName"].Value;
+                                            ChatLogActionData.TargetName = AttackSkillDamageWithSourceNameMatch.Groups["TargetName"].Value;
+                                            ChatLogActionData.Damage = long.Parse(AttackSkillDamageWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+
+                                            this.Invoke(UpdateDataDelegate, ChatLogActionData);
+
+                                            break;
+                                        }
+                                    }
+                                    if (AttackSkillDamageWithSourceNameMatchFlag)
+                                    {
+                                        continue;
+                                    }
+
+                                    // スキル攻撃のダメージ(自分)
+                                    Match AttackSkillDamageWithoutSourceNameMatch = AttackSkillDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (AttackSkillDamageWithoutSourceNameMatch.Success)
+                                    {
+                                        ChatLogActionData.SourceName = this.OwnName;
+                                        ChatLogActionData.SkillName = AttackSkillDamageWithoutSourceNameMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = AttackSkillDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(AttackSkillDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
 
                                         this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
-                                        break;
+                                        continue;
                                     }
-                                }
-                                if (AttackSkillDamageWithSourceNameMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // スキル攻撃のダメージ(自分)
-                                Match AttackSkillDamageWithoutSourceNameMatch = AttackSkillDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                if (AttackSkillDamageWithoutSourceNameMatch.Success)
-                                {
-                                    ChatLogActionData.SourceName = this.OwnName;
-                                    ChatLogActionData.SkillName = AttackSkillDamageWithoutSourceNameMatch.Groups["SkillName"].Value;
-                                    ChatLogActionData.TargetName = AttackSkillDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
-                                    ChatLogActionData.Damage = long.Parse(AttackSkillDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
-
-                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
-
-                                    continue;
-                                }
-
-                                // 通常攻撃のダメージ(サモン)
-                                bool AttackSimpleDamageWithSummonMatchFlag = false;
-                                foreach (Regex AttackSimpleDamageWithSummonRegex in AttackSimpleDamageWithSummonRegexList)
-                                {
+                                    // 通常攻撃のダメージ(サモン)
                                     Match AttackSimpleDamageWithSummonMatch = AttackSimpleDamageWithSummonRegex.Match(LogTextWithoutTime);
                                     if (AttackSimpleDamageWithSummonMatch.Success)
                                     {
-                                        Debug.WriteLine(LogText);
-                                        AttackSimpleDamageWithSummonMatchFlag = true;
                                         ChatLogActionData.SourceName = AttackSimpleDamageWithSummonMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.TargetName = AttackSimpleDamageWithSummonMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithSummonMatch.Groups["Damage"].Value.Replace(",", ""));
-                                        //ChatLogActionData.IsSkill = false;
 
                                         this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
-                                        break;
+                                        continue;
                                     }
-                                }
-                                if (AttackSimpleDamageWithSummonMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // 通常攻撃(クリティカルヒット)のダメージ(自分)
-                                Match AttackCriticalHitDamageMatch = AttackCriticalHitDamageRegex.Match(LogTextWithoutTime);
-                                if (AttackCriticalHitDamageMatch.Success)
-                                {
-                                    ChatLogActionData.SourceName = this.OwnName;
-                                    ChatLogActionData.SkillName = this.SimpleDamageName;
-                                    ChatLogActionData.TargetName = AttackCriticalHitDamageMatch.Groups["TargetName"].Value;
-                                    ChatLogActionData.Damage = long.Parse(AttackCriticalHitDamageMatch.Groups["Damage"].Value.Replace(",", ""));
-                                    ChatLogActionData.IsSkill = false;
-
-                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
-
-                                    continue;
-                                }
-
-                                // 通常攻撃のダメージ(他人)
-                                bool AttackSimpleDamageWithSourceNameMatchFlag = false;
-                                foreach (Regex AttackSimpleDamageWithSourceNameRegex in AttackSimpleDamageWithSourceNameRegexList)
-                                {
-                                    Match AttackSimpleDamageWithSourceNameMatch = AttackSimpleDamageWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (AttackSimpleDamageWithSourceNameMatch.Success)
+                                    // 通常攻撃(クリティカルヒット)のダメージ(自分)
+                                    Match AttackCriticalHitDamageMatch = AttackCriticalHitDamageRegex.Match(LogTextWithoutTime);
+                                    if (AttackCriticalHitDamageMatch.Success)
                                     {
-                                        AttackSimpleDamageWithSourceNameMatchFlag = true;
-                                        ChatLogActionData.SourceName = AttackSimpleDamageWithSourceNameMatch.Groups["SourceName"].Value;
+                                        ChatLogActionData.SourceName = this.OwnName;
                                         ChatLogActionData.SkillName = this.SimpleDamageName;
-                                        ChatLogActionData.TargetName = AttackSimpleDamageWithSourceNameMatch.Groups["TargetName"].Value;
-                                        ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+                                        ChatLogActionData.TargetName = AttackCriticalHitDamageMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(AttackCriticalHitDamageMatch.Groups["Damage"].Value.Replace(",", ""));
                                         ChatLogActionData.IsSkill = false;
 
                                         this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
-                                        break;
-                                    }
-                                }
-                                if (AttackSimpleDamageWithSourceNameMatchFlag)
-                                {
-                                    continue;
-                                }
-
-                                // 通常攻撃のダメージ(自分)
-                                Match AttackSimpleDamageWithoutSourceNameMatch = AttackSimpleDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                if (AttackSimpleDamageWithoutSourceNameMatch.Success)
-                                {
-                                    ChatLogActionData.SourceName = this.OwnName;
-                                    ChatLogActionData.SkillName = this.SimpleDamageName;
-                                    ChatLogActionData.TargetName = AttackSimpleDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
-                                    ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
-                                    ChatLogActionData.IsSkill = false;
-
-                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
-
-                                    continue;
-                                }
-                            }
-                            else
-                            {
-                                // ドットスキルの成功
-                                Match AttackSkillDotEffectWithSourceNameMatch = AttackSkillDotEffectWithSourceNameRegex.Match(LogTextWithoutTime);
-                                Match AttackSkillDotEffectMelodyWithSourceNameMatch = AttackSkillDotEffectMelodyWithSourceNameRegex.Match(LogTextWithoutTime);
-                                Match AttackSkillDotEffectWithoutSourceNameMatch = AttackSkillDotEffectWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                Match AttackSkillDotEffectMelodyWithoutSourceNameMatch = AttackSkillDotEffectMelodyWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                if (AttackSkillDotEffectWithSourceNameMatch.Success || AttackSkillDotEffectMelodyWithSourceNameMatch.Success || AttackSkillDotEffectWithoutSourceNameMatch.Success || AttackSkillDotEffectMelodyWithoutSourceNameMatch.Success)
-                                {
-                                    Match _Match = null;
-                                    if (AttackSkillDotEffectWithSourceNameMatch.Success)
-                                    {
-                                        _Match = AttackSkillDotEffectWithSourceNameMatch;
-                                        ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
-                                    }
-                                    else if (AttackSkillDotEffectMelodyWithSourceNameMatch.Success)
-                                    {
-                                        _Match = AttackSkillDotEffectMelodyWithSourceNameMatch;
-                                        ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
-                                    }
-                                    else if (AttackSkillDotEffectWithoutSourceNameMatch.Success)
-                                    {
-                                        _Match = AttackSkillDotEffectWithoutSourceNameMatch;
-                                        ChatLogActionData.SourceName = this.OwnName;
-                                    }
-                                    else
-                                    {
-                                        _Match = AttackSkillDotEffectMelodyWithoutSourceNameMatch;
-                                        ChatLogActionData.SourceName = this.OwnName;
+                                        continue;
                                     }
 
-                                    ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
-                                    ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
-
-                                    // ターゲット存在のチェック
-                                    if (SkillDebuffTargetList.ContainsKey(ChatLogActionData.TargetName))
+                                    // 通常攻撃のダメージ(他人)
+                                    bool AttackSimpleDamageWithSourceNameMatchFlag = false;
+                                    foreach (Regex AttackSimpleDamageWithSourceNameRegex in AttackSimpleDamageWithSourceNameRegexList)
                                     {
-                                        // デバフ存在のチェック
-                                        Dictionary<string, ActionData> DebuffSkillList = SkillDebuffTargetList[ChatLogActionData.TargetName];
-                                        if (DebuffSkillList.ContainsKey(ChatLogActionData.SkillName))
+                                        Match AttackSimpleDamageWithSourceNameMatch = AttackSimpleDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                                        if (AttackSimpleDamageWithSourceNameMatch.Success)
                                         {
-                                            DebuffSkillList.Remove(ChatLogActionData.SkillName);
+                                            AttackSimpleDamageWithSourceNameMatchFlag = true;
+                                            ChatLogActionData.SourceName = AttackSimpleDamageWithSourceNameMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.SkillName = this.SimpleDamageName;
+                                            ChatLogActionData.TargetName = AttackSimpleDamageWithSourceNameMatch.Groups["TargetName"].Value;
+                                            ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+                                            ChatLogActionData.IsSkill = false;
+
+                                            this.Invoke(UpdateDataDelegate, ChatLogActionData);
+
+                                            break;
                                         }
-
-                                        DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
                                     }
-                                    else
+                                    if (AttackSimpleDamageWithSourceNameMatchFlag)
                                     {
-                                        Dictionary<string, ActionData> DebuffSkillList = new Dictionary<string, ActionData>();
-                                        DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
-                                        SkillDebuffTargetList.Add(ChatLogActionData.TargetName, DebuffSkillList);
+                                        continue;
                                     }
 
-                                    continue;
+                                    // 通常攻撃のダメージ(自分)
+                                    Match AttackSimpleDamageWithoutSourceNameMatch = AttackSimpleDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (AttackSimpleDamageWithoutSourceNameMatch.Success)
+                                    {
+                                        ChatLogActionData.SourceName = this.OwnName;
+                                        ChatLogActionData.SkillName = this.SimpleDamageName;
+                                        ChatLogActionData.TargetName = AttackSimpleDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+                                        ChatLogActionData.IsSkill = false;
+
+                                        this.Invoke(UpdateDataDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
                                 }
-
-                                // デバフダメージスキルのダメージ
-                                Match AttackSkillReleaseBuffDamageWithSourceNameMatch = AttackSkillReleaseBuffDamageWithSourceNameRegex.Match(LogTextWithoutTime);
-                                Match AttackSkillDebuffDamageWithSourceNameMatch = AttackSkillDebuffDamageWithSourceNameRegex.Match(LogTextWithoutTime);
-                                Match AttackSkillReleaseBuffDamageWithoutSourceNameMatch = AttackSkillReleaseBuffDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                Match AttackSkillDebuffDamageWithoutSourceNameMatch = AttackSkillDebuffDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                if (AttackSkillReleaseBuffDamageWithSourceNameMatch.Success ||
-                                    AttackSkillDebuffDamageWithSourceNameMatch.Success ||
-                                    AttackSkillReleaseBuffDamageWithoutSourceNameMatch.Success ||
-                                    AttackSkillDebuffDamageWithoutSourceNameMatch.Success)
+                                else
                                 {
-                                    Match _Match = null;
-                                    if (AttackSkillReleaseBuffDamageWithSourceNameMatch.Success || AttackSkillDebuffDamageWithSourceNameMatch.Success)
+                                    // ドットスキルの成功
+                                    Match AttackSkillDotEffectWithSourceNameMatch = AttackSkillDotEffectWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match AttackSkillDotEffectMelodyWithSourceNameMatch = AttackSkillDotEffectMelodyWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match AttackSkillDotEffectWithoutSourceNameMatch = AttackSkillDotEffectWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match AttackSkillDotEffectMelodyWithoutSourceNameMatch = AttackSkillDotEffectMelodyWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (AttackSkillDotEffectWithSourceNameMatch.Success || AttackSkillDotEffectMelodyWithSourceNameMatch.Success || AttackSkillDotEffectWithoutSourceNameMatch.Success || AttackSkillDotEffectMelodyWithoutSourceNameMatch.Success)
                                     {
-                                        if (AttackSkillReleaseBuffDamageWithSourceNameMatch.Success)
+                                        Match _Match = null;
+                                        if (AttackSkillDotEffectWithSourceNameMatch.Success)
                                         {
-                                            _Match = AttackSkillReleaseBuffDamageWithSourceNameMatch;
+                                            _Match = AttackSkillDotEffectWithSourceNameMatch;
+                                            ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
+                                        }
+                                        else if (AttackSkillDotEffectMelodyWithSourceNameMatch.Success)
+                                        {
+                                            _Match = AttackSkillDotEffectMelodyWithSourceNameMatch;
+                                            ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
+                                        }
+                                        else if (AttackSkillDotEffectWithoutSourceNameMatch.Success)
+                                        {
+                                            _Match = AttackSkillDotEffectWithoutSourceNameMatch;
+                                            ChatLogActionData.SourceName = this.OwnName;
                                         }
                                         else
                                         {
-                                            _Match = AttackSkillDebuffDamageWithSourceNameMatch;
+                                            _Match = AttackSkillDotEffectMelodyWithoutSourceNameMatch;
+                                            ChatLogActionData.SourceName = this.OwnName;
                                         }
-                                        ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
-                                    }
-                                    else
-                                    {
-                                        if (AttackSkillReleaseBuffDamageWithoutSourceNameMatch.Success)
+
+                                        ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
+                                        ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
+
+                                        // ターゲット存在のチェック
+                                        if (SkillDebuffTargetList.ContainsKey(ChatLogActionData.TargetName))
                                         {
-                                            _Match = AttackSkillReleaseBuffDamageWithoutSourceNameMatch;
+                                            // デバフ存在のチェック
+                                            Dictionary<string, ActionData> DebuffSkillList = SkillDebuffTargetList[ChatLogActionData.TargetName];
+                                            if (DebuffSkillList.ContainsKey(ChatLogActionData.SkillName))
+                                            {
+                                                DebuffSkillList.Remove(ChatLogActionData.SkillName);
+                                            }
+
+                                            DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
                                         }
                                         else
                                         {
-                                            _Match = AttackSkillDebuffDamageWithoutSourceNameMatch;
+                                            Dictionary<string, ActionData> DebuffSkillList = new Dictionary<string, ActionData>();
+                                            DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
+                                            SkillDebuffTargetList.Add(ChatLogActionData.TargetName, DebuffSkillList);
                                         }
-                                        ChatLogActionData.SourceName = this.OwnName;
+
+                                        continue;
                                     }
 
-                                    ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
-                                    ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
-                                    ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
+                                    // デバフダメージスキルのダメージ
+                                    Match AttackSkillReleaseBuffDamageWithSourceNameMatch = AttackSkillReleaseBuffDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match AttackSkillDebuffDamageWithSourceNameMatch = AttackSkillDebuffDamageWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match AttackSkillReleaseBuffDamageWithoutSourceNameMatch = AttackSkillReleaseBuffDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match AttackSkillDebuffDamageWithoutSourceNameMatch = AttackSkillDebuffDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (AttackSkillReleaseBuffDamageWithSourceNameMatch.Success ||
+                                        AttackSkillDebuffDamageWithSourceNameMatch.Success ||
+                                        AttackSkillReleaseBuffDamageWithoutSourceNameMatch.Success ||
+                                        AttackSkillDebuffDamageWithoutSourceNameMatch.Success)
+                                    {
+                                        Match _Match = null;
+                                        if (AttackSkillReleaseBuffDamageWithSourceNameMatch.Success || AttackSkillDebuffDamageWithSourceNameMatch.Success)
+                                        {
+                                            if (AttackSkillReleaseBuffDamageWithSourceNameMatch.Success)
+                                            {
+                                                _Match = AttackSkillReleaseBuffDamageWithSourceNameMatch;
+                                            }
+                                            else
+                                            {
+                                                _Match = AttackSkillDebuffDamageWithSourceNameMatch;
+                                            }
+                                            ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
+                                        }
+                                        else
+                                        {
+                                            if (AttackSkillReleaseBuffDamageWithoutSourceNameMatch.Success)
+                                            {
+                                                _Match = AttackSkillReleaseBuffDamageWithoutSourceNameMatch;
+                                            }
+                                            else
+                                            {
+                                                _Match = AttackSkillDebuffDamageWithoutSourceNameMatch;
+                                            }
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                        }
 
-                                    this.Invoke(UpdateDataDelegate, ChatLogActionData);
+                                        ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
 
-                                    continue;
-                                }
+                                        this.Invoke(UpdateDataDelegate, ChatLogActionData);
 
-                                // エフェクトダメージスキルのダメージ
-                                bool AttackSkillEffectDamageDamageMatchFlag = false;
-                                foreach (Regex AttackSkillEffectDamageDamageRegex in AttackSkillEffectDamageDamageRegexList)
-                                {
+                                        continue;
+                                    }
+
+                                    // エフェクトダメージスキルのダメージ
                                     Match ChatLogSkillEffectDamageDamageMatch = AttackSkillEffectDamageDamageRegex.Match(LogTextWithoutTime);
                                     if (ChatLogSkillEffectDamageDamageMatch.Success)
                                     {
-                                        AttackSkillEffectDamageDamageMatchFlag = true;
                                         ChatLogActionData.SkillName = ChatLogSkillEffectDamageDamageMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.TargetName = ChatLogSkillEffectDamageDamageMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(ChatLogSkillEffectDamageDamageMatch.Groups["Damage"].Value.Replace(",", ""));
 
                                         this.Invoke(UpdateDataDelegate, ChatLogActionData);
-                                    }
-                                }
-                                if (AttackSkillEffectDamageDamageMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // ディレイダメージスキルのダメージ
-                                bool AttackSkillDelayDamageDamageMatchFlag = false;
-                                foreach (Regex AttackSkillDelayDamageDamageRegex in AttackSkillDelayDamageDamageRegexList)
-                                {
+                                        continue;
+                                    }
+
+                                    // ディレイダメージスキルのダメージ
                                     Match AttackSkillDelayDamageDamageMatch = AttackSkillDelayDamageDamageRegex.Match(LogTextWithoutTime);
                                     if (AttackSkillDelayDamageDamageMatch.Success)
                                     {
-                                        AttackSkillDelayDamageDamageMatchFlag = true;
                                         ChatLogActionData.TargetName = AttackSkillDelayDamageDamageMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.SkillName = AttackSkillDelayDamageDamageMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSkillDelayDamageDamageMatch.Groups["Damage"].Value.Replace(",", ""));
@@ -987,22 +949,13 @@ namespace OpenAIONDPS
                                             // 使用者不明ダメージ
                                         }
 
-                                        break;
+                                        continue;
                                     }
-                                }
-                                if (AttackSkillDelayDamageDamageMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // ディレイダメージスキル(他人)
-                                bool AttackSkillDelayDamageWithSourceNameMatchFlag = false;
-                                foreach (Regex AttackSkillDelayDamageWithSourceNameRegex in AttackSkillDelayDamageWithSourceNameRegexList)
-                                {
+                                    // ディレイダメージスキル(他人)
                                     Match ChatLogCharacterSkillDelayMatch = AttackSkillDelayDamageWithSourceNameRegex.Match(LogTextWithoutTime);
                                     if (ChatLogCharacterSkillDelayMatch.Success)
                                     {
-                                        AttackSkillDelayDamageWithSourceNameMatchFlag = true;
                                         ChatLogActionData.SourceName = ChatLogCharacterSkillDelayMatch.Groups["SourceName"].Value;
                                         ChatLogActionData.SkillName = ChatLogCharacterSkillDelayMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.TargetName = ChatLogCharacterSkillDelayMatch.Groups["TargetName"].Value;
@@ -1024,22 +977,13 @@ namespace OpenAIONDPS
                                         LinkedList<ActionData> ActionList = SkillActionDataList[ChatLogActionData.SkillName];
                                         ActionList.AddLast(ChatLogActionData);
 
-                                        break;
+                                        continue;
                                     }
-                                }
-                                if (AttackSkillDelayDamageWithSourceNameMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // ディレイダメージスキル(自分)
-                                bool AttackSkillDelayDamageWithoutSourceNameMatchFlag = false;
-                                foreach (Regex AttackSkillDelayDamageWithoutSourceNameRegex in AttackSkillDelayDamageWithoutSourceNameRegexList)
-                                {
+                                    // ディレイダメージスキル(自分)
                                     Match AttackSkillDelayDamageWithoutSourceNameMatch = AttackSkillDelayDamageWithoutSourceNameRegex.Match(LogTextWithoutTime);
                                     if (AttackSkillDelayDamageWithoutSourceNameMatch.Success)
                                     {
-                                        AttackSkillDelayDamageWithoutSourceNameMatchFlag = true;
                                         ChatLogActionData.SourceName = this.OwnName;
                                         ChatLogActionData.SkillName = AttackSkillDelayDamageWithoutSourceNameMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.TargetName = AttackSkillDelayDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
@@ -1061,22 +1005,13 @@ namespace OpenAIONDPS
                                         LinkedList<ActionData> ActionList = SkillActionDataList[ChatLogActionData.SkillName];
                                         ActionList.AddLast(ChatLogActionData);
 
-                                        break;
+                                        continue;
                                     }
-                                }
-                                if (AttackSkillDelayDamageWithoutSourceNameMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // ドットスキルのダメージ
-                                bool AttackSkillDotDamageMatchFlag = false;
-                                foreach (Regex AttackSkillDotDamageRegex in AttackSkillDotDamageRegexList)
-                                {
+                                    // ドットスキルのダメージ
                                     Match AttackSkillDotDamageMatch = AttackSkillDotDamageRegex.Match(LogTextWithoutTime);
                                     if (AttackSkillDotDamageMatch.Success)
                                     {
-                                        AttackSkillDotDamageMatchFlag = true;
                                         ChatLogActionData.SkillName = AttackSkillDotDamageMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.TargetName = AttackSkillDotDamageMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSkillDotDamageMatch.Groups["Damage"].Value.Replace(",", ""));
@@ -1090,103 +1025,106 @@ namespace OpenAIONDPS
                                                 this.Invoke(UpdateDataDelegate, ChatLogActionData);
                                             }
                                         }
+
+                                        continue;
                                     }
-                                }
-                                if (AttackSkillDotDamageMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // 回避/抵抗(他人)
-                                bool EvasionResistanceWithSourceNameMatchFlag = false;
-                                foreach (Regex EvasionResistanceWithSourceNameRegex in EvasionResistanceWithSourceNameRegexList)
-                                {
-                                    Match EvasionResistanceWithSourceNameMatch = EvasionResistanceWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (EvasionResistanceWithSourceNameMatch.Success)
+                                    // 回避/抵抗(他人)
+                                    bool EvasionResistanceWithSourceNameMatchFlag = false;
+                                    foreach (Regex EvasionResistanceWithSourceNameRegex in EvasionResistanceWithSourceNameRegexList)
                                     {
-                                        EvasionResistanceWithSourceNameMatchFlag = true;
-                                        ChatLogActionData.SourceName = EvasionResistanceWithSourceNameMatch.Groups["SourceName"].Value;
-                                        ChatLogActionData.TargetName = EvasionResistanceWithSourceNameMatch.Groups["TargetName"].Value;
-
-                                        if (MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName) || MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
+                                        Match EvasionResistanceWithSourceNameMatch = EvasionResistanceWithSourceNameRegex.Match(LogTextWithoutTime);
+                                        if (EvasionResistanceWithSourceNameMatch.Success)
                                         {
-                                            if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
+                                            EvasionResistanceWithSourceNameMatchFlag = true;
+                                            ChatLogActionData.SourceName = EvasionResistanceWithSourceNameMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = EvasionResistanceWithSourceNameMatch.Groups["TargetName"].Value;
+
+                                            if (MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName) || MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
                                             {
-                                                this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
+                                                if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
+                                                {
+                                                    this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
+                                                }
+                                                else
+                                                {
+                                                    this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
+                                                }
                                             }
-                                            else
-                                            {
-                                                this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
-                                            }
+
+                                            break;
+                                        }
+                                    }
+                                    if (EvasionResistanceWithSourceNameMatchFlag)
+                                    {
+                                        continue;
+                                    }
+
+                                    // 回避/抵抗(他人)(その他排除用)
+                                    Match EvasionResistancePatternWithSourceNameMatch = EvasionResistanceWithOthersRegex.Match(LogTextWithoutTime);
+                                    if (EvasionResistancePatternWithSourceNameMatch.Success)
+                                    {
+                                        continue;
+                                    }
+
+                                    // 回避/抵抗された攻撃(自分)
+                                    Match ChatLogEvadedResistedMatch = ChatLogEvadedResistedRegex.Match(LogTextWithoutTime);
+                                    if (ChatLogEvadedResistedMatch.Success)
+                                    {
+                                        ChatLogActionData.SourceName = ChatLogEvadedResistedMatch.Groups["SourceName"].Value;
+                                        ChatLogActionData.TargetName = this.OwnName;
+
+                                        if (LogTextWithoutTime.IndexOf("攻撃") > 0)
+                                        {
+                                            ChatLogActionData.IsSkill = false;
                                         }
 
-                                        break;
+                                        if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
+                                        {
+                                            this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
+                                        }
+                                        else
+                                        {
+                                            this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
+                                        }
+
+                                        continue;
                                     }
-                                }
-                                if (EvasionResistanceWithSourceNameMatchFlag)
-                                {
-                                    continue;
-                                }
 
-                                // 回避/抵抗(他人)(その他排除用)
-                                Match EvasionResistancePatternWithSourceNameMatch = EvasionResistanceWithOthersRegex.Match(LogTextWithoutTime);
-                                if (EvasionResistancePatternWithSourceNameMatch.Success)
-                                {
-                                    continue;
-                                }
-
-                                // 回避/抵抗された攻撃(自分)
-                                Match ChatLogEvadedResistedMatch = ChatLogEvadedResistedRegex.Match(LogTextWithoutTime);
-                                if (ChatLogEvadedResistedMatch.Success)
-                                {
-                                    ChatLogActionData.SourceName = ChatLogEvadedResistedMatch.Groups["SourceName"].Value;
-                                    ChatLogActionData.TargetName = this.OwnName;
-
-                                    if (LogTextWithoutTime.IndexOf("攻撃") > 0)
+                                    // 回避/抵抗した攻撃(自分)
+                                    Match ChatLogEvadeResistMatch = ChatLogEvadeResistRegex.Match(LogTextWithoutTime);
+                                    if (ChatLogEvadeResistMatch.Success)
                                     {
-                                        ChatLogActionData.IsSkill = false;
-                                    }
+                                        ChatLogActionData.SourceName = this.OwnName;
+                                        ChatLogActionData.TargetName = ChatLogEvadeResistMatch.Groups["TargetName"].Value;
 
-                                    if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
-                                    {
-                                        this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
-                                    }
-                                    else
-                                    {
-                                        this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
-                                    }
+                                        Debug.WriteLine(LogText);
+                                        if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
+                                        {
+                                            this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
+                                        }
+                                        else
+                                        {
+                                            this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
+                                        }
 
-                                    continue;
-                                }
-
-                                // 回避/抵抗した攻撃(自分)
-                                Match ChatLogEvadeResistMatch = ChatLogEvadeResistRegex.Match(LogTextWithoutTime);
-                                if (ChatLogEvadeResistMatch.Success)
-                                {
-                                    ChatLogActionData.SourceName = this.OwnName;
-                                    ChatLogActionData.TargetName = ChatLogEvadeResistMatch.Groups["TargetName"].Value;
-
-                                    Debug.WriteLine(LogText);
-                                    if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
-                                    {
-                                        this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
+                                        continue;
                                     }
-                                    else
-                                    {
-                                        this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
-                                    }
-
-                                    continue;
                                 }
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            this.PrintExceptionDebugMessage(ex);
+                            catch (Exception ex)
+                            {
+                                this.PrintExceptionDebugMessage(ex);
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex2)
+            {
+                this.PrintExceptionDebugMessage(ex2);
+            }
+
 
             if (this.IsCalcLogFile)
             {
@@ -1218,94 +1156,6 @@ namespace OpenAIONDPS
             AttackSkillDamageWithSourceNameRegexList.AddLast(this.GetReplacedMemberNameRegexList(AION.LogPattern.AttackSkillDamageWithSourceNameReplacedMemberNamePattern));
             AttackSkillDamageWithSourceNameRegexList.AddLast(new Regex(AION.LogPattern.AttackSkillDamageWithSourceNamePattern, RegexOptions.Compiled));
             return AttackSkillDamageWithSourceNameRegexList;
-        }
-
-        /// <summary>
-        /// ドットスキルのダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDotDamageRegexList()
-        {
-            LinkedList<Regex> AttackSkillDotDamageRegexList = new LinkedList<Regex>();
-            AttackSkillDotDamageRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDotDamagePattern, AION.SkillType.Dot));
-            return AttackSkillDotDamageRegexList;
-        }
-
-        /// <summary>
-        /// 通常攻撃のダメージのパターン(サモン)リストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSimpleDamageWithSummonRegexList()
-        {
-            LinkedList<Regex> AttackSimpleDamageWithSummonPatternRegexList = new LinkedList<Regex>();
-            AttackSimpleDamageWithSummonPatternRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSimpleDamageWithSummonPattern, AION.SkillType.Summon));
-            return AttackSimpleDamageWithSummonPatternRegexList;
-        }
-
-        /// <summary>
-        /// スキルのダメージのパターン(サモン)リストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDamageWithSummonRegexList()
-        {
-            LinkedList<Regex> AttackSkillDamageWithSummonRegexList = new LinkedList<Regex>();
-            AttackSkillDamageWithSummonRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDamageWithSummonPattern, AION.SkillType.Summon));
-            return AttackSkillDamageWithSummonRegexList;
-        }
-
-        /// <summary>
-        /// サモンスキル(攻撃対象固定)のダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDamageFixedSkillWithSummonRegexList()
-        {
-            LinkedList<Regex> AttackSkillDamageFixedSkillWithSummonRegexList = new LinkedList<Regex>();
-            AttackSkillDamageFixedSkillWithSummonRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDamageFixedSkillWithSummonPattern, AION.SkillType.Summon));
-            return AttackSkillDamageFixedSkillWithSummonRegexList;
-        }
-
-        /// <summary>
-        /// ディレイダメージスキルのパターン(自分)のパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDelayDamageWithoutSourceNameRegexList()
-        {
-            LinkedList<Regex> AttackSkillDelayDamageWithoutSourceNameRegexList = new LinkedList<Regex>();
-            AttackSkillDelayDamageWithoutSourceNameRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageWithoutSourceNamePattern, AION.SkillType.DelayDamage));
-            return AttackSkillDelayDamageWithoutSourceNameRegexList;
-        }
-
-        /// <summary>
-        /// ディレイダメージスキルのパターン(他人)のパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDelayDamageWithSourceNameRegexList()
-        {
-            LinkedList<Regex> AttackSkillDelayDamageWithSourceNameRegexList = new LinkedList<Regex>();
-            AttackSkillDelayDamageWithSourceNameRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageWithSourceNamePattern, AION.SkillType.DelayDamage));
-            return AttackSkillDelayDamageWithSourceNameRegexList;
-        }
-
-        /// <summary>
-        /// ディレイダメージスキルのダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillDelayDamageDamageRegexList()
-        {
-            LinkedList<Regex> AttackSkillDelayDamageDamageRegexList = new LinkedList<Regex>();
-            AttackSkillDelayDamageDamageRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDelayDamageDamagePattern, AION.SkillType.DelayDamage));
-            return AttackSkillDelayDamageDamageRegexList;
-        }
-
-        /// <summary>
-        /// エフェクトダメージスキルのダメージのパターンリストの取得
-        /// </summary>
-        /// <returns></returns>
-        private LinkedList<Regex> GetAttackSkillEffectDamageDamageRegexList()
-        {
-            LinkedList<Regex> AttackSkillEffectDamageDamageRegexList = new LinkedList<Regex>();
-            AttackSkillEffectDamageDamageRegexList.AddLast(this.GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillEffectDamageDamagePattern, AION.SkillType.EffectDamage));
-            return AttackSkillEffectDamageDamageRegexList;
         }
 
         /// <summary>
@@ -1342,7 +1192,7 @@ namespace OpenAIONDPS
             return new Regex(LogPattern.Replace("[[[MemberName]]]", MemberNameOrString), RegexOptions.Compiled);
         }
 
-        private Regex GetReplacedSkillNameRegex(string LogPattern, AION.SkillType SkillType)
+        private static Regex GetReplacedSkillNameRegex(string LogPattern, AION.SkillType SkillType)
         {
             string SkillNameOrString = "";
 
