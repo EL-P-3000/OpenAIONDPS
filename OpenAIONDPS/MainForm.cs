@@ -1259,7 +1259,7 @@ namespace OpenAIONDPS
                     {
                         // スキル一覧のダメージを更新
                         this.UpdateTotalDamage(ChatLogActionData.Damage);
-                        this.SkillUnitList[ChatLogActionData.SkillName].UpdateDamage(ChatLogActionData.Damage);
+                        this.SkillUnitList[ChatLogActionData.SkillName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
                         UpdateTotalDamageFlag = true;
                     }
                 }
@@ -1286,7 +1286,7 @@ namespace OpenAIONDPS
                     {
                         // スキル一覧のダメージを更新
                         this.UpdateTotalDamage(ChatLogActionData.Damage);
-                        this.SkillUnitList[ChatLogActionData.SourceName].UpdateDamage(ChatLogActionData.Damage);
+                        this.SkillUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
                         UpdateTotalDamageFlag = true;
                     }
                 }
@@ -1791,6 +1791,29 @@ namespace OpenAIONDPS
                                 _Skill.MaxDamageWithCritical.ToString("#,0"),
                                 _Skill.MinDamageWithCritical.ToString("#,0"),
                                 (_Skill.Damage / _Skill.AttackNumber).ToString("#,0"),
+                            }
+                        );
+                    }
+                }
+            }
+
+            if (this.SkillUnitList != null && this.SkillUnitList.Count >= 0)
+            {
+                foreach (SkillUnit _SkillUnit in this.SkillUnitList.Values)
+                {
+                    if (_SkillUnit.Damage > 0)
+                    {
+                        this.SkillDamageListDataGridView.Rows.Add(
+                            new string[] {
+                                _SkillUnit.GetJobName(),
+                                _SkillUnit.GetName(),
+                                _SkillUnit.Damage.ToString("#,0"),
+                                _SkillUnit.AttackNumber.ToString("#,0"),
+                                _SkillUnit.MaxDamageWithoutCritical.ToString("#,0"),
+                                _SkillUnit.MinDamageWithoutCritical.ToString("#,0"),
+                                _SkillUnit.MaxDamageWithCritical.ToString("#,0"),
+                                _SkillUnit.MinDamageWithCritical.ToString("#,0"),
+                                (_SkillUnit.Damage / _SkillUnit.AttackNumber).ToString("#,0"),
                             }
                         );
                     }

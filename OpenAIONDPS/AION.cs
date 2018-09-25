@@ -321,12 +321,6 @@ namespace OpenAIONDPS
             public string Name = "";
             public JobType Job = JobType.None;
             public SkillType SkillType = SkillType.Others;
-            public long Damage = 0;
-            public long AttackNumber = 0;
-            public long MaxDamageWithCritical = 0;
-            public long MinDamageWithCritical = 0;
-            public long MaxDamageWithoutCritical = 0;
-            public long MinDamageWithoutCritical = 0;
             private bool IsStartWithCritical = false;
             private bool IsStartWithoutCritical = false;
 
@@ -336,6 +330,18 @@ namespace OpenAIONDPS
                 this.Job = Job;
                 this.SkillType = SkillType;
             }
+
+            public long Damage { get; set; } = 0;
+
+            public long AttackNumber { get; set; } = 0;
+
+            public long MaxDamageWithCritical { get; set; } = 0;
+
+            public long MinDamageWithCritical { get; set; } = 0;
+
+            public long MaxDamageWithoutCritical { get; set; } = 0;
+
+            public long MinDamageWithoutCritical { get; set; } = 0;
 
             public void AddDamage(long Damage, bool IsCriticalHit)
             {
