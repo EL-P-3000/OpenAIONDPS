@@ -662,6 +662,14 @@ namespace OpenAIONDPS
                                                 {
                                                     PreviousHealChatLogActionData.SourceName = BuffActionData.SourceName;
                                                     this.Invoke(UpdateHealDelegate, PreviousHealChatLogActionData);
+
+                                                    if (PreviousHealChatLogActionData.SkillName.Equals("ピュリフィケーション ウェーブ") ||
+                                                        PreviousHealChatLogActionData.SkillName.Equals("サルヴェーション ハンド") ||
+                                                        PreviousHealChatLogActionData.SkillName.Equals("サルヴェーション スプレンダー")
+                                                        )
+                                                    {
+                                                        SkillActionDataList.Remove(PreviousHealChatLogActionData.SkillName);
+                                                    }
                                                 }
                                                 else
                                                 {
@@ -737,6 +745,14 @@ namespace OpenAIONDPS
                                                     HealSkillContinuousWithoutTargetNameFlag = true;
                                                     ChatLogActionData.SourceName = BuffActionData.SourceName;
                                                     this.Invoke(UpdateHealDelegate, ChatLogActionData);
+
+                                                    if (PreviousHealChatLogActionData.SkillName.Equals("ピュリフィケーション ウェーブ") ||
+                                                        PreviousHealChatLogActionData.SkillName.Equals("サルヴェーション ハンド") ||
+                                                        PreviousHealChatLogActionData.SkillName.Equals("サルヴェーション スプレンダー")
+                                                        )
+                                                    {
+                                                        SkillActionDataList.Remove(PreviousHealChatLogActionData.SkillName);
+                                                    }
                                                 }
                                                 else
                                                 {
@@ -2111,6 +2127,11 @@ namespace OpenAIONDPS
         private void ProjectManualLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(this.ProjectManualLinkLabel.Text);
+        }
+
+        private void ProjectLatestVersionLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.ProjectLatestVersionLinkLabel.Text);
         }
 
         /* タブ関係 */

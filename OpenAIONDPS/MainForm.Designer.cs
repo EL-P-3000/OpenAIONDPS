@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -78,6 +79,18 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.Member01 = new OpenAIONDPS.MemberUnit();
+            this.Member02 = new OpenAIONDPS.MemberUnit();
+            this.Member03 = new OpenAIONDPS.MemberUnit();
+            this.Member04 = new OpenAIONDPS.MemberUnit();
+            this.Member05 = new OpenAIONDPS.MemberUnit();
+            this.Member06 = new OpenAIONDPS.MemberUnit();
+            this.Member07 = new OpenAIONDPS.MemberUnit();
+            this.Member08 = new OpenAIONDPS.MemberUnit();
+            this.Member09 = new OpenAIONDPS.MemberUnit();
+            this.Member10 = new OpenAIONDPS.MemberUnit();
+            this.Member11 = new OpenAIONDPS.MemberUnit();
+            this.Member12 = new OpenAIONDPS.MemberUnit();
             this.DebugCheckBox = new System.Windows.Forms.CheckBox();
             this.CalcFromLogFileButton = new System.Windows.Forms.Button();
             this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
@@ -92,6 +105,7 @@
             this.ProjectTopLinkLabel = new System.Windows.Forms.LinkLabel();
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.MemberDamageListTabPage = new System.Windows.Forms.TabPage();
+            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SkillDamageListTabPage = new System.Windows.Forms.TabPage();
             this.SaveSkillDamageListImageButton = new System.Windows.Forms.Button();
@@ -108,24 +122,12 @@
             this.SkillHealListTabPage = new System.Windows.Forms.TabPage();
             this.SaveSkillHealListImageButton = new System.Windows.Forms.Button();
             this.SkillHealListDataGridView = new System.Windows.Forms.DataGridView();
-            this.SaveImageButton = new System.Windows.Forms.Button();
-            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
-            this.Member01 = new OpenAIONDPS.MemberUnit();
-            this.Member02 = new OpenAIONDPS.MemberUnit();
-            this.Member03 = new OpenAIONDPS.MemberUnit();
-            this.Member04 = new OpenAIONDPS.MemberUnit();
-            this.Member05 = new OpenAIONDPS.MemberUnit();
-            this.Member06 = new OpenAIONDPS.MemberUnit();
-            this.Member07 = new OpenAIONDPS.MemberUnit();
-            this.Member08 = new OpenAIONDPS.MemberUnit();
-            this.Member09 = new OpenAIONDPS.MemberUnit();
-            this.Member10 = new OpenAIONDPS.MemberUnit();
-            this.Member11 = new OpenAIONDPS.MemberUnit();
-            this.Member12 = new OpenAIONDPS.MemberUnit();
-            this.label31 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaveImageButton = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
+            this.ProjectLatestVersionLinkLabel = new System.Windows.Forms.LinkLabel();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.MenuTabControl.SuspendLayout();
@@ -224,6 +226,15 @@
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(976, 27);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(41, 12);
+            this.label31.TabIndex = 56;
+            this.label31.Text = "回復量";
             // 
             // ClearButton
             // 
@@ -570,380 +581,6 @@
             this.label17.Text = "通常攻撃";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // DebugCheckBox
-            // 
-            this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(456, 45);
-            this.DebugCheckBox.Name = "DebugCheckBox";
-            this.DebugCheckBox.Size = new System.Drawing.Size(114, 16);
-            this.DebugCheckBox.TabIndex = 10;
-            this.DebugCheckBox.Text = "デバッグ用ログ出力";
-            this.DebugCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // CalcFromLogFileButton
-            // 
-            this.CalcFromLogFileButton.Location = new System.Drawing.Point(93, 41);
-            this.CalcFromLogFileButton.Name = "CalcFromLogFileButton";
-            this.CalcFromLogFileButton.Size = new System.Drawing.Size(75, 23);
-            this.CalcFromLogFileButton.TabIndex = 5;
-            this.CalcFromLogFileButton.Text = "ログから計測";
-            this.CalcFromLogFileButton.UseVisualStyleBackColor = true;
-            this.CalcFromLogFileButton.Click += new System.EventHandler(this.CalcFromLogFileButton_Click);
-            // 
-            // AlwaysOnTopCheckBox
-            // 
-            this.AlwaysOnTopCheckBox.AutoSize = true;
-            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(366, 45);
-            this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
-            this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
-            this.AlwaysOnTopCheckBox.TabIndex = 9;
-            this.AlwaysOnTopCheckBox.Text = "最前面表示";
-            this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
-            this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
-            // 
-            // CalcTimeCheckBox
-            // 
-            this.CalcTimeCheckBox.AutoSize = true;
-            this.CalcTimeCheckBox.Location = new System.Drawing.Point(366, 16);
-            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
-            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
-            this.CalcTimeCheckBox.TabIndex = 7;
-            this.CalcTimeCheckBox.Text = "計測時間(分)";
-            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // CalcTimerMinutesNumericUpDown
-            // 
-            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(458, 13);
-            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
-            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
-            this.CalcTimerMinutesNumericUpDown.TabIndex = 8;
-            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
-            // 
-            // CalcRemainingTimeLabel
-            // 
-            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
-            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(506, 12);
-            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
-            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
-            this.CalcRemainingTimeLabel.TabIndex = 30;
-            this.CalcRemainingTimeLabel.Text = "300";
-            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CopyResultButton
-            // 
-            this.CopyResultButton.Location = new System.Drawing.Point(255, 12);
-            this.CopyResultButton.Name = "CopyResultButton";
-            this.CopyResultButton.Size = new System.Drawing.Size(105, 23);
-            this.CopyResultButton.TabIndex = 3;
-            this.CopyResultButton.Text = "コピー";
-            this.CopyResultButton.UseVisualStyleBackColor = true;
-            this.CopyResultButton.Click += new System.EventHandler(this.CopyResultButton_Click);
-            // 
-            // CopyResultForSkypeButton
-            // 
-            this.CopyResultForSkypeButton.Location = new System.Drawing.Point(255, 41);
-            this.CopyResultForSkypeButton.Name = "CopyResultForSkypeButton";
-            this.CopyResultForSkypeButton.Size = new System.Drawing.Size(105, 23);
-            this.CopyResultForSkypeButton.TabIndex = 6;
-            this.CopyResultForSkypeButton.Text = "コピー (Skype用)";
-            this.CopyResultForSkypeButton.UseVisualStyleBackColor = true;
-            this.CopyResultForSkypeButton.Click += new System.EventHandler(this.CopyResultForSkypeButton_Click);
-            // 
-            // ProjectManualLinkLabel
-            // 
-            this.ProjectManualLinkLabel.AutoSize = true;
-            this.ProjectManualLinkLabel.Location = new System.Drawing.Point(772, 17);
-            this.ProjectManualLinkLabel.Name = "ProjectManualLinkLabel";
-            this.ProjectManualLinkLabel.Size = new System.Drawing.Size(268, 12);
-            this.ProjectManualLinkLabel.TabIndex = 0;
-            this.ProjectManualLinkLabel.TabStop = true;
-            this.ProjectManualLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS/wiki";
-            this.ProjectManualLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectManualLinkLabel_LinkClicked);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(706, 46);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(60, 12);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "ソースコード";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(706, 17);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(50, 12);
-            this.label29.TabIndex = 0;
-            this.label29.Text = "マニュアル";
-            // 
-            // ProjectTopLinkLabel
-            // 
-            this.ProjectTopLinkLabel.AutoSize = true;
-            this.ProjectTopLinkLabel.Location = new System.Drawing.Point(772, 46);
-            this.ProjectTopLinkLabel.Name = "ProjectTopLinkLabel";
-            this.ProjectTopLinkLabel.Size = new System.Drawing.Size(242, 12);
-            this.ProjectTopLinkLabel.TabIndex = 0;
-            this.ProjectTopLinkLabel.TabStop = true;
-            this.ProjectTopLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS";
-            this.ProjectTopLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectTopLinkLabel_LinkClicked);
-            // 
-            // MenuTabControl
-            // 
-            this.MenuTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MenuTabControl.Controls.Add(this.MemberDamageListTabPage);
-            this.MenuTabControl.Controls.Add(this.SkillDamageListTabPage);
-            this.MenuTabControl.Controls.Add(this.SkillHealListTabPage);
-            this.MenuTabControl.Location = new System.Drawing.Point(4, 80);
-            this.MenuTabControl.Name = "MenuTabControl";
-            this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1046, 748);
-            this.MenuTabControl.TabIndex = 11;
-            this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
-            // 
-            // MemberDamageListTabPage
-            // 
-            this.MemberDamageListTabPage.Controls.Add(this.FavoriteMemberList);
-            this.MemberDamageListTabPage.Controls.Add(this.SkillListFlowLayoutPanel);
-            this.MemberDamageListTabPage.Controls.Add(this.MemberGroupBox);
-            this.MemberDamageListTabPage.Location = new System.Drawing.Point(4, 22);
-            this.MemberDamageListTabPage.Name = "MemberDamageListTabPage";
-            this.MemberDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1038, 722);
-            this.MemberDamageListTabPage.TabIndex = 0;
-            this.MemberDamageListTabPage.Text = "メンバー別ダメージ一覧";
-            this.MemberDamageListTabPage.UseVisualStyleBackColor = true;
-            // 
-            // SkillListFlowLayoutPanel
-            // 
-            this.SkillListFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SkillListFlowLayoutPanel.AutoScroll = true;
-            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(3, 492);
-            this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
-            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(1029, 224);
-            this.SkillListFlowLayoutPanel.TabIndex = 29;
-            // 
-            // SkillDamageListTabPage
-            // 
-            this.SkillDamageListTabPage.Controls.Add(this.SaveSkillDamageListImageButton);
-            this.SkillDamageListTabPage.Controls.Add(this.SkillDamageListDataGridView);
-            this.SkillDamageListTabPage.Location = new System.Drawing.Point(4, 22);
-            this.SkillDamageListTabPage.Name = "SkillDamageListTabPage";
-            this.SkillDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SkillDamageListTabPage.Size = new System.Drawing.Size(996, 722);
-            this.SkillDamageListTabPage.TabIndex = 1;
-            this.SkillDamageListTabPage.Text = "スキル別ダメージ一覧";
-            this.SkillDamageListTabPage.UseVisualStyleBackColor = true;
-            // 
-            // SaveSkillDamageListImageButton
-            // 
-            this.SaveSkillDamageListImageButton.Location = new System.Drawing.Point(6, 6);
-            this.SaveSkillDamageListImageButton.Name = "SaveSkillDamageListImageButton";
-            this.SaveSkillDamageListImageButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveSkillDamageListImageButton.TabIndex = 1;
-            this.SaveSkillDamageListImageButton.Text = "保存(画像)";
-            this.SaveSkillDamageListImageButton.UseVisualStyleBackColor = true;
-            this.SaveSkillDamageListImageButton.Click += new System.EventHandler(this.SaveSkillDamageListImageButton_Click);
-            // 
-            // SkillDamageListDataGridView
-            // 
-            this.SkillDamageListDataGridView.AllowUserToAddRows = false;
-            this.SkillDamageListDataGridView.AllowUserToDeleteRows = false;
-            this.SkillDamageListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SkillDamageListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.SkillDamageListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SkillDamageListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MemberNameColumn,
-            this.SkillNameColumn,
-            this.DamageColumn,
-            this.AttackNumberColumn,
-            this.MaxDamageColumn,
-            this.MinDamageColumn,
-            this.MaxDamageWithCriticalColumn,
-            this.MinDamageWithCriticalColumn,
-            this.DamageParAttackNumber});
-            this.SkillDamageListDataGridView.Location = new System.Drawing.Point(6, 35);
-            this.SkillDamageListDataGridView.Name = "SkillDamageListDataGridView";
-            this.SkillDamageListDataGridView.ReadOnly = true;
-            this.SkillDamageListDataGridView.RowHeadersVisible = false;
-            this.SkillDamageListDataGridView.RowTemplate.Height = 21;
-            this.SkillDamageListDataGridView.Size = new System.Drawing.Size(953, 682);
-            this.SkillDamageListDataGridView.TabIndex = 0;
-            // 
-            // MemberNameColumn
-            // 
-            this.MemberNameColumn.HeaderText = "メンバー名";
-            this.MemberNameColumn.Name = "MemberNameColumn";
-            this.MemberNameColumn.ReadOnly = true;
-            this.MemberNameColumn.Width = 90;
-            // 
-            // SkillNameColumn
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.SkillNameColumn.HeaderText = "スキル名";
-            this.SkillNameColumn.Name = "SkillNameColumn";
-            this.SkillNameColumn.ReadOnly = true;
-            this.SkillNameColumn.Width = 200;
-            // 
-            // DamageColumn
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DamageColumn.HeaderText = "総ダメージ";
-            this.DamageColumn.Name = "DamageColumn";
-            this.DamageColumn.ReadOnly = true;
-            this.DamageColumn.Width = 80;
-            // 
-            // AttackNumberColumn
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.AttackNumberColumn.HeaderText = "回数";
-            this.AttackNumberColumn.Name = "AttackNumberColumn";
-            this.AttackNumberColumn.ReadOnly = true;
-            this.AttackNumberColumn.Width = 60;
-            // 
-            // MaxDamageColumn
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.MaxDamageColumn.HeaderText = "MAXダメ(クリ無)";
-            this.MaxDamageColumn.Name = "MaxDamageColumn";
-            this.MaxDamageColumn.ReadOnly = true;
-            // 
-            // MinDamageColumn
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.MinDamageColumn.HeaderText = "MINダメ(クリ無)";
-            this.MinDamageColumn.Name = "MinDamageColumn";
-            this.MinDamageColumn.ReadOnly = true;
-            // 
-            // MaxDamageWithCriticalColumn
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle7;
-            this.MaxDamageWithCriticalColumn.HeaderText = "MAXダメ(クリ有)";
-            this.MaxDamageWithCriticalColumn.Name = "MaxDamageWithCriticalColumn";
-            this.MaxDamageWithCriticalColumn.ReadOnly = true;
-            // 
-            // MinDamageWithCriticalColumn
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.MinDamageWithCriticalColumn.HeaderText = "MINダメ(クリ有)";
-            this.MinDamageWithCriticalColumn.Name = "MinDamageWithCriticalColumn";
-            this.MinDamageWithCriticalColumn.ReadOnly = true;
-            // 
-            // DamageParAttackNumber
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle9;
-            this.DamageParAttackNumber.HeaderText = "平均ダメージ";
-            this.DamageParAttackNumber.Name = "DamageParAttackNumber";
-            this.DamageParAttackNumber.ReadOnly = true;
-            this.DamageParAttackNumber.Width = 80;
-            // 
-            // SkillHealListTabPage
-            // 
-            this.SkillHealListTabPage.Controls.Add(this.SaveSkillHealListImageButton);
-            this.SkillHealListTabPage.Controls.Add(this.SkillHealListDataGridView);
-            this.SkillHealListTabPage.Location = new System.Drawing.Point(4, 22);
-            this.SkillHealListTabPage.Name = "SkillHealListTabPage";
-            this.SkillHealListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SkillHealListTabPage.Size = new System.Drawing.Size(1038, 722);
-            this.SkillHealListTabPage.TabIndex = 2;
-            this.SkillHealListTabPage.Text = "スキル別ヒール一覧";
-            this.SkillHealListTabPage.UseVisualStyleBackColor = true;
-            // 
-            // SaveSkillHealListImageButton
-            // 
-            this.SaveSkillHealListImageButton.Location = new System.Drawing.Point(6, 6);
-            this.SaveSkillHealListImageButton.Name = "SaveSkillHealListImageButton";
-            this.SaveSkillHealListImageButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveSkillHealListImageButton.TabIndex = 2;
-            this.SaveSkillHealListImageButton.Text = "保存(画像)";
-            this.SaveSkillHealListImageButton.UseVisualStyleBackColor = true;
-            this.SaveSkillHealListImageButton.Click += new System.EventHandler(this.SaveSkillHealListImageButton_Click);
-            // 
-            // SkillHealListDataGridView
-            // 
-            this.SkillHealListDataGridView.AllowUserToAddRows = false;
-            this.SkillHealListDataGridView.AllowUserToDeleteRows = false;
-            this.SkillHealListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SkillHealListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.SkillHealListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SkillHealListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.SkillHealListDataGridView.Location = new System.Drawing.Point(6, 35);
-            this.SkillHealListDataGridView.Name = "SkillHealListDataGridView";
-            this.SkillHealListDataGridView.ReadOnly = true;
-            this.SkillHealListDataGridView.RowHeadersVisible = false;
-            this.SkillHealListDataGridView.RowTemplate.Height = 21;
-            this.SkillHealListDataGridView.Size = new System.Drawing.Size(995, 682);
-            this.SkillHealListDataGridView.TabIndex = 1;
-            // 
-            // SaveImageButton
-            // 
-            this.SaveImageButton.Location = new System.Drawing.Point(174, 12);
-            this.SaveImageButton.Name = "SaveImageButton";
-            this.SaveImageButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveImageButton.TabIndex = 2;
-            this.SaveImageButton.Text = "保存(画像)";
-            this.SaveImageButton.UseVisualStyleBackColor = true;
-            this.SaveImageButton.Click += new System.EventHandler(this.SaveImageButton_Click);
-            // 
-            // FavoriteMemberList
-            // 
-            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FavoriteMemberList.Location = new System.Drawing.Point(235, 17);
-            this.FavoriteMemberList.Name = "FavoriteMemberList";
-            this.FavoriteMemberList.Size = new System.Drawing.Size(713, 518);
-            this.FavoriteMemberList.TabIndex = 30;
-            this.FavoriteMemberList.Visible = false;
-            // 
             // Member01
             // 
             this.Member01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1052,14 +689,369 @@
             this.Member12.Size = new System.Drawing.Size(1009, 26);
             this.Member12.TabIndex = 24;
             // 
-            // label31
+            // DebugCheckBox
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(976, 27);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(41, 12);
-            this.label31.TabIndex = 56;
-            this.label31.Text = "回復量";
+            this.DebugCheckBox.AutoSize = true;
+            this.DebugCheckBox.Location = new System.Drawing.Point(456, 45);
+            this.DebugCheckBox.Name = "DebugCheckBox";
+            this.DebugCheckBox.Size = new System.Drawing.Size(114, 16);
+            this.DebugCheckBox.TabIndex = 10;
+            this.DebugCheckBox.Text = "デバッグ用ログ出力";
+            this.DebugCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // CalcFromLogFileButton
+            // 
+            this.CalcFromLogFileButton.Location = new System.Drawing.Point(93, 41);
+            this.CalcFromLogFileButton.Name = "CalcFromLogFileButton";
+            this.CalcFromLogFileButton.Size = new System.Drawing.Size(75, 23);
+            this.CalcFromLogFileButton.TabIndex = 5;
+            this.CalcFromLogFileButton.Text = "ログから計測";
+            this.CalcFromLogFileButton.UseVisualStyleBackColor = true;
+            this.CalcFromLogFileButton.Click += new System.EventHandler(this.CalcFromLogFileButton_Click);
+            // 
+            // AlwaysOnTopCheckBox
+            // 
+            this.AlwaysOnTopCheckBox.AutoSize = true;
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(366, 45);
+            this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
+            this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(84, 16);
+            this.AlwaysOnTopCheckBox.TabIndex = 9;
+            this.AlwaysOnTopCheckBox.Text = "最前面表示";
+            this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
+            this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
+            // 
+            // CalcTimeCheckBox
+            // 
+            this.CalcTimeCheckBox.AutoSize = true;
+            this.CalcTimeCheckBox.Location = new System.Drawing.Point(366, 16);
+            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
+            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
+            this.CalcTimeCheckBox.TabIndex = 7;
+            this.CalcTimeCheckBox.Text = "計測時間(分)";
+            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // CalcTimerMinutesNumericUpDown
+            // 
+            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(458, 13);
+            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
+            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
+            this.CalcTimerMinutesNumericUpDown.TabIndex = 8;
+            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
+            // 
+            // CalcRemainingTimeLabel
+            // 
+            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(506, 12);
+            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
+            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
+            this.CalcRemainingTimeLabel.TabIndex = 30;
+            this.CalcRemainingTimeLabel.Text = "300";
+            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CopyResultButton
+            // 
+            this.CopyResultButton.Location = new System.Drawing.Point(255, 12);
+            this.CopyResultButton.Name = "CopyResultButton";
+            this.CopyResultButton.Size = new System.Drawing.Size(105, 23);
+            this.CopyResultButton.TabIndex = 3;
+            this.CopyResultButton.Text = "コピー";
+            this.CopyResultButton.UseVisualStyleBackColor = true;
+            this.CopyResultButton.Click += new System.EventHandler(this.CopyResultButton_Click);
+            // 
+            // CopyResultForSkypeButton
+            // 
+            this.CopyResultForSkypeButton.Location = new System.Drawing.Point(255, 41);
+            this.CopyResultForSkypeButton.Name = "CopyResultForSkypeButton";
+            this.CopyResultForSkypeButton.Size = new System.Drawing.Size(105, 23);
+            this.CopyResultForSkypeButton.TabIndex = 6;
+            this.CopyResultForSkypeButton.Text = "コピー (Skype用)";
+            this.CopyResultForSkypeButton.UseVisualStyleBackColor = true;
+            this.CopyResultForSkypeButton.Click += new System.EventHandler(this.CopyResultForSkypeButton_Click);
+            // 
+            // ProjectManualLinkLabel
+            // 
+            this.ProjectManualLinkLabel.AutoSize = true;
+            this.ProjectManualLinkLabel.Location = new System.Drawing.Point(704, 17);
+            this.ProjectManualLinkLabel.Name = "ProjectManualLinkLabel";
+            this.ProjectManualLinkLabel.Size = new System.Drawing.Size(268, 12);
+            this.ProjectManualLinkLabel.TabIndex = 0;
+            this.ProjectManualLinkLabel.TabStop = true;
+            this.ProjectManualLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS/wiki";
+            this.ProjectManualLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectManualLinkLabel_LinkClicked);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(638, 52);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(60, 12);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "ソースコード";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(638, 17);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(50, 12);
+            this.label29.TabIndex = 0;
+            this.label29.Text = "マニュアル";
+            // 
+            // ProjectTopLinkLabel
+            // 
+            this.ProjectTopLinkLabel.AutoSize = true;
+            this.ProjectTopLinkLabel.Location = new System.Drawing.Point(704, 52);
+            this.ProjectTopLinkLabel.Name = "ProjectTopLinkLabel";
+            this.ProjectTopLinkLabel.Size = new System.Drawing.Size(242, 12);
+            this.ProjectTopLinkLabel.TabIndex = 0;
+            this.ProjectTopLinkLabel.TabStop = true;
+            this.ProjectTopLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS";
+            this.ProjectTopLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectTopLinkLabel_LinkClicked);
+            // 
+            // MenuTabControl
+            // 
+            this.MenuTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MenuTabControl.Controls.Add(this.MemberDamageListTabPage);
+            this.MenuTabControl.Controls.Add(this.SkillDamageListTabPage);
+            this.MenuTabControl.Controls.Add(this.SkillHealListTabPage);
+            this.MenuTabControl.Location = new System.Drawing.Point(4, 80);
+            this.MenuTabControl.Name = "MenuTabControl";
+            this.MenuTabControl.SelectedIndex = 0;
+            this.MenuTabControl.Size = new System.Drawing.Size(1046, 748);
+            this.MenuTabControl.TabIndex = 11;
+            this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
+            // 
+            // MemberDamageListTabPage
+            // 
+            this.MemberDamageListTabPage.Controls.Add(this.FavoriteMemberList);
+            this.MemberDamageListTabPage.Controls.Add(this.SkillListFlowLayoutPanel);
+            this.MemberDamageListTabPage.Controls.Add(this.MemberGroupBox);
+            this.MemberDamageListTabPage.Location = new System.Drawing.Point(4, 22);
+            this.MemberDamageListTabPage.Name = "MemberDamageListTabPage";
+            this.MemberDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1038, 722);
+            this.MemberDamageListTabPage.TabIndex = 0;
+            this.MemberDamageListTabPage.Text = "メンバー別ダメージ一覧";
+            this.MemberDamageListTabPage.UseVisualStyleBackColor = true;
+            // 
+            // FavoriteMemberList
+            // 
+            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FavoriteMemberList.Location = new System.Drawing.Point(235, 17);
+            this.FavoriteMemberList.Name = "FavoriteMemberList";
+            this.FavoriteMemberList.Size = new System.Drawing.Size(713, 518);
+            this.FavoriteMemberList.TabIndex = 30;
+            this.FavoriteMemberList.Visible = false;
+            // 
+            // SkillListFlowLayoutPanel
+            // 
+            this.SkillListFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SkillListFlowLayoutPanel.AutoScroll = true;
+            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(3, 492);
+            this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
+            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(1029, 224);
+            this.SkillListFlowLayoutPanel.TabIndex = 29;
+            // 
+            // SkillDamageListTabPage
+            // 
+            this.SkillDamageListTabPage.Controls.Add(this.SaveSkillDamageListImageButton);
+            this.SkillDamageListTabPage.Controls.Add(this.SkillDamageListDataGridView);
+            this.SkillDamageListTabPage.Location = new System.Drawing.Point(4, 22);
+            this.SkillDamageListTabPage.Name = "SkillDamageListTabPage";
+            this.SkillDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SkillDamageListTabPage.Size = new System.Drawing.Size(1038, 722);
+            this.SkillDamageListTabPage.TabIndex = 1;
+            this.SkillDamageListTabPage.Text = "スキル別ダメージ一覧";
+            this.SkillDamageListTabPage.UseVisualStyleBackColor = true;
+            // 
+            // SaveSkillDamageListImageButton
+            // 
+            this.SaveSkillDamageListImageButton.Location = new System.Drawing.Point(6, 6);
+            this.SaveSkillDamageListImageButton.Name = "SaveSkillDamageListImageButton";
+            this.SaveSkillDamageListImageButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveSkillDamageListImageButton.TabIndex = 1;
+            this.SaveSkillDamageListImageButton.Text = "保存(画像)";
+            this.SaveSkillDamageListImageButton.UseVisualStyleBackColor = true;
+            this.SaveSkillDamageListImageButton.Click += new System.EventHandler(this.SaveSkillDamageListImageButton_Click);
+            // 
+            // SkillDamageListDataGridView
+            // 
+            this.SkillDamageListDataGridView.AllowUserToAddRows = false;
+            this.SkillDamageListDataGridView.AllowUserToDeleteRows = false;
+            this.SkillDamageListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SkillDamageListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.SkillDamageListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SkillDamageListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MemberNameColumn,
+            this.SkillNameColumn,
+            this.DamageColumn,
+            this.AttackNumberColumn,
+            this.MaxDamageColumn,
+            this.MinDamageColumn,
+            this.MaxDamageWithCriticalColumn,
+            this.MinDamageWithCriticalColumn,
+            this.DamageParAttackNumber});
+            this.SkillDamageListDataGridView.Location = new System.Drawing.Point(6, 35);
+            this.SkillDamageListDataGridView.Name = "SkillDamageListDataGridView";
+            this.SkillDamageListDataGridView.ReadOnly = true;
+            this.SkillDamageListDataGridView.RowHeadersVisible = false;
+            this.SkillDamageListDataGridView.RowTemplate.Height = 21;
+            this.SkillDamageListDataGridView.Size = new System.Drawing.Size(953, 682);
+            this.SkillDamageListDataGridView.TabIndex = 0;
+            // 
+            // MemberNameColumn
+            // 
+            this.MemberNameColumn.HeaderText = "メンバー名";
+            this.MemberNameColumn.Name = "MemberNameColumn";
+            this.MemberNameColumn.ReadOnly = true;
+            this.MemberNameColumn.Width = 90;
+            // 
+            // SkillNameColumn
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            this.SkillNameColumn.HeaderText = "スキル名";
+            this.SkillNameColumn.Name = "SkillNameColumn";
+            this.SkillNameColumn.ReadOnly = true;
+            this.SkillNameColumn.Width = 200;
+            // 
+            // DamageColumn
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            this.DamageColumn.HeaderText = "総ダメージ";
+            this.DamageColumn.Name = "DamageColumn";
+            this.DamageColumn.ReadOnly = true;
+            this.DamageColumn.Width = 80;
+            // 
+            // AttackNumberColumn
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle16;
+            this.AttackNumberColumn.HeaderText = "回数";
+            this.AttackNumberColumn.Name = "AttackNumberColumn";
+            this.AttackNumberColumn.ReadOnly = true;
+            this.AttackNumberColumn.Width = 60;
+            // 
+            // MaxDamageColumn
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle17;
+            this.MaxDamageColumn.HeaderText = "MAXダメ(クリ無)";
+            this.MaxDamageColumn.Name = "MaxDamageColumn";
+            this.MaxDamageColumn.ReadOnly = true;
+            // 
+            // MinDamageColumn
+            // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle18;
+            this.MinDamageColumn.HeaderText = "MINダメ(クリ無)";
+            this.MinDamageColumn.Name = "MinDamageColumn";
+            this.MinDamageColumn.ReadOnly = true;
+            // 
+            // MaxDamageWithCriticalColumn
+            // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle19;
+            this.MaxDamageWithCriticalColumn.HeaderText = "MAXダメ(クリ有)";
+            this.MaxDamageWithCriticalColumn.Name = "MaxDamageWithCriticalColumn";
+            this.MaxDamageWithCriticalColumn.ReadOnly = true;
+            // 
+            // MinDamageWithCriticalColumn
+            // 
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle20;
+            this.MinDamageWithCriticalColumn.HeaderText = "MINダメ(クリ有)";
+            this.MinDamageWithCriticalColumn.Name = "MinDamageWithCriticalColumn";
+            this.MinDamageWithCriticalColumn.ReadOnly = true;
+            // 
+            // DamageParAttackNumber
+            // 
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle21;
+            this.DamageParAttackNumber.HeaderText = "平均ダメージ";
+            this.DamageParAttackNumber.Name = "DamageParAttackNumber";
+            this.DamageParAttackNumber.ReadOnly = true;
+            this.DamageParAttackNumber.Width = 80;
+            // 
+            // SkillHealListTabPage
+            // 
+            this.SkillHealListTabPage.Controls.Add(this.SaveSkillHealListImageButton);
+            this.SkillHealListTabPage.Controls.Add(this.SkillHealListDataGridView);
+            this.SkillHealListTabPage.Location = new System.Drawing.Point(4, 22);
+            this.SkillHealListTabPage.Name = "SkillHealListTabPage";
+            this.SkillHealListTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SkillHealListTabPage.Size = new System.Drawing.Size(1038, 722);
+            this.SkillHealListTabPage.TabIndex = 2;
+            this.SkillHealListTabPage.Text = "スキル別ヒール一覧";
+            this.SkillHealListTabPage.UseVisualStyleBackColor = true;
+            // 
+            // SaveSkillHealListImageButton
+            // 
+            this.SaveSkillHealListImageButton.Location = new System.Drawing.Point(6, 6);
+            this.SaveSkillHealListImageButton.Name = "SaveSkillHealListImageButton";
+            this.SaveSkillHealListImageButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveSkillHealListImageButton.TabIndex = 2;
+            this.SaveSkillHealListImageButton.Text = "保存(画像)";
+            this.SaveSkillHealListImageButton.UseVisualStyleBackColor = true;
+            this.SaveSkillHealListImageButton.Click += new System.EventHandler(this.SaveSkillHealListImageButton_Click);
+            // 
+            // SkillHealListDataGridView
+            // 
+            this.SkillHealListDataGridView.AllowUserToAddRows = false;
+            this.SkillHealListDataGridView.AllowUserToDeleteRows = false;
+            this.SkillHealListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SkillHealListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            this.SkillHealListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SkillHealListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.SkillHealListDataGridView.Location = new System.Drawing.Point(6, 35);
+            this.SkillHealListDataGridView.Name = "SkillHealListDataGridView";
+            this.SkillHealListDataGridView.ReadOnly = true;
+            this.SkillHealListDataGridView.RowHeadersVisible = false;
+            this.SkillHealListDataGridView.RowTemplate.Height = 21;
+            this.SkillHealListDataGridView.Size = new System.Drawing.Size(995, 682);
+            this.SkillHealListDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1070,8 +1062,8 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridViewTextBoxColumn2.HeaderText = "スキル名";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -1079,18 +1071,50 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridViewTextBoxColumn3.HeaderText = "総回復量";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 80;
+            // 
+            // SaveImageButton
+            // 
+            this.SaveImageButton.Location = new System.Drawing.Point(174, 12);
+            this.SaveImageButton.Name = "SaveImageButton";
+            this.SaveImageButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveImageButton.TabIndex = 2;
+            this.SaveImageButton.Text = "保存(画像)";
+            this.SaveImageButton.UseVisualStyleBackColor = true;
+            this.SaveImageButton.Click += new System.EventHandler(this.SaveImageButton_Click);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(638, 35);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(41, 12);
+            this.label30.TabIndex = 31;
+            this.label30.Text = "最新版";
+            // 
+            // ProjectLatestVersionLinkLabel
+            // 
+            this.ProjectLatestVersionLinkLabel.AutoSize = true;
+            this.ProjectLatestVersionLinkLabel.Location = new System.Drawing.Point(704, 34);
+            this.ProjectLatestVersionLinkLabel.Name = "ProjectLatestVersionLinkLabel";
+            this.ProjectLatestVersionLinkLabel.Size = new System.Drawing.Size(326, 12);
+            this.ProjectLatestVersionLinkLabel.TabIndex = 32;
+            this.ProjectLatestVersionLinkLabel.TabStop = true;
+            this.ProjectLatestVersionLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS/releases/latest";
+            this.ProjectLatestVersionLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectLatestVersionLinkLabel_LinkClicked);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 831);
+            this.Controls.Add(this.ProjectLatestVersionLinkLabel);
+            this.Controls.Add(this.label30);
             this.Controls.Add(this.SaveImageButton);
             this.Controls.Add(this.MenuTabControl);
             this.Controls.Add(this.ProjectTopLinkLabel);
@@ -1216,6 +1240,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.LinkLabel ProjectLatestVersionLinkLabel;
     }
 }
 
