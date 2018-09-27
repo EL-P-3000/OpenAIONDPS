@@ -557,8 +557,8 @@ namespace OpenAIONDPS
             Regex HealSkillNextLineWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillNextLineWithSourceNamePattern);
 
             // 持続回復
-            Regex HealSkillContinuousWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillContinuousWithTargetNamePattern, RegexOptions.Compiled);
-            Regex HealSkillContinuousWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillContinuousWithoutTargetNamePattern, RegexOptions.Compiled);
+            Regex HealSkillHotWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillHotWithTargetNamePattern, RegexOptions.Compiled);
+            Regex HealSkillHotWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillHotWithoutTargetNamePattern, RegexOptions.Compiled);
 
             // ディレイ回復
             Regex HealSkillDelayHealSelfWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealSelfWithoutSourceNamePattern, RegexOptions.Compiled);
@@ -635,6 +635,8 @@ namespace OpenAIONDPS
                                 // 前回復データの処理
                                 if (PreviousHealChatLogActionData != null)
                                 {
+                                    bool IsNormalHeal = false;
+
                                     // エフェクト
                                     Match PreviousHealSkillNextLineSelfWithSourceNameMatch = HealSkillNextLineSelfWithSourceNameRegex.Match(LogTextWithoutTime);
                                     Match PreviousHealSkillNextLineWithSourceNameMatch = HealSkillNextLineWithSourceNameRegex.Match(LogTextWithoutTime);
@@ -644,8 +646,8 @@ namespace OpenAIONDPS
                                         PreviousHealChatLogActionData.SourceName = PreviousHealChatLogActionData.TargetName;
                                         this.Invoke(UpdateHealDelegate, PreviousHealChatLogActionData);
 
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Continuous, HealSkillContinuousTargetList);
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaContinuous, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Hot, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaHot, HealSkillContinuousTargetList);
                                     }
                                     else
                                     {
@@ -667,7 +669,21 @@ namespace OpenAIONDPS
                                                     SkillActionDataList.Remove(PreviousHealChatLogActionData.SkillName);
                                                 }
                                             }
+                                            else
+                                            {
+                                                IsNormalHeal = true;
+                                            }
                                         }
+                                        else
+                                        {
+                                            IsNormalHeal = true;
+                                        }
+                                    }
+
+                                    if (IsNormalHeal)
+                                    {
+                                        PreviousHealChatLogActionData.SourceName = PreviousHealChatLogActionData.TargetName;
+                                        this.Invoke(UpdateHealDelegate, PreviousHealChatLogActionData);
                                     }
 
                                     PreviousHealChatLogActionData = null;
@@ -703,7 +719,7 @@ namespace OpenAIONDPS
 
                                     // 持続回復／ディレイ回復処理(自分)
                                     bool HealSkillContinuousWithoutTargetNameFlag = false;
-                                    Match HealSkillContinuousWithoutTargetNameMatch = HealSkillContinuousWithoutTargetNameRegex.Match(LogTextWithoutTime);
+                                    Match HealSkillContinuousWithoutTargetNameMatch = HealSkillHotWithoutTargetNameRegex.Match(LogTextWithoutTime);
                                     if (HealSkillContinuousWithoutTargetNameMatch.Success)
                                     {
                                         ChatLogActionData.TargetName = this.OwnName;
@@ -746,7 +762,7 @@ namespace OpenAIONDPS
                                     }
 
                                     // 持続回復／ディレイ回復処理(他人)
-                                    Match HealSkillContinuousWithTargetNameMatch = HealSkillContinuousWithTargetNameRegex.Match(LogTextWithoutTime);
+                                    Match HealSkillContinuousWithTargetNameMatch = HealSkillHotWithTargetNameRegex.Match(LogTextWithoutTime);
                                     if (HealSkillContinuousWithTargetNameMatch.Success)
                                     {
                                         ChatLogActionData.TargetName = HealSkillContinuousWithTargetNameMatch.Groups["TargetName"].Value;
@@ -762,7 +778,6 @@ namespace OpenAIONDPS
                                     Match HealSkillWithoutSourceNameMatch = HealSkillWithoutSourceNameRegex.Match(LogTextWithoutTime);
                                     if (HealSkillWithoutSourceNameMatch.Success)
                                     {
-                                        //HealSkillAreaFlag = true;
                                         ChatLogActionData.SourceName = this.OwnName;
                                         ChatLogActionData.TargetName = this.OwnName;
                                         ChatLogActionData.SkillName = HealSkillWithoutSourceNameMatch.Groups["SkillName"].Value;
@@ -773,8 +788,8 @@ namespace OpenAIONDPS
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Continuous, HealSkillContinuousTargetList);
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaContinuous, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Hot, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaHot, HealSkillContinuousTargetList);
 
                                         continue;
                                     }
@@ -793,8 +808,8 @@ namespace OpenAIONDPS
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Continuous, HealSkillContinuousTargetList);
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaContinuous, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Hot, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaHot, HealSkillContinuousTargetList);
 
                                         continue;
                                     }
@@ -813,8 +828,8 @@ namespace OpenAIONDPS
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Continuous, HealSkillContinuousTargetList);
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaContinuous, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Hot, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaHot, HealSkillContinuousTargetList);
 
                                         continue;
                                     }
@@ -845,8 +860,8 @@ namespace OpenAIONDPS
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Continuous, HealSkillContinuousTargetList);
-                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaContinuous, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.Hot, HealSkillContinuousTargetList);
+                                        this.AddHealBuffList(ChatLogActionData, AION.HealSkillType.AreaHot, HealSkillContinuousTargetList);
 
                                         continue;
                                     }
@@ -1418,16 +1433,16 @@ namespace OpenAIONDPS
             this.IsRunning = false;
         }
 
-        private void AddHealBuffList(ActionData ChatLogActionData, AION.HealSkillType SkillType, Dictionary<string, Dictionary<string, ActionData>> HealSkillContinuousTargetList)
+        private void AddHealBuffList(ActionData ChatLogActionData, AION.HealSkillType SkillType, Dictionary<string, Dictionary<string, ActionData>> HealSkillHotDelayTargetList)
         {
             if (AION.CheckHealSkillType(ChatLogActionData.SkillName, SkillType))
             {
-                if (!HealSkillContinuousTargetList.ContainsKey(ChatLogActionData.TargetName))
+                if (!HealSkillHotDelayTargetList.ContainsKey(ChatLogActionData.TargetName))
                 {
-                    HealSkillContinuousTargetList.Add(ChatLogActionData.TargetName, new Dictionary<string, ActionData>());
+                    HealSkillHotDelayTargetList.Add(ChatLogActionData.TargetName, new Dictionary<string, ActionData>());
                 }
 
-                Dictionary<string, ActionData> SkillActionDataList = HealSkillContinuousTargetList[ChatLogActionData.TargetName];
+                Dictionary<string, ActionData> SkillActionDataList = HealSkillHotDelayTargetList[ChatLogActionData.TargetName];
 
                 if (SkillActionDataList.ContainsKey(ChatLogActionData.SkillName))
                 {

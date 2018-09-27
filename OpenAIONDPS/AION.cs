@@ -192,7 +192,7 @@ namespace OpenAIONDPS
 
             // 回復(自分→)
             public const string HealSkillWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、(" + HealingAmountPattern + "のHPが回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
-            public const string HealSkillNextLineWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(のHPが" + HealingAmountPattern + "回復しました。|の詠唱速度が変更されました。|は持続的なHP回復効果を得ました。)";
+            public const string HealSkillNextLineWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(のHPが" + HealingAmountPattern + "回復しました。|の詠唱速度が変更されました。|[はが]持続的なHP回復効果を得ました。)";
 
             // 回復(他人→)
             public const string HealSkillWithSourceNamePattern = "^" + SourceNameReplacedMemberNamePattern + "は" + SkillNamePattern + "の効果により、(" + HealingAmountPattern + "のHPが回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
@@ -200,8 +200,8 @@ namespace OpenAIONDPS
             public const string HealSkillNextLineWithSourceNamePattern = "^" + SourceNameReplacedMemberNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(のHPが" + HealingAmountPattern + "回復しました。|の詠唱速度が変更されました。|は持続的なHP回復効果を得ました。)";
 
             // 持続回復／ディレイ回復
-            public const string HealSkillContinuousWithoutTargetNamePattern = "^" + SkillNamePattern + "の効果により、HPが" + HealingAmountPattern + "回復しました。";
-            public const string HealSkillContinuousWithTargetNamePattern = "^" + TargetNamePattern + "は" + SkillNamePattern + "の効果により、" + HealingAmountPattern + "のHPが回復しました。";
+            public const string HealSkillHotWithoutTargetNamePattern = "^" + SkillNamePattern + "の効果により、HPが" + HealingAmountPattern + "回復しました。";
+            public const string HealSkillHotWithTargetNamePattern = "^" + TargetNamePattern + "は" + SkillNamePattern + "の効果により、" + HealingAmountPattern + "のHPが回復しました。";
 
             // ディレイ
             public const string HealSkillDelayHealSelfWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、条件付き回復効果を得ました。";
@@ -219,7 +219,7 @@ namespace OpenAIONDPS
 
         public enum AttackSkillType { Normal, DelayDamage, Dot, Summon, EffectDamage, Others };
 
-        public enum HealSkillType { Normal, Area, AreaNoSource, Continuous, AreaContinuous, Delay, Summon, EffectHeal, Others };
+        public enum HealSkillType { Normal, Area, AreaNoSource, Hot, AreaHot, Delay, Summon, EffectHeal, Others };
 
         public static string GetJobName(JobType Type)
         {
@@ -688,38 +688,39 @@ namespace OpenAIONDPS
             // エリア
             SkillName = "ヒール ウェーブズ";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.Area));
-            SkillName = "ピュリフィケーション ウェーブ";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.Area));
             // 持続
             SkillName = "リバース スプレンダー";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.Continuous));
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.Hot));
             // エリア＆持続
             SkillName = "リカバリー スプレンダー";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.AreaContinuous));
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.AreaHot));
+            SkillName = "ピュリフィケーション ウェーブ";
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.AreaHot));
             SkillName = "アクウィット";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.AreaContinuous));
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.AreaHot));
             // サモン
             SkillName = "ヒール エネルギー";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.Summon));
             // ディレイ
-            SkillName = "サルヴェーション バンド";
+            SkillName = "サルヴェーション ハンド";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.Delay));
             SkillName = "サルヴェーション スプレンダー";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Cure, HealSkillType.Delay));
+
 
             /**************************************************************************************************************************************/
             /* チャント ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // 持続
             SkillName = "リカバリー スペル";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.Continuous));
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.Hot));
             // エリア＆持続
             SkillName = "ブロック カーテン";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaContinuous));
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaHot));
             SkillName = "ライフ スペル";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaContinuous));
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaHot));
             SkillName = "リカバリー プロテクト スペル";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaContinuous));
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaHot));
             // エフェクト
             SkillName = "スプリント マントラ";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.EffectHeal));
@@ -730,6 +731,11 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             /* メロディ ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
+            // 持続
+            SkillName = "リバース メロディ";
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Melody, HealSkillType.Hot));
+            SkillName = "インプレッシブ メロディ";
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Melody, HealSkillType.Hot));
             // エリア
             SkillName = "ソフト ハイハウリング";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Melody, HealSkillType.Area));
