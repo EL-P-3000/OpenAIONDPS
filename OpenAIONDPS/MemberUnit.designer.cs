@@ -48,6 +48,8 @@
             this.ResistAttackNumberLabel = new System.Windows.Forms.Label();
             this.SimpleAttackNumberLabel = new System.Windows.Forms.Label();
             this.SkillAttackNumberLabel = new System.Windows.Forms.Label();
+            this.HealingNumberLabel = new System.Windows.Forms.Label();
+            this.HealingAmountLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CharacterNameTextBox
@@ -242,10 +244,30 @@
             this.SkillAttackNumberLabel.Text = "0";
             this.SkillAttackNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // HealingNumberLabel
+            // 
+            this.HealingNumberLabel.Location = new System.Drawing.Point(943, 13);
+            this.HealingNumberLabel.Name = "HealingNumberLabel";
+            this.HealingNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.HealingNumberLabel.TabIndex = 23;
+            this.HealingNumberLabel.Text = "0";
+            this.HealingNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // HealingAmountLabel
+            // 
+            this.HealingAmountLabel.Location = new System.Drawing.Point(943, 1);
+            this.HealingAmountLabel.Name = "HealingAmountLabel";
+            this.HealingAmountLabel.Size = new System.Drawing.Size(70, 12);
+            this.HealingAmountLabel.TabIndex = 22;
+            this.HealingAmountLabel.Text = "0";
+            this.HealingAmountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MemberUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.HealingNumberLabel);
+            this.Controls.Add(this.HealingAmountLabel);
             this.Controls.Add(this.SimpleAttackNumberLabel);
             this.Controls.Add(this.SkillAttackNumberLabel);
             this.Controls.Add(this.ResistedAttackNumberLabel);
@@ -267,7 +289,7 @@
             this.Controls.Add(this.DamageLabel);
             this.Controls.Add(this.CharacterNameTextBox);
             this.Name = "MemberUnit";
-            this.Size = new System.Drawing.Size(953, 26);
+            this.Size = new System.Drawing.Size(1026, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +317,7 @@
         private System.Windows.Forms.Label ResistAttackNumberLabel;
         private System.Windows.Forms.Label SimpleAttackNumberLabel;
         private System.Windows.Forms.Label SkillAttackNumberLabel;
+        private System.Windows.Forms.Label HealingNumberLabel;
+        private System.Windows.Forms.Label HealingAmountLabel;
     }
 }

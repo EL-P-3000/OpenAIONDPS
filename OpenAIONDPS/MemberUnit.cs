@@ -6,7 +6,8 @@ namespace OpenAIONDPS
 {
     public partial class MemberUnit : UserControl
     {
-        private Dictionary<string, AION.Skill> SkillList = new Dictionary<string, AION.Skill>();
+        private Dictionary<string, AION.AttackSkill> AttackSkillList = new Dictionary<string, AION.AttackSkill>();
+        private Dictionary<string, AION.HealSkill> HealSkillList = new Dictionary<string, AION.HealSkill>();
         private static DateTime DefaultTime = new DateTime(0);
         private DateTime StartTime = DefaultTime;
         private DateTime EndTime = DefaultTime;
@@ -23,6 +24,8 @@ namespace OpenAIONDPS
         private long EvadedAttackNumber = 0;
         private long ResistAttackNumber = 0;
         private long ResistedAttackNumber = 0;
+        private long HealingAmount = 0;
+        private long HealingNumber = 0;
 
         public MemberUnit()
         {
@@ -43,7 +46,8 @@ namespace OpenAIONDPS
 
         public void Clear()
         {
-            this.SkillList.Clear();
+            this.AttackSkillList.Clear();
+            this.HealSkillList.Clear();
 
             this.StartTime = DefaultTime;
             this.EndTime = DefaultTime;
@@ -61,6 +65,8 @@ namespace OpenAIONDPS
             this.EvadedAttackNumber = 0;
             this.ResistAttackNumber = 0;
             this.ResistedAttackNumber = 0;
+            this.HealingAmount = 0;
+            this.HealingNumber = 0;
 
             this.DamageLabel.Text = "0";
             this.MaxDamageLabel.Text = "0";
@@ -79,6 +85,8 @@ namespace OpenAIONDPS
             this.EvadedAttackNumberLabel.Text = "0 (0%)";
             this.ResistAttackNumberLabel.Text = "0";
             this.ResistedAttackNumberLabel.Text = "0 (0%)";
+            this.HealingAmountLabel.Text = "0";
+            this.HealingNumberLabel.Text = "0";
         }
 
         public bool IsStart()
@@ -96,9 +104,14 @@ namespace OpenAIONDPS
             return this.CharacterNameTextBox.Text;
         }
 
-        public Dictionary<string, AION.Skill> GetSkillList()
+        public Dictionary<string, AION.AttackSkill> GetAttackSkillList()
         {
-            return this.SkillList;
+            return this.AttackSkillList;
+        }
+
+        public Dictionary<string, AION.HealSkill> GetHealSkillList()
+        {
+            return this.HealSkillList;
         }
 
         public void SetJobType(AION.JobType Job)
@@ -134,15 +147,15 @@ namespace OpenAIONDPS
 
             this.UpdateCriticalHitLabel();
 
-            if (this.SkillList != null)
+            if (this.AttackSkillList != null)
             {
-                if (!this.SkillList.ContainsKey(Data.SkillName))
+                if (!this.AttackSkillList.ContainsKey(Data.SkillName))
                 {
-                    AION.Skill _Skill = new AION.Skill(Data.SkillName, this.GetJob(), AION.SkillType.Others);
-                    this.SkillList.Add(Data.SkillName, _Skill);
+                    AION.AttackSkill _Skill = new AION.AttackSkill(Data.SkillName, this.GetJob(), AION.AttackSkillType.Others);
+                    this.AttackSkillList.Add(Data.SkillName, _Skill);
                 }
 
-                this.SkillList[Data.SkillName].AddDamage(Data.Damage, Data.IsCriticalHit);
+                this.AttackSkillList[Data.SkillName].AddDamage(Data.Damage, Data.IsCriticalHit);
             }
 
             if (!this.IsStart())
@@ -190,6 +203,28 @@ namespace OpenAIONDPS
                 this.EndTime = Time;
 
                 this.UpdateResistedAttackNumber(IsSkill);
+            }
+        }
+
+        public void AddHeal(ActionData Data)
+        {
+            this.HealingAmount = Data.HealingAmount;
+            this.HealingNumber += 1;
+
+            if (this.HealSkillList != null)
+            {
+                if (!this.HealSkillList.ContainsKey(Data.SkillName))
+                {
+                    AION.HealSkill _Skill = new AION.HealSkill(Data.SkillName, this.GetJob(), AION.HealSkillType.Others);
+                    this.HealSkillList.Add(Data.SkillName, _Skill);
+                }
+
+                this.HealSkillList[Data.SkillName].AddHeal(Data.HealingAmount);
+            }
+
+            if (!this.IsStart())
+            {
+                this.StartFlag = true;
             }
         }
 

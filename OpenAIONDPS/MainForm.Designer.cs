@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
@@ -104,7 +108,7 @@
             this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SkillDamageListTabPage = new System.Windows.Forms.TabPage();
-            this.SaveSkillListImageButton = new System.Windows.Forms.Button();
+            this.SaveSkillDamageListImageButton = new System.Windows.Forms.Button();
             this.SkillDamageListDataGridView = new System.Windows.Forms.DataGridView();
             this.MemberNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SkillNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,12 +120,21 @@
             this.MinDamageWithCriticalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DamageParAttackNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaveImageButton = new System.Windows.Forms.Button();
+            this.SkillHealListTabPage = new System.Windows.Forms.TabPage();
+            this.SkillHealListDataGridView = new System.Windows.Forms.DataGridView();
+            this.SaveSkillHealListImageButton = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.MenuTabControl.SuspendLayout();
             this.MemberDamageListTabPage.SuspendLayout();
             this.SkillDamageListTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SkillDamageListDataGridView)).BeginInit();
+            this.SkillHealListTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SkillHealListDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // StartButton
@@ -805,6 +818,7 @@
             // 
             this.MenuTabControl.Controls.Add(this.MemberDamageListTabPage);
             this.MenuTabControl.Controls.Add(this.SkillDamageListTabPage);
+            this.MenuTabControl.Controls.Add(this.SkillHealListTabPage);
             this.MenuTabControl.Location = new System.Drawing.Point(4, 80);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
@@ -847,7 +861,7 @@
             // 
             // SkillDamageListTabPage
             // 
-            this.SkillDamageListTabPage.Controls.Add(this.SaveSkillListImageButton);
+            this.SkillDamageListTabPage.Controls.Add(this.SaveSkillDamageListImageButton);
             this.SkillDamageListTabPage.Controls.Add(this.SkillDamageListDataGridView);
             this.SkillDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.SkillDamageListTabPage.Name = "SkillDamageListTabPage";
@@ -857,15 +871,15 @@
             this.SkillDamageListTabPage.Text = "スキル別ダメージ一覧";
             this.SkillDamageListTabPage.UseVisualStyleBackColor = true;
             // 
-            // SaveSkillListImageButton
+            // SaveSkillDamageListImageButton
             // 
-            this.SaveSkillListImageButton.Location = new System.Drawing.Point(6, 6);
-            this.SaveSkillListImageButton.Name = "SaveSkillListImageButton";
-            this.SaveSkillListImageButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveSkillListImageButton.TabIndex = 1;
-            this.SaveSkillListImageButton.Text = "保存(画像)";
-            this.SaveSkillListImageButton.UseVisualStyleBackColor = true;
-            this.SaveSkillListImageButton.Click += new System.EventHandler(this.SaveSkillListImageButton_Click);
+            this.SaveSkillDamageListImageButton.Location = new System.Drawing.Point(6, 6);
+            this.SaveSkillDamageListImageButton.Name = "SaveSkillDamageListImageButton";
+            this.SaveSkillDamageListImageButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveSkillDamageListImageButton.TabIndex = 1;
+            this.SaveSkillDamageListImageButton.Text = "保存(画像)";
+            this.SaveSkillDamageListImageButton.UseVisualStyleBackColor = true;
+            this.SaveSkillDamageListImageButton.Click += new System.EventHandler(this.SaveSkillDamageListImageButton_Click);
             // 
             // SkillDamageListDataGridView
             // 
@@ -874,14 +888,14 @@
             this.SkillDamageListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SkillDamageListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SkillDamageListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.SkillDamageListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SkillDamageListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MemberNameColumn,
@@ -910,8 +924,8 @@
             // 
             // SkillNameColumn
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle32;
             this.SkillNameColumn.HeaderText = "スキル名";
             this.SkillNameColumn.Name = "SkillNameColumn";
             this.SkillNameColumn.ReadOnly = true;
@@ -919,8 +933,8 @@
             // 
             // DamageColumn
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle33;
             this.DamageColumn.HeaderText = "総ダメージ";
             this.DamageColumn.Name = "DamageColumn";
             this.DamageColumn.ReadOnly = true;
@@ -928,8 +942,8 @@
             // 
             // AttackNumberColumn
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle34;
             this.AttackNumberColumn.HeaderText = "回数";
             this.AttackNumberColumn.Name = "AttackNumberColumn";
             this.AttackNumberColumn.ReadOnly = true;
@@ -937,40 +951,40 @@
             // 
             // MaxDamageColumn
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle35;
             this.MaxDamageColumn.HeaderText = "MAXダメ(クリ無)";
             this.MaxDamageColumn.Name = "MaxDamageColumn";
             this.MaxDamageColumn.ReadOnly = true;
             // 
             // MinDamageColumn
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle36;
             this.MinDamageColumn.HeaderText = "MINダメ(クリ無)";
             this.MinDamageColumn.Name = "MinDamageColumn";
             this.MinDamageColumn.ReadOnly = true;
             // 
             // MaxDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle37;
             this.MaxDamageWithCriticalColumn.HeaderText = "MAXダメ(クリ有)";
             this.MaxDamageWithCriticalColumn.Name = "MaxDamageWithCriticalColumn";
             this.MaxDamageWithCriticalColumn.ReadOnly = true;
             // 
             // MinDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle38;
             this.MinDamageWithCriticalColumn.HeaderText = "MINダメ(クリ有)";
             this.MinDamageWithCriticalColumn.Name = "MinDamageWithCriticalColumn";
             this.MinDamageWithCriticalColumn.ReadOnly = true;
             // 
             // DamageParAttackNumber
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle39;
             this.DamageParAttackNumber.HeaderText = "平均ダメージ";
             this.DamageParAttackNumber.Name = "DamageParAttackNumber";
             this.DamageParAttackNumber.ReadOnly = true;
@@ -985,6 +999,91 @@
             this.SaveImageButton.Text = "保存(画像)";
             this.SaveImageButton.UseVisualStyleBackColor = true;
             this.SaveImageButton.Click += new System.EventHandler(this.SaveImageButton_Click);
+            // 
+            // SkillHealListTabPage
+            // 
+            this.SkillHealListTabPage.Controls.Add(this.SaveSkillHealListImageButton);
+            this.SkillHealListTabPage.Controls.Add(this.SkillHealListDataGridView);
+            this.SkillHealListTabPage.Location = new System.Drawing.Point(4, 22);
+            this.SkillHealListTabPage.Name = "SkillHealListTabPage";
+            this.SkillHealListTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SkillHealListTabPage.Size = new System.Drawing.Size(965, 722);
+            this.SkillHealListTabPage.TabIndex = 2;
+            this.SkillHealListTabPage.Text = "スキル別ヒール一覧";
+            this.SkillHealListTabPage.UseVisualStyleBackColor = true;
+            // 
+            // SkillHealListDataGridView
+            // 
+            this.SkillHealListDataGridView.AllowUserToAddRows = false;
+            this.SkillHealListDataGridView.AllowUserToDeleteRows = false;
+            this.SkillHealListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SkillHealListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.SkillHealListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SkillHealListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.SkillHealListDataGridView.Location = new System.Drawing.Point(6, 35);
+            this.SkillHealListDataGridView.Name = "SkillHealListDataGridView";
+            this.SkillHealListDataGridView.ReadOnly = true;
+            this.SkillHealListDataGridView.RowHeadersVisible = false;
+            this.SkillHealListDataGridView.RowTemplate.Height = 21;
+            this.SkillHealListDataGridView.Size = new System.Drawing.Size(953, 682);
+            this.SkillHealListDataGridView.TabIndex = 1;
+            // 
+            // SaveSkillHealListImageButton
+            // 
+            this.SaveSkillHealListImageButton.Location = new System.Drawing.Point(6, 6);
+            this.SaveSkillHealListImageButton.Name = "SaveSkillHealListImageButton";
+            this.SaveSkillHealListImageButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveSkillHealListImageButton.TabIndex = 2;
+            this.SaveSkillHealListImageButton.Text = "保存(画像)";
+            this.SaveSkillHealListImageButton.UseVisualStyleBackColor = true;
+            this.SaveSkillHealListImageButton.Click += new System.EventHandler(this.SaveSkillHealListImageButton_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "メンバー名";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle28;
+            this.dataGridViewTextBoxColumn2.HeaderText = "スキル名";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle29;
+            this.dataGridViewTextBoxColumn3.HeaderText = "総回復量";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle30;
+            this.dataGridViewTextBoxColumn4.HeaderText = "回数";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 60;
             // 
             // MainForm
             // 
@@ -1021,6 +1120,8 @@
             this.MemberDamageListTabPage.ResumeLayout(false);
             this.SkillDamageListTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SkillDamageListDataGridView)).EndInit();
+            this.SkillHealListTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SkillHealListDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1095,7 +1196,7 @@
         private System.Windows.Forms.TabPage SkillDamageListTabPage;
         private System.Windows.Forms.FlowLayoutPanel SkillListFlowLayoutPanel;
         private System.Windows.Forms.DataGridView SkillDamageListDataGridView;
-        private System.Windows.Forms.Button SaveSkillListImageButton;
+        private System.Windows.Forms.Button SaveSkillDamageListImageButton;
         private System.Windows.Forms.Button SaveImageButton;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn MemberNameColumn;
@@ -1107,6 +1208,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MaxDamageWithCriticalColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn MinDamageWithCriticalColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DamageParAttackNumber;
+        private System.Windows.Forms.TabPage SkillHealListTabPage;
+        private System.Windows.Forms.Button SaveSkillHealListImageButton;
+        private System.Windows.Forms.DataGridView SkillHealListDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
 
