@@ -550,25 +550,23 @@ namespace OpenAIONDPS
             LinkedList<Regex> EvasionResistanceWithSourceNameRegexList = this.GetEvasionResistanceWithSourceNameRegexList();
 
             // 回復
-            bool HealSkillAreaFlag = false;
-            string PreviousHealSkillName = "";
-
-            // ヒール ウェーブズ
             Regex HealSkillWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillWithoutSourceNamePattern, RegexOptions.Compiled);
             Regex HealSkillNextLineWithoutSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillNextLineWithoutSourceNamePattern);
             Regex HealSkillWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillWithSourceNamePattern);
             Regex HealSkillNextLineSelfWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillNextLineSelfWithSourceNamePattern);
             Regex HealSkillNextLineWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillNextLineWithSourceNamePattern);
+
+            // 持続回復
             Regex HealSkillContinuousWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillContinuousWithTargetNamePattern, RegexOptions.Compiled);
             Regex HealSkillContinuousWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillContinuousWithoutTargetNamePattern, RegexOptions.Compiled);
 
-            // DelayHeal
+            // ディレイ回復
             Regex HealSkillDelayHealSelfWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealSelfWithoutSourceNamePattern, RegexOptions.Compiled);
             Regex HealSkillDelayHealWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealWithoutSourceNamePattern, RegexOptions.Compiled);
             Regex HealSkillDelayHealSelfWithSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealSelfWithSourceNamePattern, RegexOptions.Compiled);
             Regex HealSkillDelayHealWithSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealWithSourceNamePattern, RegexOptions.Compiled);
 
-            // Effect
+            // エフェクト回復
             Regex HealSkillEffectWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithoutTargetNamePattern, RegexOptions.Compiled);
             Regex HealSkillEffectWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithTargetNamePattern, RegexOptions.Compiled);
 
@@ -633,11 +631,6 @@ namespace OpenAIONDPS
 
                                 // 時刻をラインから削除
                                 LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
-
-                                if (LogText.Contains("ブロック カーテン"))
-                                {
-                                    PrintDebugMessage("AAA");
-                                }
 
                                 // 前回復データの処理
                                 if (PreviousHealChatLogActionData != null)
@@ -788,7 +781,6 @@ namespace OpenAIONDPS
 
                                     // 自分が他人に回復スキルを使用
                                     Match HealSkillNextLineWithoutSourceNameMatch = HealSkillNextLineWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                    //if (HealSkillAreaFlag && HealSkillHealWavesNextLineWithoutSourceNameMatch.Success)
                                     if (HealSkillNextLineWithoutSourceNameMatch.Success)
                                     {
                                         ChatLogActionData.SourceName = this.OwnName;
@@ -811,7 +803,6 @@ namespace OpenAIONDPS
                                     Match HealSkillWithSourceNameMatch = HealSkillWithSourceNameRegex.Match(LogTextWithoutTime);
                                     if (HealSkillWithSourceNameMatch.Success)
                                     {
-                                        //HealSkillAreaFlag = true;
                                         ChatLogActionData.SourceName = HealSkillWithSourceNameMatch.Groups["SourceName"].Value;
                                         ChatLogActionData.TargetName = HealSkillWithSourceNameMatch.Groups["SourceName"].Value;
                                         ChatLogActionData.SkillName = HealSkillWithSourceNameMatch.Groups["SkillName"].Value;
@@ -831,7 +822,6 @@ namespace OpenAIONDPS
                                     // 他人が自分／他人に回復スキルを使用
                                     Match HealSkillNextLineSelfWithSourceNameMatch = HealSkillNextLineSelfWithSourceNameRegex.Match(LogTextWithoutTime);
                                     Match HealSkillNextLineWithSourceNameMatch = HealSkillNextLineWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    //if (HealSkillAreaFlag && (HealSkillHealWavesNextLineSelfWithSourceNameMatch.Success || HealSkillHealWavesNextLineWithSourceNameMatch.Success))
                                     if (HealSkillNextLineSelfWithSourceNameMatch.Success || HealSkillNextLineWithSourceNameMatch.Success)
                                     {
                                         Match _Match = null;
