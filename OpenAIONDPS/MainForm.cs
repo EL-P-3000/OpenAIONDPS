@@ -551,6 +551,7 @@ namespace OpenAIONDPS
 
             // 回復
             bool HealSkillAreaFlag = false;
+            string PreviousHealSkillName = "";
 
             // ヒール ウェーブズ
             Regex HealSkillWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillWithoutSourceNamePattern, RegexOptions.Compiled);
@@ -633,13 +634,18 @@ namespace OpenAIONDPS
                                 // 時刻をラインから削除
                                 LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
 
+                                if (LogText.Contains("ブロック カーテン"))
+                                {
+                                    PrintDebugMessage("AAA");
+                                }
+
                                 // 前回復データの処理
                                 if (PreviousHealChatLogActionData != null)
                                 {
                                     // エフェクト
-                                    Match PreviousHealSkillHealWavesNextLineSelfWithSourceNameMatch = HealSkillNextLineSelfWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    Match PreviousHealSkillHealWavesNextLineWithSourceNameMatch = HealSkillNextLineWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (PreviousHealSkillHealWavesNextLineSelfWithSourceNameMatch.Success || PreviousHealSkillHealWavesNextLineWithSourceNameMatch.Success)
+                                    Match PreviousHealSkillNextLineSelfWithSourceNameMatch = HealSkillNextLineSelfWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match PreviousHealSkillNextLineWithSourceNameMatch = HealSkillNextLineWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    if ((PreviousHealSkillNextLineSelfWithSourceNameMatch.Success || PreviousHealSkillNextLineWithSourceNameMatch.Success) && LogTextWithoutTime.IndexOf(PreviousHealChatLogActionData.SkillName) > 0)
                                     {
                                         // 前回復データはヒールスキル
                                         PreviousHealChatLogActionData.SourceName = PreviousHealChatLogActionData.TargetName;
@@ -760,17 +766,17 @@ namespace OpenAIONDPS
                                     }
 
                                     // 自分が自分に回復スキルを使用
-                                    Match HealSkillHealWavesWithoutSourceNameMatch = HealSkillWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (HealSkillHealWavesWithoutSourceNameMatch.Success)
+                                    Match HealSkillWithoutSourceNameMatch = HealSkillWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (HealSkillWithoutSourceNameMatch.Success)
                                     {
-                                        HealSkillAreaFlag = true;
+                                        //HealSkillAreaFlag = true;
                                         ChatLogActionData.SourceName = this.OwnName;
                                         ChatLogActionData.TargetName = this.OwnName;
-                                        ChatLogActionData.SkillName = HealSkillHealWavesWithoutSourceNameMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.SkillName = HealSkillWithoutSourceNameMatch.Groups["SkillName"].Value;
 
                                         if (LogTextWithoutTime.IndexOf("回復しました。") > 0)
                                         {
-                                            ChatLogActionData.HealingAmount = long.Parse(HealSkillHealWavesWithoutSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
+                                            ChatLogActionData.HealingAmount = long.Parse(HealSkillWithoutSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
@@ -781,16 +787,17 @@ namespace OpenAIONDPS
                                     }
 
                                     // 自分が他人に回復スキルを使用
-                                    Match HealSkillHealWavesNextLineWithoutSourceNameMatch = HealSkillNextLineWithoutSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (HealSkillAreaFlag && HealSkillHealWavesNextLineWithoutSourceNameMatch.Success)
+                                    Match HealSkillNextLineWithoutSourceNameMatch = HealSkillNextLineWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    //if (HealSkillAreaFlag && HealSkillHealWavesNextLineWithoutSourceNameMatch.Success)
+                                    if (HealSkillNextLineWithoutSourceNameMatch.Success)
                                     {
                                         ChatLogActionData.SourceName = this.OwnName;
-                                        ChatLogActionData.TargetName = HealSkillHealWavesNextLineWithoutSourceNameMatch.Groups["TargetName"].Value;
-                                        ChatLogActionData.SkillName = HealSkillHealWavesNextLineWithoutSourceNameMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = HealSkillNextLineWithoutSourceNameMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.SkillName = HealSkillNextLineWithoutSourceNameMatch.Groups["SkillName"].Value;
 
                                         if (LogTextWithoutTime.IndexOf("回復しました。") > 0)
                                         {
-                                            ChatLogActionData.HealingAmount = long.Parse(HealSkillHealWavesNextLineWithoutSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
+                                            ChatLogActionData.HealingAmount = long.Parse(HealSkillNextLineWithoutSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
@@ -801,17 +808,17 @@ namespace OpenAIONDPS
                                     }
 
                                     // 他人が本人に回復スキルを使用
-                                    Match HealSkillHealWavesWithSourceNameMatch = HealSkillWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (HealSkillHealWavesWithSourceNameMatch.Success)
+                                    Match HealSkillWithSourceNameMatch = HealSkillWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (HealSkillWithSourceNameMatch.Success)
                                     {
-                                        HealSkillAreaFlag = true;
-                                        ChatLogActionData.SourceName = HealSkillHealWavesWithSourceNameMatch.Groups["SourceName"].Value;
-                                        ChatLogActionData.TargetName = HealSkillHealWavesWithSourceNameMatch.Groups["SourceName"].Value;
-                                        ChatLogActionData.SkillName = HealSkillHealWavesWithSourceNameMatch.Groups["SkillName"].Value;
+                                        //HealSkillAreaFlag = true;
+                                        ChatLogActionData.SourceName = HealSkillWithSourceNameMatch.Groups["SourceName"].Value;
+                                        ChatLogActionData.TargetName = HealSkillWithSourceNameMatch.Groups["SourceName"].Value;
+                                        ChatLogActionData.SkillName = HealSkillWithSourceNameMatch.Groups["SkillName"].Value;
 
                                         if (LogTextWithoutTime.IndexOf("回復しました。") > 0)
                                         {
-                                            ChatLogActionData.HealingAmount = long.Parse(HealSkillHealWavesWithSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
+                                            ChatLogActionData.HealingAmount = long.Parse(HealSkillWithSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
@@ -822,22 +829,23 @@ namespace OpenAIONDPS
                                     }
 
                                     // 他人が自分／他人に回復スキルを使用
-                                    Match HealSkillHealWavesNextLineSelfWithSourceNameMatch = HealSkillNextLineSelfWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    Match HealSkillHealWavesNextLineWithSourceNameMatch = HealSkillNextLineWithSourceNameRegex.Match(LogTextWithoutTime);
-                                    if (HealSkillAreaFlag && (HealSkillHealWavesNextLineSelfWithSourceNameMatch.Success || HealSkillHealWavesNextLineWithSourceNameMatch.Success))
+                                    Match HealSkillNextLineSelfWithSourceNameMatch = HealSkillNextLineSelfWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match HealSkillNextLineWithSourceNameMatch = HealSkillNextLineWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    //if (HealSkillAreaFlag && (HealSkillHealWavesNextLineSelfWithSourceNameMatch.Success || HealSkillHealWavesNextLineWithSourceNameMatch.Success))
+                                    if (HealSkillNextLineSelfWithSourceNameMatch.Success || HealSkillNextLineWithSourceNameMatch.Success)
                                     {
                                         Match _Match = null;
-                                        if (HealSkillHealWavesNextLineSelfWithSourceNameMatch.Success)
+                                        if (HealSkillNextLineSelfWithSourceNameMatch.Success)
                                         {
-                                            ChatLogActionData.SourceName = HealSkillHealWavesNextLineSelfWithSourceNameMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.SourceName = HealSkillNextLineSelfWithSourceNameMatch.Groups["SourceName"].Value;
                                             ChatLogActionData.TargetName = this.OwnName;
-                                            _Match = HealSkillHealWavesNextLineSelfWithSourceNameMatch;
+                                            _Match = HealSkillNextLineSelfWithSourceNameMatch;
                                         }
                                         else
                                         {
-                                            ChatLogActionData.SourceName = HealSkillHealWavesNextLineWithSourceNameMatch.Groups["SourceName"].Value;
-                                            ChatLogActionData.TargetName = HealSkillHealWavesNextLineWithSourceNameMatch.Groups["TargetName"].Value;
-                                            _Match = HealSkillHealWavesNextLineWithSourceNameMatch;
+                                            ChatLogActionData.SourceName = HealSkillNextLineWithSourceNameMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = HealSkillNextLineWithSourceNameMatch.Groups["TargetName"].Value;
+                                            _Match = HealSkillNextLineWithSourceNameMatch;
                                         }
                                         ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
 
@@ -2255,7 +2263,6 @@ namespace OpenAIONDPS
                                 _MemberUnit.GetMemberName(),
                                 _Skill.Name,
                                 _Skill.HealingAmount.ToString("#,0"),
-                                _Skill.HealingNumber.ToString("#,0"),
                             }
                         );
                     }

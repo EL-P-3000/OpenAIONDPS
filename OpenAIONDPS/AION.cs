@@ -192,12 +192,12 @@ namespace OpenAIONDPS
 
             // 回復(自分→)
             public const string HealSkillWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、(" + HealingAmountPattern + "のHPが回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
-            public const string HealSkillNextLineWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "の(HPが" + HealingAmountPattern + "回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
+            public const string HealSkillNextLineWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(のHPが" + HealingAmountPattern + "回復しました。|の詠唱速度が変更されました。|は持続的なHP回復効果を得ました。)";
 
             // 回復(他人→)
             public const string HealSkillWithSourceNamePattern = "^" + SourceNameReplacedMemberNamePattern + "は" + SkillNamePattern + "の効果により、(" + HealingAmountPattern + "のHPが回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
             public const string HealSkillNextLineSelfWithSourceNamePattern = "^" + SourceNameReplacedMemberNamePattern + "が使用した" + SkillNamePattern + "の効果により、(" + HealingAmountPattern + "のHPが回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
-            public const string HealSkillNextLineWithSourceNamePattern = "^" + SourceNameReplacedMemberNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "の(HPが" + HealingAmountPattern + "回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
+            public const string HealSkillNextLineWithSourceNamePattern = "^" + SourceNameReplacedMemberNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(のHPが" + HealingAmountPattern + "回復しました。|の詠唱速度が変更されました。|は持続的なHP回復効果を得ました。)";
 
             // 持続回復／ディレイ回復
             public const string HealSkillContinuousWithoutTargetNamePattern = "^" + SkillNamePattern + "の効果により、HPが" + HealingAmountPattern + "回復しました。";
