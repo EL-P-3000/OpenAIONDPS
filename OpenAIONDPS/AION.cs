@@ -711,11 +711,11 @@ namespace OpenAIONDPS
             /* チャント ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // 持続
-            SkillName = "ブロック カーテン";
-            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaContinuous));
             SkillName = "リカバリー スペル";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.Continuous));
             // エリア＆持続
+            SkillName = "ブロック カーテン";
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaContinuous));
             SkillName = "ライフ スペル";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Chant, HealSkillType.AreaContinuous));
             SkillName = "リカバリー プロテクト スペル";

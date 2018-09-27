@@ -86,7 +86,6 @@ namespace OpenAIONDPS
             this.ResistAttackNumberLabel.Text = "0";
             this.ResistedAttackNumberLabel.Text = "0 (0%)";
             this.HealingAmountLabel.Text = "0";
-            this.HealingNumberLabel.Text = "0";
         }
 
         public bool IsStart()
@@ -208,7 +207,8 @@ namespace OpenAIONDPS
 
         public void AddHeal(ActionData Data)
         {
-            this.HealingAmount = Data.HealingAmount;
+            this.HealingAmount += Data.HealingAmount;
+            this.HealingAmountLabel.Text = this.HealingAmount.ToString("#,0");
             this.HealingNumber += 1;
 
             if (this.HealSkillList != null)

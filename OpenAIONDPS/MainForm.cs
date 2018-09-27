@@ -623,7 +623,6 @@ namespace OpenAIONDPS
 
                                 ChatLogActionData = new ActionData();
                                 ChatLogActionData.LogText = LogText;
-                                ChatLogActionData.SourceName = OwnName;
 
                                 // ログファイルから計算の場合は時刻を取得
                                 if (this.IsCalcLogFile)
@@ -704,6 +703,7 @@ namespace OpenAIONDPS
                                     }
 
                                     // 持続回復／ディレイ回復処理(自分)
+                                    bool HealSkillContinuousWithoutTargetNameFlag = false;
                                     Match HealSkillContinuousWithoutTargetNameMatch = HealSkillContinuousWithoutTargetNameRegex.Match(LogTextWithoutTime);
                                     if (HealSkillContinuousWithoutTargetNameMatch.Success)
                                     {
@@ -719,26 +719,31 @@ namespace OpenAIONDPS
                                                 ActionData BuffActionData = SkillActionDataList[ChatLogActionData.SkillName];
                                                 if ((ChatLogActionData.Time.Ticks - BuffActionData.Time.Ticks) / 10000000 < 120)
                                                 {
+                                                    HealSkillContinuousWithoutTargetNameFlag = true;
                                                     ChatLogActionData.SourceName = BuffActionData.SourceName;
                                                     this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                                 }
                                                 else
                                                 {
                                                     SkillActionDataList.Remove(ChatLogActionData.SkillName);
-                                                    this.PrintDebugMessage("HealSkillContinuousWIthTargetName Error: " + ChatLogActionData.LogText);
                                                 }
                                             }
                                             else
                                             {
-                                                this.PrintDebugMessage("HealSkillContinuousWIthTargetName Error: " + ChatLogActionData.LogText);
                                             }
                                         }
                                         else
                                         {
-                                            this.PrintDebugMessage("HealSkillContinuousWIthTargetName Error: " + ChatLogActionData.LogText);
                                         }
-
+                                    }
+                                    if (HealSkillContinuousWithoutTargetNameFlag)
+                                    {
                                         continue;
+                                    }
+                                    else
+                                    {
+                                        ChatLogActionData = new ActionData();
+                                        ChatLogActionData.LogText = LogText;
                                     }
 
                                     // 持続回復／ディレイ回復処理(他人)
@@ -816,7 +821,7 @@ namespace OpenAIONDPS
                                         continue;
                                     }
 
-                                    // 他人が自分／他人に回復しきるを使用
+                                    // 他人が自分／他人に回復スキルを使用
                                     Match HealSkillHealWavesNextLineSelfWithSourceNameMatch = HealSkillNextLineSelfWithSourceNameRegex.Match(LogTextWithoutTime);
                                     Match HealSkillHealWavesNextLineWithSourceNameMatch = HealSkillNextLineWithSourceNameRegex.Match(LogTextWithoutTime);
                                     if (HealSkillAreaFlag && (HealSkillHealWavesNextLineSelfWithSourceNameMatch.Success || HealSkillHealWavesNextLineWithSourceNameMatch.Success))
@@ -1703,6 +1708,16 @@ namespace OpenAIONDPS
         {
             try
             {
+                // チェック
+                if (!String.IsNullOrEmpty(ChatLogActionData.SourceName) && AION.HealSkillList.ContainsKey(ChatLogActionData.SkillName) && this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
+                {
+                    if (AION.HealSkillList[ChatLogActionData.SkillName].Job != this.MemberNameMemberUnitList[ChatLogActionData.SourceName].GetJob())
+                    {
+                        this.PrintDebugMessage("Heal Error: " + ChatLogActionData.SourceName + ", " + ChatLogActionData.LogText);
+                        return;
+                    }
+                }
+
                 // エフェクト
                 if (AION.CheckHealSkillType(ChatLogActionData.SkillName, AION.HealSkillType.EffectHeal))
                 {
