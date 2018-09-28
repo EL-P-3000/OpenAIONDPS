@@ -1670,7 +1670,7 @@ namespace OpenAIONDPS
             {
                 if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
                 {
-                    if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                    if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) && !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
                     {
                         return;
                     }
@@ -1707,7 +1707,7 @@ namespace OpenAIONDPS
             {
                 if (this.LimitedTargetCheckBox.Checked && !String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
                 {
-                    if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) || !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
+                    if (!ChatLogActionData.SourceName.Equals(this.LimitedTargetNameComboBox.Text) && !ChatLogActionData.TargetName.Equals(this.LimitedTargetNameComboBox.Text))
                     {
                         return;
                     }
