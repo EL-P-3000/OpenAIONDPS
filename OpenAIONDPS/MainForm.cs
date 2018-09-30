@@ -775,6 +775,12 @@ namespace OpenAIONDPS
                                     {
                                         ChatLogActionData = new ActionData();
                                         ChatLogActionData.LogText = LogText;
+
+                                        // ログファイルから計算の場合は時刻を取得
+                                        if (this.IsCalcLogFile)
+                                        {
+                                            ChatLogActionData.Time = DateTime.ParseExact(ChatLogLineMatch.Groups[1].Value, "yyyy.MM.dd HH:mm:ss", null);
+                                        }
                                     }
 
                                     // 持続回復／ディレイ回復処理(他人)

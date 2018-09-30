@@ -175,12 +175,21 @@ namespace OpenAIONDPS
             {
                 if (!this.IsStart())
                 {
-                    this.StartFlag = true;
                     this.StartTime = Time;
                 }
                 this.EndTime = Time;
 
-                this.UpdateEvadedAttackNumber(IsSkill);
+                this.UpdateSeconds();
+                this.UpdateAttackNumber(IsSkill);
+                this.UpdateDamageParSecond();
+                this.UpdateDamageParAttackNumber();
+                this.UpdateAttackNumberParSecond();
+                this.UpdateEvadedAttackNumber();
+
+                if (!this.IsStart())
+                {
+                    this.StartFlag = true;
+                }
             }
         }
 
@@ -196,20 +205,40 @@ namespace OpenAIONDPS
             {
                 if (!this.IsStart())
                 {
-                    this.StartFlag = true;
                     this.StartTime = Time;
                 }
                 this.EndTime = Time;
 
-                this.UpdateResistedAttackNumber(IsSkill);
+                this.UpdateSeconds();
+                this.UpdateAttackNumber(IsSkill);
+                this.UpdateDamageParSecond();
+                this.UpdateDamageParAttackNumber();
+                this.UpdateAttackNumberParSecond();
+                this.UpdateResistedAttackNumber();
+
+                if (!this.IsStart())
+                {
+                    this.StartFlag = true;
+                }
             }
         }
 
         public void AddHeal(ActionData Data)
         {
+            if (!this.IsStart())
+            {
+                this.StartTime = Data.Time;
+            }
+            this.EndTime = Data.Time;
+
             this.HealingAmount += Data.HealingAmount;
             this.HealingAmountLabel.Text = this.HealingAmount.ToString("#,0");
             this.HealingNumber += 1;
+
+            this.UpdateSeconds();
+            this.UpdateDamageParSecond();
+            this.UpdateDamageParAttackNumber();
+            this.UpdateAttackNumberParSecond();
 
             if (this.HealSkillList != null)
             {
@@ -303,7 +332,15 @@ namespace OpenAIONDPS
         private void UpdateAttackNumberParSecond()
         {
             long Ticks = this.EndTime.Ticks - this.StartTime.Ticks;
-            this.AttackNumberParSecondLabel.Text = Math.Round((double)(this.AttackNumber / (double)(Ticks / 10000000)), 2, MidpointRounding.AwayFromZero).ToString("F2");
+
+            if (Ticks <= 10000000)
+            {
+                this.AttackNumberParSecondLabel.Text = this.AttackNumber.ToString("F2");
+            }
+            else
+            {
+                this.AttackNumberParSecondLabel.Text = Math.Round((double)(this.AttackNumber / (double)(Ticks / 10000000)), 2, MidpointRounding.AwayFromZero).ToString("F2");
+            }
         }
 
         private void UpdateCriticalHit(bool IsSkill)
@@ -337,14 +374,9 @@ namespace OpenAIONDPS
             this.EvadeAttackNumberLabel.Text = this.EvadeAttackNumber.ToString("#,0");
         }
 
-        private void UpdateEvadedAttackNumber(bool IsSkill)
+        private void UpdateEvadedAttackNumber()
         {
             this.EvadedAttackNumber += 1;
-            this.UpdateSeconds();
-            this.UpdateAttackNumber(IsSkill);
-            this.UpdateDamageParSecond();
-            this.UpdateDamageParAttackNumber();
-            this.UpdateAttackNumberParSecond();
             this.EvadedAttackNumberLabel.Text = this.EvadedAttackNumber.ToString("#,0") + " (" + Math.Round((1.0 * this.EvadedAttackNumber * 100 / this.AttackNumber), 0, MidpointRounding.AwayFromZero) + "%)";
         }
 
@@ -354,14 +386,9 @@ namespace OpenAIONDPS
             this.ResistAttackNumberLabel.Text = this.EvadeAttackNumber.ToString("#,0");
         }
 
-        private void UpdateResistedAttackNumber(bool IsSkill)
+        private void UpdateResistedAttackNumber()
         {
             this.ResistedAttackNumber += 1;
-            this.UpdateSeconds();
-            this.UpdateAttackNumber(IsSkill);
-            this.UpdateDamageParSecond();
-            this.UpdateDamageParAttackNumber();
-            this.UpdateAttackNumberParSecond();
             this.ResistedAttackNumberLabel.Text = this.ResistedAttackNumber.ToString("#,0") + " (" + Math.Round((1.0 * this.ResistedAttackNumber * 100 / this.AttackNumber), 0, MidpointRounding.AwayFromZero) + "%)";
         }
 
