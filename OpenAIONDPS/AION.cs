@@ -191,7 +191,7 @@ namespace OpenAIONDPS
             public const string HealCommonPattern = "(回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。|条件付き回復状態になりました。)$";
 
             // 回復(自分→)
-            public const string HealSkillWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、(" + HealingAmountPattern + "のHPが回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。)";
+            public const string HealSkillWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、(" + HealingAmountPattern + "のHPが回復しました。|詠唱速度が変更されました。|持続的なHP回復効果を得ました。|HPが" + HealingAmountPattern + "回復しました。)";
             public const string HealSkillNextLineWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(のHPが" + HealingAmountPattern + "回復しました。|の詠唱速度が変更されました。|[はが]持続的なHP回復効果を得ました。)";
 
             // 回復(他人→)
