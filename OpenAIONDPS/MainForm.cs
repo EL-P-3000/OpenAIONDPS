@@ -74,9 +74,7 @@ namespace OpenAIONDPS
         {
             foreach (AION.AttackSkill _Skill in AION.AttackSkillList.Values)
             {
-                if (_Skill.SkillType.Equals(AION.AttackSkillType.Summon) ||
-                    _Skill.SkillType.Equals(AION.AttackSkillType.EffectDamage)
-                    )
+                if (_Skill.SkillType == AION.AttackSkillType.Summon || _Skill.SkillType == AION.AttackSkillType.EffectDamage)
                 {
                     SkillUnit _SkillUnit = new SkillUnit();
                     _SkillUnit.SetJob(_Skill.Job);
@@ -89,7 +87,7 @@ namespace OpenAIONDPS
 
             foreach (AION.HealSkill _Skill in AION.HealSkillList.Values)
             {
-                if (_Skill.SkillType == AION.HealSkillType.Summon)
+                if (_Skill.SkillType == AION.HealSkillType.Summon || _Skill.SkillType == AION.HealSkillType.EffectHeal)
                 {
                     SkillUnit _SkillUnit = new SkillUnit();
                     _SkillUnit.SetJob(_Skill.Job);
@@ -764,10 +762,7 @@ namespace OpenAIONDPS
                                         ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
                                         ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
 
-                                        if (this.HealSkillUnitList.ContainsKey(ChatLogActionData.SourceName))
-                                        {
-                                            this.HealSkillUnitList[ChatLogActionData.SourceName].AddHeal(ChatLogActionData.HealingAmount);
-                                        }
+                                        this.Invoke(UpdateHealDelegate, ChatLogActionData);
 
                                         continue;
                                     }
@@ -1643,7 +1638,7 @@ namespace OpenAIONDPS
                 }
 
                 // エフェクトダメージスキルのダメージ
-                if (AION.CheckAttackSkillTypeEffectDamage(ChatLogActionData.SkillName))
+                if (AION.CheckAttackSkillTypeEffectDamage(ChatLogActionData.SkillName) || (this.AttackSkillUnitList.ContainsKey(ChatLogActionData.SourceName) && AION.CheckAttackSkillTypeSummon(ChatLogActionData.SourceName)))
                 {
                     AION.JobType Job = AION.AttackSkillList[ChatLogActionData.SkillName].Job;
 
@@ -1666,33 +1661,6 @@ namespace OpenAIONDPS
                         // スキル一覧のダメージを更新
                         this.UpdateTotalDamage(ChatLogActionData.Damage);
                         this.AttackSkillUnitList[ChatLogActionData.SkillName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
-                        UpdateTotalDamageFlag = true;
-                    }
-                }
-                // サモンスキルのダメージ
-                else if (this.AttackSkillUnitList.ContainsKey(ChatLogActionData.SourceName) && AION.CheckAttackSkillTypeSummon(ChatLogActionData.SourceName))
-                {
-                    AION.JobType Job = AION.AttackSkillList[ChatLogActionData.SourceName].Job;
-
-                    if (this.EnableJobRadioButton.Checked && this.JobTypeNumberOfMemberList[Job] == 1 && this.JobTypeNumberOfMemberList[AION.JobType.None] == 0)
-                    {
-                        // メンバーのダメージを更新
-                        foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
-                        {
-                            if (_MemberUnit.GetJob() == Job)
-                            {
-                                this.UpdateTotalDamage(ChatLogActionData.Damage);
-                                _MemberUnit.AddDamage(ChatLogActionData);
-                                UpdateTotalDamageFlag = true;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // スキル一覧のダメージを更新
-                        this.UpdateTotalDamage(ChatLogActionData.Damage);
-                        this.AttackSkillUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
                         UpdateTotalDamageFlag = true;
                     }
                 }
@@ -1822,8 +1790,8 @@ namespace OpenAIONDPS
                     }
                 }
 
-                // エフェクト
-                if (AION.CheckHealSkillType(ChatLogActionData.SkillName, AION.HealSkillType.EffectHeal))
+                // エフェクト／サモン
+                if (AION.CheckHealSkillType(ChatLogActionData.SkillName, AION.HealSkillType.EffectHeal) || AION.CheckHealSkillType(ChatLogActionData.SkillName, AION.HealSkillType.Summon))
                 {
                     AION.JobType Job = AION.HealSkillList[ChatLogActionData.SkillName].Job;
 
@@ -1842,7 +1810,10 @@ namespace OpenAIONDPS
                     else
                     {
                         // スキル一覧のダメージを更新
-                        // 未実装
+                        if (this.HealSkillUnitList.ContainsKey(ChatLogActionData.SkillName))
+                        {
+                            this.HealSkillUnitList[ChatLogActionData.SkillName].AddHeal(ChatLogActionData.HealingAmount);
+                        }
                     }
                 }
                 else
