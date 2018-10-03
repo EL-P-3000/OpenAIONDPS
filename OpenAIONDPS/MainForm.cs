@@ -32,7 +32,8 @@ namespace OpenAIONDPS
         private string ReflectDamageName = "反射";
         private Dictionary<string, MemberUnit> MemberNameMemberUnitList = new Dictionary<string, MemberUnit>();
         private Dictionary<AION.JobType, int> JobTypeNumberOfMemberList = new Dictionary<AION.JobType, int>();
-        private Dictionary<string, SkillUnit> SkillUnitList = new Dictionary<string, SkillUnit>();
+        private Dictionary<string, SkillUnit> AttackSkillUnitList = new Dictionary<string, SkillUnit>();
+        private Dictionary<string, SkillUnit> HealSkillUnitList = new Dictionary<string, SkillUnit>();
 
         /* 時間計測 */
         private long TotalDamage = 0;
@@ -73,18 +74,29 @@ namespace OpenAIONDPS
         {
             foreach (AION.AttackSkill _Skill in AION.AttackSkillList.Values)
             {
-                SkillUnit _SkillUnit = new SkillUnit();
-                _SkillUnit.SetJob(_Skill.Job);
-                _SkillUnit.SetName(_Skill.Name);
-                SkillUnitList.Add(_Skill.Name, _SkillUnit);
-
                 if (_Skill.SkillType.Equals(AION.AttackSkillType.Summon) ||
                     _Skill.SkillType.Equals(AION.AttackSkillType.EffectDamage)
                     )
                 {
+                    SkillUnit _SkillUnit = new SkillUnit();
+                    _SkillUnit.SetJob(_Skill.Job);
+                    _SkillUnit.SetName(_Skill.Name);
+
+                    this.AttackSkillUnitList.Add(_Skill.Name, _SkillUnit);
                     this.SkillListFlowLayoutPanel.Controls.Add(_SkillUnit);
                 }
+            }
 
+            foreach (AION.HealSkill _Skill in AION.HealSkillList.Values)
+            {
+                if (_Skill.SkillType == AION.HealSkillType.Summon)
+                {
+                    SkillUnit _SkillUnit = new SkillUnit();
+                    _SkillUnit.SetJob(_Skill.Job);
+                    _SkillUnit.SetName(_Skill.Name);
+
+                    this.HealSkillUnitList.Add(_Skill.Name, _SkillUnit);
+                }
             }
         }
 
@@ -133,16 +145,19 @@ namespace OpenAIONDPS
                 }
             }
 
-            foreach (Control _Control in this.SkillListFlowLayoutPanel.Controls)
+            foreach (SkillUnit _SkillUnit in this.AttackSkillUnitList.Values)
             {
-                if (_Control.GetType().Name.Equals("SkillUnit"))
-                {
-                    SkillUnit _SkillUnit = (SkillUnit)_Control;
-                    _SkillUnit.Clear();
-                }
+                _SkillUnit.Clear();
             }
 
-            this.SkillDamageListDataGridView.Rows.Clear();
+            foreach (SkillUnit _SkillUnit in this.HealSkillUnitList.Values)
+            {
+                _SkillUnit.Clear();
+            }
+
+            this.AttackSkillListDataGridView.Rows.Clear();
+
+            this.HealSkillListDataGridView.Rows.Clear();
         }
 
         private void OpenLogFileButton_Click(object sender, EventArgs e)
@@ -514,6 +529,24 @@ namespace OpenAIONDPS
         /// </summary>
         private static readonly Regex HealCommonRegex = new Regex(AION.LogPattern.HealCommonPattern, RegexOptions.Compiled);
 
+        // 持続回復
+        private static readonly Regex HealSkillHotWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillHotWithTargetNamePattern, RegexOptions.Compiled);
+        private static readonly Regex HealSkillHotWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillHotWithoutTargetNamePattern, RegexOptions.Compiled);
+
+        // サモン
+        private static readonly Regex HealSkillSummonWithoutTargetNameRegex = GetReplacedSkillNameRegex(AION.LogPattern.HealSkillSummonWithoutTargetNamePattern, AION.HealSkillType.Summon);
+        private static readonly Regex HealSkillSummonWithTargetNameRegex = GetReplacedSkillNameRegex(AION.LogPattern.HealSkillSummonWithTargetNamePattern, AION.HealSkillType.Summon);
+
+        // ディレイ回復
+        private static readonly Regex HealSkillDelayHealSelfWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealSelfWithoutSourceNamePattern, RegexOptions.Compiled);
+        private static readonly Regex HealSkillDelayHealWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealWithoutSourceNamePattern, RegexOptions.Compiled);
+        private static readonly Regex HealSkillDelayHealSelfWithSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealSelfWithSourceNamePattern, RegexOptions.Compiled);
+        private static readonly Regex HealSkillDelayHealWithSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealWithSourceNamePattern, RegexOptions.Compiled);
+
+        // エフェクト回復
+        private static readonly Regex HealSkillEffectWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithoutTargetNamePattern, RegexOptions.Compiled);
+        private static readonly Regex HealSkillEffectWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithTargetNamePattern, RegexOptions.Compiled);
+
         /// <summary>
         /// 計測
         /// </summary>
@@ -555,20 +588,6 @@ namespace OpenAIONDPS
             Regex HealSkillWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillWithSourceNamePattern);
             Regex HealSkillNextLineSelfWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillNextLineSelfWithSourceNamePattern);
             Regex HealSkillNextLineWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillNextLineWithSourceNamePattern);
-
-            // 持続回復
-            Regex HealSkillHotWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillHotWithTargetNamePattern, RegexOptions.Compiled);
-            Regex HealSkillHotWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillHotWithoutTargetNamePattern, RegexOptions.Compiled);
-
-            // ディレイ回復
-            Regex HealSkillDelayHealSelfWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealSelfWithoutSourceNamePattern, RegexOptions.Compiled);
-            Regex HealSkillDelayHealWithoutSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealWithoutSourceNamePattern, RegexOptions.Compiled);
-            Regex HealSkillDelayHealSelfWithSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealSelfWithSourceNamePattern, RegexOptions.Compiled);
-            Regex HealSkillDelayHealWithSourceNameRegex = new Regex(AION.LogPattern.HealSkillDelayHealWithSourceNamePattern, RegexOptions.Compiled);
-
-            // エフェクト回復
-            Regex HealSkillEffectWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithoutTargetNamePattern, RegexOptions.Compiled);
-            Regex HealSkillEffectWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithTargetNamePattern, RegexOptions.Compiled);
 
             // ログファイルから計算の場合はログファイルを設定
             if (this.IsCalcLogFile)
@@ -721,6 +740,34 @@ namespace OpenAIONDPS
                                         ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
 
                                         this.Invoke(UpdateHealDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
+                                    // サモン
+                                    Match HealSkillSummonWithTargetNameMatch = HealSkillSummonWithTargetNameRegex.Match(LogTextWithoutTime);
+                                    Match HealSkillSummonWithoutTargetNameMatch = HealSkillSummonWithoutTargetNameRegex.Match(LogTextWithoutTime);
+                                    if (HealSkillSummonWithTargetNameMatch.Success || HealSkillSummonWithoutTargetNameMatch.Success)
+                                    {
+                                        Match _Match = null;
+                                        if (HealSkillSummonWithTargetNameMatch.Success)
+                                        {
+                                            ChatLogActionData.TargetName = HealSkillSummonWithTargetNameMatch.Groups["TargetName"].Value;
+                                            _Match = HealSkillSummonWithTargetNameMatch;
+                                        }
+                                        else
+                                        {
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                            _Match = HealSkillSummonWithoutTargetNameMatch;
+                                        }
+                                        ChatLogActionData.SourceName = _Match.Groups["SkillName"].Value;
+                                        ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
+                                        ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
+
+                                        if (this.HealSkillUnitList.ContainsKey(ChatLogActionData.SourceName))
+                                        {
+                                            this.HealSkillUnitList[ChatLogActionData.SourceName].AddHeal(ChatLogActionData.HealingAmount);
+                                        }
 
                                         continue;
                                     }
@@ -1535,24 +1582,46 @@ namespace OpenAIONDPS
 
         private static Regex GetReplacedSkillNameRegex(string LogPattern, AION.AttackSkillType SkillType)
         {
-            string SkillNameOrString = "";
+            string SkillName = "";
 
             foreach (AION.AttackSkill _Skill in AION.AttackSkillList.Values)
             {
                 if (_Skill.SkillType.Equals(SkillType))
                 {
-                    if (String.IsNullOrEmpty(SkillNameOrString))
+                    if (String.IsNullOrEmpty(SkillName))
                     {
-                        SkillNameOrString = _Skill.Name.Replace(" ", "\\s");
+                        SkillName = _Skill.Name.Replace(" ", "\\s");
                     }
                     else
                     {
-                        SkillNameOrString += "|" + _Skill.Name.Replace(" ", "\\s");
+                        SkillName += "|" + _Skill.Name.Replace(" ", "\\s");
                     }
                 }
             }
 
-            return new Regex(LogPattern.Replace("[[[SkillName]]]", SkillNameOrString), RegexOptions.Compiled);
+            return new Regex(LogPattern.Replace("[[[SkillName]]]", SkillName), RegexOptions.Compiled);
+        }
+
+        private static Regex GetReplacedSkillNameRegex(string LogPattern, AION.HealSkillType SkillType)
+        {
+            string SkillName = "";
+
+            foreach (AION.HealSkill _Skill in AION.HealSkillList.Values)
+            {
+                if (_Skill.SkillType.Equals(SkillType))
+                {
+                    if (String.IsNullOrEmpty(SkillName))
+                    {
+                        SkillName = _Skill.Name.Replace(" ", "\\s");
+                    }
+                    else
+                    {
+                        SkillName += "|" + _Skill.Name.Replace(" ", "\\s");
+                    }
+                }
+            }
+
+            return new Regex(LogPattern.Replace("[[[SkillName]]]", SkillName), RegexOptions.Compiled);
         }
 
         /// <summary>
@@ -1596,12 +1665,12 @@ namespace OpenAIONDPS
                     {
                         // スキル一覧のダメージを更新
                         this.UpdateTotalDamage(ChatLogActionData.Damage);
-                        this.SkillUnitList[ChatLogActionData.SkillName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
+                        this.AttackSkillUnitList[ChatLogActionData.SkillName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
                         UpdateTotalDamageFlag = true;
                     }
                 }
                 // サモンスキルのダメージ
-                else if (this.SkillUnitList.ContainsKey(ChatLogActionData.SourceName) && AION.CheckAttackSkillTypeSummon(ChatLogActionData.SourceName))
+                else if (this.AttackSkillUnitList.ContainsKey(ChatLogActionData.SourceName) && AION.CheckAttackSkillTypeSummon(ChatLogActionData.SourceName))
                 {
                     AION.JobType Job = AION.AttackSkillList[ChatLogActionData.SourceName].Job;
 
@@ -1623,7 +1692,7 @@ namespace OpenAIONDPS
                     {
                         // スキル一覧のダメージを更新
                         this.UpdateTotalDamage(ChatLogActionData.Damage);
-                        this.SkillUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
+                        this.AttackSkillUnitList[ChatLogActionData.SourceName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
                         UpdateTotalDamageFlag = true;
                     }
                 }
@@ -1954,7 +2023,7 @@ namespace OpenAIONDPS
             string MemberResults = "";
             string SkillResults = "";
 
-            if (this.MemberNameMemberUnitList != null && this.MemberNameMemberUnitList.Count > 0 && this.SkillUnitList != null && this.SkillUnitList.Count > 0)
+            if (this.MemberNameMemberUnitList != null && this.MemberNameMemberUnitList.Count > 0 && this.AttackSkillUnitList != null && this.AttackSkillUnitList.Count > 0)
             {
                 foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
                 {
@@ -1986,9 +2055,9 @@ namespace OpenAIONDPS
                 MemberResults += Environment.NewLine;
                 MemberResults += "■総ダメージ合計： " + this.TotalDamageLabel.Text;
 
-                foreach (SkillUnit _SkillUnit in this.SkillUnitList.Values)
+                foreach (SkillUnit _SkillUnit in this.AttackSkillUnitList.Values)
                 {
-                    string SkillResult = _SkillUnit.GetResult();
+                    string SkillResult = _SkillUnit.GetAttackResult();
 
                     if (String.IsNullOrEmpty(SkillResult))
                     {
@@ -2179,7 +2248,7 @@ namespace OpenAIONDPS
 
         private void SetAttackSkillList()
         {
-            this.SkillDamageListDataGridView.Rows.Clear();
+            this.AttackSkillListDataGridView.Rows.Clear();
 
             if (this.MemberNameMemberUnitList != null && this.MemberNameMemberUnitList.Count >= 1)
             {
@@ -2189,7 +2258,7 @@ namespace OpenAIONDPS
 
                     foreach (AION.AttackSkill _Skill in AttackSkillList.Values)
                     {
-                        this.SkillDamageListDataGridView.Rows.Add(
+                        this.AttackSkillListDataGridView.Rows.Add(
                             new string[] {
                                 _MemberUnit.GetMemberName(),
                                 _Skill.Name,
@@ -2206,13 +2275,13 @@ namespace OpenAIONDPS
                 }
             }
 
-            if (this.SkillUnitList != null && this.SkillUnitList.Count >= 0)
+            if (this.AttackSkillUnitList != null && this.AttackSkillUnitList.Count >= 0)
             {
-                foreach (SkillUnit _SkillUnit in this.SkillUnitList.Values)
+                foreach (SkillUnit _SkillUnit in this.AttackSkillUnitList.Values)
                 {
                     if (_SkillUnit.Damage > 0)
                     {
-                        this.SkillDamageListDataGridView.Rows.Add(
+                        this.AttackSkillListDataGridView.Rows.Add(
                             new string[] {
                                 _SkillUnit.GetJobName(),
                                 _SkillUnit.GetName(),
@@ -2230,7 +2299,7 @@ namespace OpenAIONDPS
             }
         }
 
-        private void SaveSkillDamageListImageButton_Click(object sender, EventArgs e)
+        private void SaveAttackSkillListImageButton_Click(object sender, EventArgs e)
         {
             string SaveResultDirectory = Registry.ReadSaveResultDirectory();
 
@@ -2250,23 +2319,23 @@ namespace OpenAIONDPS
 
                 if (SkillListSaveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.SkillDamageListDataGridView.CurrentCell = null;
-                    int OriginalWidth = this.SkillDamageListDataGridView.Width;
-                    int OriginalHeight = this.SkillDamageListDataGridView.Height;
+                    this.AttackSkillListDataGridView.CurrentCell = null;
+                    int OriginalWidth = this.AttackSkillListDataGridView.Width;
+                    int OriginalHeight = this.AttackSkillListDataGridView.Height;
 
-                    int ScreenShotWidth = this.SkillDamageListDataGridView.Columns.GetColumnsWidth(DataGridViewElementStates.None);
-                    int ScreenShotHeight = this.SkillDamageListDataGridView.Rows.GetRowsHeight(DataGridViewElementStates.None) + this.SkillDamageListDataGridView.Rows[0].Height;
-                    this.SkillDamageListDataGridView.ScrollBars = ScrollBars.None;
-                    this.SkillDamageListDataGridView.Width = ScreenShotWidth;
-                    this.SkillDamageListDataGridView.Height = ScreenShotHeight;
+                    int ScreenShotWidth = this.AttackSkillListDataGridView.Columns.GetColumnsWidth(DataGridViewElementStates.None);
+                    int ScreenShotHeight = this.AttackSkillListDataGridView.Rows.GetRowsHeight(DataGridViewElementStates.None) + this.AttackSkillListDataGridView.Rows[0].Height;
+                    this.AttackSkillListDataGridView.ScrollBars = ScrollBars.None;
+                    this.AttackSkillListDataGridView.Width = ScreenShotWidth;
+                    this.AttackSkillListDataGridView.Height = ScreenShotHeight;
 
                     Bitmap SkillListBitmap = new Bitmap(ScreenShotWidth, ScreenShotHeight);
-                    this.SkillDamageListDataGridView.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, ScreenShotWidth, ScreenShotHeight));
+                    this.AttackSkillListDataGridView.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, ScreenShotWidth, ScreenShotHeight));
                     SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
 
-                    this.SkillDamageListDataGridView.Width = OriginalWidth;
-                    this.SkillDamageListDataGridView.Height = OriginalHeight;
-                    this.SkillDamageListDataGridView.ScrollBars = ScrollBars.Both;
+                    this.AttackSkillListDataGridView.Width = OriginalWidth;
+                    this.AttackSkillListDataGridView.Height = OriginalHeight;
+                    this.AttackSkillListDataGridView.ScrollBars = ScrollBars.Both;
 
                     Registry.WriteSaveResultDirectory(Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\");
                 }
@@ -2280,7 +2349,7 @@ namespace OpenAIONDPS
 
         private void SetHealSkillList()
         {
-            this.SkillHealListDataGridView.Rows.Clear();
+            this.HealSkillListDataGridView.Rows.Clear();
 
             if (this.MemberNameMemberUnitList != null && this.MemberNameMemberUnitList.Count >= 1)
             {
@@ -2290,7 +2359,7 @@ namespace OpenAIONDPS
 
                     foreach (AION.HealSkill _Skill in HealSkillList.Values)
                     {
-                        this.SkillHealListDataGridView.Rows.Add(
+                        this.HealSkillListDataGridView.Rows.Add(
                             new string[] {
                                 _MemberUnit.GetMemberName(),
                                 _Skill.Name,
@@ -2300,9 +2369,26 @@ namespace OpenAIONDPS
                     }
                 }
             }
+
+            if (this.HealSkillUnitList != null && this.HealSkillUnitList.Count >= 0)
+            {
+                foreach (SkillUnit _SkillUnit in this.HealSkillUnitList.Values)
+                {
+                    if (_SkillUnit.HealingAmount > 0)
+                    {
+                        this.HealSkillListDataGridView.Rows.Add(
+                            new string[] {
+                                _SkillUnit.GetJobName(),
+                                _SkillUnit.GetName(),
+                                _SkillUnit.HealingAmount.ToString("#,0"),
+                            }
+                        );
+                    }
+                }
+            }
         }
 
-        private void SaveSkillHealListImageButton_Click(object sender, EventArgs e)
+        private void SaveHealSkillListImageButton_Click(object sender, EventArgs e)
         {
             string SaveResultDirectory = Registry.ReadSaveResultDirectory();
 
@@ -2322,23 +2408,23 @@ namespace OpenAIONDPS
 
                 if (SkillListSaveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.SkillHealListDataGridView.CurrentCell = null;
-                    int OriginalWidth = this.SkillHealListDataGridView.Width;
-                    int OriginalHeight = this.SkillHealListDataGridView.Height;
+                    this.HealSkillListDataGridView.CurrentCell = null;
+                    int OriginalWidth = this.HealSkillListDataGridView.Width;
+                    int OriginalHeight = this.HealSkillListDataGridView.Height;
 
-                    int ScreenShotWidth = this.SkillHealListDataGridView.Columns.GetColumnsWidth(DataGridViewElementStates.None);
-                    int ScreenShotHeight = this.SkillHealListDataGridView.Rows.GetRowsHeight(DataGridViewElementStates.None) + this.SkillHealListDataGridView.Rows[0].Height;
-                    this.SkillHealListDataGridView.ScrollBars = ScrollBars.None;
-                    this.SkillHealListDataGridView.Width = ScreenShotWidth;
-                    this.SkillHealListDataGridView.Height = ScreenShotHeight;
+                    int ScreenShotWidth = this.HealSkillListDataGridView.Columns.GetColumnsWidth(DataGridViewElementStates.None);
+                    int ScreenShotHeight = this.HealSkillListDataGridView.Rows.GetRowsHeight(DataGridViewElementStates.None) + this.HealSkillListDataGridView.Rows[0].Height;
+                    this.HealSkillListDataGridView.ScrollBars = ScrollBars.None;
+                    this.HealSkillListDataGridView.Width = ScreenShotWidth;
+                    this.HealSkillListDataGridView.Height = ScreenShotHeight;
 
                     Bitmap SkillListBitmap = new Bitmap(ScreenShotWidth, ScreenShotHeight);
-                    this.SkillHealListDataGridView.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, ScreenShotWidth, ScreenShotHeight));
+                    this.HealSkillListDataGridView.DrawToBitmap(SkillListBitmap, new Rectangle(0, 0, ScreenShotWidth, ScreenShotHeight));
                     SkillListBitmap.Save(SkillListSaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
 
-                    this.SkillHealListDataGridView.Width = OriginalWidth;
-                    this.SkillHealListDataGridView.Height = OriginalHeight;
-                    this.SkillHealListDataGridView.ScrollBars = ScrollBars.Both;
+                    this.HealSkillListDataGridView.Width = OriginalWidth;
+                    this.HealSkillListDataGridView.Height = OriginalHeight;
+                    this.HealSkillListDataGridView.ScrollBars = ScrollBars.Both;
 
                     Registry.WriteSaveResultDirectory(Path.GetDirectoryName(SkillListSaveFileDialog.FileName) + "\\");
                 }

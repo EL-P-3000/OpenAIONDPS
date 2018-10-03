@@ -203,6 +203,10 @@ namespace OpenAIONDPS
             public const string HealSkillHotWithoutTargetNamePattern = "^" + SkillNamePattern + "の効果により、HPが" + HealingAmountPattern + "回復しました。";
             public const string HealSkillHotWithTargetNamePattern = "^" + TargetNamePattern + "は" + SkillNamePattern + "の効果により、" + HealingAmountPattern + "のHPが回復しました。";
 
+            // サモン
+            public const string HealSkillSummonWithoutTargetNamePattern = "^" + SkillNameReplacedSkillNamePattern + "が使用した" + SkillNameReplacedSkillName2Pattern + "の効果により、" + HealingAmountPattern + "のHPが回復しました。";
+            public const string HealSkillSummonWithTargetNamePattern = "^" + SkillNameReplacedSkillNamePattern + "が使用した" + SkillNameReplacedSkillName2Pattern + "の効果により、" + TargetNamePattern + "のHPが" + HealingAmountPattern + "回復しました。";
+
             // ディレイ
             public const string HealSkillDelayHealSelfWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、条件付き回復効果を得ました。";
             public const string HealSkillDelayHealWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "が条件付き回復状態になりました。";

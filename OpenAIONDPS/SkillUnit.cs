@@ -15,6 +15,8 @@ namespace OpenAIONDPS
 
         public long Damage { get; set; } = 0;
 
+        public long HealingAmount { get; set; } = 0;
+
         public long AttackNumber { get; set; } = 0;
 
         public long MaxDamageWithCritical { get; set; } = 0;
@@ -60,6 +62,11 @@ namespace OpenAIONDPS
             {
                 this.IsStartWithoutCritical = true;
             }
+        }
+
+        public void AddHeal(long HealingAmount)
+        {
+            this.UpdateHealingAmount(HealingAmount);
         }
 
         private void UpdateDamage(long Damage)
@@ -109,9 +116,15 @@ namespace OpenAIONDPS
             }
         }
 
+        private void UpdateHealingAmount(long HealingAmount)
+        {
+            this.HealingAmount += HealingAmount;
+        }
+
         public void Clear()
         {
             this.Damage = 0;
+            this.HealingAmount = 0;
             this.AttackNumber = 0;
             this.MaxDamageWithCritical = 0;
             this.MinDamageWithCritical = 0;
@@ -122,7 +135,7 @@ namespace OpenAIONDPS
             this.DamageLabel.Text = "0";
         }
 
-        public string GetResult()
+        public string GetAttackResult()
         {
             string Result = "";
 
