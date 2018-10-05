@@ -217,6 +217,11 @@ namespace OpenAIONDPS
             // ※他のパターンと被るため、一番上で判定
             public const string HealSkillEffectWithoutTargetNamePattern = "^" + SkillNamePattern + "\\sエフェクトの効果により、HPが" + HealingAmountPattern + "回復しました。";
             public const string HealSkillEffectWithTargetNamePattern = "^" + TargetNamePattern + "は" + SkillNamePattern + "\\sエフェクトの効果により、" + HealingAmountPattern + "のHPが回復しました。";
+
+            // ポーション
+            public const string HealPosionWithoutSourceNamePattern = "^HPが" + HealingAmountPattern + "回復しました。 ";
+            public const string HealPosionWithoutSourceNamePattern2 = "^(回復|治癒)のポーションの効果により、HPが" + HealingAmountPattern + "回復しました。";
+            public const string HealPosionWithSourceNamePattern = "^" + SourceNamePattern + "は(回復|治癒)のポーションの効果により、" + HealingAmountPattern + "のHPが回復しました。";
         }
 
         public enum JobType { None, Sword, Shield, Shadow, Bow, Spell, Spirit, Cure, Chant, Bullet, Gia, Melody };
@@ -742,6 +747,10 @@ namespace OpenAIONDPS
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Melody, HealSkillType.Hot));
             // エリア
             SkillName = "ソフト ハイハウリング";
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Melody, HealSkillType.Area));
+            SkillName = "スノウフラワー プロテクト チューン";
+            HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Melody, HealSkillType.Area));
+            SkillName = "エグゾナレイティブ メロディ";
             HealSkillList.Add(SkillName, new HealSkill(SkillName, JobType.Melody, HealSkillType.Area));
 
 

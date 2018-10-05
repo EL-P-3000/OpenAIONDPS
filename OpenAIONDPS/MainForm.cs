@@ -545,6 +545,11 @@ namespace OpenAIONDPS
         private static readonly Regex HealSkillEffectWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithoutTargetNamePattern, RegexOptions.Compiled);
         private static readonly Regex HealSkillEffectWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithTargetNamePattern, RegexOptions.Compiled);
 
+        // ポーション
+        private static readonly Regex HealPosionWithoutSourceNameRegex = new Regex(AION.LogPattern.HealPosionWithoutSourceNamePattern, RegexOptions.Compiled);
+        private static readonly Regex HealPosionWithoutSourceNameRegex2 = new Regex(AION.LogPattern.HealPosionWithoutSourceNamePattern2, RegexOptions.Compiled);
+        private static readonly Regex HealPosionWithSourceNameRegex = new Regex(AION.LogPattern.HealPosionWithSourceNamePattern, RegexOptions.Compiled);
+
         /// <summary>
         /// 計測
         /// </summary>
@@ -718,6 +723,39 @@ namespace OpenAIONDPS
                                 Match HealCommonMatch = HealCommonRegex.Match(LogTextWithoutTime);
                                 if (HealCommonMatch.Success)
                                 {
+                                    // ポーション
+                                    Match HealPosionWithoutSourceNameMatch = HealPosionWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    Match HealPosionWithoutSourceNameMatch2 = HealPosionWithoutSourceNameRegex2.Match(LogTextWithoutTime);
+                                    Match HealPosionWithSourceNameMatch = HealPosionWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (HealPosionWithoutSourceNameMatch.Success || HealPosionWithoutSourceNameMatch2.Success || HealPosionWithSourceNameMatch.Success)
+                                    {
+                                        Match _Match = null;
+                                        if (HealPosionWithoutSourceNameMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                            _Match = HealPosionWithoutSourceNameMatch;
+                                        }
+                                        else if (HealPosionWithoutSourceNameMatch2.Success)
+                                        {
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                            _Match = HealPosionWithoutSourceNameMatch2;
+                                        }
+                                        else
+                                        {
+                                            ChatLogActionData.SourceName = HealPosionWithSourceNameMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = HealPosionWithSourceNameMatch.Groups["SourceName"].Value;
+                                            _Match = HealPosionWithSourceNameMatch;
+                                        }
+                                        ChatLogActionData.SkillName = "ポーション";
+                                        ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
+
+                                        this.Invoke(UpdateHealDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
                                     // エフェクト
                                     Match HealSkillEffectWithoutTargetNameMatch = HealSkillEffectWithoutTargetNameRegex.Match(LogTextWithoutTime);
                                     Match HealSkillEffectWithTargetNameMatch = HealSkillEffectWithTargetNameRegex.Match(LogTextWithoutTime);
