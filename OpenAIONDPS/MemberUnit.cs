@@ -326,7 +326,10 @@ namespace OpenAIONDPS
 
         private void UpdateDamageParAttackNumber()
         {
-            this.DamageParAttackNumberLabel.Text = Math.Ceiling((double)(this.Damage / this.AttackNumber)).ToString("#,0");
+            if (this.AttackNumber > 0)
+            {
+                this.DamageParAttackNumberLabel.Text = Math.Ceiling((double)(this.Damage / this.AttackNumber)).ToString("#,0");
+            }
         }
 
         private void UpdateAttackNumberParSecond()
