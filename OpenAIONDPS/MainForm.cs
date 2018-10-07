@@ -27,6 +27,10 @@ namespace OpenAIONDPS
         private Thread CalculateThread = null;
         public class CalcThreadSettings
         {
+            public bool IsCalcLogFile { get; set; } = false;
+
+            public string CalcLogFilePath { get; set; } = null;
+
             public bool StartCalcConditionChecked { get; set; } = false;
 
             public string StartCalcConditionText { get; set; } = null;
@@ -49,10 +53,6 @@ namespace OpenAIONDPS
         private long TotalDamage = 0;
         private System.Timers.Timer CalcTimer = new System.Timers.Timer();
         private int CalcRemainingTime = 0;
-
-        /* ログファイルからの計測 */
-        private bool IsCalcLogFile = false;
-        private string CalcLogFilePath = "";
 
         /* ホットキー */
         [DllImport("user32.dll")]
@@ -227,28 +227,58 @@ namespace OpenAIONDPS
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            StartThread();
+            this.StartThread(false);
         }
 
-        private void StartThread()
+        private void StartThread(bool IsLogFile)
         {
+            CalcThreadSettings ThreadSettings = new CalcThreadSettings();
+
             if (this.IsRunning == true)
             {
                 MessageBox.Show("計測中です。", "エラー");
                 return;
             }
 
-            try
+            if (!IsLogFile)
             {
-                if (!File.Exists(Registry.ReadChatLogPath()))
+                try
                 {
-                    MessageBox.Show("ログファイルを選択してください。", "エラー");
-                    return;
+                    if (!File.Exists(Registry.ReadChatLogPath()))
+                    {
+                        MessageBox.Show("ログファイルを選択してください。", "エラー");
+                        return;
+                    }
+                }
+                catch
+                {
+                }
+
+                if (this.CalcTimeCheckBox.Checked)
+                {
+                    this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
+                    this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+                    this.CalcTimer = new System.Timers.Timer();
+                    this.CalcTimer.SynchronizingObject = this;
+                    this.CalcTimer.Interval = 1000;
+                    this.CalcTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
                 }
             }
-            catch
+            else
             {
+                OpenFileDialog Dialog = new OpenFileDialog();
+                Dialog.FileName = "*.log";
+                Dialog.Filter = "ログファイル(*.log)|*.log";
+                Dialog.Title = "ログファイルを選択してください";
+                Dialog.RestoreDirectory = true;
 
+                if (Dialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                ThreadSettings.IsCalcLogFile = true;
+                ThreadSettings.CalcLogFilePath = Dialog.FileName;
             }
 
             this.StartButton.Enabled = false;
@@ -269,17 +299,6 @@ namespace OpenAIONDPS
 
             this.ClearChatLogFile();
 
-            if (this.CalcTimeCheckBox.Checked)
-            {
-                this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
-                this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
-                this.CalcTimer = new System.Timers.Timer();
-                this.CalcTimer.SynchronizingObject = this;
-                this.CalcTimer.Interval = 1000;
-                this.CalcTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
-            }
-
-            CalcThreadSettings ThreadSettings = new CalcThreadSettings();
             ThreadSettings.StartCalcConditionChecked = this.StartCalcConditionCheckBox.Checked;
             ThreadSettings.StartCalcConditionText = this.StartCalcConditionComboBox.Text;
             ThreadSettings.StopCalcConditionChecked = this.StopCalcConditionCheckBox.Checked;
@@ -366,7 +385,7 @@ namespace OpenAIONDPS
                     }
                     else
                     {
-                        this.StartThread();
+                        this.StartThread(false);
                     }
                 }
             }
@@ -617,9 +636,9 @@ namespace OpenAIONDPS
             Regex HealSkillNextLineWithSourceNameRegex = GetReplacedMemberNameRegex(AION.LogPattern.HealSkillNextLineWithSourceNamePattern);
 
             // ログファイルから計算の場合はログファイルを設定
-            if (this.IsCalcLogFile)
+            if (ThreadSettings.IsCalcLogFile)
             {
-                LogFilePath = this.CalcLogFilePath;
+                LogFilePath = ThreadSettings.CalcLogFilePath;
             }
 
             try
@@ -628,7 +647,7 @@ namespace OpenAIONDPS
                 {
                     using (StreamReader ChatLogStreamReader = new StreamReader(ChatLogFileStream, Encoding.GetEncoding("Shift_JIS")))
                     {
-                        if (!this.IsCalcLogFile)
+                        if (!ThreadSettings.IsCalcLogFile)
                         {
                             ChatLogStreamReader.ReadToEnd();
                         }
@@ -648,13 +667,13 @@ namespace OpenAIONDPS
                             try
                             {
                                 // ログファイルから計算の場合はファイルの最後で終了
-                                if (this.IsCalcLogFile && ChatLogStreamReader.EndOfStream == true)
+                                if (ThreadSettings.IsCalcLogFile && ChatLogStreamReader.EndOfStream == true)
                                 {
                                     break;
                                 }
 
                                 // ログファイルから計算の場合はイベント処理を挟む
-                                if (this.IsCalcLogFile)
+                                if (ThreadSettings.IsCalcLogFile)
                                 {
                                     Application.DoEvents();
                                 }
@@ -680,7 +699,7 @@ namespace OpenAIONDPS
                                 ChatLogActionData.LogText = LogText;
 
                                 // ログファイルから計算の場合は時刻を取得
-                                if (this.IsCalcLogFile)
+                                if (ThreadSettings.IsCalcLogFile)
                                 {
                                     ChatLogActionData.Time = DateTime.ParseExact(ChatLogLineMatch.Groups[1].Value, "yyyy.MM.dd HH:mm:ss", null);
                                 }
@@ -888,12 +907,12 @@ namespace OpenAIONDPS
                                                     ChatLogActionData.SourceName = BuffActionData.SourceName;
                                                     this.Invoke(UpdateHealDelegate, ChatLogActionData);
 
-                                                    if (PreviousHealChatLogActionData.SkillName.Equals("ピュリフィケーション ウェーブ") ||
-                                                        PreviousHealChatLogActionData.SkillName.Equals("サルヴェーション ハンド") ||
-                                                        PreviousHealChatLogActionData.SkillName.Equals("サルヴェーション スプレンダー")
+                                                    if (BuffActionData.SkillName.Equals("ピュリフィケーション ウェーブ") ||
+                                                        BuffActionData.SkillName.Equals("サルヴェーション ハンド") ||
+                                                        BuffActionData.SkillName.Equals("サルヴェーション スプレンダー")
                                                         )
                                                     {
-                                                        SkillActionDataList.Remove(PreviousHealChatLogActionData.SkillName);
+                                                        SkillActionDataList.Remove(BuffActionData.SkillName);
                                                     }
                                                 }
                                                 else
@@ -919,7 +938,7 @@ namespace OpenAIONDPS
                                         ChatLogActionData.LogText = LogText;
 
                                         // ログファイルから計算の場合は時刻を取得
-                                        if (this.IsCalcLogFile)
+                                        if (ThreadSettings.IsCalcLogFile)
                                         {
                                             ChatLogActionData.Time = DateTime.ParseExact(ChatLogLineMatch.Groups[1].Value, "yyyy.MM.dd HH:mm:ss", null);
                                         }
@@ -1589,7 +1608,7 @@ namespace OpenAIONDPS
             }
 
 
-            if (this.IsCalcLogFile)
+            if (ThreadSettings.IsCalcLogFile)
             {
                 this.Invoke(CalcFromLogEndDelegate);
             }
@@ -1987,48 +2006,7 @@ namespace OpenAIONDPS
         /// <param name="e"></param>
         private void CalcFromLogFileButton_Click(object sender, EventArgs e)
         {
-            if (this.IsRunning == true)
-            {
-                MessageBox.Show("計測中です。", "エラー");
-                return;
-            }
-
-            OpenFileDialog Dialog = new OpenFileDialog();
-            Dialog.FileName = "*.log";
-            Dialog.Filter = "ログファイル(*.log)|*.log";
-            Dialog.Title = "ログファイルを選択してください";
-            Dialog.RestoreDirectory = true;
-
-            if (Dialog.ShowDialog() == DialogResult.OK)
-            {
-                this.CalcLogFilePath = Dialog.FileName;
-
-                this.StartButton.Enabled = false;
-                this.StopButton.Enabled = false;
-                this.OpenLogFileButton.Enabled = false;
-                this.CalcFromLogFileButton.Enabled = false;
-                this.FavoriteMemberButton.Enabled = false;
-                this.IsRunning = true;
-                this.StopFlag = false;
-
-                this.ClearData(false);
-
-                this.TotalDamage = 0;
-                this.TotalDamageLabel.Text = "0";
-                this.IsCalcLogFile = true;
-
-                // デバッグ
-                this.OpenDebugLogFile();
-
-                CalcThreadSettings ThreadSettings = new CalcThreadSettings();
-                ThreadSettings.StartCalcConditionChecked = this.StartCalcConditionCheckBox.Checked;
-                ThreadSettings.StartCalcConditionText = this.StartCalcConditionComboBox.Text;
-                ThreadSettings.StopCalcConditionChecked = this.StopCalcConditionCheckBox.Checked;
-                ThreadSettings.StopCalcConditionText = this.StopCalcConditionComboBox.Text;
-
-                this.CalculateThread = new Thread(new ParameterizedThreadStart(Calculate));
-                this.CalculateThread.Start(ThreadSettings);
-            }
+            this.StartThread(true);
         }
 
         /// <summary>
@@ -2047,8 +2025,6 @@ namespace OpenAIONDPS
             this.OpenLogFileButton.Enabled = true;
             this.CalcFromLogFileButton.Enabled = true;
             this.FavoriteMemberButton.Enabled = true;
-
-            this.IsCalcLogFile = false;
         }
 
         /* その他 */
