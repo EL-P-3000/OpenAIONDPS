@@ -219,7 +219,7 @@ namespace OpenAIONDPS
             public const string HealSkillEffectWithTargetNamePattern = "^" + TargetNamePattern + "は" + SkillNamePattern + "\\sエフェクトの効果により、" + HealingAmountPattern + "のHPが回復しました。";
 
             // ポーション
-            public const string HealPotionWithoutSourceNamePattern = "^HPが" + HealingAmountPattern + "回復しました。 ";
+            public const string HealPotionWithoutSourceNamePattern = "^HPが" + HealingAmountPattern + "回復しました。";
             public const string HealPotionWithoutSourceNamePattern2 = "^(回復|治癒)のポーションの効果により、HPが" + HealingAmountPattern + "回復しました。";
             public const string HealPotionWithSourceNamePattern = "^" + SourceNamePattern + "は(回復|治癒)のポーションの効果により、" + HealingAmountPattern + "のHPが回復しました。";
         }
