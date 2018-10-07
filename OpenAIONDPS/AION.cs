@@ -18,6 +18,7 @@ namespace OpenAIONDPS
             private const string TargetNameReplacedMemberNamePattern           = @"(?<TargetName>[[[MemberName]]])";
             private const string DamagePattern                                 = @"(?<Damage>[0-9,]+)";
             private const string HealingAmountPattern                          = @"(?<HealingAmount>[0-9,]+)";
+            private const string EXPPattern                                    = @"(?<EXP>[0-9,]+)";
 
             /* 共通 */
 
@@ -222,6 +223,9 @@ namespace OpenAIONDPS
             public const string HealPotionWithoutSourceNamePattern = "^HPが" + HealingAmountPattern + "回復しました。";
             public const string HealPotionWithoutSourceNamePattern2 = "^(回復|治癒)のポーションの効果により、HPが" + HealingAmountPattern + "回復しました。";
             public const string HealPotionWithSourceNamePattern = "^" + SourceNamePattern + "は(回復|治癒)のポーションの効果により、" + HealingAmountPattern + "のHPが回復しました。";
+
+            // 計測停止条件
+            public const string StopCalcConditionPattern = @"から経験値を" + EXPPattern + "獲得しました。";
         }
 
         public enum JobType { None, Sword, Shield, Shadow, Bow, Spell, Spirit, Cure, Chant, Bullet, Gia, Melody };

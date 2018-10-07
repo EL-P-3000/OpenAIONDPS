@@ -25,6 +25,16 @@ namespace OpenAIONDPS
         private bool IsRunning = false;
         private bool StopFlag = true;
         private Thread CalculateThread = null;
+        public class CalcThreadSettings
+        {
+            public bool StartCalcConditionChecked { get; set; } = false;
+
+            public string StartCalcConditionText { get; set; } = null;
+
+            public bool StopCalcConditionChecked { get; set; } = false;
+
+            public string StopCalcConditionText { get; set; } = null;
+        }
 
         /* メンバー＆スキル一覧 */
         private string OwnName = "自分";
@@ -269,8 +279,14 @@ namespace OpenAIONDPS
                 this.CalcTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
             }
 
-            this.CalculateThread = new Thread(new ThreadStart(Calculate));
-            this.CalculateThread.Start();
+            CalcThreadSettings ThreadSettings = new CalcThreadSettings();
+            ThreadSettings.StartCalcConditionChecked = this.StartCalcConditionCheckBox.Checked;
+            ThreadSettings.StartCalcConditionText = this.StartCalcConditionComboBox.Text;
+            ThreadSettings.StopCalcConditionChecked = this.StopCalcConditionCheckBox.Checked;
+            ThreadSettings.StopCalcConditionText = this.StopCalcConditionComboBox.Text;
+
+            this.CalculateThread = new Thread(new ParameterizedThreadStart(Calculate));
+            this.CalculateThread.Start(ThreadSettings);
         }
 
         private void ClearChatLogFile()
@@ -553,18 +569,26 @@ namespace OpenAIONDPS
         /// <summary>
         /// 計測
         /// </summary>
-        public void Calculate()
+        public void Calculate(object ThreadSettingsObject)
         {
             Delegate UpdateDamageDelegate = new Action<ActionData>(UpdateDamageData);
             Delegate UpdateEvasionDelegate = new Action<ActionData>(UpdateEvasion);
             Delegate UpdateResistanceDelegate = new Action<ActionData>(UpdateResistance);
             Delegate UpdateHealDelegate = new Action<ActionData>(UpdateHeal);
             Delegate CalcFromLogEndDelegate = new Action(CalcFromLogFileEnd);
+            Delegate StopThreadDelegate = new Action(StopThread);
             string LogFilePath = Registry.ReadChatLogPath();
             string LogText = "";
             string LogTextWithoutTime = "";
             ActionData ChatLogActionData = null;
             ActionData PreviousHealChatLogActionData = null;
+            bool IsStartCalcByStartCalcCondition = false;
+            Regex StartCalcConditionRegex = null;
+            Regex StopCalcConditionRegex = null;
+            Match StartCalcConditionMatch = null;
+            Match StopCalcConditionMatch = null;
+
+            CalcThreadSettings ThreadSettings = (CalcThreadSettings)ThreadSettingsObject;
 
             // ターゲットのデバフリスト
             Dictionary<string, Dictionary<string, ActionData>> AttackSkillDebuffTargetList = new Dictionary<string, Dictionary<string, ActionData>>();
@@ -607,6 +631,16 @@ namespace OpenAIONDPS
                         if (!this.IsCalcLogFile)
                         {
                             ChatLogStreamReader.ReadToEnd();
+                        }
+
+                        if (ThreadSettings.StartCalcConditionChecked && !String.IsNullOrEmpty(ThreadSettings.StartCalcConditionText))
+                        {
+                            StartCalcConditionRegex = new Regex("^" + ThreadSettings.StartCalcConditionText.Replace(" ", "\\s") + "$", RegexOptions.Compiled);
+                        }
+
+                        if (ThreadSettings.StopCalcConditionChecked && !String.IsNullOrEmpty(ThreadSettings.StopCalcConditionText))
+                        {
+                            StopCalcConditionRegex = new Regex("^" + ThreadSettings.StopCalcConditionText.Replace(" ", "\\s") + AION.LogPattern.StopCalcConditionPattern + "$", RegexOptions.Compiled);
                         }
 
                         while (this.StopFlag == false)
@@ -653,6 +687,34 @@ namespace OpenAIONDPS
 
                                 // 時刻をラインから削除
                                 LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
+
+                                // 計測開始条件
+                                if (ThreadSettings.StartCalcConditionChecked && !IsStartCalcByStartCalcCondition && StartCalcConditionRegex != null)
+                                {
+                                    StartCalcConditionMatch = StartCalcConditionRegex.Match(LogTextWithoutTime);
+                                    if (StartCalcConditionMatch.Success)
+                                    {
+                                        IsStartCalcByStartCalcCondition = true;
+                                    }
+                                    else
+                                    {
+                                        Application.DoEvents();
+                                    }
+                                    continue;
+                                }
+
+                                // 計測停止条件
+                                
+                                if (ThreadSettings.StopCalcConditionChecked && StopCalcConditionRegex != null)
+                                {
+                                    StopCalcConditionMatch = StopCalcConditionRegex.Match(LogTextWithoutTime);
+                                    if (StopCalcConditionMatch.Success)
+                                    {
+                                        this.Invoke(StopThreadDelegate, null);
+                                        Application.DoEvents();
+                                        break;
+                                    }
+                                }
 
                                 // 前回復データの処理
                                 if (PreviousHealChatLogActionData != null)
@@ -1958,8 +2020,14 @@ namespace OpenAIONDPS
                 // デバッグ
                 this.OpenDebugLogFile();
 
-                this.CalculateThread = new Thread(new ThreadStart(Calculate));
-                this.CalculateThread.Start();
+                CalcThreadSettings ThreadSettings = new CalcThreadSettings();
+                ThreadSettings.StartCalcConditionChecked = this.StartCalcConditionCheckBox.Checked;
+                ThreadSettings.StartCalcConditionText = this.StartCalcConditionComboBox.Text;
+                ThreadSettings.StopCalcConditionChecked = this.StopCalcConditionCheckBox.Checked;
+                ThreadSettings.StopCalcConditionText = this.StopCalcConditionComboBox.Text;
+
+                this.CalculateThread = new Thread(new ParameterizedThreadStart(Calculate));
+                this.CalculateThread.Start(ThreadSettings);
             }
         }
 
