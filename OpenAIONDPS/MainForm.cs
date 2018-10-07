@@ -259,6 +259,7 @@ namespace OpenAIONDPS
                     this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
                     this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
                     this.CalcTimer = new System.Timers.Timer();
+                    this.CalcTimer.Enabled = false;
                     this.CalcTimer.SynchronizingObject = this;
                     this.CalcTimer.Interval = 1000;
                     this.CalcTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
