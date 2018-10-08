@@ -28,22 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
+            this.StartCalcConditionComboBox = new System.Windows.Forms.ComboBox();
+            this.StartCalcConditionCheckBox = new System.Windows.Forms.CheckBox();
+            this.StopCalcConditionComboBox = new System.Windows.Forms.ComboBox();
+            this.StopCalcConditionCheckBox = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -79,6 +83,18 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.Member01 = new OpenAIONDPS.MemberUnit();
+            this.Member02 = new OpenAIONDPS.MemberUnit();
+            this.Member03 = new OpenAIONDPS.MemberUnit();
+            this.Member04 = new OpenAIONDPS.MemberUnit();
+            this.Member05 = new OpenAIONDPS.MemberUnit();
+            this.Member06 = new OpenAIONDPS.MemberUnit();
+            this.Member07 = new OpenAIONDPS.MemberUnit();
+            this.Member08 = new OpenAIONDPS.MemberUnit();
+            this.Member09 = new OpenAIONDPS.MemberUnit();
+            this.Member10 = new OpenAIONDPS.MemberUnit();
+            this.Member11 = new OpenAIONDPS.MemberUnit();
+            this.Member12 = new OpenAIONDPS.MemberUnit();
             this.DebugCheckBox = new System.Windows.Forms.CheckBox();
             this.CalcFromLogFileButton = new System.Windows.Forms.Button();
             this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
@@ -93,6 +109,7 @@
             this.ProjectTopLinkLabel = new System.Windows.Forms.LinkLabel();
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.MemberDamageListTabPage = new System.Windows.Forms.TabPage();
+            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
             this.SkillListFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SkillDamageListTabPage = new System.Windows.Forms.TabPage();
             this.SaveAttackSkillListImageButton = new System.Windows.Forms.Button();
@@ -115,23 +132,6 @@
             this.SaveImageButton = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.ProjectLatestVersionLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.FavoriteMemberList = new OpenAIONDPS.FavoriteMemberListUnit();
-            this.Member01 = new OpenAIONDPS.MemberUnit();
-            this.Member02 = new OpenAIONDPS.MemberUnit();
-            this.Member03 = new OpenAIONDPS.MemberUnit();
-            this.Member04 = new OpenAIONDPS.MemberUnit();
-            this.Member05 = new OpenAIONDPS.MemberUnit();
-            this.Member06 = new OpenAIONDPS.MemberUnit();
-            this.Member07 = new OpenAIONDPS.MemberUnit();
-            this.Member08 = new OpenAIONDPS.MemberUnit();
-            this.Member09 = new OpenAIONDPS.MemberUnit();
-            this.Member10 = new OpenAIONDPS.MemberUnit();
-            this.Member11 = new OpenAIONDPS.MemberUnit();
-            this.Member12 = new OpenAIONDPS.MemberUnit();
-            this.StopCalcConditionCheckBox = new System.Windows.Forms.CheckBox();
-            this.StopCalcConditionComboBox = new System.Windows.Forms.ComboBox();
-            this.StartCalcConditionCheckBox = new System.Windows.Forms.CheckBox();
-            this.StartCalcConditionComboBox = new System.Windows.Forms.ComboBox();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
             this.MenuTabControl.SuspendLayout();
@@ -234,6 +234,54 @@
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
+            // 
+            // StartCalcConditionComboBox
+            // 
+            this.StartCalcConditionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StartCalcConditionComboBox.FormattingEnabled = true;
+            this.StartCalcConditionComboBox.Items.AddRange(new object[] {
+            "ベリトラがドラゴンに変身します。",
+            "プリギタ: 女王よ、我に覚醒の力を！"});
+            this.StartCalcConditionComboBox.Location = new System.Drawing.Point(454, 429);
+            this.StartCalcConditionComboBox.Name = "StartCalcConditionComboBox";
+            this.StartCalcConditionComboBox.Size = new System.Drawing.Size(203, 20);
+            this.StartCalcConditionComboBox.TabIndex = 60;
+            // 
+            // StartCalcConditionCheckBox
+            // 
+            this.StartCalcConditionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StartCalcConditionCheckBox.AutoSize = true;
+            this.StartCalcConditionCheckBox.Location = new System.Drawing.Point(352, 431);
+            this.StartCalcConditionCheckBox.Name = "StartCalcConditionCheckBox";
+            this.StartCalcConditionCheckBox.Size = new System.Drawing.Size(96, 16);
+            this.StartCalcConditionCheckBox.TabIndex = 59;
+            this.StartCalcConditionCheckBox.Text = "計測開始条件";
+            this.StartCalcConditionCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // StopCalcConditionComboBox
+            // 
+            this.StopCalcConditionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StopCalcConditionComboBox.FormattingEnabled = true;
+            this.StopCalcConditionComboBox.Items.AddRange(new object[] {
+            "ベリトラ",
+            "理性を失ったプリギタ",
+            "ネルガル",
+            "呪われたオペル"});
+            this.StopCalcConditionComboBox.Location = new System.Drawing.Point(454, 455);
+            this.StopCalcConditionComboBox.Name = "StopCalcConditionComboBox";
+            this.StopCalcConditionComboBox.Size = new System.Drawing.Size(203, 20);
+            this.StopCalcConditionComboBox.TabIndex = 58;
+            // 
+            // StopCalcConditionCheckBox
+            // 
+            this.StopCalcConditionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StopCalcConditionCheckBox.AutoSize = true;
+            this.StopCalcConditionCheckBox.Location = new System.Drawing.Point(352, 457);
+            this.StopCalcConditionCheckBox.Name = "StopCalcConditionCheckBox";
+            this.StopCalcConditionCheckBox.Size = new System.Drawing.Size(96, 16);
+            this.StopCalcConditionCheckBox.TabIndex = 57;
+            this.StopCalcConditionCheckBox.Text = "計測停止条件";
+            this.StopCalcConditionCheckBox.UseVisualStyleBackColor = true;
             // 
             // label31
             // 
@@ -424,7 +472,7 @@
             this.FavoriteMemberButton.Name = "FavoriteMemberButton";
             this.FavoriteMemberButton.Size = new System.Drawing.Size(75, 23);
             this.FavoriteMemberButton.TabIndex = 12;
-            this.FavoriteMemberButton.Text = "登録";
+            this.FavoriteMemberButton.Text = "登録一覧";
             this.FavoriteMemberButton.UseVisualStyleBackColor = true;
             this.FavoriteMemberButton.Click += new System.EventHandler(this.FavoriteMemberButton_Click);
             // 
@@ -589,6 +637,114 @@
             this.label17.Text = "通常攻撃";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // Member01
+            // 
+            this.Member01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member01.Location = new System.Drawing.Point(6, 58);
+            this.Member01.Name = "Member01";
+            this.Member01.Size = new System.Drawing.Size(1009, 26);
+            this.Member01.TabIndex = 13;
+            // 
+            // Member02
+            // 
+            this.Member02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member02.Location = new System.Drawing.Point(6, 87);
+            this.Member02.Name = "Member02";
+            this.Member02.Size = new System.Drawing.Size(1009, 26);
+            this.Member02.TabIndex = 14;
+            // 
+            // Member03
+            // 
+            this.Member03.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member03.Location = new System.Drawing.Point(6, 116);
+            this.Member03.Name = "Member03";
+            this.Member03.Size = new System.Drawing.Size(1009, 26);
+            this.Member03.TabIndex = 15;
+            // 
+            // Member04
+            // 
+            this.Member04.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member04.Location = new System.Drawing.Point(6, 145);
+            this.Member04.Name = "Member04";
+            this.Member04.Size = new System.Drawing.Size(1009, 26);
+            this.Member04.TabIndex = 16;
+            // 
+            // Member05
+            // 
+            this.Member05.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member05.Location = new System.Drawing.Point(6, 174);
+            this.Member05.Name = "Member05";
+            this.Member05.Size = new System.Drawing.Size(1009, 26);
+            this.Member05.TabIndex = 17;
+            // 
+            // Member06
+            // 
+            this.Member06.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member06.Location = new System.Drawing.Point(6, 203);
+            this.Member06.Name = "Member06";
+            this.Member06.Size = new System.Drawing.Size(1009, 26);
+            this.Member06.TabIndex = 18;
+            // 
+            // Member07
+            // 
+            this.Member07.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member07.Location = new System.Drawing.Point(6, 232);
+            this.Member07.Name = "Member07";
+            this.Member07.Size = new System.Drawing.Size(1009, 26);
+            this.Member07.TabIndex = 19;
+            // 
+            // Member08
+            // 
+            this.Member08.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member08.Location = new System.Drawing.Point(6, 261);
+            this.Member08.Name = "Member08";
+            this.Member08.Size = new System.Drawing.Size(1009, 26);
+            this.Member08.TabIndex = 20;
+            // 
+            // Member09
+            // 
+            this.Member09.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member09.Location = new System.Drawing.Point(6, 290);
+            this.Member09.Name = "Member09";
+            this.Member09.Size = new System.Drawing.Size(1009, 26);
+            this.Member09.TabIndex = 21;
+            // 
+            // Member10
+            // 
+            this.Member10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member10.Location = new System.Drawing.Point(6, 319);
+            this.Member10.Name = "Member10";
+            this.Member10.Size = new System.Drawing.Size(1009, 26);
+            this.Member10.TabIndex = 22;
+            // 
+            // Member11
+            // 
+            this.Member11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member11.Location = new System.Drawing.Point(6, 348);
+            this.Member11.Name = "Member11";
+            this.Member11.Size = new System.Drawing.Size(1009, 26);
+            this.Member11.TabIndex = 23;
+            // 
+            // Member12
+            // 
+            this.Member12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Member12.Location = new System.Drawing.Point(6, 377);
+            this.Member12.Name = "Member12";
+            this.Member12.Size = new System.Drawing.Size(1009, 26);
+            this.Member12.TabIndex = 24;
+            // 
             // DebugCheckBox
             // 
             this.DebugCheckBox.AutoSize = true;
@@ -752,6 +908,15 @@
             this.MemberDamageListTabPage.Text = "メンバー別ダメージ一覧";
             this.MemberDamageListTabPage.UseVisualStyleBackColor = true;
             // 
+            // FavoriteMemberList
+            // 
+            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FavoriteMemberList.Location = new System.Drawing.Point(235, 17);
+            this.FavoriteMemberList.Name = "FavoriteMemberList";
+            this.FavoriteMemberList.Size = new System.Drawing.Size(713, 518);
+            this.FavoriteMemberList.TabIndex = 30;
+            this.FavoriteMemberList.Visible = false;
+            // 
             // SkillListFlowLayoutPanel
             // 
             this.SkillListFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -792,14 +957,14 @@
             this.AttackSkillListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.AttackSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.AttackSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.AttackSkillListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AttackSkillListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MemberNameColumn,
@@ -828,8 +993,8 @@
             // 
             // SkillNameColumn
             // 
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.SkillNameColumn.HeaderText = "スキル名";
             this.SkillNameColumn.Name = "SkillNameColumn";
             this.SkillNameColumn.ReadOnly = true;
@@ -837,8 +1002,8 @@
             // 
             // DamageColumn
             // 
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.DamageColumn.HeaderText = "総ダメージ";
             this.DamageColumn.Name = "DamageColumn";
             this.DamageColumn.ReadOnly = true;
@@ -846,8 +1011,8 @@
             // 
             // AttackNumberColumn
             // 
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.AttackNumberColumn.HeaderText = "回数";
             this.AttackNumberColumn.Name = "AttackNumberColumn";
             this.AttackNumberColumn.ReadOnly = true;
@@ -855,40 +1020,40 @@
             // 
             // MaxDamageColumn
             // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.MaxDamageColumn.HeaderText = "MAXダメ(クリ無)";
             this.MaxDamageColumn.Name = "MaxDamageColumn";
             this.MaxDamageColumn.ReadOnly = true;
             // 
             // MinDamageColumn
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.MinDamageColumn.HeaderText = "MINダメ(クリ無)";
             this.MinDamageColumn.Name = "MinDamageColumn";
             this.MinDamageColumn.ReadOnly = true;
             // 
             // MaxDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.MaxDamageWithCriticalColumn.HeaderText = "MAXダメ(クリ有)";
             this.MaxDamageWithCriticalColumn.Name = "MaxDamageWithCriticalColumn";
             this.MaxDamageWithCriticalColumn.ReadOnly = true;
             // 
             // MinDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.MinDamageWithCriticalColumn.HeaderText = "MINダメ(クリ有)";
             this.MinDamageWithCriticalColumn.Name = "MinDamageWithCriticalColumn";
             this.MinDamageWithCriticalColumn.ReadOnly = true;
             // 
             // DamageParAttackNumber
             // 
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle9;
             this.DamageParAttackNumber.HeaderText = "平均ダメージ";
             this.DamageParAttackNumber.Name = "DamageParAttackNumber";
             this.DamageParAttackNumber.ReadOnly = true;
@@ -923,14 +1088,14 @@
             this.HealSkillListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle46.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.HealSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.HealSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.HealSkillListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.HealSkillListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -953,8 +1118,8 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn2.HeaderText = "スキル名";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -962,8 +1127,8 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn3.HeaderText = "総回復量";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -998,171 +1163,6 @@
             this.ProjectLatestVersionLinkLabel.TabStop = true;
             this.ProjectLatestVersionLinkLabel.Text = "https://github.com/EL-P-3000/OpenAIONDPS/releases/latest";
             this.ProjectLatestVersionLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ProjectLatestVersionLinkLabel_LinkClicked);
-            // 
-            // FavoriteMemberList
-            // 
-            this.FavoriteMemberList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FavoriteMemberList.Location = new System.Drawing.Point(235, 17);
-            this.FavoriteMemberList.Name = "FavoriteMemberList";
-            this.FavoriteMemberList.Size = new System.Drawing.Size(713, 518);
-            this.FavoriteMemberList.TabIndex = 30;
-            this.FavoriteMemberList.Visible = false;
-            // 
-            // Member01
-            // 
-            this.Member01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member01.Location = new System.Drawing.Point(6, 58);
-            this.Member01.Name = "Member01";
-            this.Member01.Size = new System.Drawing.Size(1009, 26);
-            this.Member01.TabIndex = 13;
-            // 
-            // Member02
-            // 
-            this.Member02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member02.Location = new System.Drawing.Point(6, 87);
-            this.Member02.Name = "Member02";
-            this.Member02.Size = new System.Drawing.Size(1009, 26);
-            this.Member02.TabIndex = 14;
-            // 
-            // Member03
-            // 
-            this.Member03.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member03.Location = new System.Drawing.Point(6, 116);
-            this.Member03.Name = "Member03";
-            this.Member03.Size = new System.Drawing.Size(1009, 26);
-            this.Member03.TabIndex = 15;
-            // 
-            // Member04
-            // 
-            this.Member04.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member04.Location = new System.Drawing.Point(6, 145);
-            this.Member04.Name = "Member04";
-            this.Member04.Size = new System.Drawing.Size(1009, 26);
-            this.Member04.TabIndex = 16;
-            // 
-            // Member05
-            // 
-            this.Member05.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member05.Location = new System.Drawing.Point(6, 174);
-            this.Member05.Name = "Member05";
-            this.Member05.Size = new System.Drawing.Size(1009, 26);
-            this.Member05.TabIndex = 17;
-            // 
-            // Member06
-            // 
-            this.Member06.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member06.Location = new System.Drawing.Point(6, 203);
-            this.Member06.Name = "Member06";
-            this.Member06.Size = new System.Drawing.Size(1009, 26);
-            this.Member06.TabIndex = 18;
-            // 
-            // Member07
-            // 
-            this.Member07.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member07.Location = new System.Drawing.Point(6, 232);
-            this.Member07.Name = "Member07";
-            this.Member07.Size = new System.Drawing.Size(1009, 26);
-            this.Member07.TabIndex = 19;
-            // 
-            // Member08
-            // 
-            this.Member08.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member08.Location = new System.Drawing.Point(6, 261);
-            this.Member08.Name = "Member08";
-            this.Member08.Size = new System.Drawing.Size(1009, 26);
-            this.Member08.TabIndex = 20;
-            // 
-            // Member09
-            // 
-            this.Member09.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member09.Location = new System.Drawing.Point(6, 290);
-            this.Member09.Name = "Member09";
-            this.Member09.Size = new System.Drawing.Size(1009, 26);
-            this.Member09.TabIndex = 21;
-            // 
-            // Member10
-            // 
-            this.Member10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member10.Location = new System.Drawing.Point(6, 319);
-            this.Member10.Name = "Member10";
-            this.Member10.Size = new System.Drawing.Size(1009, 26);
-            this.Member10.TabIndex = 22;
-            // 
-            // Member11
-            // 
-            this.Member11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member11.Location = new System.Drawing.Point(6, 348);
-            this.Member11.Name = "Member11";
-            this.Member11.Size = new System.Drawing.Size(1009, 26);
-            this.Member11.TabIndex = 23;
-            // 
-            // Member12
-            // 
-            this.Member12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member12.Location = new System.Drawing.Point(6, 377);
-            this.Member12.Name = "Member12";
-            this.Member12.Size = new System.Drawing.Size(1009, 26);
-            this.Member12.TabIndex = 24;
-            // 
-            // StopCalcConditionCheckBox
-            // 
-            this.StopCalcConditionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.StopCalcConditionCheckBox.AutoSize = true;
-            this.StopCalcConditionCheckBox.Location = new System.Drawing.Point(352, 457);
-            this.StopCalcConditionCheckBox.Name = "StopCalcConditionCheckBox";
-            this.StopCalcConditionCheckBox.Size = new System.Drawing.Size(96, 16);
-            this.StopCalcConditionCheckBox.TabIndex = 57;
-            this.StopCalcConditionCheckBox.Text = "計測停止条件";
-            this.StopCalcConditionCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // StopCalcConditionComboBox
-            // 
-            this.StopCalcConditionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.StopCalcConditionComboBox.FormattingEnabled = true;
-            this.StopCalcConditionComboBox.Items.AddRange(new object[] {
-            "ベリトラ",
-            "理性を失ったプリギタ",
-            "ネルガル",
-            "呪われたオペル"});
-            this.StopCalcConditionComboBox.Location = new System.Drawing.Point(454, 455);
-            this.StopCalcConditionComboBox.Name = "StopCalcConditionComboBox";
-            this.StopCalcConditionComboBox.Size = new System.Drawing.Size(203, 20);
-            this.StopCalcConditionComboBox.TabIndex = 58;
-            // 
-            // StartCalcConditionCheckBox
-            // 
-            this.StartCalcConditionCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.StartCalcConditionCheckBox.AutoSize = true;
-            this.StartCalcConditionCheckBox.Location = new System.Drawing.Point(352, 431);
-            this.StartCalcConditionCheckBox.Name = "StartCalcConditionCheckBox";
-            this.StartCalcConditionCheckBox.Size = new System.Drawing.Size(96, 16);
-            this.StartCalcConditionCheckBox.TabIndex = 59;
-            this.StartCalcConditionCheckBox.Text = "計測開始条件";
-            this.StartCalcConditionCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // StartCalcConditionComboBox
-            // 
-            this.StartCalcConditionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.StartCalcConditionComboBox.FormattingEnabled = true;
-            this.StartCalcConditionComboBox.Items.AddRange(new object[] {
-            "ベリトラがドラゴンに変身します。",
-            "プリギタ: 女王よ、我に覚醒の力を！"});
-            this.StartCalcConditionComboBox.Location = new System.Drawing.Point(454, 429);
-            this.StartCalcConditionComboBox.Name = "StartCalcConditionComboBox";
-            this.StartCalcConditionComboBox.Size = new System.Drawing.Size(203, 20);
-            this.StartCalcConditionComboBox.TabIndex = 60;
             // 
             // MainForm
             // 
