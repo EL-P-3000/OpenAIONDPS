@@ -420,7 +420,36 @@ namespace OpenAIONDPS
             Result += "回避した回数：\t\t\t" + this.EvadeAttackNumberLabel.Text + Environment.NewLine;
             Result += "回避された回数：\t\t" + this.EvadedAttackNumberLabel.Text + Environment.NewLine;
             Result += "抵抗した回数：\t\t\t" + this.ResistAttackNumberLabel.Text + Environment.NewLine;
-            Result += "抵抗された回数：\t\t" + this.ResistedAttackNumberLabel.Text;
+            Result += "抵抗された回数：\t\t" + this.ResistedAttackNumberLabel.Text + Environment.NewLine;
+            Result += "回復量：\t\t\t" + this.HealingAmountLabel.Text;
+
+            // Attack
+            if (this.AttackSkillList != null && this.AttackSkillList.Count > 0)
+            {
+                foreach (AION.AttackSkill _AttackSkill in this.AttackSkillList.Values)
+                {
+                    Result += Environment.NewLine;
+                    Result += "・" + _AttackSkill.Name + Environment.NewLine;
+                    Result += "総ダメージ: " + _AttackSkill.Damage.ToString("#,0") + ", ";
+                    Result += "回数: " + _AttackSkill.AttackNumber.ToString("#,0") + ", ";
+                    Result += "MAXダメージ(クリ無): " + _AttackSkill.MaxDamageWithoutCritical.ToString("#,0") + ", ";
+                    Result += "MINダメージ(クリ無): " + _AttackSkill.MinDamageWithoutCritical.ToString("#,0") + ", ";
+                    Result += "MAXダメージ(クリ有): " + _AttackSkill.MaxDamageWithCritical.ToString("#,0") + ", ";
+                    Result += "MINダメージ(クリ有): " + _AttackSkill.MinDamageWithCritical.ToString("#,0") + ", ";
+                    Result += "平均ダメージ: " + (_AttackSkill.Damage / _AttackSkill.AttackNumber).ToString("#,0");
+                }
+            }
+
+            // Heal
+            if (this.HealSkillList != null && this.HealSkillList.Count > 0)
+            {
+                foreach (AION.HealSkill _HealSkill in this.HealSkillList.Values)
+                {
+                    Result += Environment.NewLine;
+                    Result += "・" + _HealSkill.Name + Environment.NewLine;
+                    Result += "回復量: " + _HealSkill.HealingAmount.ToString("#,0");
+                }
+            }
 
             return Result;
         }
@@ -450,7 +479,36 @@ namespace OpenAIONDPS
             Result += "回避した回数：\t\t\t" + this.EvadeAttackNumberLabel.Text + Environment.NewLine;
             Result += "回避された回数：\t\t\t" + this.EvadedAttackNumberLabel.Text + Environment.NewLine;
             Result += "抵抗した回数：\t\t\t" + this.ResistAttackNumberLabel.Text + Environment.NewLine;
-            Result += "抵抗された回数：\t\t\t" + this.ResistedAttackNumberLabel.Text;
+            Result += "抵抗された回数：\t\t\t" + this.ResistedAttackNumberLabel.Text + Environment.NewLine;
+            Result += "回復量：\t\t\t\t" + this.HealingAmountLabel.Text;
+
+            // Attack
+            if (this.AttackSkillList != null && this.AttackSkillList.Count > 0)
+            {
+                foreach (AION.AttackSkill _AttackSkill in this.AttackSkillList.Values)
+                {
+                    Result += Environment.NewLine;
+                    Result += "・" + _AttackSkill.Name + Environment.NewLine;
+                    Result += "総ダメージ: " + _AttackSkill.Damage.ToString("#,0") + ", ";
+                    Result += "回数: " + _AttackSkill.AttackNumber.ToString("#,0") + ", ";
+                    Result += "MAXダメージ(クリ無): " + _AttackSkill.MaxDamageWithoutCritical.ToString("#,0") + ", ";
+                    Result += "MINダメージ(クリ無): " + _AttackSkill.MinDamageWithoutCritical.ToString("#,0") + ", ";
+                    Result += "MAXダメージ(クリ有): " + _AttackSkill.MaxDamageWithCritical.ToString("#,0") + ", ";
+                    Result += "MINダメージ(クリ有): " + _AttackSkill.MinDamageWithCritical.ToString("#,0") + ", ";
+                    Result += "平均ダメージ: " + (_AttackSkill.Damage / _AttackSkill.AttackNumber).ToString("#,0");
+                }
+            }
+
+            // Heal
+            if (this.HealSkillList != null && this.HealSkillList.Count > 0)
+            {
+                foreach (AION.HealSkill _HealSkill in this.HealSkillList.Values)
+                {
+                    Result += Environment.NewLine;
+                    Result += "・" + _HealSkill.Name + Environment.NewLine;
+                    Result += "回復量: " + _HealSkill.HealingAmount.ToString("#,0");
+                }
+            }
 
             return Result;
         }
