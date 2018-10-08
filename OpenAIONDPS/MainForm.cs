@@ -22,10 +22,10 @@ namespace OpenAIONDPS
         private bool IsDebug = false;
 
         /* スレッド制御用 */
-        private bool IsRunning = false;
-        private bool StopFlag = true;
-        private Thread CalculateThread = null;
-        public class CalcThreadSettings
+        private bool IsCalculationThreadRunning = false;
+        private bool CalculationThreadStopFlag = true;
+        private Thread CalculationThread = null;
+        public class CalculationThreadSettings
         {
             public bool IsCalcLogFile { get; set; } = false;
 
@@ -51,8 +51,8 @@ namespace OpenAIONDPS
 
         /* 時間計測 */
         private long TotalDamage = 0;
-        private System.Timers.Timer CalcTimer = new System.Timers.Timer();
-        private int CalcRemainingTime = 0;
+        private System.Timers.Timer CalculationTimer = new System.Timers.Timer();
+        private int CalculationRemainingTime = 0;
 
         /* ホットキー */
         [DllImport("user32.dll")]
@@ -110,7 +110,7 @@ namespace OpenAIONDPS
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.StopThread();
+            this.StopCalculationThread();
             UnregisterHotKey(Handle, HOTKEY_ID);
         }
 
@@ -225,16 +225,16 @@ namespace OpenAIONDPS
             }
         }
 
-        private void StartButton_Click(object sender, EventArgs e)
+        private void CalculationStartButton_Click(object sender, EventArgs e)
         {
-            this.StartThread(false);
+            this.StartCalculationThread(false);
         }
 
-        private void StartThread(bool IsLogFile)
+        private void StartCalculationThread(bool IsLogFile)
         {
-            CalcThreadSettings ThreadSettings = new CalcThreadSettings();
+            CalculationThreadSettings ThreadSettings = new CalculationThreadSettings();
 
-            if (this.IsRunning == true)
+            if (this.IsCalculationThreadRunning == true)
             {
                 MessageBox.Show("計測中です。", "エラー");
                 return;
@@ -254,15 +254,15 @@ namespace OpenAIONDPS
                 {
                 }
 
-                if (this.CalcTimeCheckBox.Checked)
+                if (this.CalculationTimeCheckBox.Checked)
                 {
-                    this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
-                    this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
-                    this.CalcTimer = new System.Timers.Timer();
-                    this.CalcTimer.Enabled = false;
-                    this.CalcTimer.SynchronizingObject = this;
-                    this.CalcTimer.Interval = 1000;
-                    this.CalcTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
+                    this.CalculationRemainingTime = (int)this.CalculationTimerMinutesNumericUpDown.Value * 60;
+                    this.CalculationRemainingTimeLabel.Text = this.CalculationRemainingTime.ToString();
+                    this.CalculationTimer = new System.Timers.Timer();
+                    this.CalculationTimer.Enabled = false;
+                    this.CalculationTimer.SynchronizingObject = this;
+                    this.CalculationTimer.Interval = 1000;
+                    this.CalculationTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
                 }
             }
             else
@@ -282,13 +282,13 @@ namespace OpenAIONDPS
                 ThreadSettings.CalcLogFilePath = Dialog.FileName;
             }
 
-            this.StartButton.Enabled = false;
-            this.StopButton.Enabled = true;
+            this.CalculationStartButton.Enabled = false;
+            this.CalculationStopButton.Enabled = true;
             this.OpenLogFileButton.Enabled = false;
             this.CalcFromLogFileButton.Enabled = false;
             this.FavoriteMemberButton.Enabled = false;
-            this.IsRunning = true;
-            this.StopFlag = false;
+            this.IsCalculationThreadRunning = true;
+            this.CalculationThreadStopFlag = false;
 
             this.ClearData(false);
 
@@ -305,8 +305,8 @@ namespace OpenAIONDPS
             ThreadSettings.StopCalcConditionChecked = this.StopCalcConditionCheckBox.Checked;
             ThreadSettings.StopCalcConditionText = this.StopCalcConditionComboBox.Text;
 
-            this.CalculateThread = new Thread(new ParameterizedThreadStart(Calculate));
-            this.CalculateThread.Start(ThreadSettings);
+            this.CalculationThread = new Thread(new ParameterizedThreadStart(Calculate));
+            this.CalculationThread.Start(ThreadSettings);
         }
 
         private void ClearChatLogFile()
@@ -336,26 +336,26 @@ namespace OpenAIONDPS
             }
         }
 
-        private void StopButton_Click(object sender, EventArgs e)
+        private void CalculationStopButton_Click(object sender, EventArgs e)
         {
-            if (this.CalcTimer.Enabled)
+            if (this.CalculationTimer.Enabled)
             {
                 this.StopCalcTimer();
             }
-            this.StopThread();
+            this.StopCalculationThread();
         }
 
-        private void StopThread()
+        private void StopCalculationThread()
         {
             try
             {
-                this.StopFlag = true;
-                if (this.CalculateThread != null)
+                this.CalculationThreadStopFlag = true;
+                if (this.CalculationThread != null)
                 {
-                    this.CalculateThread.Join(2 * 1000);
-                    this.CalculateThread = null;
+                    this.CalculationThread.Join(2 * 1000);
+                    this.CalculationThread = null;
                 }
-                this.IsRunning = false;
+                this.IsCalculationThreadRunning = false;
             }
             catch
             {
@@ -364,8 +364,8 @@ namespace OpenAIONDPS
             this.CloseDebugLogFile();
             this.IsDebug = false;
 
-            this.StartButton.Enabled = true;
-            this.StopButton.Enabled = false;
+            this.CalculationStartButton.Enabled = true;
+            this.CalculationStopButton.Enabled = false;
             this.OpenLogFileButton.Enabled = true;
             this.CalcFromLogFileButton.Enabled = true;
             this.FavoriteMemberButton.Enabled = true;
@@ -380,13 +380,13 @@ namespace OpenAIONDPS
             {
                 if (((int)message.WParam) == HOTKEY_ID)
                 {
-                    if (this.IsRunning)
+                    if (this.IsCalculationThreadRunning)
                     {
-                        this.StopThread();
+                        this.StopCalculationThread();
                     }
                     else
                     {
-                        this.StartThread(false);
+                        this.StartCalculationThread(false);
                     }
                 }
             }
@@ -596,7 +596,7 @@ namespace OpenAIONDPS
             Delegate UpdateResistanceDelegate = new Action<ActionData>(UpdateResistance);
             Delegate UpdateHealDelegate = new Action<ActionData>(UpdateHeal);
             Delegate CalcFromLogEndDelegate = new Action(CalcFromLogFileEnd);
-            Delegate StopThreadDelegate = new Action(StopThread);
+            Delegate StopThreadDelegate = new Action(StopCalculationThread);
             string LogFilePath = Registry.ReadChatLogPath();
             string LogText = "";
             string LogTextWithoutTime = "";
@@ -608,7 +608,7 @@ namespace OpenAIONDPS
             Match StartCalcConditionMatch = null;
             Match StopCalcConditionMatch = null;
 
-            CalcThreadSettings ThreadSettings = (CalcThreadSettings)ThreadSettingsObject;
+            CalculationThreadSettings ThreadSettings = (CalculationThreadSettings)ThreadSettingsObject;
 
             // ターゲットのデバフリスト
             Dictionary<string, Dictionary<string, ActionData>> AttackSkillDebuffTargetList = new Dictionary<string, Dictionary<string, ActionData>>();
@@ -663,7 +663,7 @@ namespace OpenAIONDPS
                             StopCalcConditionRegex = new Regex("^" + ThreadSettings.StopCalcConditionText.Replace(" ", "\\s") + AION.LogPattern.StopCalcConditionPattern + "$", RegexOptions.Compiled);
                         }
 
-                        while (this.StopFlag == false)
+                        while (this.CalculationThreadStopFlag == false)
                         {
                             try
                             {
@@ -1613,7 +1613,7 @@ namespace OpenAIONDPS
                 this.Invoke(CalcFromLogEndDelegate);
             }
 
-            this.IsRunning = false;
+            this.IsCalculationThreadRunning = false;
         }
 
         private void AddHealBuffList(ActionData ChatLogActionData, AION.HealSkillType SkillType, Dictionary<string, Dictionary<string, ActionData>> HealSkillHotDelayTargetList)
@@ -1793,9 +1793,9 @@ namespace OpenAIONDPS
 
                 if (UpdateTotalDamageFlag)
                 {
-                    if (this.CalcTimeCheckBox.Checked && !this.CalcTimer.Enabled)
+                    if (this.CalculationTimeCheckBox.Checked && !this.CalculationTimer.Enabled)
                     {
-                        this.CalcTimer.Start();
+                        this.CalculationTimer.Start();
                     }
 
                     foreach (MemberUnit _MemberUnit in this.MemberNameMemberUnitList.Values)
@@ -1963,12 +1963,12 @@ namespace OpenAIONDPS
         /// <param name="e"></param>
         private void CalcTimer_Elapsed(object sender, EventArgs e)
         {
-            this.CalcRemainingTime -= 1;
-            this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+            this.CalculationRemainingTime -= 1;
+            this.CalculationRemainingTimeLabel.Text = this.CalculationRemainingTime.ToString();
 
-            if (this.CalcRemainingTime <= 0)
+            if (this.CalculationRemainingTime <= 0)
             {
-                this.StopThread();
+                this.StopCalculationThread();
                 this.StopCalcTimer();
             }
         }
@@ -1980,8 +1980,8 @@ namespace OpenAIONDPS
         /// <param name="e"></param>
         private void CalcTimerMinutesNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
-            this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+            this.CalculationRemainingTime = (int)this.CalculationTimerMinutesNumericUpDown.Value * 60;
+            this.CalculationRemainingTimeLabel.Text = this.CalculationRemainingTime.ToString();
         }
 
         /// <summary>
@@ -1989,11 +1989,11 @@ namespace OpenAIONDPS
         /// </summary>
         private void StopCalcTimer()
         {
-            if (this.CalcTimer.Enabled)
+            if (this.CalculationTimer.Enabled)
             {
-                this.CalcTimer.Stop();
-                this.CalcRemainingTime = (int)this.CalcTimerMinutesNumericUpDown.Value * 60;
-                this.CalcRemainingTimeLabel.Text = this.CalcRemainingTime.ToString();
+                this.CalculationTimer.Stop();
+                this.CalculationRemainingTime = (int)this.CalculationTimerMinutesNumericUpDown.Value * 60;
+                this.CalculationRemainingTimeLabel.Text = this.CalculationRemainingTime.ToString();
             }
         }
 
@@ -2006,7 +2006,7 @@ namespace OpenAIONDPS
         /// <param name="e"></param>
         private void CalcFromLogFileButton_Click(object sender, EventArgs e)
         {
-            this.StartThread(true);
+            this.StartCalculationThread(true);
         }
 
         /// <summary>
@@ -2017,11 +2017,11 @@ namespace OpenAIONDPS
             this.CloseDebugLogFile();
             this.IsDebug = false;
 
-            this.StopFlag = true;
-            this.IsRunning = false;
+            this.CalculationThreadStopFlag = true;
+            this.IsCalculationThreadRunning = false;
 
-            this.StartButton.Enabled = true;
-            this.StopButton.Enabled = false;
+            this.CalculationStartButton.Enabled = true;
+            this.CalculationStopButton.Enabled = false;
             this.OpenLogFileButton.Enabled = true;
             this.CalcFromLogFileButton.Enabled = true;
             this.FavoriteMemberButton.Enabled = true;
@@ -2271,7 +2271,7 @@ namespace OpenAIONDPS
                 case 0:
                     break;
                 case 1:
-                    if (this.IsRunning)
+                    if (this.IsCalculationThreadRunning)
                     {
                         MessageBox.Show("計測を停止してから表示してください。", "注意");
                         this.MenuTabControl.SelectedIndex = 0;
@@ -2282,7 +2282,7 @@ namespace OpenAIONDPS
                     }
                     break;
                 case 2:
-                    if (this.IsRunning)
+                    if (this.IsCalculationThreadRunning)
                     {
                         MessageBox.Show("計測を停止してから表示してください。", "注意");
                         this.MenuTabControl.SelectedIndex = 0;

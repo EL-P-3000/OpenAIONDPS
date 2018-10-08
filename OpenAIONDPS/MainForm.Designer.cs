@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.StartButton = new System.Windows.Forms.Button();
-            this.StopButton = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.CalculationStartButton = new System.Windows.Forms.Button();
+            this.CalculationStopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
             this.StartCalcConditionComboBox = new System.Windows.Forms.ComboBox();
@@ -98,9 +98,9 @@
             this.DebugCheckBox = new System.Windows.Forms.CheckBox();
             this.CalcFromLogFileButton = new System.Windows.Forms.Button();
             this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcTimeCheckBox = new System.Windows.Forms.CheckBox();
-            this.CalcTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.CalcRemainingTimeLabel = new System.Windows.Forms.Label();
+            this.CalculationTimeCheckBox = new System.Windows.Forms.CheckBox();
+            this.CalculationTimerMinutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CalculationRemainingTimeLabel = new System.Windows.Forms.Label();
             this.CopyResultButton = new System.Windows.Forms.Button();
             this.CopyResultForSkypeButton = new System.Windows.Forms.Button();
             this.ProjectManualLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -133,7 +133,7 @@
             this.label30 = new System.Windows.Forms.Label();
             this.ProjectLatestVersionLinkLabel = new System.Windows.Forms.LinkLabel();
             this.MemberGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CalculationTimerMinutesNumericUpDown)).BeginInit();
             this.MenuTabControl.SuspendLayout();
             this.MemberDamageListTabPage.SuspendLayout();
             this.SkillDamageListTabPage.SuspendLayout();
@@ -142,26 +142,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.HealSkillListDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // StartButton
+            // CalculationStartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(12, 12);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(75, 23);
-            this.StartButton.TabIndex = 0;
-            this.StartButton.Text = "開始";
-            this.StartButton.UseVisualStyleBackColor = true;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            this.CalculationStartButton.Location = new System.Drawing.Point(12, 12);
+            this.CalculationStartButton.Name = "CalculationStartButton";
+            this.CalculationStartButton.Size = new System.Drawing.Size(75, 23);
+            this.CalculationStartButton.TabIndex = 0;
+            this.CalculationStartButton.Text = "開始";
+            this.CalculationStartButton.UseVisualStyleBackColor = true;
+            this.CalculationStartButton.Click += new System.EventHandler(this.CalculationStartButton_Click);
             // 
-            // StopButton
+            // CalculationStopButton
             // 
-            this.StopButton.Enabled = false;
-            this.StopButton.Location = new System.Drawing.Point(93, 12);
-            this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(75, 23);
-            this.StopButton.TabIndex = 1;
-            this.StopButton.Text = "停止";
-            this.StopButton.UseVisualStyleBackColor = true;
-            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            this.CalculationStopButton.Enabled = false;
+            this.CalculationStopButton.Location = new System.Drawing.Point(93, 12);
+            this.CalculationStopButton.Name = "CalculationStopButton";
+            this.CalculationStopButton.Size = new System.Drawing.Size(75, 23);
+            this.CalculationStopButton.TabIndex = 1;
+            this.CalculationStopButton.Text = "停止";
+            this.CalculationStopButton.UseVisualStyleBackColor = true;
+            this.CalculationStopButton.Click += new System.EventHandler(this.CalculationStopButton_Click);
             // 
             // OpenLogFileButton
             // 
@@ -776,50 +776,50 @@
             this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
             this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
             // 
-            // CalcTimeCheckBox
+            // CalculationTimeCheckBox
             // 
-            this.CalcTimeCheckBox.AutoSize = true;
-            this.CalcTimeCheckBox.Location = new System.Drawing.Point(366, 16);
-            this.CalcTimeCheckBox.Name = "CalcTimeCheckBox";
-            this.CalcTimeCheckBox.Size = new System.Drawing.Size(92, 16);
-            this.CalcTimeCheckBox.TabIndex = 7;
-            this.CalcTimeCheckBox.Text = "計測時間(分)";
-            this.CalcTimeCheckBox.UseVisualStyleBackColor = true;
+            this.CalculationTimeCheckBox.AutoSize = true;
+            this.CalculationTimeCheckBox.Location = new System.Drawing.Point(366, 16);
+            this.CalculationTimeCheckBox.Name = "CalculationTimeCheckBox";
+            this.CalculationTimeCheckBox.Size = new System.Drawing.Size(92, 16);
+            this.CalculationTimeCheckBox.TabIndex = 7;
+            this.CalculationTimeCheckBox.Text = "計測時間(分)";
+            this.CalculationTimeCheckBox.UseVisualStyleBackColor = true;
             // 
-            // CalcTimerMinutesNumericUpDown
+            // CalculationTimerMinutesNumericUpDown
             // 
-            this.CalcTimerMinutesNumericUpDown.Location = new System.Drawing.Point(458, 13);
-            this.CalcTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
+            this.CalculationTimerMinutesNumericUpDown.Location = new System.Drawing.Point(458, 13);
+            this.CalculationTimerMinutesNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.CalcTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
+            this.CalculationTimerMinutesNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.CalcTimerMinutesNumericUpDown.Name = "CalcTimerMinutesNumericUpDown";
-            this.CalcTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
-            this.CalcTimerMinutesNumericUpDown.TabIndex = 8;
-            this.CalcTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.CalcTimerMinutesNumericUpDown.Value = new decimal(new int[] {
+            this.CalculationTimerMinutesNumericUpDown.Name = "CalculationTimerMinutesNumericUpDown";
+            this.CalculationTimerMinutesNumericUpDown.Size = new System.Drawing.Size(42, 19);
+            this.CalculationTimerMinutesNumericUpDown.TabIndex = 8;
+            this.CalculationTimerMinutesNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CalculationTimerMinutesNumericUpDown.Value = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.CalcTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
+            this.CalculationTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
             // 
-            // CalcRemainingTimeLabel
+            // CalculationRemainingTimeLabel
             // 
-            this.CalcRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.CalcRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
-            this.CalcRemainingTimeLabel.Location = new System.Drawing.Point(506, 12);
-            this.CalcRemainingTimeLabel.Name = "CalcRemainingTimeLabel";
-            this.CalcRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
-            this.CalcRemainingTimeLabel.TabIndex = 30;
-            this.CalcRemainingTimeLabel.Text = "300";
-            this.CalcRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CalculationRemainingTimeLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CalculationRemainingTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.CalculationRemainingTimeLabel.Location = new System.Drawing.Point(506, 12);
+            this.CalculationRemainingTimeLabel.Name = "CalculationRemainingTimeLabel";
+            this.CalculationRemainingTimeLabel.Size = new System.Drawing.Size(45, 18);
+            this.CalculationRemainingTimeLabel.TabIndex = 30;
+            this.CalculationRemainingTimeLabel.Text = "300";
+            this.CalculationRemainingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CopyResultButton
             // 
@@ -957,14 +957,14 @@
             this.AttackSkillListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.AttackSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.AttackSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.AttackSkillListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AttackSkillListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MemberNameColumn,
@@ -993,8 +993,8 @@
             // 
             // SkillNameColumn
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle38;
             this.SkillNameColumn.HeaderText = "スキル名";
             this.SkillNameColumn.Name = "SkillNameColumn";
             this.SkillNameColumn.ReadOnly = true;
@@ -1002,8 +1002,8 @@
             // 
             // DamageColumn
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle39;
             this.DamageColumn.HeaderText = "総ダメージ";
             this.DamageColumn.Name = "DamageColumn";
             this.DamageColumn.ReadOnly = true;
@@ -1011,8 +1011,8 @@
             // 
             // AttackNumberColumn
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle40;
             this.AttackNumberColumn.HeaderText = "回数";
             this.AttackNumberColumn.Name = "AttackNumberColumn";
             this.AttackNumberColumn.ReadOnly = true;
@@ -1020,40 +1020,40 @@
             // 
             // MaxDamageColumn
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle41;
             this.MaxDamageColumn.HeaderText = "MAXダメ(クリ無)";
             this.MaxDamageColumn.Name = "MaxDamageColumn";
             this.MaxDamageColumn.ReadOnly = true;
             // 
             // MinDamageColumn
             // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle42;
             this.MinDamageColumn.HeaderText = "MINダメ(クリ無)";
             this.MinDamageColumn.Name = "MinDamageColumn";
             this.MinDamageColumn.ReadOnly = true;
             // 
             // MaxDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle43;
             this.MaxDamageWithCriticalColumn.HeaderText = "MAXダメ(クリ有)";
             this.MaxDamageWithCriticalColumn.Name = "MaxDamageWithCriticalColumn";
             this.MaxDamageWithCriticalColumn.ReadOnly = true;
             // 
             // MinDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle44;
             this.MinDamageWithCriticalColumn.HeaderText = "MINダメ(クリ有)";
             this.MinDamageWithCriticalColumn.Name = "MinDamageWithCriticalColumn";
             this.MinDamageWithCriticalColumn.ReadOnly = true;
             // 
             // DamageParAttackNumber
             // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle45;
             this.DamageParAttackNumber.HeaderText = "平均ダメージ";
             this.DamageParAttackNumber.Name = "DamageParAttackNumber";
             this.DamageParAttackNumber.ReadOnly = true;
@@ -1088,14 +1088,14 @@
             this.HealSkillListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.HealSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle46.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.HealSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
             this.HealSkillListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.HealSkillListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1118,8 +1118,8 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle47;
             this.dataGridViewTextBoxColumn2.HeaderText = "スキル名";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -1127,8 +1127,8 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle48;
             this.dataGridViewTextBoxColumn3.HeaderText = "総回復量";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -1179,15 +1179,15 @@
             this.Controls.Add(this.ProjectManualLinkLabel);
             this.Controls.Add(this.CopyResultForSkypeButton);
             this.Controls.Add(this.CopyResultButton);
-            this.Controls.Add(this.CalcRemainingTimeLabel);
-            this.Controls.Add(this.CalcTimerMinutesNumericUpDown);
-            this.Controls.Add(this.CalcTimeCheckBox);
+            this.Controls.Add(this.CalculationRemainingTimeLabel);
+            this.Controls.Add(this.CalculationTimerMinutesNumericUpDown);
+            this.Controls.Add(this.CalculationTimeCheckBox);
             this.Controls.Add(this.AlwaysOnTopCheckBox);
             this.Controls.Add(this.CalcFromLogFileButton);
             this.Controls.Add(this.DebugCheckBox);
             this.Controls.Add(this.OpenLogFileButton);
-            this.Controls.Add(this.StopButton);
-            this.Controls.Add(this.StartButton);
+            this.Controls.Add(this.CalculationStopButton);
+            this.Controls.Add(this.CalculationStartButton);
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1070, 870);
             this.Name = "MainForm";
@@ -1196,7 +1196,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MemberGroupBox.ResumeLayout(false);
             this.MemberGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CalcTimerMinutesNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CalculationTimerMinutesNumericUpDown)).EndInit();
             this.MenuTabControl.ResumeLayout(false);
             this.MemberDamageListTabPage.ResumeLayout(false);
             this.SkillDamageListTabPage.ResumeLayout(false);
@@ -1210,8 +1210,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button StartButton;
-        private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Button CalculationStartButton;
+        private System.Windows.Forms.Button CalculationStopButton;
         private System.Windows.Forms.Button OpenLogFileButton;
         private MemberUnit Member01;
         private MemberUnit Member02;
@@ -1248,9 +1248,9 @@
         private System.Windows.Forms.CheckBox LimitedTargetCheckBox;
         private System.Windows.Forms.Button CalcFromLogFileButton;
         private System.Windows.Forms.CheckBox AlwaysOnTopCheckBox;
-        private System.Windows.Forms.CheckBox CalcTimeCheckBox;
-        private System.Windows.Forms.NumericUpDown CalcTimerMinutesNumericUpDown;
-        private System.Windows.Forms.Label CalcRemainingTimeLabel;
+        private System.Windows.Forms.CheckBox CalculationTimeCheckBox;
+        private System.Windows.Forms.NumericUpDown CalculationTimerMinutesNumericUpDown;
+        private System.Windows.Forms.Label CalculationRemainingTimeLabel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
