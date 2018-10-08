@@ -724,7 +724,6 @@ namespace OpenAIONDPS
                                 }
 
                                 // 計測停止条件
-                                
                                 if (ThreadSettings.StopCalcConditionChecked && StopCalcConditionRegex != null)
                                 {
                                     StopCalcConditionMatch = StopCalcConditionRegex.Match(LogTextWithoutTime);
