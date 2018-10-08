@@ -2014,6 +2014,8 @@ namespace OpenAIONDPS
         /// </summary>
         public void CalcFromLogFileEnd()
         {
+            this.StopCalculationThread();
+            /*
             this.CloseDebugLogFile();
             this.IsDebug = false;
 
@@ -2025,6 +2027,7 @@ namespace OpenAIONDPS
             this.OpenLogFileButton.Enabled = true;
             this.CalcFromLogFileButton.Enabled = true;
             this.FavoriteMemberButton.Enabled = true;
+            */
         }
 
         /* その他 */
