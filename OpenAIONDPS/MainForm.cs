@@ -289,6 +289,8 @@ namespace OpenAIONDPS
             this.FavoriteMemberButton.Enabled = false;
             this.IsCalculationThreadRunning = true;
             this.CalculationThreadStopFlag = false;
+            this.MenuTabControl.SelectedIndex = 0;
+            this.FavoriteMemberList.Visible = false;
 
             this.ClearData(false);
 
