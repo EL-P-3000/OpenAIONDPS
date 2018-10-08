@@ -648,7 +648,7 @@
             this.CalcFromLogFileButton.TabIndex = 5;
             this.CalcFromLogFileButton.Text = "ログから計測";
             this.CalcFromLogFileButton.UseVisualStyleBackColor = true;
-            this.CalcFromLogFileButton.Click += new System.EventHandler(this.CalcFromLogFileButton_Click);
+            this.CalcFromLogFileButton.Click += new System.EventHandler(this.CalculationFromLogFileButton_Click);
             // 
             // AlwaysOnTopCheckBox
             // 
@@ -693,7 +693,7 @@
             0,
             0,
             0});
-            this.CalculationTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalcTimerMinutesNumericUpDown_ValueChanged);
+            this.CalculationTimerMinutesNumericUpDown.ValueChanged += new System.EventHandler(this.CalculationTimerMinutesNumericUpDown_ValueChanged);
             // 
             // CalculationRemainingTimeLabel
             // 

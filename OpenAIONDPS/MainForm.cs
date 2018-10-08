@@ -262,7 +262,7 @@ namespace OpenAIONDPS
                     this.CalculationTimer.Enabled = false;
                     this.CalculationTimer.SynchronizingObject = this;
                     this.CalculationTimer.Interval = 1000;
-                    this.CalculationTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalcTimer_Elapsed);
+                    this.CalculationTimer.Elapsed += new System.Timers.ElapsedEventHandler(CalculationTimer_Elapsed);
                 }
             }
             else
@@ -340,7 +340,7 @@ namespace OpenAIONDPS
         {
             if (this.CalculationTimer.Enabled)
             {
-                this.StopCalcTimer();
+                this.StopCalculationTimer();
             }
             this.StopCalculationThread();
         }
@@ -595,7 +595,7 @@ namespace OpenAIONDPS
             Delegate UpdateEvasionDelegate = new Action<ActionData>(UpdateEvasion);
             Delegate UpdateResistanceDelegate = new Action<ActionData>(UpdateResistance);
             Delegate UpdateHealDelegate = new Action<ActionData>(UpdateHeal);
-            Delegate CalcFromLogEndDelegate = new Action(CalcFromLogFileEnd);
+            Delegate CalcFromLogEndDelegate = new Action(StopCalculationFromLogFile);
             Delegate StopThreadDelegate = new Action(StopCalculationThread);
             string LogFilePath = Registry.ReadChatLogPath();
             string LogText = "";
@@ -1961,7 +1961,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CalcTimer_Elapsed(object sender, EventArgs e)
+        private void CalculationTimer_Elapsed(object sender, EventArgs e)
         {
             this.CalculationRemainingTime -= 1;
             this.CalculationRemainingTimeLabel.Text = this.CalculationRemainingTime.ToString();
@@ -1969,7 +1969,7 @@ namespace OpenAIONDPS
             if (this.CalculationRemainingTime <= 0)
             {
                 this.StopCalculationThread();
-                this.StopCalcTimer();
+                this.StopCalculationTimer();
             }
         }
 
@@ -1978,7 +1978,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CalcTimerMinutesNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void CalculationTimerMinutesNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             this.CalculationRemainingTime = (int)this.CalculationTimerMinutesNumericUpDown.Value * 60;
             this.CalculationRemainingTimeLabel.Text = this.CalculationRemainingTime.ToString();
@@ -1987,7 +1987,7 @@ namespace OpenAIONDPS
         /// <summary>
         /// 計測停止
         /// </summary>
-        private void StopCalcTimer()
+        private void StopCalculationTimer()
         {
             if (this.CalculationTimer.Enabled)
             {
@@ -2004,7 +2004,7 @@ namespace OpenAIONDPS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CalcFromLogFileButton_Click(object sender, EventArgs e)
+        private void CalculationFromLogFileButton_Click(object sender, EventArgs e)
         {
             this.StartCalculationThread(true);
         }
@@ -2012,22 +2012,9 @@ namespace OpenAIONDPS
         /// <summary>
         /// ログファイルから測定終了
         /// </summary>
-        public void CalcFromLogFileEnd()
+        public void StopCalculationFromLogFile()
         {
             this.StopCalculationThread();
-            /*
-            this.CloseDebugLogFile();
-            this.IsDebug = false;
-
-            this.CalculationThreadStopFlag = true;
-            this.IsCalculationThreadRunning = false;
-
-            this.CalculationStartButton.Enabled = true;
-            this.CalculationStopButton.Enabled = false;
-            this.OpenLogFileButton.Enabled = true;
-            this.CalcFromLogFileButton.Enabled = true;
-            this.FavoriteMemberButton.Enabled = true;
-            */
         }
 
         /* その他 */
