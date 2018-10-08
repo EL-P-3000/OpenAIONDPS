@@ -1605,8 +1605,8 @@ namespace OpenAIONDPS
             catch (Exception ex2)
             {
                 this.PrintExceptionDebugMessage(ex2);
+                this.Invoke(StopThreadDelegate, null);
             }
-
 
             if (ThreadSettings.IsCalcLogFile)
             {
