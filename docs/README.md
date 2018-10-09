@@ -16,7 +16,7 @@ OS: Windows 10 Pro 1803 64bit
 **Version 1.0.29 から各種設定はレジストリに保存するため、バージョンアップで設定がクリアされることはなくなりました。**  
 
 ツールのメイン画面 (Version 1.0.38)  
-![Main](wiki/images/OpenAIONDPS-Main.png)
+![Main](images/OpenAIONDPS-Main.png)
 
 ## 開始
 計測を開始します。  
