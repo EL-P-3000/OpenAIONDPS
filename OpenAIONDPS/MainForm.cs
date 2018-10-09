@@ -657,7 +657,7 @@ namespace OpenAIONDPS
 
                         if (ThreadSettings.StartCalcConditionChecked && !String.IsNullOrEmpty(ThreadSettings.StartCalcConditionText))
                         {
-                            StartCalcConditionRegex = new Regex("^" + ThreadSettings.StartCalcConditionText.Replace(" ", "\\s") + "$", RegexOptions.Compiled);
+                            StartCalcConditionRegex = new Regex(@"^\s*" + ThreadSettings.StartCalcConditionText.Replace(" ", "\\s") + @"\s*$", RegexOptions.Compiled);
                         }
 
                         if (ThreadSettings.StopCalcConditionChecked && !String.IsNullOrEmpty(ThreadSettings.StopCalcConditionText))
@@ -708,7 +708,7 @@ namespace OpenAIONDPS
                                 }
 
                                 // 時刻をラインから削除
-                                LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value;
+                                LogTextWithoutTime = ChatLogLineMatch.Groups[2].Value.Trim();
 
                                 // 計測開始条件
                                 if (ThreadSettings.StartCalcConditionChecked && !IsStartCalcByStartCalcCondition && StartCalcConditionRegex != null)
