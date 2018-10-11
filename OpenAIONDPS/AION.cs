@@ -225,7 +225,7 @@ namespace OpenAIONDPS
             public const string HealPotionWithSourceNamePattern = "^" + SourceNamePattern + "は(回復|治癒)のポーションの効果により、" + HealingAmountPattern + "のHPが回復しました。";
 
             // 計測停止条件
-            public const string StopCalcConditionPattern = @"から経験値を" + EXPPattern + "獲得しました。";
+            public const string StopCalcConditionPattern = @"から経験値を" + EXPPattern + "獲得しました。.*";
         }
 
         public enum JobType { None, Sword, Shield, Shadow, Bow, Spell, Spirit, Cure, Chant, Bullet, Gia, Melody };
