@@ -77,6 +77,8 @@ namespace OpenAIONDPS
             this.AlwaysOnTopCheckBox.Checked = Registry.ReadAlwaysOnTop();
             this.TopMost = this.AlwaysOnTopCheckBox.Checked;
 
+            this.DeleteLogWhenStartingCheckBox.Checked = Registry.ReadDeleteLogWhenStarting();
+
             RegisterHotKey(Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.F1);
         }
 
@@ -300,7 +302,10 @@ namespace OpenAIONDPS
             this.TotalDamage = 0;
             this.TotalDamageLabel.Text = "0";
 
-            this.ClearChatLogFile();
+            if (this.DeleteLogWhenStartingCheckBox.Checked)
+            {
+                this.ClearChatLogFile();
+            }
 
             ThreadSettings.StartCalcConditionChecked = this.StartCalcConditionCheckBox.Checked;
             ThreadSettings.StartCalcConditionText = this.StartCalcConditionComboBox.Text;
@@ -2142,7 +2147,6 @@ namespace OpenAIONDPS
                 this.TopMost = false;
                 Registry.WriteAlwaysOnTop(false);
             }
-
         }
 
         /// <summary>
@@ -2476,6 +2480,18 @@ namespace OpenAIONDPS
             }
             catch
             {
+            }
+        }
+
+        private void DeleteLogWhenStartingCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.DeleteLogWhenStartingCheckBox.Checked)
+            {
+                Registry.WriteDeleteLogWhenStarting(true);
+            }
+            else
+            {
+                Registry.WriteDeleteLogWhenStarting(false);
             }
         }
     }

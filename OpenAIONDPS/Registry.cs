@@ -9,6 +9,7 @@ namespace OpenAIONDPS
         private const string InstallDirectoryKeyName = "InstallDirectory";
         private const string SaveResultDirectoryKeyName = "SaveResultDirectory";
         private const string AlwaysOnTopKeyName = "AlwaysOnTop";
+        private const string DeleteLogWhenStartingKeyName = "DeleteLogWhenStarting";
 
         public static string ReadChatLogPath()
         {
@@ -59,6 +60,18 @@ namespace OpenAIONDPS
             }
         }
 
+        public static bool ReadDeleteLogWhenStarting()
+        {
+            try
+            {
+                return ReadValue<bool>(DeleteLogWhenStartingKeyName);
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
         public static string ReadMemberName(int ID)
         {
             try
@@ -106,7 +119,6 @@ namespace OpenAIONDPS
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -129,6 +141,11 @@ namespace OpenAIONDPS
         public static void WriteAlwaysOnTop(bool Value)
         {
             WriteValue<bool>(AlwaysOnTopKeyName, Value);
+        }
+
+        public static void WriteDeleteLogWhenStarting(bool Value)
+        {
+            WriteValue<bool>(DeleteLogWhenStartingKeyName, Value);
         }
 
         public static void WriteMemberName(int ID, string Name)
