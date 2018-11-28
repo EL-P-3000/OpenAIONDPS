@@ -74,15 +74,15 @@ namespace OpenAIONDPS
                 int ID = int.Parse((string)((Button)sender).Tag);
 
                 ControlCollection _Controls = null;
-                if ((ID >= 1 && ID <= 11) || ID == 101)
+                if ((ID >= 1 && ID <= 11) || (ID >= 49 && ID <= 54) || ID == 101)
                 {
                     _Controls = this.MemberGroup1GroupBox.Controls;
                 }
-                else if ((ID >= 12 && ID <= 22) || ID == 102)
+                else if ((ID >= 12 && ID <= 22) || (ID >= 55 && ID <= 60) || ID == 102)
                 {
                     _Controls = this.MemberGroup2GroupBox.Controls;
                 }
-                else if ((ID >= 23 && ID <= 33) || ID == 103)
+                else if ((ID >= 23 && ID <= 33) || (ID >= 61 && ID <= 66) || ID == 103)
                 {
                     _Controls = this.MemberGroup3GroupBox.Controls;
                 }
@@ -120,6 +120,48 @@ namespace OpenAIONDPS
                 {
                     int MinID = 11 * (ID - 101) + 1;
                     int MaxID = MinID + 11;
+
+                    for (int i = MinID; i <= MaxID; i++)
+                    {
+                        foreach (Control _Control in _Controls)
+                        {
+                            if (_Control.GetType().Name.Equals("TextBox"))
+                            {
+                                if (int.Parse((string)((TextBox)_Control).Tag) == i)
+                                {
+                                    Name = ((TextBox)_Control).Text;
+                                }
+                            }
+                            else if (_Control.GetType().Name.Equals("ComboBox"))
+                            {
+                                if (int.Parse((string)((ComboBox)_Control).Tag) == i)
+                                {
+                                    JobType = (AION.JobType)((ComboBox)_Control).SelectedValue;
+                                }
+                            }
+                        }
+
+                        if (!String.IsNullOrEmpty(Name))
+                        {
+                            _MainForm.InsertMember(Name, JobType);
+                        }
+                    }
+
+                    if (ID == 101)
+                    {
+                        MinID = 49;
+                        MaxID = 54;
+                    }
+                    else if (ID == 102)
+                    {
+                        MinID = 55;
+                        MaxID = 60;
+                    }
+                    else if (ID == 103)
+                    {
+                        MinID = 61;
+                        MaxID = 66;
+                    }
 
                     for (int i = MinID; i <= MaxID; i++)
                     {

@@ -182,6 +182,60 @@
             this.Job46ComboBox = new System.Windows.Forms.ComboBox();
             this.Job47ComboBox = new System.Windows.Forms.ComboBox();
             this.Job48ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert49Button = new System.Windows.Forms.Button();
+            this.MemberName49TextBox = new System.Windows.Forms.TextBox();
+            this.Job49ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert50Button = new System.Windows.Forms.Button();
+            this.MemberName50TextBox = new System.Windows.Forms.TextBox();
+            this.Job50ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert51Button = new System.Windows.Forms.Button();
+            this.MemberName51TextBox = new System.Windows.Forms.TextBox();
+            this.Job51ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert52Button = new System.Windows.Forms.Button();
+            this.MemberName52TextBox = new System.Windows.Forms.TextBox();
+            this.Job52ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert53Button = new System.Windows.Forms.Button();
+            this.MemberName53TextBox = new System.Windows.Forms.TextBox();
+            this.Job53ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert54Button = new System.Windows.Forms.Button();
+            this.MemberName54TextBox = new System.Windows.Forms.TextBox();
+            this.Job54ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert55Button = new System.Windows.Forms.Button();
+            this.Insert56Button = new System.Windows.Forms.Button();
+            this.Insert57Button = new System.Windows.Forms.Button();
+            this.Insert58Button = new System.Windows.Forms.Button();
+            this.Insert59Button = new System.Windows.Forms.Button();
+            this.Insert60Button = new System.Windows.Forms.Button();
+            this.MemberName55TextBox = new System.Windows.Forms.TextBox();
+            this.MemberName56TextBox = new System.Windows.Forms.TextBox();
+            this.MemberName57TextBox = new System.Windows.Forms.TextBox();
+            this.MemberName58TextBox = new System.Windows.Forms.TextBox();
+            this.MemberName59TextBox = new System.Windows.Forms.TextBox();
+            this.MemberName60TextBox = new System.Windows.Forms.TextBox();
+            this.Job55ComboBox = new System.Windows.Forms.ComboBox();
+            this.Job56ComboBox = new System.Windows.Forms.ComboBox();
+            this.Job57ComboBox = new System.Windows.Forms.ComboBox();
+            this.Job58ComboBox = new System.Windows.Forms.ComboBox();
+            this.Job59ComboBox = new System.Windows.Forms.ComboBox();
+            this.Job60ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert61Button = new System.Windows.Forms.Button();
+            this.MemberName61TextBox = new System.Windows.Forms.TextBox();
+            this.Job61ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert62Button = new System.Windows.Forms.Button();
+            this.MemberName62TextBox = new System.Windows.Forms.TextBox();
+            this.Job62ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert63Button = new System.Windows.Forms.Button();
+            this.MemberName63TextBox = new System.Windows.Forms.TextBox();
+            this.Job63ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert64Button = new System.Windows.Forms.Button();
+            this.MemberName64TextBox = new System.Windows.Forms.TextBox();
+            this.Job64ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert65Button = new System.Windows.Forms.Button();
+            this.MemberName65TextBox = new System.Windows.Forms.TextBox();
+            this.Job65ComboBox = new System.Windows.Forms.ComboBox();
+            this.Insert66Button = new System.Windows.Forms.Button();
+            this.MemberName66TextBox = new System.Windows.Forms.TextBox();
+            this.Job66ComboBox = new System.Windows.Forms.ComboBox();
             this.MemberGroup1GroupBox.SuspendLayout();
             this.MemberGroup2GroupBox.SuspendLayout();
             this.MemberGroup3GroupBox.SuspendLayout();
@@ -221,6 +275,24 @@
             // 
             // MemberGroup1GroupBox
             // 
+            this.MemberGroup1GroupBox.Controls.Add(this.Insert54Button);
+            this.MemberGroup1GroupBox.Controls.Add(this.MemberName54TextBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Job54ComboBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Insert53Button);
+            this.MemberGroup1GroupBox.Controls.Add(this.MemberName53TextBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Job53ComboBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Insert52Button);
+            this.MemberGroup1GroupBox.Controls.Add(this.MemberName52TextBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Job52ComboBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Insert51Button);
+            this.MemberGroup1GroupBox.Controls.Add(this.MemberName51TextBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Job51ComboBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Insert50Button);
+            this.MemberGroup1GroupBox.Controls.Add(this.MemberName50TextBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Job50ComboBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Insert49Button);
+            this.MemberGroup1GroupBox.Controls.Add(this.MemberName49TextBox);
+            this.MemberGroup1GroupBox.Controls.Add(this.Job49ComboBox);
             this.MemberGroup1GroupBox.Controls.Add(this.InsertGroup01Button);
             this.MemberGroup1GroupBox.Controls.Add(this.Insert01Button);
             this.MemberGroup1GroupBox.Controls.Add(this.MemberName01TextBox);
@@ -257,14 +329,15 @@
             this.MemberGroup1GroupBox.Controls.Add(this.Job11ComboBox);
             this.MemberGroup1GroupBox.Location = new System.Drawing.Point(3, 32);
             this.MemberGroup1GroupBox.Name = "MemberGroup1GroupBox";
-            this.MemberGroup1GroupBox.Size = new System.Drawing.Size(231, 328);
+            this.MemberGroup1GroupBox.Size = new System.Drawing.Size(231, 485);
             this.MemberGroup1GroupBox.TabIndex = 121;
             this.MemberGroup1GroupBox.TabStop = false;
             this.MemberGroup1GroupBox.Text = "グループ1";
             // 
             // InsertGroup01Button
             // 
-            this.InsertGroup01Button.Location = new System.Drawing.Point(6, 298);
+            this.InsertGroup01Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.InsertGroup01Button.Location = new System.Drawing.Point(6, 455);
             this.InsertGroup01Button.Name = "InsertGroup01Button";
             this.InsertGroup01Button.Size = new System.Drawing.Size(75, 23);
             this.InsertGroup01Button.TabIndex = 124;
@@ -582,6 +655,24 @@
             // 
             // MemberGroup2GroupBox
             // 
+            this.MemberGroup2GroupBox.Controls.Add(this.Insert55Button);
+            this.MemberGroup2GroupBox.Controls.Add(this.Insert56Button);
+            this.MemberGroup2GroupBox.Controls.Add(this.Insert57Button);
+            this.MemberGroup2GroupBox.Controls.Add(this.Insert58Button);
+            this.MemberGroup2GroupBox.Controls.Add(this.Insert59Button);
+            this.MemberGroup2GroupBox.Controls.Add(this.Insert60Button);
+            this.MemberGroup2GroupBox.Controls.Add(this.MemberName55TextBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.MemberName56TextBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.MemberName57TextBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.MemberName58TextBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.MemberName59TextBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.MemberName60TextBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.Job55ComboBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.Job56ComboBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.Job57ComboBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.Job58ComboBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.Job59ComboBox);
+            this.MemberGroup2GroupBox.Controls.Add(this.Job60ComboBox);
             this.MemberGroup2GroupBox.Controls.Add(this.InsertGroup02Button);
             this.MemberGroup2GroupBox.Controls.Add(this.Insert12Button);
             this.MemberGroup2GroupBox.Controls.Add(this.Insert13Button);
@@ -618,14 +709,15 @@
             this.MemberGroup2GroupBox.Controls.Add(this.Job22ComboBox);
             this.MemberGroup2GroupBox.Location = new System.Drawing.Point(240, 32);
             this.MemberGroup2GroupBox.Name = "MemberGroup2GroupBox";
-            this.MemberGroup2GroupBox.Size = new System.Drawing.Size(231, 328);
+            this.MemberGroup2GroupBox.Size = new System.Drawing.Size(231, 485);
             this.MemberGroup2GroupBox.TabIndex = 122;
             this.MemberGroup2GroupBox.TabStop = false;
             this.MemberGroup2GroupBox.Text = "グループ2";
             // 
             // InsertGroup02Button
             // 
-            this.InsertGroup02Button.Location = new System.Drawing.Point(6, 298);
+            this.InsertGroup02Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.InsertGroup02Button.Location = new System.Drawing.Point(6, 455);
             this.InsertGroup02Button.Name = "InsertGroup02Button";
             this.InsertGroup02Button.Size = new System.Drawing.Size(75, 23);
             this.InsertGroup02Button.TabIndex = 125;
@@ -943,8 +1035,26 @@
             // 
             // MemberGroup3GroupBox
             // 
+            this.MemberGroup3GroupBox.Controls.Add(this.Insert66Button);
+            this.MemberGroup3GroupBox.Controls.Add(this.MemberName66TextBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Job66ComboBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Insert65Button);
+            this.MemberGroup3GroupBox.Controls.Add(this.MemberName65TextBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Job65ComboBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Insert64Button);
+            this.MemberGroup3GroupBox.Controls.Add(this.MemberName64TextBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Job64ComboBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Insert63Button);
+            this.MemberGroup3GroupBox.Controls.Add(this.MemberName63TextBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Job63ComboBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Insert62Button);
+            this.MemberGroup3GroupBox.Controls.Add(this.MemberName62TextBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Job62ComboBox);
+            this.MemberGroup3GroupBox.Controls.Add(this.Insert61Button);
             this.MemberGroup3GroupBox.Controls.Add(this.InsertGroup03Button);
+            this.MemberGroup3GroupBox.Controls.Add(this.MemberName61TextBox);
             this.MemberGroup3GroupBox.Controls.Add(this.Insert23Button);
+            this.MemberGroup3GroupBox.Controls.Add(this.Job61ComboBox);
             this.MemberGroup3GroupBox.Controls.Add(this.Insert24Button);
             this.MemberGroup3GroupBox.Controls.Add(this.Insert25Button);
             this.MemberGroup3GroupBox.Controls.Add(this.Insert26Button);
@@ -979,14 +1089,15 @@
             this.MemberGroup3GroupBox.Controls.Add(this.Job33ComboBox);
             this.MemberGroup3GroupBox.Location = new System.Drawing.Point(477, 32);
             this.MemberGroup3GroupBox.Name = "MemberGroup3GroupBox";
-            this.MemberGroup3GroupBox.Size = new System.Drawing.Size(231, 328);
+            this.MemberGroup3GroupBox.Size = new System.Drawing.Size(231, 485);
             this.MemberGroup3GroupBox.TabIndex = 123;
             this.MemberGroup3GroupBox.TabStop = false;
             this.MemberGroup3GroupBox.Text = "グループ3";
             // 
             // InsertGroup03Button
             // 
-            this.InsertGroup03Button.Location = new System.Drawing.Point(6, 298);
+            this.InsertGroup03Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.InsertGroup03Button.Location = new System.Drawing.Point(6, 455);
             this.InsertGroup03Button.Name = "InsertGroup03Button";
             this.InsertGroup03Button.Size = new System.Drawing.Size(75, 23);
             this.InsertGroup03Button.TabIndex = 126;
@@ -1304,6 +1415,7 @@
             // 
             // MemberGroup4GroupBox
             // 
+            this.MemberGroup4GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.MemberGroup4GroupBox.Controls.Add(this.Insert34Button);
             this.MemberGroup4GroupBox.Controls.Add(this.Insert35Button);
             this.MemberGroup4GroupBox.Controls.Add(this.Insert36Button);
@@ -1349,7 +1461,7 @@
             this.MemberGroup4GroupBox.Controls.Add(this.Job46ComboBox);
             this.MemberGroup4GroupBox.Controls.Add(this.Job47ComboBox);
             this.MemberGroup4GroupBox.Controls.Add(this.Job48ComboBox);
-            this.MemberGroup4GroupBox.Location = new System.Drawing.Point(3, 366);
+            this.MemberGroup4GroupBox.Location = new System.Drawing.Point(3, 522);
             this.MemberGroup4GroupBox.Name = "MemberGroup4GroupBox";
             this.MemberGroup4GroupBox.Size = new System.Drawing.Size(705, 147);
             this.MemberGroup4GroupBox.TabIndex = 160;
@@ -1776,6 +1888,510 @@
             this.Job48ComboBox.TabIndex = 158;
             this.Job48ComboBox.Tag = "48";
             // 
+            // Insert49Button
+            // 
+            this.Insert49Button.Location = new System.Drawing.Point(6, 294);
+            this.Insert49Button.Name = "Insert49Button";
+            this.Insert49Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert49Button.TabIndex = 127;
+            this.Insert49Button.Tag = "49";
+            this.Insert49Button.Text = "追加";
+            this.Insert49Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName49TextBox
+            // 
+            this.MemberName49TextBox.Location = new System.Drawing.Point(52, 296);
+            this.MemberName49TextBox.Name = "MemberName49TextBox";
+            this.MemberName49TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName49TextBox.TabIndex = 125;
+            this.MemberName49TextBox.Tag = "49";
+            // 
+            // Job49ComboBox
+            // 
+            this.Job49ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job49ComboBox.FormattingEnabled = true;
+            this.Job49ComboBox.Location = new System.Drawing.Point(158, 296);
+            this.Job49ComboBox.Name = "Job49ComboBox";
+            this.Job49ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job49ComboBox.TabIndex = 126;
+            this.Job49ComboBox.Tag = "49";
+            // 
+            // Insert50Button
+            // 
+            this.Insert50Button.Location = new System.Drawing.Point(6, 320);
+            this.Insert50Button.Name = "Insert50Button";
+            this.Insert50Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert50Button.TabIndex = 130;
+            this.Insert50Button.Tag = "50";
+            this.Insert50Button.Text = "追加";
+            this.Insert50Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName50TextBox
+            // 
+            this.MemberName50TextBox.Location = new System.Drawing.Point(52, 322);
+            this.MemberName50TextBox.Name = "MemberName50TextBox";
+            this.MemberName50TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName50TextBox.TabIndex = 128;
+            this.MemberName50TextBox.Tag = "50";
+            // 
+            // Job50ComboBox
+            // 
+            this.Job50ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job50ComboBox.FormattingEnabled = true;
+            this.Job50ComboBox.Location = new System.Drawing.Point(158, 322);
+            this.Job50ComboBox.Name = "Job50ComboBox";
+            this.Job50ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job50ComboBox.TabIndex = 129;
+            this.Job50ComboBox.Tag = "50";
+            // 
+            // Insert51Button
+            // 
+            this.Insert51Button.Location = new System.Drawing.Point(6, 346);
+            this.Insert51Button.Name = "Insert51Button";
+            this.Insert51Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert51Button.TabIndex = 133;
+            this.Insert51Button.Tag = "51";
+            this.Insert51Button.Text = "追加";
+            this.Insert51Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName51TextBox
+            // 
+            this.MemberName51TextBox.Location = new System.Drawing.Point(52, 348);
+            this.MemberName51TextBox.Name = "MemberName51TextBox";
+            this.MemberName51TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName51TextBox.TabIndex = 131;
+            this.MemberName51TextBox.Tag = "51";
+            // 
+            // Job51ComboBox
+            // 
+            this.Job51ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job51ComboBox.FormattingEnabled = true;
+            this.Job51ComboBox.Location = new System.Drawing.Point(158, 348);
+            this.Job51ComboBox.Name = "Job51ComboBox";
+            this.Job51ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job51ComboBox.TabIndex = 132;
+            this.Job51ComboBox.Tag = "51";
+            // 
+            // Insert52Button
+            // 
+            this.Insert52Button.Location = new System.Drawing.Point(6, 373);
+            this.Insert52Button.Name = "Insert52Button";
+            this.Insert52Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert52Button.TabIndex = 136;
+            this.Insert52Button.Tag = "52";
+            this.Insert52Button.Text = "追加";
+            this.Insert52Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName52TextBox
+            // 
+            this.MemberName52TextBox.Location = new System.Drawing.Point(52, 375);
+            this.MemberName52TextBox.Name = "MemberName52TextBox";
+            this.MemberName52TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName52TextBox.TabIndex = 134;
+            this.MemberName52TextBox.Tag = "52";
+            // 
+            // Job52ComboBox
+            // 
+            this.Job52ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job52ComboBox.FormattingEnabled = true;
+            this.Job52ComboBox.Location = new System.Drawing.Point(158, 375);
+            this.Job52ComboBox.Name = "Job52ComboBox";
+            this.Job52ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job52ComboBox.TabIndex = 135;
+            this.Job52ComboBox.Tag = "52";
+            // 
+            // Insert53Button
+            // 
+            this.Insert53Button.Location = new System.Drawing.Point(6, 399);
+            this.Insert53Button.Name = "Insert53Button";
+            this.Insert53Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert53Button.TabIndex = 139;
+            this.Insert53Button.Tag = "53";
+            this.Insert53Button.Text = "追加";
+            this.Insert53Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName53TextBox
+            // 
+            this.MemberName53TextBox.Location = new System.Drawing.Point(52, 401);
+            this.MemberName53TextBox.Name = "MemberName53TextBox";
+            this.MemberName53TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName53TextBox.TabIndex = 137;
+            this.MemberName53TextBox.Tag = "53";
+            // 
+            // Job53ComboBox
+            // 
+            this.Job53ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job53ComboBox.FormattingEnabled = true;
+            this.Job53ComboBox.Location = new System.Drawing.Point(158, 401);
+            this.Job53ComboBox.Name = "Job53ComboBox";
+            this.Job53ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job53ComboBox.TabIndex = 138;
+            this.Job53ComboBox.Tag = "53";
+            // 
+            // Insert54Button
+            // 
+            this.Insert54Button.Location = new System.Drawing.Point(6, 425);
+            this.Insert54Button.Name = "Insert54Button";
+            this.Insert54Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert54Button.TabIndex = 142;
+            this.Insert54Button.Tag = "54";
+            this.Insert54Button.Text = "追加";
+            this.Insert54Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName54TextBox
+            // 
+            this.MemberName54TextBox.Location = new System.Drawing.Point(52, 427);
+            this.MemberName54TextBox.Name = "MemberName54TextBox";
+            this.MemberName54TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName54TextBox.TabIndex = 140;
+            this.MemberName54TextBox.Tag = "54";
+            // 
+            // Job54ComboBox
+            // 
+            this.Job54ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job54ComboBox.FormattingEnabled = true;
+            this.Job54ComboBox.Location = new System.Drawing.Point(158, 427);
+            this.Job54ComboBox.Name = "Job54ComboBox";
+            this.Job54ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job54ComboBox.TabIndex = 141;
+            this.Job54ComboBox.Tag = "54";
+            // 
+            // Insert55Button
+            // 
+            this.Insert55Button.Location = new System.Drawing.Point(6, 295);
+            this.Insert55Button.Name = "Insert55Button";
+            this.Insert55Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert55Button.TabIndex = 128;
+            this.Insert55Button.Tag = "55";
+            this.Insert55Button.Text = "追加";
+            this.Insert55Button.UseVisualStyleBackColor = true;
+            // 
+            // Insert56Button
+            // 
+            this.Insert56Button.Location = new System.Drawing.Point(6, 321);
+            this.Insert56Button.Name = "Insert56Button";
+            this.Insert56Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert56Button.TabIndex = 131;
+            this.Insert56Button.Tag = "56";
+            this.Insert56Button.Text = "追加";
+            this.Insert56Button.UseVisualStyleBackColor = true;
+            // 
+            // Insert57Button
+            // 
+            this.Insert57Button.Location = new System.Drawing.Point(6, 347);
+            this.Insert57Button.Name = "Insert57Button";
+            this.Insert57Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert57Button.TabIndex = 134;
+            this.Insert57Button.Tag = "57";
+            this.Insert57Button.Text = "追加";
+            this.Insert57Button.UseVisualStyleBackColor = true;
+            // 
+            // Insert58Button
+            // 
+            this.Insert58Button.Location = new System.Drawing.Point(6, 373);
+            this.Insert58Button.Name = "Insert58Button";
+            this.Insert58Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert58Button.TabIndex = 137;
+            this.Insert58Button.Tag = "58";
+            this.Insert58Button.Text = "追加";
+            this.Insert58Button.UseVisualStyleBackColor = true;
+            // 
+            // Insert59Button
+            // 
+            this.Insert59Button.Location = new System.Drawing.Point(6, 399);
+            this.Insert59Button.Name = "Insert59Button";
+            this.Insert59Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert59Button.TabIndex = 140;
+            this.Insert59Button.Tag = "59";
+            this.Insert59Button.Text = "追加";
+            this.Insert59Button.UseVisualStyleBackColor = true;
+            // 
+            // Insert60Button
+            // 
+            this.Insert60Button.Location = new System.Drawing.Point(6, 425);
+            this.Insert60Button.Name = "Insert60Button";
+            this.Insert60Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert60Button.TabIndex = 143;
+            this.Insert60Button.Tag = "60";
+            this.Insert60Button.Text = "追加";
+            this.Insert60Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName55TextBox
+            // 
+            this.MemberName55TextBox.Location = new System.Drawing.Point(52, 297);
+            this.MemberName55TextBox.Name = "MemberName55TextBox";
+            this.MemberName55TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName55TextBox.TabIndex = 126;
+            this.MemberName55TextBox.Tag = "55";
+            // 
+            // MemberName56TextBox
+            // 
+            this.MemberName56TextBox.Location = new System.Drawing.Point(52, 323);
+            this.MemberName56TextBox.Name = "MemberName56TextBox";
+            this.MemberName56TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName56TextBox.TabIndex = 129;
+            this.MemberName56TextBox.Tag = "56";
+            // 
+            // MemberName57TextBox
+            // 
+            this.MemberName57TextBox.Location = new System.Drawing.Point(52, 349);
+            this.MemberName57TextBox.Name = "MemberName57TextBox";
+            this.MemberName57TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName57TextBox.TabIndex = 132;
+            this.MemberName57TextBox.Tag = "57";
+            // 
+            // MemberName58TextBox
+            // 
+            this.MemberName58TextBox.Location = new System.Drawing.Point(52, 375);
+            this.MemberName58TextBox.Name = "MemberName58TextBox";
+            this.MemberName58TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName58TextBox.TabIndex = 135;
+            this.MemberName58TextBox.Tag = "58";
+            // 
+            // MemberName59TextBox
+            // 
+            this.MemberName59TextBox.Location = new System.Drawing.Point(52, 401);
+            this.MemberName59TextBox.Name = "MemberName59TextBox";
+            this.MemberName59TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName59TextBox.TabIndex = 138;
+            this.MemberName59TextBox.Tag = "59";
+            // 
+            // MemberName60TextBox
+            // 
+            this.MemberName60TextBox.Location = new System.Drawing.Point(52, 427);
+            this.MemberName60TextBox.Name = "MemberName60TextBox";
+            this.MemberName60TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName60TextBox.TabIndex = 141;
+            this.MemberName60TextBox.Tag = "60";
+            // 
+            // Job55ComboBox
+            // 
+            this.Job55ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job55ComboBox.FormattingEnabled = true;
+            this.Job55ComboBox.Location = new System.Drawing.Point(158, 297);
+            this.Job55ComboBox.Name = "Job55ComboBox";
+            this.Job55ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job55ComboBox.TabIndex = 127;
+            this.Job55ComboBox.Tag = "55";
+            // 
+            // Job56ComboBox
+            // 
+            this.Job56ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job56ComboBox.FormattingEnabled = true;
+            this.Job56ComboBox.Location = new System.Drawing.Point(158, 323);
+            this.Job56ComboBox.Name = "Job56ComboBox";
+            this.Job56ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job56ComboBox.TabIndex = 130;
+            this.Job56ComboBox.Tag = "56";
+            // 
+            // Job57ComboBox
+            // 
+            this.Job57ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job57ComboBox.FormattingEnabled = true;
+            this.Job57ComboBox.Location = new System.Drawing.Point(158, 349);
+            this.Job57ComboBox.Name = "Job57ComboBox";
+            this.Job57ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job57ComboBox.TabIndex = 133;
+            this.Job57ComboBox.Tag = "57";
+            // 
+            // Job58ComboBox
+            // 
+            this.Job58ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job58ComboBox.FormattingEnabled = true;
+            this.Job58ComboBox.Location = new System.Drawing.Point(158, 375);
+            this.Job58ComboBox.Name = "Job58ComboBox";
+            this.Job58ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job58ComboBox.TabIndex = 136;
+            this.Job58ComboBox.Tag = "58";
+            // 
+            // Job59ComboBox
+            // 
+            this.Job59ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job59ComboBox.FormattingEnabled = true;
+            this.Job59ComboBox.Location = new System.Drawing.Point(158, 401);
+            this.Job59ComboBox.Name = "Job59ComboBox";
+            this.Job59ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job59ComboBox.TabIndex = 139;
+            this.Job59ComboBox.Tag = "59";
+            // 
+            // Job60ComboBox
+            // 
+            this.Job60ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job60ComboBox.FormattingEnabled = true;
+            this.Job60ComboBox.Location = new System.Drawing.Point(158, 427);
+            this.Job60ComboBox.Name = "Job60ComboBox";
+            this.Job60ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job60ComboBox.TabIndex = 142;
+            this.Job60ComboBox.Tag = "60";
+            // 
+            // Insert61Button
+            // 
+            this.Insert61Button.Location = new System.Drawing.Point(6, 295);
+            this.Insert61Button.Name = "Insert61Button";
+            this.Insert61Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert61Button.TabIndex = 146;
+            this.Insert61Button.Tag = "61";
+            this.Insert61Button.Text = "追加";
+            this.Insert61Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName61TextBox
+            // 
+            this.MemberName61TextBox.Location = new System.Drawing.Point(52, 297);
+            this.MemberName61TextBox.Name = "MemberName61TextBox";
+            this.MemberName61TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName61TextBox.TabIndex = 144;
+            this.MemberName61TextBox.Tag = "61";
+            // 
+            // Job61ComboBox
+            // 
+            this.Job61ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job61ComboBox.FormattingEnabled = true;
+            this.Job61ComboBox.Location = new System.Drawing.Point(158, 297);
+            this.Job61ComboBox.Name = "Job61ComboBox";
+            this.Job61ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job61ComboBox.TabIndex = 145;
+            this.Job61ComboBox.Tag = "61";
+            // 
+            // Insert62Button
+            // 
+            this.Insert62Button.Location = new System.Drawing.Point(6, 321);
+            this.Insert62Button.Name = "Insert62Button";
+            this.Insert62Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert62Button.TabIndex = 149;
+            this.Insert62Button.Tag = "62";
+            this.Insert62Button.Text = "追加";
+            this.Insert62Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName62TextBox
+            // 
+            this.MemberName62TextBox.Location = new System.Drawing.Point(52, 323);
+            this.MemberName62TextBox.Name = "MemberName62TextBox";
+            this.MemberName62TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName62TextBox.TabIndex = 147;
+            this.MemberName62TextBox.Tag = "62";
+            // 
+            // Job62ComboBox
+            // 
+            this.Job62ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job62ComboBox.FormattingEnabled = true;
+            this.Job62ComboBox.Location = new System.Drawing.Point(158, 323);
+            this.Job62ComboBox.Name = "Job62ComboBox";
+            this.Job62ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job62ComboBox.TabIndex = 148;
+            this.Job62ComboBox.Tag = "62";
+            // 
+            // Insert63Button
+            // 
+            this.Insert63Button.Location = new System.Drawing.Point(6, 347);
+            this.Insert63Button.Name = "Insert63Button";
+            this.Insert63Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert63Button.TabIndex = 152;
+            this.Insert63Button.Tag = "63";
+            this.Insert63Button.Text = "追加";
+            this.Insert63Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName63TextBox
+            // 
+            this.MemberName63TextBox.Location = new System.Drawing.Point(52, 349);
+            this.MemberName63TextBox.Name = "MemberName63TextBox";
+            this.MemberName63TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName63TextBox.TabIndex = 150;
+            this.MemberName63TextBox.Tag = "63";
+            // 
+            // Job63ComboBox
+            // 
+            this.Job63ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job63ComboBox.FormattingEnabled = true;
+            this.Job63ComboBox.Location = new System.Drawing.Point(158, 349);
+            this.Job63ComboBox.Name = "Job63ComboBox";
+            this.Job63ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job63ComboBox.TabIndex = 151;
+            this.Job63ComboBox.Tag = "63";
+            // 
+            // Insert64Button
+            // 
+            this.Insert64Button.Location = new System.Drawing.Point(6, 373);
+            this.Insert64Button.Name = "Insert64Button";
+            this.Insert64Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert64Button.TabIndex = 155;
+            this.Insert64Button.Tag = "64";
+            this.Insert64Button.Text = "追加";
+            this.Insert64Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName64TextBox
+            // 
+            this.MemberName64TextBox.Location = new System.Drawing.Point(52, 375);
+            this.MemberName64TextBox.Name = "MemberName64TextBox";
+            this.MemberName64TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName64TextBox.TabIndex = 153;
+            this.MemberName64TextBox.Tag = "64";
+            // 
+            // Job64ComboBox
+            // 
+            this.Job64ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job64ComboBox.FormattingEnabled = true;
+            this.Job64ComboBox.Location = new System.Drawing.Point(158, 375);
+            this.Job64ComboBox.Name = "Job64ComboBox";
+            this.Job64ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job64ComboBox.TabIndex = 154;
+            this.Job64ComboBox.Tag = "64";
+            // 
+            // Insert65Button
+            // 
+            this.Insert65Button.Location = new System.Drawing.Point(6, 399);
+            this.Insert65Button.Name = "Insert65Button";
+            this.Insert65Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert65Button.TabIndex = 158;
+            this.Insert65Button.Tag = "65";
+            this.Insert65Button.Text = "追加";
+            this.Insert65Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName65TextBox
+            // 
+            this.MemberName65TextBox.Location = new System.Drawing.Point(52, 401);
+            this.MemberName65TextBox.Name = "MemberName65TextBox";
+            this.MemberName65TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName65TextBox.TabIndex = 156;
+            this.MemberName65TextBox.Tag = "65";
+            // 
+            // Job65ComboBox
+            // 
+            this.Job65ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job65ComboBox.FormattingEnabled = true;
+            this.Job65ComboBox.Location = new System.Drawing.Point(158, 401);
+            this.Job65ComboBox.Name = "Job65ComboBox";
+            this.Job65ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job65ComboBox.TabIndex = 157;
+            this.Job65ComboBox.Tag = "65";
+            // 
+            // Insert66Button
+            // 
+            this.Insert66Button.Location = new System.Drawing.Point(6, 425);
+            this.Insert66Button.Name = "Insert66Button";
+            this.Insert66Button.Size = new System.Drawing.Size(40, 23);
+            this.Insert66Button.TabIndex = 161;
+            this.Insert66Button.Tag = "66";
+            this.Insert66Button.Text = "追加";
+            this.Insert66Button.UseVisualStyleBackColor = true;
+            // 
+            // MemberName66TextBox
+            // 
+            this.MemberName66TextBox.Location = new System.Drawing.Point(52, 427);
+            this.MemberName66TextBox.Name = "MemberName66TextBox";
+            this.MemberName66TextBox.Size = new System.Drawing.Size(100, 19);
+            this.MemberName66TextBox.TabIndex = 159;
+            this.MemberName66TextBox.Tag = "66";
+            // 
+            // Job66ComboBox
+            // 
+            this.Job66ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Job66ComboBox.FormattingEnabled = true;
+            this.Job66ComboBox.Location = new System.Drawing.Point(158, 427);
+            this.Job66ComboBox.Name = "Job66ComboBox";
+            this.Job66ComboBox.Size = new System.Drawing.Size(65, 20);
+            this.Job66ComboBox.TabIndex = 160;
+            this.Job66ComboBox.Tag = "66";
+            // 
             // FavoriteMemberListUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1790,7 +2406,7 @@
             this.Controls.Add(this.SaveButton);
             this.DoubleBuffered = true;
             this.Name = "FavoriteMemberListUnit";
-            this.Size = new System.Drawing.Size(713, 518);
+            this.Size = new System.Drawing.Size(713, 674);
             this.MemberGroup1GroupBox.ResumeLayout(false);
             this.MemberGroup1GroupBox.PerformLayout();
             this.MemberGroup2GroupBox.ResumeLayout(false);
@@ -1959,5 +2575,59 @@
         private System.Windows.Forms.Button InsertGroup01Button;
         private System.Windows.Forms.Button InsertGroup02Button;
         private System.Windows.Forms.Button InsertGroup03Button;
+        private System.Windows.Forms.Button Insert54Button;
+        private System.Windows.Forms.TextBox MemberName54TextBox;
+        private System.Windows.Forms.ComboBox Job54ComboBox;
+        private System.Windows.Forms.Button Insert53Button;
+        private System.Windows.Forms.TextBox MemberName53TextBox;
+        private System.Windows.Forms.ComboBox Job53ComboBox;
+        private System.Windows.Forms.Button Insert52Button;
+        private System.Windows.Forms.TextBox MemberName52TextBox;
+        private System.Windows.Forms.ComboBox Job52ComboBox;
+        private System.Windows.Forms.Button Insert51Button;
+        private System.Windows.Forms.TextBox MemberName51TextBox;
+        private System.Windows.Forms.ComboBox Job51ComboBox;
+        private System.Windows.Forms.Button Insert50Button;
+        private System.Windows.Forms.TextBox MemberName50TextBox;
+        private System.Windows.Forms.ComboBox Job50ComboBox;
+        private System.Windows.Forms.Button Insert49Button;
+        private System.Windows.Forms.TextBox MemberName49TextBox;
+        private System.Windows.Forms.ComboBox Job49ComboBox;
+        private System.Windows.Forms.Button Insert55Button;
+        private System.Windows.Forms.Button Insert56Button;
+        private System.Windows.Forms.Button Insert57Button;
+        private System.Windows.Forms.Button Insert58Button;
+        private System.Windows.Forms.Button Insert59Button;
+        private System.Windows.Forms.Button Insert60Button;
+        private System.Windows.Forms.TextBox MemberName55TextBox;
+        private System.Windows.Forms.TextBox MemberName56TextBox;
+        private System.Windows.Forms.TextBox MemberName57TextBox;
+        private System.Windows.Forms.TextBox MemberName58TextBox;
+        private System.Windows.Forms.TextBox MemberName59TextBox;
+        private System.Windows.Forms.TextBox MemberName60TextBox;
+        private System.Windows.Forms.ComboBox Job55ComboBox;
+        private System.Windows.Forms.ComboBox Job56ComboBox;
+        private System.Windows.Forms.ComboBox Job57ComboBox;
+        private System.Windows.Forms.ComboBox Job58ComboBox;
+        private System.Windows.Forms.ComboBox Job59ComboBox;
+        private System.Windows.Forms.ComboBox Job60ComboBox;
+        private System.Windows.Forms.Button Insert66Button;
+        private System.Windows.Forms.TextBox MemberName66TextBox;
+        private System.Windows.Forms.ComboBox Job66ComboBox;
+        private System.Windows.Forms.Button Insert65Button;
+        private System.Windows.Forms.TextBox MemberName65TextBox;
+        private System.Windows.Forms.ComboBox Job65ComboBox;
+        private System.Windows.Forms.Button Insert64Button;
+        private System.Windows.Forms.TextBox MemberName64TextBox;
+        private System.Windows.Forms.ComboBox Job64ComboBox;
+        private System.Windows.Forms.Button Insert63Button;
+        private System.Windows.Forms.TextBox MemberName63TextBox;
+        private System.Windows.Forms.ComboBox Job63ComboBox;
+        private System.Windows.Forms.Button Insert62Button;
+        private System.Windows.Forms.TextBox MemberName62TextBox;
+        private System.Windows.Forms.ComboBox Job62ComboBox;
+        private System.Windows.Forms.Button Insert61Button;
+        private System.Windows.Forms.TextBox MemberName61TextBox;
+        private System.Windows.Forms.ComboBox Job61ComboBox;
     }
 }
