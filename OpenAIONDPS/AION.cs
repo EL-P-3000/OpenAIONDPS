@@ -7,11 +7,11 @@ namespace OpenAIONDPS
     {
         public class LogPattern
         {
-            private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s]+)";
+            private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s\(\)]+)";
             private const string SkillNameEffectedPattern                      = @"(?<SkillName2>.+)";
             private const string SkillNameReplacedSkillNamePattern             = @"(?<SkillName>[[[SkillName]]])";
             private const string SkillNameReplacedSkillName2Pattern            = @"(?<SkillName2>[[[SkillName]]])";
-            private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s]+|攻撃))";
+            private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s\(\)]+|攻撃))";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
             private const string TargetNamePattern                             = @"(?<TargetName>[^、]+)";
