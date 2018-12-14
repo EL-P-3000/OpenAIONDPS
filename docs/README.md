@@ -7,15 +7,12 @@ Chat.logの出力については別のホームページで探して設定して
 [最新版へのリンク](https://github.com/EL-P-3000/OpenAIONDPS/releases/latest)  
   
 * 動作確認  
-CPU: Intel Core i7-4770K  
-RAM: 32GB  
-GPU: NVIDIA GeForce GTX 1080  
-OS: Windows 10 Pro 1803 64bit  
+CPU: Intel Core i9-9900K  
+RAM: 64GB  
+GPU: NVIDIA GeForce GTX 2080 TI  
+OS: Windows 10 Pro 64bit  
 
-**Version 1.0.31 には致命的なバグがあるため、1.0.32以降を利用してください。**  
-**Version 1.0.29 から各種設定はレジストリに保存するため、バージョンアップで設定がクリアされることはなくなりました。**  
-
-ツールのメイン画面 (Version 1.0.42)  
+ツールのメイン画面 (Version 1.0.44)  
 ![Main](images/OpenAIONDPS-Main.png)
 
 ## 開始
