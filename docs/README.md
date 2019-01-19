@@ -12,7 +12,7 @@ RAM: 64GB
 GPU: NVIDIA GeForce GTX 2080 TI  
 OS: Windows 10 Pro 64bit  
 
-ツールのメイン画面 (Version 1.0.44)  
+ツールのメイン画面 (Version 1.0.45)  
 ![Main](images/OpenAIONDPS-Main.png)
 
 ## 開始
