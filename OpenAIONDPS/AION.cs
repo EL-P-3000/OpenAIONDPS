@@ -12,6 +12,7 @@ namespace OpenAIONDPS
             private const string SkillNameReplacedSkillNamePattern             = @"(?<SkillName>[[[SkillName]]])";
             private const string SkillNameReplacedSkillName2Pattern            = @"(?<SkillName2>[[[SkillName]]])";
             private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s\(\)]+|攻撃))";
+            private const string SkillNameGiganticSoldierPattern               = @"(?<SkillName>スウィープ|マグネティック\sディスチャージ|エネルギー\sディスチャージ)";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
             private const string TargetNamePattern                             = @"(?<TargetName>[^、]+)";
@@ -163,6 +164,18 @@ namespace OpenAIONDPS
             /// 反射攻撃のダメージのパターン(ディシプリン エネルギー)
             /// </summary>
             public const string AttackReflectionDamageWithDisciplineEnergyPattern = @"^ディシプリン\sエネルギーが攻撃を反射し、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /* 巨神兵 */
+
+            /// <summary>
+            /// セネクタ巨神兵のダメージのパターン(自分)
+            /// </summary>
+            public const string AttackGiganticSoldierWithoutSourceNamePattern = SkillNameGiganticSoldierPattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /// <summary>
+            /// セネクタ巨神兵のダメージのパターン(他人)
+            /// </summary>
+            public const string AttackGiganticSoldierWithSourceNamePattern = "^" + SourceNamePattern + "は" + SkillNameGiganticSoldierPattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /* 回避/抵抗 */
 

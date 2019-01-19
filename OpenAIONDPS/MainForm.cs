@@ -549,6 +549,16 @@ namespace OpenAIONDPS
         private static readonly Regex AttackReflectionDamageWithDisciplineEnergyRegex = new Regex(AION.LogPattern.AttackReflectionDamageWithDisciplineEnergyPattern, RegexOptions.Compiled);
 
         /// <summary>
+        /// セネクタ巨神兵のダメージのパターン(自分)
+        /// </summary>
+        private static readonly Regex AttackGiganticSoldierWithoutSourceNameRegex = new Regex(AION.LogPattern.AttackGiganticSoldierWithoutSourceNamePattern, RegexOptions.Compiled);
+
+        /// <summary>
+        /// セネクタ巨神兵のダメージのパターン(他人)
+        /// </summary>
+        private static readonly Regex AttackGiganticSoldierWithSourceNameRegex = new Regex(AION.LogPattern.AttackGiganticSoldierWithSourceNamePattern, RegexOptions.Compiled);
+
+        /// <summary>
         /// 回避/抵抗した攻撃のパターン(自分)リスト
         /// </summary>
         private static readonly Regex ChatLogEvadeResistRegex = new Regex(AION.LogPattern.EvasionResistanceWithoutSourceNamePattern, RegexOptions.Compiled);
@@ -1270,6 +1280,34 @@ namespace OpenAIONDPS
                                         ChatLogActionData.TargetName = AttackSimpleDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
                                         ChatLogActionData.IsSkill = false;
+
+                                        this.Invoke(UpdateDamageDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
+                                    // セネクタ巨神兵のダメージ(他人)
+                                    Match AttackGiganticSoldierWithSourceNameMatch = AttackGiganticSoldierWithSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (AttackGiganticSoldierWithSourceNameMatch.Success)
+                                    {
+                                        ChatLogActionData.SourceName = AttackGiganticSoldierWithSourceNameMatch.Groups["SourceName"].Value;
+                                        ChatLogActionData.SkillName = AttackGiganticSoldierWithSourceNameMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = AttackGiganticSoldierWithSourceNameMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(AttackGiganticSoldierWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+
+                                        this.Invoke(UpdateDamageDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
+                                    // セネクタ巨神兵のダメージ(自分)
+                                    Match AttackGiganticSoldierWithoutSourceNameMatch = AttackGiganticSoldierWithoutSourceNameRegex.Match(LogTextWithoutTime);
+                                    if (AttackGiganticSoldierWithoutSourceNameMatch.Success)
+                                    {
+                                        ChatLogActionData.SourceName = this.OwnName;
+                                        ChatLogActionData.SkillName = AttackGiganticSoldierWithoutSourceNameMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = AttackGiganticSoldierWithoutSourceNameMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(AttackGiganticSoldierWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
 
                                         this.Invoke(UpdateDamageDelegate, ChatLogActionData);
 
