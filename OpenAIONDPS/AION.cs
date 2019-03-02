@@ -586,6 +586,8 @@ namespace OpenAIONDPS
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.DelayDamage));
             SkillName = "ボルカニック ビック イラプション";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.DelayDamage));
+            SkillName = "エンハンスト ボルカニック ビック イラプション";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.DelayDamage));
 
             // ドット
             SkillName = "バーン";
