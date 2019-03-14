@@ -27,6 +27,8 @@ namespace OpenAIONDPS
         private long HealingAmount = 0;
         private long HealingNumber = 0;
 
+        public bool IsFirstMemberUnit = false;
+
         public MemberUnit()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace OpenAIONDPS
             this.JobComboBox.DisplayMember = "Name";
             this.JobComboBox.ValueMember = "Type";
             this.JobComboBox.SelectedIndex = 0;
+            this.JobComboBox.SelectedValueChanged += new System.EventHandler(this.JobComboBox_TextChanged);
         }
 
         public void Clear()
@@ -511,6 +514,22 @@ namespace OpenAIONDPS
             }
 
             return Result;
+        }
+
+        private void CharacterNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.IsFirstMemberUnit)
+            {
+                Registry.WriteFirstMemberName(this.CharacterNameTextBox.Text);
+            }
+        }
+
+        private void JobComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.IsFirstMemberUnit)
+            {
+                Registry.WriteFirstMemberJob(AION.GetJobName((AION.JobType)this.JobComboBox.SelectedValue));
+            }
         }
     }
 }

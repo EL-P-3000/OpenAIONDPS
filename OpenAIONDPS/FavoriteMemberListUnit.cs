@@ -11,14 +11,27 @@ namespace OpenAIONDPS
         public FavoriteMemberListUnit()
         {
             InitializeComponent();
-            
-            this.InitiallizeComponent2(this.MemberGroup1GroupBox.Controls);
-            this.InitiallizeComponent2(this.MemberGroup2GroupBox.Controls);
-            this.InitiallizeComponent2(this.MemberGroup3GroupBox.Controls);
-            this.InitiallizeComponent2(this.MemberGroup4GroupBox.Controls);
+
+            this.InitiallizeComponentOwnName(this.OwnNameListGroupBox.Controls);
+            this.InitiallizeComponentMember(this.MemberGroup1GroupBox.Controls);
+            this.InitiallizeComponentMember(this.MemberGroup2GroupBox.Controls);
+            this.InitiallizeComponentMember(this.MemberGroup3GroupBox.Controls);
+            this.InitiallizeComponentMember(this.MemberGroup4GroupBox.Controls);
         }
 
-        private void InitiallizeComponent2(ControlCollection _Controls)
+        private void InitiallizeComponentOwnName(ControlCollection _Controls)
+        {
+            foreach (Control _Control in _Controls)
+            {
+                if (_Control.GetType().Name.Equals("TextBox"))
+                {
+                    TextBox _TextBox = (TextBox)_Control;
+                    _TextBox.Text = this.GetRegistryOwnName(int.Parse((string)_TextBox.Tag));
+                }
+            }
+        }
+
+        private void InitiallizeComponentMember(ControlCollection _Controls)
         {
             foreach (Control _Control in _Controls)
             {
@@ -62,6 +75,22 @@ namespace OpenAIONDPS
         public void SetMainForm(MainForm _MainForm)
         {
             this._MainForm = _MainForm;
+        }
+
+        public LinkedList<string> GetOwnNameList()
+        {
+            LinkedList<string> OwnNameList = new LinkedList<string>();
+
+            foreach (Control _Control in this.OwnNameListGroupBox.Controls)
+            {
+                if (_Control.GetType().Name.Equals("TextBox"))
+                {
+                    TextBox _TextBox = (TextBox)_Control;
+                    OwnNameList.AddLast(_TextBox.Text);
+                }
+            }
+
+            return OwnNameList;
         }
 
         private void InsertButton_Click(object sender, EventArgs e)
@@ -194,13 +223,26 @@ namespace OpenAIONDPS
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            this.Save(this.MemberGroup1GroupBox.Controls);
-            this.Save(this.MemberGroup2GroupBox.Controls);
-            this.Save(this.MemberGroup3GroupBox.Controls);
-            this.Save(this.MemberGroup4GroupBox.Controls);
+            this.SaveOwnName(this.OwnNameListGroupBox.Controls);
+            this.SaveMember(this.MemberGroup1GroupBox.Controls);
+            this.SaveMember(this.MemberGroup2GroupBox.Controls);
+            this.SaveMember(this.MemberGroup3GroupBox.Controls);
+            this.SaveMember(this.MemberGroup4GroupBox.Controls);
         }
 
-        private void Save(ControlCollection Controls)
+        private void SaveOwnName(ControlCollection Controls)
+        {
+            foreach (Control _Control in Controls)
+            {
+                if (_Control.GetType().Name.Equals("TextBox"))
+                {
+                    TextBox _TextBox = (TextBox)_Control;
+                    this.SaveRegistryOwnName(int.Parse((string)_TextBox.Tag), _TextBox.Text);
+                }
+            }
+        }
+
+        private void SaveMember(ControlCollection Controls)
         {
             foreach (Control _Control in Controls)
             {
@@ -224,6 +266,7 @@ namespace OpenAIONDPS
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
+            this.Clear(this.OwnNameListGroupBox.Controls);
             this.Clear(this.MemberGroup1GroupBox.Controls);
             this.Clear(this.MemberGroup2GroupBox.Controls);
             this.Clear(this.MemberGroup3GroupBox.Controls);
@@ -249,6 +292,18 @@ namespace OpenAIONDPS
             Registry.ClearFavoriteMember();
         }
 
+        private string GetRegistryOwnName(int ID)
+        {
+            try
+            {
+                return Registry.ReadOwnName(ID);
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         private string GetRegistryMemberName(int ID)
         {
             try
@@ -270,6 +325,17 @@ namespace OpenAIONDPS
             catch
             {
                 return "";
+            }
+        }
+
+        private void SaveRegistryOwnName(int ID, string Name)
+        {
+            try
+            {
+                Registry.WriteOwnName(ID, Name);
+            }
+            catch
+            {
             }
         }
 

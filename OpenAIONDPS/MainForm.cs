@@ -41,9 +41,10 @@ namespace OpenAIONDPS
         }
 
         /* メンバー＆スキル一覧 */
+        private const string DefaultOwnName = "自分";
         private string OwnName = "自分";
-        private string SimpleDamageName = "通常攻撃";
-        private string ReflectDamageName = "反射";
+        private const string SimpleDamageName = "通常攻撃";
+        private const string ReflectDamageName = "反射";
         private Dictionary<string, MemberUnit> MemberNameMemberUnitList = new Dictionary<string, MemberUnit>();
         private Dictionary<AION.JobType, int> JobTypeNumberOfMemberList = new Dictionary<AION.JobType, int>();
         private Dictionary<string, SkillUnit> AttackSkillUnitList = new Dictionary<string, SkillUnit>();
@@ -72,7 +73,9 @@ namespace OpenAIONDPS
         {
             this.InitSkillUnit();
             this.FavoriteMemberList.SetMainForm(this);
-            this.Member01.SetMemberName(this.OwnName);
+            this.Member01.IsFirstMemberUnit = true;
+            this.Member01.SetMemberName(Registry.ReadFirstMemberName(DefaultOwnName));
+            this.Member01.SetJobType(AION.GetJobType(Registry.ReadFirstMemberJob()));
 
             this.AlwaysOnTopCheckBox.Checked = Registry.ReadAlwaysOnTop();
             this.TopMost = this.AlwaysOnTopCheckBox.Checked;
@@ -312,6 +315,8 @@ namespace OpenAIONDPS
             ThreadSettings.StopCalcConditionChecked = this.StopCalcConditionCheckBox.Checked;
             ThreadSettings.StopCalcConditionText = this.StopCalcConditionComboBox.Text;
 
+            this.SetOwnName();
+
             this.CalculationThread = new Thread(new ParameterizedThreadStart(Calculate));
             this.CalculationThread.Start(ThreadSettings);
         }
@@ -339,6 +344,45 @@ namespace OpenAIONDPS
                         IsSuccess = true;
                     }
                     Thread.Sleep(50);
+                }
+            }
+        }
+
+        private bool IsIncludedDefaultOwnName()
+        {
+            foreach (string MemberName in this.MemberNameMemberUnitList.Keys)
+            {
+                if (MemberName.Equals(DefaultOwnName))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void SetOwnName()
+        {
+            this.OwnName = DefaultOwnName;
+
+            if (this.IsIncludedDefaultOwnName())
+            {
+                return;
+            }
+            else
+            {
+                LinkedList<string> OwnNameList = this.FavoriteMemberList.GetOwnNameList();
+
+                foreach (string MemberName in this.MemberNameMemberUnitList.Keys)
+                {
+                    if (!String.IsNullOrEmpty(MemberName) && !MemberName.Equals(this.OwnName))
+                    {
+                        if (OwnNameList.Contains(MemberName))
+                        {
+                            this.OwnName = MemberName;
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -1237,7 +1281,7 @@ namespace OpenAIONDPS
                                     if (AttackCriticalHitDamageMatch.Success)
                                     {
                                         ChatLogActionData.SourceName = this.OwnName;
-                                        ChatLogActionData.SkillName = this.SimpleDamageName;
+                                        ChatLogActionData.SkillName = SimpleDamageName;
                                         ChatLogActionData.TargetName = AttackCriticalHitDamageMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackCriticalHitDamageMatch.Groups["Damage"].Value.Replace(",", ""));
                                         ChatLogActionData.IsSkill = false;
@@ -1256,7 +1300,7 @@ namespace OpenAIONDPS
                                         {
                                             AttackSimpleDamageWithSourceNameMatchFlag = true;
                                             ChatLogActionData.SourceName = AttackSimpleDamageWithSourceNameMatch.Groups["SourceName"].Value;
-                                            ChatLogActionData.SkillName = this.SimpleDamageName;
+                                            ChatLogActionData.SkillName = SimpleDamageName;
                                             ChatLogActionData.TargetName = AttackSimpleDamageWithSourceNameMatch.Groups["TargetName"].Value;
                                             ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
                                             ChatLogActionData.IsSkill = false;
@@ -1276,7 +1320,7 @@ namespace OpenAIONDPS
                                     if (AttackSimpleDamageWithoutSourceNameMatch.Success)
                                     {
                                         ChatLogActionData.SourceName = this.OwnName;
-                                        ChatLogActionData.SkillName = this.SimpleDamageName;
+                                        ChatLogActionData.SkillName = SimpleDamageName;
                                         ChatLogActionData.TargetName = AttackSimpleDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSimpleDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
                                         ChatLogActionData.IsSkill = false;

@@ -72,6 +72,52 @@ namespace OpenAIONDPS
             }
         }
 
+        public static string ReadFirstMemberName(string DefaultName)
+        {
+            string FirstMemberName = "";
+
+            try
+            {
+                FirstMemberName = Registry.ReadValue<string>("FirstMemberName");
+                if (String.IsNullOrEmpty(FirstMemberName))
+                {
+                    return DefaultName;
+                }
+                else
+                {
+                    return FirstMemberName;
+                }
+            }
+            catch
+            {
+                return DefaultName;
+            }
+        }
+
+        public static string ReadFirstMemberJob()
+        {
+            try
+            {
+                return Registry.ReadValue<string>("FirstMemberJob");
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public static string ReadOwnName(int ID)
+        {
+            try
+            {
+                return Registry.ReadValue<string>("OwnName" + ID.ToString("D3"));
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         public static string ReadMemberName(int ID)
         {
             try
@@ -146,6 +192,39 @@ namespace OpenAIONDPS
         public static void WriteDeleteLogWhenStarting(bool Value)
         {
             WriteValue<bool>(DeleteLogWhenStartingKeyName, Value);
+        }
+
+        public static void WriteFirstMemberName(string Name)
+        {
+            try
+            {
+                Registry.WriteValue("FirstMemberName", Name);
+            }
+            catch
+            {
+            }
+        }
+
+        public static void WriteFirstMemberJob(string Job)
+        {
+            try
+            {
+                Registry.WriteValue("FirstMemberJob", Job);
+            }
+            catch
+            {
+            }
+        }
+
+        public static void WriteOwnName(int ID, string Name)
+        {
+            try
+            {
+                Registry.WriteValue("OwnName" + ID.ToString("D3"), Name);
+            }
+            catch
+            {
+            }
         }
 
         public static void WriteMemberName(int ID, string Name)
