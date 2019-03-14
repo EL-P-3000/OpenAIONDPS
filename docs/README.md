@@ -15,6 +15,9 @@ OS: Windows 10 Pro 64bit
 ツールのメイン画面 (Version 1.0.47)  
 ![Main](images/OpenAIONDPS-Main.png)
 
+ツールのメンバー一覧画面 (Version 1.0.47)  
+![Main](images/OpenAIONDPS-MemberList.png)
+
 ## 開始
 計測を開始します。  
 開始語はメンバー名やジョブ、計測開始/終了条件等の設定の変更ができませんので、全ての設定を終えた後に開始を押してください。  
