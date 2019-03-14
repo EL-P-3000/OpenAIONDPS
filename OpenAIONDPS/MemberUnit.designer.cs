@@ -89,7 +89,6 @@
             // 
             // DamageParSecondLabel
             // 
-            this.DamageParSecondLabel.ForeColor = System.Drawing.Color.Red;
             this.DamageParSecondLabel.Location = new System.Drawing.Point(411, 1);
             this.DamageParSecondLabel.Name = "DamageParSecondLabel";
             this.DamageParSecondLabel.Size = new System.Drawing.Size(70, 12);

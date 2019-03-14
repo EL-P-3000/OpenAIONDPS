@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CalculationStartButton = new System.Windows.Forms.Button();
             this.CalculationStopButton = new System.Windows.Forms.Button();
             this.OpenLogFileButton = new System.Windows.Forms.Button();
@@ -139,6 +139,7 @@
             this.ProjectTopLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label28 = new System.Windows.Forms.Label();
             this.DeleteLogWhenStartingCheckBox = new System.Windows.Forms.CheckBox();
+            this.DPSHighLightCheckBox = new System.Windows.Forms.CheckBox();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalculationTimerMinutesNumericUpDown)).BeginInit();
             this.MenuTabControl.SuspendLayout();
@@ -801,7 +802,7 @@
             // DebugCheckBox
             // 
             this.DebugCheckBox.AutoSize = true;
-            this.DebugCheckBox.Location = new System.Drawing.Point(554, 16);
+            this.DebugCheckBox.Location = new System.Drawing.Point(562, 16);
             this.DebugCheckBox.Name = "DebugCheckBox";
             this.DebugCheckBox.Size = new System.Drawing.Size(78, 16);
             this.DebugCheckBox.TabIndex = 10;
@@ -897,7 +898,7 @@
             // ProjectManualLinkLabel
             // 
             this.ProjectManualLinkLabel.AutoSize = true;
-            this.ProjectManualLinkLabel.Location = new System.Drawing.Point(704, 17);
+            this.ProjectManualLinkLabel.Location = new System.Drawing.Point(714, 17);
             this.ProjectManualLinkLabel.Name = "ProjectManualLinkLabel";
             this.ProjectManualLinkLabel.Size = new System.Drawing.Size(227, 12);
             this.ProjectManualLinkLabel.TabIndex = 0;
@@ -908,7 +909,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(638, 17);
+            this.label29.Location = new System.Drawing.Point(648, 17);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(50, 12);
             this.label29.TabIndex = 0;
@@ -990,14 +991,14 @@
             this.AttackSkillListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle85.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle85.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle85.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle85.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle85.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle85.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.AttackSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.AttackSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.AttackSkillListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AttackSkillListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MemberNameColumn,
@@ -1026,8 +1027,8 @@
             // 
             // SkillNameColumn
             // 
-            dataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SkillNameColumn.DefaultCellStyle = dataGridViewCellStyle26;
             this.SkillNameColumn.HeaderText = "スキル名";
             this.SkillNameColumn.Name = "SkillNameColumn";
             this.SkillNameColumn.ReadOnly = true;
@@ -1035,8 +1036,8 @@
             // 
             // DamageColumn
             // 
-            dataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageColumn.DefaultCellStyle = dataGridViewCellStyle27;
             this.DamageColumn.HeaderText = "総ダメージ";
             this.DamageColumn.Name = "DamageColumn";
             this.DamageColumn.ReadOnly = true;
@@ -1044,8 +1045,8 @@
             // 
             // AttackNumberColumn
             // 
-            dataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AttackNumberColumn.DefaultCellStyle = dataGridViewCellStyle28;
             this.AttackNumberColumn.HeaderText = "回数";
             this.AttackNumberColumn.Name = "AttackNumberColumn";
             this.AttackNumberColumn.ReadOnly = true;
@@ -1053,40 +1054,40 @@
             // 
             // MaxDamageColumn
             // 
-            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle89;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageColumn.DefaultCellStyle = dataGridViewCellStyle29;
             this.MaxDamageColumn.HeaderText = "MAXダメ(クリ無)";
             this.MaxDamageColumn.Name = "MaxDamageColumn";
             this.MaxDamageColumn.ReadOnly = true;
             // 
             // MinDamageColumn
             // 
-            dataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageColumn.DefaultCellStyle = dataGridViewCellStyle30;
             this.MinDamageColumn.HeaderText = "MINダメ(クリ無)";
             this.MinDamageColumn.Name = "MinDamageColumn";
             this.MinDamageColumn.ReadOnly = true;
             // 
             // MaxDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle91;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle31;
             this.MaxDamageWithCriticalColumn.HeaderText = "MAXダメ(クリ有)";
             this.MaxDamageWithCriticalColumn.Name = "MaxDamageWithCriticalColumn";
             this.MaxDamageWithCriticalColumn.ReadOnly = true;
             // 
             // MinDamageWithCriticalColumn
             // 
-            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle92;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MinDamageWithCriticalColumn.DefaultCellStyle = dataGridViewCellStyle32;
             this.MinDamageWithCriticalColumn.HeaderText = "MINダメ(クリ有)";
             this.MinDamageWithCriticalColumn.Name = "MinDamageWithCriticalColumn";
             this.MinDamageWithCriticalColumn.ReadOnly = true;
             // 
             // DamageParAttackNumber
             // 
-            dataGridViewCellStyle93.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle93;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DamageParAttackNumber.DefaultCellStyle = dataGridViewCellStyle33;
             this.DamageParAttackNumber.HeaderText = "平均ダメージ";
             this.DamageParAttackNumber.Name = "DamageParAttackNumber";
             this.DamageParAttackNumber.ReadOnly = true;
@@ -1121,14 +1122,14 @@
             this.HealSkillListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle94.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle94.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle94.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle94.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle94.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle94.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.HealSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.HealSkillListDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
             this.HealSkillListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.HealSkillListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1151,8 +1152,8 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle35;
             this.dataGridViewTextBoxColumn2.HeaderText = "スキル名";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -1160,8 +1161,8 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle36;
             this.dataGridViewTextBoxColumn3.HeaderText = "総回復量";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -1180,7 +1181,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(638, 35);
+            this.label30.Location = new System.Drawing.Point(648, 35);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(41, 12);
             this.label30.TabIndex = 31;
@@ -1189,7 +1190,7 @@
             // ProjectLatestVersionLinkLabel
             // 
             this.ProjectLatestVersionLinkLabel.AutoSize = true;
-            this.ProjectLatestVersionLinkLabel.Location = new System.Drawing.Point(704, 34);
+            this.ProjectLatestVersionLinkLabel.Location = new System.Drawing.Point(714, 34);
             this.ProjectLatestVersionLinkLabel.Name = "ProjectLatestVersionLinkLabel";
             this.ProjectLatestVersionLinkLabel.Size = new System.Drawing.Size(326, 12);
             this.ProjectLatestVersionLinkLabel.TabIndex = 32;
@@ -1200,7 +1201,7 @@
             // ProjectTopLinkLabel
             // 
             this.ProjectTopLinkLabel.AutoSize = true;
-            this.ProjectTopLinkLabel.Location = new System.Drawing.Point(704, 52);
+            this.ProjectTopLinkLabel.Location = new System.Drawing.Point(714, 52);
             this.ProjectTopLinkLabel.Name = "ProjectTopLinkLabel";
             this.ProjectTopLinkLabel.Size = new System.Drawing.Size(242, 12);
             this.ProjectTopLinkLabel.TabIndex = 0;
@@ -1211,7 +1212,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(638, 52);
+            this.label28.Location = new System.Drawing.Point(648, 52);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(60, 12);
             this.label28.TabIndex = 0;
@@ -1228,11 +1229,23 @@
             this.DeleteLogWhenStartingCheckBox.UseVisualStyleBackColor = true;
             this.DeleteLogWhenStartingCheckBox.CheckedChanged += new System.EventHandler(this.DeleteLogWhenStartingCheckBox_CheckedChanged);
             // 
+            // DPSHighLightCheckBox
+            // 
+            this.DPSHighLightCheckBox.AutoSize = true;
+            this.DPSHighLightCheckBox.Location = new System.Drawing.Point(562, 45);
+            this.DPSHighLightCheckBox.Name = "DPSHighLightCheckBox";
+            this.DPSHighLightCheckBox.Size = new System.Drawing.Size(70, 16);
+            this.DPSHighLightCheckBox.TabIndex = 62;
+            this.DPSHighLightCheckBox.Text = "DPS強調";
+            this.DPSHighLightCheckBox.UseVisualStyleBackColor = true;
+            this.DPSHighLightCheckBox.CheckedChanged += new System.EventHandler(this.DPSHighLightCheckBox_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 1031);
+            this.Controls.Add(this.DPSHighLightCheckBox);
             this.Controls.Add(this.DeleteLogWhenStartingCheckBox);
             this.Controls.Add(this.StartCalcConditionComboBox);
             this.Controls.Add(this.StartCalcConditionCheckBox);
@@ -1382,6 +1395,7 @@
         private MemberUnit Member15;
         private MemberUnit Member14;
         private MemberUnit Member13;
+        private System.Windows.Forms.CheckBox DPSHighLightCheckBox;
     }
 }
 

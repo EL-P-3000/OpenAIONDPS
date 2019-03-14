@@ -126,6 +126,20 @@ namespace OpenAIONDPS
             return (AION.JobType)this.JobComboBox.SelectedValue;
         }
 
+        public void SetDPSFontHighLight(bool IsHighLight)
+        {
+            if (IsHighLight)
+            {
+                this.DamageParSecondLabel.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+                this.DamageParSecondLabel.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                this.DamageParSecondLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+                this.DamageParSecondLabel.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
         public void AddDamage(ActionData Data)
         {
             if (!this.IsStart())

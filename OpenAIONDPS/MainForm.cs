@@ -519,7 +519,6 @@ namespace OpenAIONDPS
         /// </summary>
         private static readonly Regex AttackSkillDamageFixedSkillWithSummonRegex = GetReplacedSkillNameRegex(AION.LogPattern.AttackSkillDamageFixedSkillWithSummonPattern, AION.AttackSkillType.Summon);
 
-
         /// <summary>
         /// ドットスキルの成功のパターン(自分)
         /// </summary>
@@ -2287,7 +2286,6 @@ namespace OpenAIONDPS
                     this.DebugLogFileTextWriter.Close();
                     this.DebugLogFileTextWriter = null;
                 }
-
             }
             catch
             {
@@ -2301,7 +2299,6 @@ namespace OpenAIONDPS
                     this.DebugLogFileStreamWriter.Close();
                     this.DebugLogFileStreamWriter = null;
                 }
-
             }
             catch
             {
@@ -2574,6 +2571,32 @@ namespace OpenAIONDPS
             else
             {
                 Registry.WriteDeleteLogWhenStarting(false);
+            }
+        }
+
+        private void DPSHighLightCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.DPSHighLightCheckBox.Checked)
+            {
+                foreach (Control _Control in this.MemberGroupBox.Controls)
+                {
+                    if (_Control.GetType().Name.Equals("MemberUnit"))
+                    {
+                        MemberUnit _MemberUnit = (MemberUnit)_Control;
+                        _MemberUnit.SetDPSFontHighLight(true);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Control _Control in this.MemberGroupBox.Controls)
+                {
+                    if (_Control.GetType().Name.Equals("MemberUnit"))
+                    {
+                        MemberUnit _MemberUnit = (MemberUnit)_Control;
+                        _MemberUnit.SetDPSFontHighLight(false);
+                    }
+                }
             }
         }
     }
