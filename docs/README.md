@@ -15,7 +15,7 @@ OS: Windows 10 Pro 64bit
 ツールのメイン画面 (Version 1.0.47)  
 ![Main](images/OpenAIONDPS-Main.png)
 
-ツールのメンバー一覧画面 (Version 1.0.47)  
+登録一覧画面  
 ![MemberList](images/OpenAIONDPS-MemberList.png)
 
 ## 開始
