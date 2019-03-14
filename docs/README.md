@@ -16,7 +16,7 @@ OS: Windows 10 Pro 64bit
 ![Main](images/OpenAIONDPS-Main.png)
 
 ツールのメンバー一覧画面 (Version 1.0.47)  
-![Main](images/OpenAIONDPS-MemberList.png)
+![MemberList](images/OpenAIONDPS-MemberList.png)
 
 ## 開始
 計測を開始します。  
