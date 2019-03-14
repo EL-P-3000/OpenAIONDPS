@@ -2411,7 +2411,7 @@
             this.OwnNameListGroupBox.Size = new System.Drawing.Size(699, 41);
             this.OwnNameListGroupBox.TabIndex = 161;
             this.OwnNameListGroupBox.TabStop = false;
-            this.OwnNameListGroupBox.Text = "自キャラ名";
+            this.OwnNameListGroupBox.Text = "自分のキャラクター名一覧";
             // 
             // OwnName01TextBox
             // 
