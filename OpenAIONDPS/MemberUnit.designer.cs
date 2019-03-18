@@ -49,6 +49,9 @@
             this.SimpleAttackNumberLabel = new System.Windows.Forms.Label();
             this.SkillAttackNumberLabel = new System.Windows.Forms.Label();
             this.HealingAmountLabel = new System.Windows.Forms.Label();
+            this.MantraLabel = new System.Windows.Forms.Label();
+            this.GaleNumberLabel = new System.Windows.Forms.Label();
+            this.DestructionFantasiaNumberLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CharacterNameTextBox
@@ -253,10 +256,40 @@
             this.HealingAmountLabel.Text = "0";
             this.HealingAmountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // MantraLabel
+            // 
+            this.MantraLabel.Location = new System.Drawing.Point(1019, 7);
+            this.MantraLabel.Name = "MantraLabel";
+            this.MantraLabel.Size = new System.Drawing.Size(40, 12);
+            this.MantraLabel.TabIndex = 23;
+            this.MantraLabel.Text = "無";
+            this.MantraLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // GaleNumberLabel
+            // 
+            this.GaleNumberLabel.Location = new System.Drawing.Point(1065, 1);
+            this.GaleNumberLabel.Name = "GaleNumberLabel";
+            this.GaleNumberLabel.Size = new System.Drawing.Size(40, 12);
+            this.GaleNumberLabel.TabIndex = 24;
+            this.GaleNumberLabel.Text = "0";
+            this.GaleNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // DestructionFantasiaNumberLabel
+            // 
+            this.DestructionFantasiaNumberLabel.Location = new System.Drawing.Point(1065, 13);
+            this.DestructionFantasiaNumberLabel.Name = "DestructionFantasiaNumberLabel";
+            this.DestructionFantasiaNumberLabel.Size = new System.Drawing.Size(40, 12);
+            this.DestructionFantasiaNumberLabel.TabIndex = 25;
+            this.DestructionFantasiaNumberLabel.Text = "0";
+            this.DestructionFantasiaNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MemberUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DestructionFantasiaNumberLabel);
+            this.Controls.Add(this.GaleNumberLabel);
+            this.Controls.Add(this.MantraLabel);
             this.Controls.Add(this.HealingAmountLabel);
             this.Controls.Add(this.SimpleAttackNumberLabel);
             this.Controls.Add(this.SkillAttackNumberLabel);
@@ -279,7 +312,7 @@
             this.Controls.Add(this.DamageLabel);
             this.Controls.Add(this.CharacterNameTextBox);
             this.Name = "MemberUnit";
-            this.Size = new System.Drawing.Size(1026, 26);
+            this.Size = new System.Drawing.Size(1112, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,5 +341,8 @@
         private System.Windows.Forms.Label SimpleAttackNumberLabel;
         private System.Windows.Forms.Label SkillAttackNumberLabel;
         private System.Windows.Forms.Label HealingAmountLabel;
+        private System.Windows.Forms.Label MantraLabel;
+        private System.Windows.Forms.Label GaleNumberLabel;
+        private System.Windows.Forms.Label DestructionFantasiaNumberLabel;
     }
 }

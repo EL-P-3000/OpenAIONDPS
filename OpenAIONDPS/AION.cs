@@ -232,10 +232,66 @@ namespace OpenAIONDPS
             public const string HealSkillEffectWithoutTargetNamePattern = "^" + SkillNamePattern + "\\sエフェクトの効果により、HPが" + HealingAmountPattern + "回復しました。";
             public const string HealSkillEffectWithTargetNamePattern = "^" + TargetNamePattern + "は" + SkillNamePattern + "\\sエフェクトの効果により、" + HealingAmountPattern + "のHPが回復しました。";
 
+            // インビンサビリティ マントラ
+            public const string HealSkillInvincibilityMantraWithoutTargetName = "^インビンサビリティ マントラの効果により、MPが" + HealingAmountPattern + "回復しました。";
+            public const string HealSkillInvincibilityMantraWithTargetName = "^" + TargetNamePattern + "はインビンサビリティ マントラの効果により、MPが" + HealingAmountPattern + "回復しました。";
+
             // ポーション
             public const string HealPotionWithoutSourceNamePattern = "^HPが" + HealingAmountPattern + "回復しました。";
             public const string HealPotionWithoutSourceNamePattern2 = "^(回復|治癒)のポーションの効果により、HPが" + HealingAmountPattern + "回復しました。";
             public const string HealPotionWithSourceNamePattern = "^" + SourceNamePattern + "は(回復|治癒)のポーションの効果により、" + HealingAmountPattern + "のHPが回復しました。";
+
+            /* バフ */
+
+            /// <summary>
+            /// ゲイル スペル(使用者(自分)→自分)
+            /// </summary>
+            public const string BuffSkillGaleOwnToOwn = "^ゲイル スペルの効果により、攻撃速度強化効果を得ました。";
+
+            /// <summary>
+            /// ゲイル スペル(使用者(自分)→他人)
+            /// </summary>
+            public const string BuffSkillGaleOwnToOther = "^ゲイル スペルの効果により、" + TargetNamePattern + "が攻撃速度強化効果を得ました。";
+
+            /// <summary>
+            /// ゲイル スペル(使用者(他人)→自分)
+            /// </summary>
+            public const string BuffSkillGaleOtherToOwn = "^" + SourceNamePattern + "が使用したゲイル スペルの効果により、攻撃速度強化効果を得ました。";
+
+            /// <summary>
+            /// ゲイル スペル(使用者(他人)→使用者(他人))
+            /// </summary>
+            public const string BuffSkillGaleOtherToOther = "^" + SourceNamePattern + "はゲイル スペルの効果により、攻撃速度強化状態になりました。";
+
+            /// <summary>
+            /// ゲイル スペル(使用者→他人)
+            /// </summary>
+            public const string BuffSkillGaleOtherToOthers = "^" + SourceNamePattern + "が使用したゲイル スペルの効果により、" + TargetNamePattern + "が攻撃速度強化状態になりました。";
+
+            /// <summary>
+            /// デストラクション ファンタジア(使用者(自分)→自分)
+            /// </summary>
+            public const string BuffSkillDestructionFantasiaOwnToOwn = "^ディストラクション ファンタジアの効果により、移動速度,攻撃速度強化効果を得ました。";
+
+            /// <summary>
+            /// デストラクション ファンタジア(使用者(自分)→他人)
+            /// </summary>
+            public const string BuffSkillDestructionFantasiaOwnToOther = "^ディストラクション ファンタジアの効果により、" + TargetNamePattern + "が移動速度,攻撃速度強化効果を得ました。";
+
+            /// <summary>
+            /// デストラクション ファンタジア(使用者→自分)
+            /// </summary>
+            public const string BuffSkillDestructionFantasiaOtherToOwn = "^" + SourceNamePattern + "が使用したディストラクション ファンタジアの効果により、移動速度,攻撃速度強化効果を得ました。";
+
+            /// <summary>
+            /// デストラクション ファンタジア(使用者(他人)→使用者(他人))
+            /// </summary>
+            public const string BuffSkillDestructionFantasiaOtherToOther = "^" + SourceNamePattern + "はディストラクション ファンタジアの効果により、移動速度,攻撃速度強化状態になりました。";
+
+            /// <summary>
+            /// デストラクション ファンタジア(使用者→他人)
+            /// </summary>
+            public const string BuffSkillDestructionFantasiaOtherToOthers = "^" + SourceNamePattern + "が使用したディストラクション ファンタジアの効果により、" + TargetNamePattern + "が移動速度,攻撃速度強化状態になりました。";
 
             // 計測停止条件
             public const string StopCalcConditionPattern = @"から経験値を" + EXPPattern + "獲得しました。.*";

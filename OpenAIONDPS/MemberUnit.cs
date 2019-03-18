@@ -26,6 +26,8 @@ namespace OpenAIONDPS
         private long ResistedAttackNumber = 0;
         private long HealingAmount = 0;
         private long HealingNumber = 0;
+        private long GaleNumber = 0;
+        private long DestructionFantasiaNumber = 0;
 
         public bool IsFirstMemberUnit = false;
 
@@ -70,6 +72,8 @@ namespace OpenAIONDPS
             this.ResistedAttackNumber = 0;
             this.HealingAmount = 0;
             this.HealingNumber = 0;
+            this.GaleNumber = 0;
+            this.DestructionFantasiaNumber = 0;
 
             this.DamageLabel.Text = "0";
             this.MaxDamageLabel.Text = "0";
@@ -89,6 +93,9 @@ namespace OpenAIONDPS
             this.ResistAttackNumberLabel.Text = "0";
             this.ResistedAttackNumberLabel.Text = "0 (0%)";
             this.HealingAmountLabel.Text = "0";
+            this.MantraLabel.Text = "無";
+            this.GaleNumberLabel.Text = "0";
+            this.DestructionFantasiaNumberLabel.Text = "0";
         }
 
         public bool IsStart()
@@ -274,6 +281,21 @@ namespace OpenAIONDPS
             }
         }
 
+        public void AddMantra(bool IsMantra)
+        {
+            this.UpdateMantra(IsMantra);
+        }
+
+        public void AddGale()
+        {
+            this.UpdateGaleNumber();
+        }
+
+        public void AddDestructionFantasia()
+        {
+            this.UpdateDestructionFantasiaNumber();
+        }
+
         private void UpdateDamage(long Damage)
         {
             this.Damage += Damage;
@@ -410,6 +432,30 @@ namespace OpenAIONDPS
         {
             this.ResistedAttackNumber += 1;
             this.ResistedAttackNumberLabel.Text = this.ResistedAttackNumber.ToString("#,0") + " (" + Math.Round((1.0 * this.ResistedAttackNumber * 100 / this.AttackNumber), 0, MidpointRounding.AwayFromZero) + "%)";
+        }
+
+        public void UpdateMantra(bool IsMantra)
+        {
+            if (IsMantra)
+            {
+                this.MantraLabel.Text = "有";
+            }
+            else
+            {
+                this.MantraLabel.Text = "無";
+            }
+        }
+
+        private void UpdateGaleNumber()
+        {
+            this.GaleNumber += 1;
+            this.GaleNumberLabel.Text = this.GaleNumber.ToString("#,0");
+        }
+
+        private void UpdateDestructionFantasiaNumber()
+        {
+            this.DestructionFantasiaNumber += 1;
+            this.DestructionFantasiaNumberLabel.Text = this.DestructionFantasiaNumber.ToString("#,0");
         }
 
         public string GetResult()

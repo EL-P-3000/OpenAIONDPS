@@ -641,10 +641,26 @@ namespace OpenAIONDPS
         private static readonly Regex HealSkillEffectWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithoutTargetNamePattern, RegexOptions.Compiled);
         private static readonly Regex HealSkillEffectWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillEffectWithTargetNamePattern, RegexOptions.Compiled);
 
+        // マントラ
+        private static readonly Regex HealSkillInvincibilityMantraWithoutTargetNameRegex = new Regex(AION.LogPattern.HealSkillInvincibilityMantraWithoutTargetName, RegexOptions.Compiled);
+        private static readonly Regex HealSkillInvincibilityMantraWithTargetNameRegex = new Regex(AION.LogPattern.HealSkillInvincibilityMantraWithTargetName, RegexOptions.Compiled);
+
         // ポーション
         private static readonly Regex HealPotionWithoutSourceNameRegex = new Regex(AION.LogPattern.HealPotionWithoutSourceNamePattern, RegexOptions.Compiled);
         private static readonly Regex HealPotionWithoutSourceNameRegex2 = new Regex(AION.LogPattern.HealPotionWithoutSourceNamePattern2, RegexOptions.Compiled);
         private static readonly Regex HealPotionWithSourceNameRegex = new Regex(AION.LogPattern.HealPotionWithSourceNamePattern, RegexOptions.Compiled);
+
+        // バフ
+        private static readonly Regex BuffSkillGaleOwnToOwnRegex = new Regex(AION.LogPattern.BuffSkillGaleOwnToOwn, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillGaleOwnToOtherRegex = new Regex(AION.LogPattern.BuffSkillGaleOwnToOther, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillGaleOtherToOwnRegex = new Regex(AION.LogPattern.BuffSkillGaleOtherToOwn, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillGaleOtherToOtherRegex = new Regex(AION.LogPattern.BuffSkillGaleOtherToOther, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillGaleOtherToOthersRegex = new Regex(AION.LogPattern.BuffSkillGaleOtherToOthers, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillDestructionFantasiaOwnToOwnRegex = new Regex(AION.LogPattern.BuffSkillDestructionFantasiaOwnToOwn, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillDestructionFantasiaOwnToOtherRegex = new Regex(AION.LogPattern.BuffSkillDestructionFantasiaOwnToOther, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillDestructionFantasiaOtherToOwnRegex = new Regex(AION.LogPattern.BuffSkillDestructionFantasiaOtherToOwn, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillDestructionFantasiaOtherToOtherRegex = new Regex(AION.LogPattern.BuffSkillDestructionFantasiaOtherToOther, RegexOptions.Compiled);
+        private static readonly Regex BuffSkillDestructionFantasiaOtherToOthersRegex = new Regex(AION.LogPattern.BuffSkillDestructionFantasiaOtherToOthers, RegexOptions.Compiled);
 
         /// <summary>
         /// 計測
@@ -655,6 +671,9 @@ namespace OpenAIONDPS
             Delegate UpdateEvasionDelegate = new Action<ActionData>(UpdateEvasion);
             Delegate UpdateResistanceDelegate = new Action<ActionData>(UpdateResistance);
             Delegate UpdateHealDelegate = new Action<ActionData>(UpdateHeal);
+            Delegate UpdateMantraDelegate = new Action<ActionData>(UpdateMantra);
+            Delegate UpdateGaleDelegate = new Action<ActionData>(UpdateGale);
+            Delegate UpdateDestructionFantasiaDelegate = new Action<ActionData>(UpdateDestructionFantasia);
             Delegate CalcFromLogEndDelegate = new Action(StopCalculationFromLogFile);
             Delegate StopThreadDelegate = new Action(StopCalculationThread);
             string LogFilePath = Registry.ReadChatLogPath();
@@ -897,6 +916,29 @@ namespace OpenAIONDPS
                                         continue;
                                     }
 
+                                    Match HealSkillInvincibilityMantraWithoutTargetNameMatch = HealSkillInvincibilityMantraWithoutTargetNameRegex.Match(LogTextWithoutTime);
+                                    Match HealSkillInvincibilityMantraWithTargetNameMatch = HealSkillInvincibilityMantraWithTargetNameRegex.Match(LogTextWithoutTime);
+                                    if (HealSkillInvincibilityMantraWithoutTargetNameMatch.Success || HealSkillInvincibilityMantraWithTargetNameMatch.Success)
+                                    {
+                                        Match _Match = null;
+                                        if (HealSkillInvincibilityMantraWithoutTargetNameMatch.Success)
+                                        {
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                            _Match = HealSkillInvincibilityMantraWithoutTargetNameMatch;
+                                        }
+                                        else
+                                        {
+                                            ChatLogActionData.TargetName = HealSkillInvincibilityMantraWithTargetNameMatch.Groups["TargetName"].Value;
+                                            _Match = HealSkillInvincibilityMantraWithTargetNameMatch;
+                                        }
+                                        ChatLogActionData.SkillName = "インビンサビリティ マントラ";
+                                        ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
+
+                                        this.Invoke(UpdateMantraDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
                                     // エフェクト
                                     Match HealSkillEffectWithoutTargetNameMatch = HealSkillEffectWithoutTargetNameRegex.Match(LogTextWithoutTime);
                                     Match HealSkillEffectWithTargetNameMatch = HealSkillEffectWithTargetNameRegex.Match(LogTextWithoutTime);
@@ -917,6 +959,11 @@ namespace OpenAIONDPS
                                         ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
 
                                         this.Invoke(UpdateHealDelegate, ChatLogActionData);
+
+                                        if (ChatLogActionData.SkillName.Equals("スプリント マントラ エフェクト"))
+                                        {
+                                            this.Invoke(UpdateMantraDelegate, ChatLogActionData);
+                                        }
 
                                         continue;
                                     }
@@ -1668,7 +1715,6 @@ namespace OpenAIONDPS
                                         ChatLogActionData.SourceName = this.OwnName;
                                         ChatLogActionData.TargetName = ChatLogEvadeResistMatch.Groups["TargetName"].Value;
 
-                                        Debug.WriteLine(LogText);
                                         if (LogTextWithoutTime.IndexOf("を回避しました。") > 0)
                                         {
                                             this.Invoke(UpdateEvasionDelegate, new object[] { ChatLogActionData });
@@ -1677,6 +1723,96 @@ namespace OpenAIONDPS
                                         {
                                             this.Invoke(UpdateResistanceDelegate, new object[] { ChatLogActionData });
                                         }
+
+                                        continue;
+                                    }
+
+                                    Match BuffSkillGaleOwnToOwnMatch = BuffSkillGaleOwnToOwnRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillGaleOwnToOtherMatch = BuffSkillGaleOwnToOtherRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillGaleOtherToOwnMatch = BuffSkillGaleOtherToOwnRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillGaleOtherToOtherMatch = BuffSkillGaleOtherToOtherRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillGaleOtherToOthersMatch = BuffSkillGaleOtherToOthersRegex.Match(LogTextWithoutTime);
+                                    if (BuffSkillGaleOwnToOwnMatch.Success ||
+                                        BuffSkillGaleOwnToOtherMatch.Success ||
+                                        BuffSkillGaleOtherToOwnMatch.Success ||
+                                        BuffSkillGaleOtherToOtherMatch.Success ||
+                                        BuffSkillGaleOtherToOthersMatch.Success
+                                        )
+                                    {
+                                        if (BuffSkillGaleOwnToOwnMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                        }
+                                        else if (BuffSkillGaleOwnToOtherMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                            ChatLogActionData.TargetName = BuffSkillGaleOwnToOtherMatch.Groups["TargetName"].Value;
+                                        }
+
+                                        else if (BuffSkillGaleOtherToOwnMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = BuffSkillGaleOtherToOwnMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                        }
+                                        else if (BuffSkillGaleOtherToOtherMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = BuffSkillGaleOtherToOtherMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = BuffSkillGaleOtherToOtherMatch.Groups["SourceName"].Value;
+                                        }
+                                        else if (BuffSkillGaleOtherToOthersMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = BuffSkillGaleOtherToOthersMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = BuffSkillGaleOtherToOthersMatch.Groups["TargetName"].Value;
+                                        }
+                                        ChatLogActionData.SkillName = "ゲイル スペル";
+
+                                        this.Invoke(UpdateGaleDelegate, new object[] { ChatLogActionData });
+
+                                        continue;
+                                    }
+
+                                    Match BuffSkillDestructionFantasiaOwnToOwnMatch = BuffSkillDestructionFantasiaOwnToOwnRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillDestructionFantasiaOwnToOtherMatch = BuffSkillDestructionFantasiaOwnToOtherRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillDestructionFantasiaOtherToOwnMatch = BuffSkillDestructionFantasiaOtherToOwnRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillDestructionFantasiaOtherToOtherMatch = BuffSkillDestructionFantasiaOtherToOtherRegex.Match(LogTextWithoutTime);
+                                    Match BuffSkillDestructionFantasiaOtherToOthersMatch = BuffSkillDestructionFantasiaOtherToOthersRegex.Match(LogTextWithoutTime);
+                                    if (BuffSkillDestructionFantasiaOwnToOwnMatch.Success ||
+                                        BuffSkillDestructionFantasiaOwnToOtherMatch.Success ||
+                                        BuffSkillDestructionFantasiaOtherToOwnMatch.Success ||
+                                        BuffSkillDestructionFantasiaOtherToOtherMatch.Success ||
+                                        BuffSkillDestructionFantasiaOtherToOthersMatch.Success
+                                        )
+                                    {
+                                        if (BuffSkillDestructionFantasiaOwnToOwnMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                        }
+                                        else if (BuffSkillDestructionFantasiaOwnToOtherMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = this.OwnName;
+                                            ChatLogActionData.TargetName = BuffSkillDestructionFantasiaOwnToOtherMatch.Groups["TargetName"].Value;
+                                        }
+
+                                        else if (BuffSkillDestructionFantasiaOtherToOwnMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = BuffSkillDestructionFantasiaOtherToOwnMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = this.OwnName;
+                                        }
+                                        else if (BuffSkillDestructionFantasiaOtherToOtherMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = BuffSkillDestructionFantasiaOtherToOtherMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = BuffSkillDestructionFantasiaOtherToOtherMatch.Groups["SourceName"].Value;
+                                        }
+                                        else if (BuffSkillDestructionFantasiaOtherToOthersMatch.Success)
+                                        {
+                                            ChatLogActionData.SourceName = BuffSkillDestructionFantasiaOtherToOthersMatch.Groups["SourceName"].Value;
+                                            ChatLogActionData.TargetName = BuffSkillDestructionFantasiaOtherToOthersMatch.Groups["TargetName"].Value;
+                                        }
+                                        ChatLogActionData.SkillName = "ゲイル スペル";
+
+                                        this.Invoke(UpdateDestructionFantasiaDelegate, new object[] { ChatLogActionData });
 
                                         continue;
                                     }
@@ -2034,6 +2170,66 @@ namespace OpenAIONDPS
                     {
                         this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.PrintExceptionDebugMessage(ex);
+            }
+        }
+
+        public void UpdateMantra(ActionData ChatLogActionData)
+        {
+            try
+            {
+                if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
+                {
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddMantra(true);
+                }
+
+                if (this.IsDebug && this.DebugLogFileTextWriter != null)
+                {
+                    this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.PrintExceptionDebugMessage(ex);
+            }
+        }
+
+        public void UpdateGale(ActionData ChatLogActionData)
+        {
+            try
+            {
+                if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
+                {
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddGale();
+                }
+
+                if (this.IsDebug && this.DebugLogFileTextWriter != null)
+                {
+                    this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.PrintExceptionDebugMessage(ex);
+            }
+        }
+
+        public void UpdateDestructionFantasia(ActionData ChatLogActionData)
+        {
+            try
+            {
+                if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
+                {
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddDestructionFantasia();
+                }
+
+                if (this.IsDebug && this.DebugLogFileTextWriter != null)
+                {
+                    this.DebugLogFileTextWriter.WriteLine(ChatLogActionData.LogText);
                 }
             }
             catch (Exception ex)
