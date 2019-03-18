@@ -28,6 +28,10 @@ namespace OpenAIONDPS
         private long HealingNumber = 0;
         private long GaleNumber = 0;
         private long DestructionFantasiaNumber = 0;
+        private bool PreviousAttackSimpleFlag = false;
+        private DateTime PreviousAttackSimpleTime = new DateTime(0);
+        private double MCTotalTime = 0.0;
+        private long MCNumber = 0;
 
         public bool IsFirstMemberUnit = false;
 
@@ -74,6 +78,10 @@ namespace OpenAIONDPS
             this.HealingNumber = 0;
             this.GaleNumber = 0;
             this.DestructionFantasiaNumber = 0;
+            this.PreviousAttackSimpleFlag = false;
+            this.PreviousAttackSimpleTime = new DateTime(0);
+            this.MCTotalTime = 0.0;
+            this.MCNumber = 0;
 
             this.DamageLabel.Text = "0";
             this.MaxDamageLabel.Text = "0";
@@ -181,6 +189,23 @@ namespace OpenAIONDPS
                 this.AttackSkillList[Data.SkillName].AddDamage(Data.Damage, Data.IsCriticalHit);
             }
 
+            if (!Data.IsSkill)
+            {
+                this.PreviousAttackSimpleFlag = true;
+                this.PreviousAttackSimpleTime = Data.Time;
+            }
+            else
+            {
+                if (this.PreviousAttackSimpleFlag)
+                {
+                    double MCTime = ((double)Data.Time.Ticks - (double)this.PreviousAttackSimpleTime.Ticks) / 10000000;
+                    this.UpdateMC(MCTime);
+                }
+
+                this.PreviousAttackSimpleFlag = false;
+                this.PreviousAttackSimpleTime = new DateTime(0);
+            }
+
             if (!this.IsStart())
             {
                 this.StartFlag = true;
@@ -210,6 +235,23 @@ namespace OpenAIONDPS
                 this.UpdateAttackNumberParSecond();
                 this.UpdateEvadedAttackNumber();
 
+                if (!IsSkill)
+                {
+                    this.PreviousAttackSimpleFlag = true;
+                    this.PreviousAttackSimpleTime = Time;
+                }
+                else
+                {
+                    if (this.PreviousAttackSimpleFlag)
+                    {
+                        double MCTime = ((double)Time.Ticks - (double)this.PreviousAttackSimpleTime.Ticks) / 10000000;
+                        this.UpdateMC(MCTime);
+                    }
+
+                    this.PreviousAttackSimpleFlag = false;
+                    this.PreviousAttackSimpleTime = new DateTime(0);
+                }
+
                 if (!this.IsStart())
                 {
                     this.StartFlag = true;
@@ -219,12 +261,12 @@ namespace OpenAIONDPS
 
         public void AddResistance(bool IsSourceNameMember, bool IsSkill, DateTime Time)
         {
-            // 回避した攻撃
+            // 抵抗した攻撃
             if (IsSourceNameMember)
             {
                 this.UpdateResistAttackNumber();
             }
-            // 回避された攻撃
+            // 抵抗された攻撃
             else
             {
                 if (!this.IsStart())
@@ -239,6 +281,23 @@ namespace OpenAIONDPS
                 this.UpdateDamageParAttackNumber();
                 this.UpdateAttackNumberParSecond();
                 this.UpdateResistedAttackNumber();
+
+                if (!IsSkill)
+                {
+                    this.PreviousAttackSimpleFlag = true;
+                    this.PreviousAttackSimpleTime = Time;
+                }
+                else
+                {
+                    if (this.PreviousAttackSimpleFlag)
+                    {
+                        double MCTime = ((double)Time.Ticks - (double)this.PreviousAttackSimpleTime.Ticks) / 10000000;
+                        this.UpdateMC(MCTime);
+                    }
+
+                    this.PreviousAttackSimpleFlag = false;
+                    this.PreviousAttackSimpleTime = new DateTime(0);
+                }
 
                 if (!this.IsStart())
                 {
@@ -263,6 +322,9 @@ namespace OpenAIONDPS
             this.UpdateDamageParSecond();
             this.UpdateDamageParAttackNumber();
             this.UpdateAttackNumberParSecond();
+
+            this.PreviousAttackSimpleFlag = false;
+            this.PreviousAttackSimpleTime = new DateTime(0);
 
             if (this.HealSkillList != null)
             {
@@ -361,6 +423,13 @@ namespace OpenAIONDPS
                 double Second = Math.Ceiling((double)Ticks / 10000000);
                 this.DamageParSecondLabel.Text = Math.Ceiling(this.Damage / Second).ToString("#,0");
             }
+        }
+
+        private void UpdateMC(double MCTime)
+        {
+            this.MCTotalTime += MCTime;
+            this.MCNumber += 1;
+            this.MCSecondParNumberLabel.Text = (this.MCTotalTime / this.MCNumber).ToString("F3");
         }
 
         private void UpdateDamageParAttackNumber()

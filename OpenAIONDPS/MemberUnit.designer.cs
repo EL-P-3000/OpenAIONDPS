@@ -52,6 +52,7 @@
             this.MantraLabel = new System.Windows.Forms.Label();
             this.GaleNumberLabel = new System.Windows.Forms.Label();
             this.DestructionFantasiaNumberLabel = new System.Windows.Forms.Label();
+            this.MCSecondParNumberLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CharacterNameTextBox
@@ -159,7 +160,7 @@
             // 
             // AttackNumberParSecondLabel
             // 
-            this.AttackNumberParSecondLabel.Location = new System.Drawing.Point(715, 6);
+            this.AttackNumberParSecondLabel.Location = new System.Drawing.Point(715, 1);
             this.AttackNumberParSecondLabel.Name = "AttackNumberParSecondLabel";
             this.AttackNumberParSecondLabel.Size = new System.Drawing.Size(70, 12);
             this.AttackNumberParSecondLabel.TabIndex = 12;
@@ -283,10 +284,20 @@
             this.DestructionFantasiaNumberLabel.Text = "0";
             this.DestructionFantasiaNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // MCSecondParNumberLabel
+            // 
+            this.MCSecondParNumberLabel.Location = new System.Drawing.Point(715, 13);
+            this.MCSecondParNumberLabel.Name = "MCSecondParNumberLabel";
+            this.MCSecondParNumberLabel.Size = new System.Drawing.Size(70, 12);
+            this.MCSecondParNumberLabel.TabIndex = 26;
+            this.MCSecondParNumberLabel.Text = "0";
+            this.MCSecondParNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MemberUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.MCSecondParNumberLabel);
             this.Controls.Add(this.DestructionFantasiaNumberLabel);
             this.Controls.Add(this.GaleNumberLabel);
             this.Controls.Add(this.MantraLabel);
@@ -344,5 +355,6 @@
         private System.Windows.Forms.Label MantraLabel;
         private System.Windows.Forms.Label GaleNumberLabel;
         private System.Windows.Forms.Label DestructionFantasiaNumberLabel;
+        private System.Windows.Forms.Label MCSecondParNumberLabel;
     }
 }
