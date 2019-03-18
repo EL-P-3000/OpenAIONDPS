@@ -16,8 +16,8 @@ namespace OpenAIONDPS
         private string ApplicationDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
 
         /* デバッグ用 */
-        StreamWriter DebugLogFileStreamWriter = null;
-        TextWriter DebugLogFileTextWriter = null;
+        private StreamWriter DebugLogFileStreamWriter = null;
+        private TextWriter DebugLogFileTextWriter = null;
         private string DebugLogFileName = "Debug.log";
         private bool IsDebug = false;
 
