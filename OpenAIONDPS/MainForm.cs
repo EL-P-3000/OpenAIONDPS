@@ -82,6 +82,8 @@ namespace OpenAIONDPS
 
             this.DeleteLogWhenStartingCheckBox.Checked = Registry.ReadDeleteLogWhenStarting();
 
+            this.DPSHighLightCheckBox.Checked = Registry.ReadDPSHighLight();
+
             RegisterHotKey(Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.F1);
         }
 
@@ -2774,6 +2776,8 @@ namespace OpenAIONDPS
         {
             if (this.DPSHighLightCheckBox.Checked)
             {
+                Registry.WriteDPSHighLight(true);
+
                 foreach (Control _Control in this.MemberGroupBox.Controls)
                 {
                     if (_Control.GetType().Name.Equals("MemberUnit"))
@@ -2785,6 +2789,8 @@ namespace OpenAIONDPS
             }
             else
             {
+                Registry.WriteDPSHighLight(false);
+
                 foreach (Control _Control in this.MemberGroupBox.Controls)
                 {
                     if (_Control.GetType().Name.Equals("MemberUnit"))

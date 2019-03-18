@@ -10,6 +10,7 @@ namespace OpenAIONDPS
         private const string SaveResultDirectoryKeyName = "SaveResultDirectory";
         private const string AlwaysOnTopKeyName = "AlwaysOnTop";
         private const string DeleteLogWhenStartingKeyName = "DeleteLogWhenStarting";
+        private const string DPSHighLightKeyName = "DPSHighLight";
 
         public static string ReadChatLogPath()
         {
@@ -69,6 +70,18 @@ namespace OpenAIONDPS
             catch
             {
                 return true;
+            }
+        }
+
+        public static bool ReadDPSHighLight()
+        {
+            try
+            {
+                return ReadValue<bool>(DPSHighLightKeyName);
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -192,6 +205,11 @@ namespace OpenAIONDPS
         public static void WriteDeleteLogWhenStarting(bool Value)
         {
             WriteValue<bool>(DeleteLogWhenStartingKeyName, Value);
+        }
+
+        public static void WriteDPSHighLight(bool Value)
+        {
+            WriteValue<bool>(DPSHighLightKeyName, Value);
         }
 
         public static void WriteFirstMemberName(string Name)
