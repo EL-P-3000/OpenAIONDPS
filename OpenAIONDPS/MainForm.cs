@@ -2801,5 +2801,14 @@ namespace OpenAIONDPS
                 }
             }
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (this.Size.Height == this.MaximumSize.Height && this.Size.Width == this.MaximumSize.Width)
+            {
+                this.SkillListFlowLayoutPanel.AutoScroll = false;
+                this.SkillListFlowLayoutPanel.AutoScroll = true;
+            }
+        }
     }
 }
