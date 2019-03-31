@@ -199,7 +199,7 @@ namespace OpenAIONDPS
                 if (this.PreviousAttackSimpleFlag)
                 {
                     double MCTime = ((double)Data.Time.Ticks - (double)this.PreviousAttackSimpleTime.Ticks) / 10000000;
-                    this.UpdateMC(MCTime);
+                    this.UpdateMC(MCTime, Data);
                 }
 
                 this.PreviousAttackSimpleFlag = false;
@@ -212,7 +212,7 @@ namespace OpenAIONDPS
             }
         }
 
-        public void AddEvasion(bool IsSourceNameMember, bool IsSkill, DateTime Time)
+        public void AddEvasion(bool IsSourceNameMember, bool IsSkill, DateTime Time, ActionData Data)
         {
             // 回避した攻撃
             if (IsSourceNameMember)
@@ -245,7 +245,7 @@ namespace OpenAIONDPS
                     if (this.PreviousAttackSimpleFlag)
                     {
                         double MCTime = ((double)Time.Ticks - (double)this.PreviousAttackSimpleTime.Ticks) / 10000000;
-                        this.UpdateMC(MCTime);
+                        this.UpdateMC(MCTime, Data);
                     }
 
                     this.PreviousAttackSimpleFlag = false;
@@ -259,7 +259,7 @@ namespace OpenAIONDPS
             }
         }
 
-        public void AddResistance(bool IsSourceNameMember, bool IsSkill, DateTime Time)
+        public void AddResistance(bool IsSourceNameMember, bool IsSkill, DateTime Time, ActionData Data)
         {
             // 抵抗した攻撃
             if (IsSourceNameMember)
@@ -292,7 +292,7 @@ namespace OpenAIONDPS
                     if (this.PreviousAttackSimpleFlag)
                     {
                         double MCTime = ((double)Time.Ticks - (double)this.PreviousAttackSimpleTime.Ticks) / 10000000;
-                        this.UpdateMC(MCTime);
+                        this.UpdateMC(MCTime, Data);
                     }
 
                     this.PreviousAttackSimpleFlag = false;
@@ -425,7 +425,7 @@ namespace OpenAIONDPS
             }
         }
 
-        private void UpdateMC(double MCTime)
+        private void UpdateMC(double MCTime, ActionData Data)
         {
             this.MCTotalTime += MCTime;
             this.MCNumber += 1;

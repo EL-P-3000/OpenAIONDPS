@@ -17,5 +17,6 @@ namespace OpenAIONDPS
         public bool IsSkill = true;
         public bool IsCriticalHit = false;
         public DateTime Time = DateTime.Now;
+        public bool IsMCSkill = false;
     }
 }

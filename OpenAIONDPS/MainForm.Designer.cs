@@ -45,7 +45,6 @@
             this.OpenLogFileButton = new System.Windows.Forms.Button();
             this.MemberGroupBox = new System.Windows.Forms.GroupBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -192,7 +191,6 @@
             this.MemberGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MemberGroupBox.Controls.Add(this.label37);
-            this.MemberGroupBox.Controls.Add(this.label36);
             this.MemberGroupBox.Controls.Add(this.label35);
             this.MemberGroupBox.Controls.Add(this.label34);
             this.MemberGroupBox.Controls.Add(this.label33);
@@ -262,16 +260,6 @@
             this.label37.TabIndex = 68;
             this.label37.Text = "攻撃頻度";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(768, 43);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(22, 12);
-            this.label36.TabIndex = 67;
-            this.label36.Text = "MC";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label35
             // 
@@ -1474,7 +1462,6 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
     }
 }

@@ -912,6 +912,7 @@ namespace OpenAIONDPS
                                         }
                                         ChatLogActionData.SkillName = "ポーション";
                                         ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
+                                        ChatLogActionData.IsMCSkill = true;
 
                                         this.Invoke(UpdateHealDelegate, ChatLogActionData);
 
@@ -1077,6 +1078,7 @@ namespace OpenAIONDPS
                                         if (LogTextWithoutTime.IndexOf("回復しました。") > 0)
                                         {
                                             ChatLogActionData.HealingAmount = long.Parse(HealSkillWithoutSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
+                                            ChatLogActionData.IsMCSkill = true;
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
@@ -1097,6 +1099,7 @@ namespace OpenAIONDPS
                                         if (LogTextWithoutTime.IndexOf("回復しました。") > 0)
                                         {
                                             ChatLogActionData.HealingAmount = long.Parse(HealSkillNextLineWithoutSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
+                                            ChatLogActionData.IsMCSkill = true;
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
@@ -1117,6 +1120,7 @@ namespace OpenAIONDPS
                                         if (LogTextWithoutTime.IndexOf("回復しました。") > 0)
                                         {
                                             ChatLogActionData.HealingAmount = long.Parse(HealSkillWithSourceNameMatch.Groups["HealingAmount"].Value.Replace(",", ""));
+                                            ChatLogActionData.IsMCSkill = true;
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
@@ -1149,6 +1153,7 @@ namespace OpenAIONDPS
                                         if (LogTextWithoutTime.IndexOf("回復しました。") > 0)
                                         {
                                             ChatLogActionData.HealingAmount = long.Parse(_Match.Groups["HealingAmount"].Value.Replace(",", ""));
+                                            ChatLogActionData.IsMCSkill = true;
                                             this.Invoke(UpdateHealDelegate, ChatLogActionData);
                                         }
 
@@ -1286,6 +1291,7 @@ namespace OpenAIONDPS
                                             ChatLogActionData.SkillName = AttackSkillDamageWithSourceNameMatch.Groups["SkillName"].Value;
                                             ChatLogActionData.TargetName = AttackSkillDamageWithSourceNameMatch.Groups["TargetName"].Value;
                                             ChatLogActionData.Damage = long.Parse(AttackSkillDamageWithSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+                                            ChatLogActionData.IsMCSkill = true;
 
                                             this.Invoke(UpdateDamageDelegate, ChatLogActionData);
 
@@ -1305,6 +1311,7 @@ namespace OpenAIONDPS
                                         ChatLogActionData.SkillName = AttackSkillDamageWithoutSourceNameMatch.Groups["SkillName"].Value;
                                         ChatLogActionData.TargetName = AttackSkillDamageWithoutSourceNameMatch.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(AttackSkillDamageWithoutSourceNameMatch.Groups["Damage"].Value.Replace(",", ""));
+                                        ChatLogActionData.IsMCSkill = true;
 
                                         this.Invoke(UpdateDamageDelegate, ChatLogActionData);
 
@@ -2066,11 +2073,11 @@ namespace OpenAIONDPS
 
                 if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.IsSkill, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddEvasion(true, ChatLogActionData.IsSkill, ChatLogActionData.Time, ChatLogActionData);
                 }
                 else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.IsSkill, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddEvasion(false, ChatLogActionData.IsSkill, ChatLogActionData.Time, ChatLogActionData);
                 }
 
                 if (this.IsDebug && this.DebugLogFileTextWriter != null)
@@ -2103,11 +2110,11 @@ namespace OpenAIONDPS
 
                 if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.SourceName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.IsSkill, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.SourceName].AddResistance(true, ChatLogActionData.IsSkill, ChatLogActionData.Time, ChatLogActionData);
                 }
                 else if (this.MemberNameMemberUnitList.ContainsKey(ChatLogActionData.TargetName))
                 {
-                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.IsSkill, ChatLogActionData.Time);
+                    this.MemberNameMemberUnitList[ChatLogActionData.TargetName].AddResistance(false, ChatLogActionData.IsSkill, ChatLogActionData.Time, ChatLogActionData);
                 }
 
                 if (this.IsDebug && this.DebugLogFileTextWriter != null)
