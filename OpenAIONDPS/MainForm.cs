@@ -2817,5 +2817,53 @@ namespace OpenAIONDPS
                 this.SkillListFlowLayoutPanel.AutoScroll = true;
             }
         }
+
+        private void StartCalcConditionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!this.StartCalcConditionCheckBox.Checked)
+            {
+                this.StartCalcConditionCheckBox.Checked = true;
+            }
+        }
+
+        private void StopCalcConditionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!this.StopCalcConditionCheckBox.Checked)
+            {
+                this.StopCalcConditionCheckBox.Checked = true;
+            }
+        }
+
+        private void StartCalcConditionComboBox_TextUpdate(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.StartCalcConditionComboBox.Text))
+            {
+                this.StartCalcConditionCheckBox.Checked = false;
+            }
+        }
+
+        private void StopCalcConditionComboBox_TextUpdate(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.StopCalcConditionComboBox.Text))
+            {
+                this.StopCalcConditionCheckBox.Checked = false;
+            }
+        }
+
+        private void LimitedTargetNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!this.LimitedTargetCheckBox.Checked)
+            {
+                this.LimitedTargetCheckBox.Checked = true;
+            }
+        }
+
+        private void LimitedTargetNameComboBox_TextUpdate(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.LimitedTargetNameComboBox.Text))
+            {
+                this.LimitedTargetCheckBox.Checked = false;
+            }
+        }
     }
 }
