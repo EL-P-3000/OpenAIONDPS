@@ -292,6 +292,7 @@
             this.MCSecondParNumberLabel.TabIndex = 26;
             this.MCSecondParNumberLabel.Text = "0";
             this.MCSecondParNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.MCSecondParNumberLabel.Visible = false;
             // 
             // MemberUnit
             // 
