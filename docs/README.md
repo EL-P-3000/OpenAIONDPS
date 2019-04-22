@@ -10,7 +10,11 @@ Chat.logの出力については別のホームページで探して設定して
 CPU: Intel Core i9-9900K  
 RAM: 64GB  
 GPU: NVIDIA GeForce GTX 2080 TI  
-OS: Windows 10 Pro 64bit  
+OS: Microsoft Windows 10 Pro 64bit  
+
+* 開発  
+ソフト: Microsoft Visual Studio Enterprise 2019  
+言語: C#  
 
 ツールのメイン画面 (Version 1.0.53)  
 ![Main](images/OpenAIONDPS-Main.png)
