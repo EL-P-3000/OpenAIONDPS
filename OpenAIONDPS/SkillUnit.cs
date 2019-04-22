@@ -137,7 +137,7 @@ namespace OpenAIONDPS
             this.MinDamageWithoutCritical = 0;
             this.IsStartWithCritical = false;
             this.IsStartWithoutCritical = false;
-            this.DamageLabel.Text = "0";
+            this.DamageLabel.Text = "0 / 0";
         }
 
         public string GetAttackResult()
