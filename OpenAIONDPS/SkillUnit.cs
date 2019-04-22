@@ -53,6 +53,7 @@ namespace OpenAIONDPS
             this.UpdateAttackNumber();
             this.UpdateMaxDamage(Damage, IsCriticalHit);
             this.UpdateMinDamage(Damage, IsCriticalHit);
+            this.UpdateDamageLabel();
 
             if (IsCriticalHit)
             {
@@ -72,7 +73,6 @@ namespace OpenAIONDPS
         private void UpdateDamage(long Damage)
         {
             this.Damage += Damage;
-            this.DamageLabel.Text = this.Damage.ToString("#,0");
         }
 
         private void UpdateAttackNumber()
@@ -114,6 +114,11 @@ namespace OpenAIONDPS
                     this.MinDamageWithoutCritical = Damage;
                 }
             }
+        }
+
+        private void UpdateDamageLabel()
+        {
+            this.DamageLabel.Text = this.Damage.ToString("#,0") + " / " + this.AttackNumber.ToString("#,0");
         }
 
         private void UpdateHealingAmount(long HealingAmount)

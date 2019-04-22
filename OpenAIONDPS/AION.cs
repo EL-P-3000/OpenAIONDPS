@@ -13,6 +13,7 @@ namespace OpenAIONDPS
             private const string SkillNameReplacedSkillName2Pattern            = @"(?<SkillName2>[[[SkillName]]])";
             private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s\(\)]+|攻撃))";
             private const string SkillNameGiganticSoldierPattern               = @"(?<SkillName>スウィープ|マグネティック\sディスチャージ|エネルギー\sディスチャージ)";
+            private const string SkillNameCannonPattern                        = @"(?<SkillName>殺龍砲)";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
             private const string TargetNamePattern                             = @"(?<TargetName>[^、]+)";
@@ -177,6 +178,11 @@ namespace OpenAIONDPS
             /// </summary>
             public const string AttackGiganticSoldierWithSourceNamePattern = "^" + SourceNamePattern + "は" + SkillNameGiganticSoldierPattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
+            /// <summary>
+            ///  殺龍砲
+            /// </summary>
+            public const string AttackCannonPattern = @"^破壊されかかった(天族|魔族)\s殺龍砲が使用した" + SkillNameCannonPattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
             /* 回避/抵抗 */
 
             /// <summary>
@@ -330,7 +336,7 @@ namespace OpenAIONDPS
                 case JobType.Melody:
                     return "メロディ";
                 case JobType.None:
-                    return "未選択";
+                    return "－";
                 default:
                     return "";
             }
@@ -611,7 +617,7 @@ namespace OpenAIONDPS
             // エフェクトダメージ
             SkillName = "エクスプローシブ アプライ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
-            SkillName = "スティレット コミットメント アディショナル エフェクト";
+            SkillName = "スティレット コミットメント効果";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
             SkillName = "ドラスティック ポイズン エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
@@ -755,6 +761,13 @@ namespace OpenAIONDPS
             SkillName = "モスキー ラプソディ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Melody, AttackSkillType.Dot));
 
+
+            /**************************************************************************************************************************************/
+            /* エレスギガル ***********************************************************************************************************************/
+            /**************************************************************************************************************************************/
+            // 破壊されかかった天族 殺龍砲が使用した殺龍砲
+            SkillName = "殺龍砲";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.None, AttackSkillType.EffectDamage));
 
             return _AttackSkillList;
         }

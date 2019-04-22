@@ -604,6 +604,11 @@ namespace OpenAIONDPS
         private static readonly Regex AttackGiganticSoldierWithSourceNameRegex = new Regex(AION.LogPattern.AttackGiganticSoldierWithSourceNamePattern, RegexOptions.Compiled);
 
         /// <summary>
+        /// 殺龍砲
+        /// </summary>
+        private static readonly Regex AttackCannonRegex = new Regex(AION.LogPattern.AttackCannonPattern, RegexOptions.Compiled);
+
+        /// <summary>
         /// 回避/抵抗した攻撃のパターン(自分)リスト
         /// </summary>
         private static readonly Regex ChatLogEvadeResistRegex = new Regex(AION.LogPattern.EvasionResistanceWithoutSourceNamePattern, RegexOptions.Compiled);
@@ -1217,6 +1222,20 @@ namespace OpenAIONDPS
                                 Match AttackDamageToMatch = AttackDamageToRegex.Match(LogTextWithoutTime);
                                 if (AttackDamageToMatch.Success)
                                 {
+                                    // 殺龍砲
+                                    Match AttackCannonMatch = AttackCannonRegex.Match(LogTextWithoutTime);
+                                    if (AttackCannonMatch.Success)
+                                    {
+                                        ChatLogActionData.SourceName = AttackCannonMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = AttackCannonMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.SkillName = AttackCannonMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(AttackCannonMatch.Groups["Damage"].Value.Replace(",", ""));
+
+                                        this.Invoke(UpdateDamageDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
                                     // 反射のダメージ
                                     Match AttackReflectionDamageWithDisciplineEnergyMatch = AttackReflectionDamageWithDisciplineEnergyRegex.Match(LogTextWithoutTime);
                                     Match AttackReflectionDamageWithSourceNameMatch = AttackReflectionDamageWithSourceNameRegex.Match(LogTextWithoutTime);

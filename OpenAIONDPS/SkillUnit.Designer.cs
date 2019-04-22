@@ -37,17 +37,17 @@
             // 
             this.NameLabel.Location = new System.Drawing.Point(58, 2);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(250, 13);
+            this.NameLabel.Size = new System.Drawing.Size(200, 13);
             this.NameLabel.TabIndex = 0;
             this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DamageLabel
             // 
-            this.DamageLabel.Location = new System.Drawing.Point(308, 2);
+            this.DamageLabel.Location = new System.Drawing.Point(266, 2);
             this.DamageLabel.Name = "DamageLabel";
-            this.DamageLabel.Size = new System.Drawing.Size(50, 13);
+            this.DamageLabel.Size = new System.Drawing.Size(100, 13);
             this.DamageLabel.TabIndex = 1;
-            this.DamageLabel.Text = "0";
+            this.DamageLabel.Text = "0 / 0";
             this.DamageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // JobLabel
@@ -62,8 +62,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.JobLabel);
             this.Controls.Add(this.DamageLabel);
+            this.Controls.Add(this.JobLabel);
             this.Controls.Add(this.NameLabel);
             this.Name = "SkillUnit";
             this.Size = new System.Drawing.Size(370, 16);
