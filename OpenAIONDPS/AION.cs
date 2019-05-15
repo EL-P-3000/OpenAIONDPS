@@ -35,7 +35,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// クリティカルヒットのパターン
             /// </summary>
-            public const string AttackCriticalHitPattern = "^クリティカルヒット！(.*)$";
+            public const string AttackCriticalHitPattern = @"^クリティカルヒット！\s(.*)$";
 
             /* 通常攻撃 */
 
@@ -303,7 +303,7 @@ namespace OpenAIONDPS
             public const string StopCalcConditionPattern = @"から経験値を" + EXPPattern + "獲得しました。.*";
         }
 
-        public enum JobType { None, Sword, Shield, Shadow, Bow, Spell, Spirit, Cure, Chant, Bullet, Gia, Melody };
+        public enum JobType { None, Sword, Shield, Shadow, Bow, Spell, Spirit, Cure, Chant, Bullet, Gia, Melody, Vivid };
 
         public enum AttackSkillType { Normal, DelayDamage, Dot, Summon, EffectDamage, Others };
 
@@ -335,6 +335,8 @@ namespace OpenAIONDPS
                     return "ギア";
                 case JobType.Melody:
                     return "メロディ";
+                case JobType.Vivid:
+                    return "ビビッド";
                 case JobType.None:
                     return "－";
                 default:
@@ -392,7 +394,11 @@ namespace OpenAIONDPS
             {
                 return JobType.Melody;
             }
-            else if (Name.Equals("未選択"))
+            else if (Name.Equals("ビビッド"))
+            {
+                return JobType.Vivid;
+            }
+            else if (Name.Equals("－"))
             {
                 return JobType.None;
             }
@@ -682,6 +688,8 @@ namespace OpenAIONDPS
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
             SkillName = "サモン：サイクロン エネルギー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
+            SkillName = "ヘル ペイン";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
 
             // サモン
             SkillName = "ファイア スピリット";
@@ -760,6 +768,31 @@ namespace OpenAIONDPS
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Melody, AttackSkillType.Dot));
             SkillName = "モスキー ラプソディ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Melody, AttackSkillType.Dot));
+
+
+            /**************************************************************************************************************************************/
+            /* ビビッド ***************************************************************************************************************************/
+            /**************************************************************************************************************************************/
+            // ドット
+            SkillName = "タイム ボム";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.Dot));
+
+
+            // エフェクトダメージ
+            SkillName = "アンガー バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "アニマ バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "タイム バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "ライトニング バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "スケッチャー ボム";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "グラビティ スケッチャー";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "ディシプリン バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
 
 
             /**************************************************************************************************************************************/

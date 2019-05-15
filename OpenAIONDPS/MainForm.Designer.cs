@@ -246,7 +246,7 @@
             this.MemberGroupBox.Controls.Add(this.Member18);
             this.MemberGroupBox.Location = new System.Drawing.Point(6, 6);
             this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Size = new System.Drawing.Size(1125, 616);
+            this.MemberGroupBox.Size = new System.Drawing.Size(1125, 585);
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
@@ -309,7 +309,7 @@
             // ClearButton
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(1044, 587);
+            this.ClearButton.Location = new System.Drawing.Point(1044, 556);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 54;
@@ -429,8 +429,9 @@
             // 
             // label14
             // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 590);
+            this.label14.Location = new System.Drawing.Point(6, 565);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(174, 12);
             this.label14.TabIndex = 41;
@@ -468,8 +469,9 @@
             // 
             // TotalDamageLabel
             // 
+            this.TotalDamageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TotalDamageLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TotalDamageLabel.Location = new System.Drawing.Point(227, 590);
+            this.TotalDamageLabel.Location = new System.Drawing.Point(227, 565);
             this.TotalDamageLabel.Name = "TotalDamageLabel";
             this.TotalDamageLabel.Size = new System.Drawing.Size(82, 12);
             this.TotalDamageLabel.TabIndex = 31;
@@ -828,7 +830,7 @@
             this.MenuTabControl.Location = new System.Drawing.Point(4, 122);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1146, 816);
+            this.MenuTabControl.Size = new System.Drawing.Size(1146, 846);
             this.MenuTabControl.TabIndex = 11;
             this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
             // 
@@ -840,7 +842,7 @@
             this.MemberDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.MemberDamageListTabPage.Name = "MemberDamageListTabPage";
             this.MemberDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1138, 790);
+            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1138, 820);
             this.MemberDamageListTabPage.TabIndex = 0;
             this.MemberDamageListTabPage.Text = "メンバー別ダメージ一覧";
             this.MemberDamageListTabPage.UseVisualStyleBackColor = true;
@@ -850,9 +852,9 @@
             this.SkillListFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SkillListFlowLayoutPanel.AutoScroll = true;
-            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(6, 625);
+            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(0, 590);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
-            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(1129, 159);
+            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(1138, 224);
             this.SkillListFlowLayoutPanel.TabIndex = 29;
             // 
             // SkillDamageListTabPage
@@ -862,7 +864,7 @@
             this.SkillDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.SkillDamageListTabPage.Name = "SkillDamageListTabPage";
             this.SkillDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SkillDamageListTabPage.Size = new System.Drawing.Size(1138, 790);
+            this.SkillDamageListTabPage.Size = new System.Drawing.Size(1138, 820);
             this.SkillDamageListTabPage.TabIndex = 1;
             this.SkillDamageListTabPage.Text = "スキル別ダメージ一覧";
             this.SkillDamageListTabPage.UseVisualStyleBackColor = true;
@@ -908,7 +910,7 @@
             this.AttackSkillListDataGridView.ReadOnly = true;
             this.AttackSkillListDataGridView.RowHeadersVisible = false;
             this.AttackSkillListDataGridView.RowTemplate.Height = 21;
-            this.AttackSkillListDataGridView.Size = new System.Drawing.Size(1036, 882);
+            this.AttackSkillListDataGridView.Size = new System.Drawing.Size(1036, 912);
             this.AttackSkillListDataGridView.TabIndex = 0;
             // 
             // MemberNameColumn
@@ -993,7 +995,7 @@
             this.SkillHealListTabPage.Location = new System.Drawing.Point(4, 22);
             this.SkillHealListTabPage.Name = "SkillHealListTabPage";
             this.SkillHealListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SkillHealListTabPage.Size = new System.Drawing.Size(1138, 790);
+            this.SkillHealListTabPage.Size = new System.Drawing.Size(1138, 820);
             this.SkillHealListTabPage.TabIndex = 2;
             this.SkillHealListTabPage.Text = "スキル別ヒール一覧";
             this.SkillHealListTabPage.UseVisualStyleBackColor = true;
@@ -1033,7 +1035,7 @@
             this.HealSkillListDataGridView.ReadOnly = true;
             this.HealSkillListDataGridView.RowHeadersVisible = false;
             this.HealSkillListDataGridView.RowTemplate.Height = 21;
-            this.HealSkillListDataGridView.Size = new System.Drawing.Size(1036, 882);
+            this.HealSkillListDataGridView.Size = new System.Drawing.Size(1036, 912);
             this.HealSkillListDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -1159,7 +1161,7 @@
             // 
             this.Member02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member02.Location = new System.Drawing.Point(6, 87);
+            this.Member02.Location = new System.Drawing.Point(6, 86);
             this.Member02.Name = "Member02";
             this.Member02.Size = new System.Drawing.Size(1109, 26);
             this.Member02.TabIndex = 14;
@@ -1168,7 +1170,7 @@
             // 
             this.Member03.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member03.Location = new System.Drawing.Point(6, 116);
+            this.Member03.Location = new System.Drawing.Point(6, 114);
             this.Member03.Name = "Member03";
             this.Member03.Size = new System.Drawing.Size(1109, 26);
             this.Member03.TabIndex = 15;
@@ -1177,7 +1179,7 @@
             // 
             this.Member04.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member04.Location = new System.Drawing.Point(6, 145);
+            this.Member04.Location = new System.Drawing.Point(6, 142);
             this.Member04.Name = "Member04";
             this.Member04.Size = new System.Drawing.Size(1109, 26);
             this.Member04.TabIndex = 16;
@@ -1186,7 +1188,7 @@
             // 
             this.Member05.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member05.Location = new System.Drawing.Point(6, 174);
+            this.Member05.Location = new System.Drawing.Point(6, 170);
             this.Member05.Name = "Member05";
             this.Member05.Size = new System.Drawing.Size(1109, 26);
             this.Member05.TabIndex = 17;
@@ -1195,7 +1197,7 @@
             // 
             this.Member06.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member06.Location = new System.Drawing.Point(6, 203);
+            this.Member06.Location = new System.Drawing.Point(6, 198);
             this.Member06.Name = "Member06";
             this.Member06.Size = new System.Drawing.Size(1109, 26);
             this.Member06.TabIndex = 18;
@@ -1204,7 +1206,7 @@
             // 
             this.Member07.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member07.Location = new System.Drawing.Point(6, 232);
+            this.Member07.Location = new System.Drawing.Point(6, 226);
             this.Member07.Name = "Member07";
             this.Member07.Size = new System.Drawing.Size(1109, 26);
             this.Member07.TabIndex = 19;
@@ -1213,7 +1215,7 @@
             // 
             this.Member08.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member08.Location = new System.Drawing.Point(6, 261);
+            this.Member08.Location = new System.Drawing.Point(6, 254);
             this.Member08.Name = "Member08";
             this.Member08.Size = new System.Drawing.Size(1109, 26);
             this.Member08.TabIndex = 20;
@@ -1222,7 +1224,7 @@
             // 
             this.Member09.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member09.Location = new System.Drawing.Point(6, 290);
+            this.Member09.Location = new System.Drawing.Point(6, 282);
             this.Member09.Name = "Member09";
             this.Member09.Size = new System.Drawing.Size(1109, 26);
             this.Member09.TabIndex = 21;
@@ -1231,7 +1233,7 @@
             // 
             this.Member10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member10.Location = new System.Drawing.Point(6, 319);
+            this.Member10.Location = new System.Drawing.Point(6, 310);
             this.Member10.Name = "Member10";
             this.Member10.Size = new System.Drawing.Size(1109, 26);
             this.Member10.TabIndex = 22;
@@ -1240,7 +1242,7 @@
             // 
             this.Member11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member11.Location = new System.Drawing.Point(6, 348);
+            this.Member11.Location = new System.Drawing.Point(6, 338);
             this.Member11.Name = "Member11";
             this.Member11.Size = new System.Drawing.Size(1109, 26);
             this.Member11.TabIndex = 23;
@@ -1249,7 +1251,7 @@
             // 
             this.Member12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member12.Location = new System.Drawing.Point(6, 377);
+            this.Member12.Location = new System.Drawing.Point(6, 366);
             this.Member12.Name = "Member12";
             this.Member12.Size = new System.Drawing.Size(1109, 26);
             this.Member12.TabIndex = 24;
@@ -1258,7 +1260,7 @@
             // 
             this.Member13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member13.Location = new System.Drawing.Point(6, 406);
+            this.Member13.Location = new System.Drawing.Point(6, 394);
             this.Member13.Name = "Member13";
             this.Member13.Size = new System.Drawing.Size(1109, 26);
             this.Member13.TabIndex = 57;
@@ -1267,7 +1269,7 @@
             // 
             this.Member14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member14.Location = new System.Drawing.Point(6, 435);
+            this.Member14.Location = new System.Drawing.Point(6, 422);
             this.Member14.Name = "Member14";
             this.Member14.Size = new System.Drawing.Size(1109, 26);
             this.Member14.TabIndex = 58;
@@ -1276,7 +1278,7 @@
             // 
             this.Member15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member15.Location = new System.Drawing.Point(6, 464);
+            this.Member15.Location = new System.Drawing.Point(6, 450);
             this.Member15.Name = "Member15";
             this.Member15.Size = new System.Drawing.Size(1109, 26);
             this.Member15.TabIndex = 59;
@@ -1285,7 +1287,7 @@
             // 
             this.Member16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member16.Location = new System.Drawing.Point(6, 493);
+            this.Member16.Location = new System.Drawing.Point(6, 478);
             this.Member16.Name = "Member16";
             this.Member16.Size = new System.Drawing.Size(1109, 26);
             this.Member16.TabIndex = 60;
@@ -1294,7 +1296,7 @@
             // 
             this.Member17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member17.Location = new System.Drawing.Point(6, 522);
+            this.Member17.Location = new System.Drawing.Point(6, 506);
             this.Member17.Name = "Member17";
             this.Member17.Size = new System.Drawing.Size(1109, 26);
             this.Member17.TabIndex = 61;
@@ -1303,7 +1305,7 @@
             // 
             this.Member18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Member18.Location = new System.Drawing.Point(6, 551);
+            this.Member18.Location = new System.Drawing.Point(6, 534);
             this.Member18.Name = "Member18";
             this.Member18.Size = new System.Drawing.Size(1109, 26);
             this.Member18.TabIndex = 62;
@@ -1312,7 +1314,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 941);
+            this.ClientSize = new System.Drawing.Size(1154, 971);
             this.Controls.Add(this.DPSHighLightCheckBox);
             this.Controls.Add(this.DeleteLogWhenStartingCheckBox);
             this.Controls.Add(this.StartCalcConditionComboBox);
@@ -1343,7 +1345,7 @@
             this.Controls.Add(this.CalculationStopButton);
             this.Controls.Add(this.CalculationStartButton);
             this.KeyPreview = true;
-            this.MaximumSize = new System.Drawing.Size(1170, 980);
+            this.MaximumSize = new System.Drawing.Size(1170, 1010);
             this.Name = "MainForm";
             this.Text = "Open AION DPS 1.0.53";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
