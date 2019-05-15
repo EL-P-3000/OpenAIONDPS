@@ -781,9 +781,17 @@ namespace OpenAIONDPS
             // エフェクトダメージ
             SkillName = "アンガー バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "アニマ バインド";
+            SkillName = "ラス バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "インデュランス バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
             SkillName = "タイム バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "グラビティ バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "タイムズ リストレイン";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = "アニマ バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
             SkillName = "ライトニング バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
