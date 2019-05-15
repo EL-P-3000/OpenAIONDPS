@@ -246,7 +246,7 @@
             this.MemberGroupBox.Controls.Add(this.Member18);
             this.MemberGroupBox.Location = new System.Drawing.Point(6, 6);
             this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Size = new System.Drawing.Size(1125, 585);
+            this.MemberGroupBox.Size = new System.Drawing.Size(1125, 590);
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
@@ -309,7 +309,7 @@
             // ClearButton
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(1044, 556);
+            this.ClearButton.Location = new System.Drawing.Point(1044, 561);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 54;
@@ -431,7 +431,7 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 565);
+            this.label14.Location = new System.Drawing.Point(6, 570);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(174, 12);
             this.label14.TabIndex = 41;
@@ -471,7 +471,7 @@
             // 
             this.TotalDamageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TotalDamageLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TotalDamageLabel.Location = new System.Drawing.Point(227, 565);
+            this.TotalDamageLabel.Location = new System.Drawing.Point(227, 570);
             this.TotalDamageLabel.Name = "TotalDamageLabel";
             this.TotalDamageLabel.Size = new System.Drawing.Size(82, 12);
             this.TotalDamageLabel.TabIndex = 31;
@@ -830,7 +830,7 @@
             this.MenuTabControl.Location = new System.Drawing.Point(4, 122);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1146, 846);
+            this.MenuTabControl.Size = new System.Drawing.Size(1146, 856);
             this.MenuTabControl.TabIndex = 11;
             this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
             // 
@@ -842,7 +842,7 @@
             this.MemberDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.MemberDamageListTabPage.Name = "MemberDamageListTabPage";
             this.MemberDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1138, 820);
+            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1138, 830);
             this.MemberDamageListTabPage.TabIndex = 0;
             this.MemberDamageListTabPage.Text = "メンバー別ダメージ一覧";
             this.MemberDamageListTabPage.UseVisualStyleBackColor = true;
@@ -852,7 +852,7 @@
             this.SkillListFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SkillListFlowLayoutPanel.AutoScroll = true;
-            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(0, 590);
+            this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(0, 600);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
             this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(1138, 224);
             this.SkillListFlowLayoutPanel.TabIndex = 29;
@@ -1314,7 +1314,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 971);
+            this.ClientSize = new System.Drawing.Size(1154, 981);
             this.Controls.Add(this.DPSHighLightCheckBox);
             this.Controls.Add(this.DeleteLogWhenStartingCheckBox);
             this.Controls.Add(this.StartCalcConditionComboBox);
@@ -1345,9 +1345,9 @@
             this.Controls.Add(this.CalculationStopButton);
             this.Controls.Add(this.CalculationStartButton);
             this.KeyPreview = true;
-            this.MaximumSize = new System.Drawing.Size(1170, 1010);
+            this.MaximumSize = new System.Drawing.Size(1170, 1020);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.53";
+            this.Text = "Open AION DPS 1.0.54";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
