@@ -690,6 +690,10 @@ namespace OpenAIONDPS
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
             SkillName = "ヘル ペイン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
+            SkillName = "マジック エクスプロージョン";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
+            SkillName = "マジック バックドラフト";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
 
             // サモン
             SkillName = "ファイア スピリット";
