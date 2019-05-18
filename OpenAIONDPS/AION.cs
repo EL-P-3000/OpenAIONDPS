@@ -74,7 +74,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// スキル攻撃のダメージのパターン(他人)
             /// </summary>
-            public const string AttackSkillDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+            public const string AttackSkillDamageWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "(効果|)の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
 
             /// <summary>
             /// スキル攻撃のダメージのパターン(サモン)(要スキル名置換)
@@ -778,7 +778,8 @@ namespace OpenAIONDPS
             // ドット
             SkillName = "タイム ボム";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.Dot));
-
+            SkillName = "ライトニング スケッチャー";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.Dot));
 
             // エフェクトダメージ
             SkillName = "アンガー バインド";
