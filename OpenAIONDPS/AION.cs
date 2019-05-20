@@ -35,7 +35,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// クリティカルヒットのパターン
             /// </summary>
-            public const string AttackCriticalHitPattern = @"^クリティカルヒット！\s(.*)$";
+            public const string AttackCriticalHitPattern = @"^クリティカルヒット！\s?([^\s].*)$";
 
             /* 通常攻撃 */
 
