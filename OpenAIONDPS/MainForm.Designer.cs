@@ -608,9 +608,6 @@
             // StartCalcConditionComboBox
             // 
             this.StartCalcConditionComboBox.FormattingEnabled = true;
-            this.StartCalcConditionComboBox.Items.AddRange(new object[] {
-            "ベリトラがドラゴンに変身します。",
-            "プリギタ: 女王よ、我に覚醒の力を！"});
             this.StartCalcConditionComboBox.Location = new System.Drawing.Point(109, 70);
             this.StartCalcConditionComboBox.Name = "StartCalcConditionComboBox";
             this.StartCalcConditionComboBox.Size = new System.Drawing.Size(203, 20);
@@ -632,10 +629,10 @@
             // 
             this.StopCalcConditionComboBox.FormattingEnabled = true;
             this.StopCalcConditionComboBox.Items.AddRange(new object[] {
+            "弱化したディーヴァ変異体",
+            "第三龍帝 エレスギガル",
             "ベリトラ",
-            "理性を失ったプリギタ",
-            "ネルガル",
-            "呪われたオペル"});
+            "プリギタ"});
             this.StopCalcConditionComboBox.Location = new System.Drawing.Point(424, 70);
             this.StopCalcConditionComboBox.Name = "StopCalcConditionComboBox";
             this.StopCalcConditionComboBox.Size = new System.Drawing.Size(203, 20);
@@ -657,11 +654,10 @@
             // 
             this.LimitedTargetNameComboBox.FormattingEnabled = true;
             this.LimitedTargetNameComboBox.Items.AddRange(new object[] {
+            "弱化したディーヴァ変異体",
             "第三龍帝 エレスギガル",
             "ベリトラ",
-            "理性を失ったプリギタ",
-            "ネルガル",
-            "呪われたオペル"});
+            "プリギタ"});
             this.LimitedTargetNameComboBox.Location = new System.Drawing.Point(719, 70);
             this.LimitedTargetNameComboBox.Name = "LimitedTargetNameComboBox";
             this.LimitedTargetNameComboBox.Size = new System.Drawing.Size(203, 20);
