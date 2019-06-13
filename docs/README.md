@@ -16,7 +16,7 @@ OS: Microsoft Windows 10 Pro 64bit
 ソフト: Microsoft Visual Studio Enterprise 2019  
 言語: C#  
 
-ツールのメイン画面 (Version 1.0.58)  
+ツールのメイン画面 (Version 1.0.60)  
 ![Main](images/OpenAIONDPS-Main.png)
 
 登録一覧画面  
