@@ -94,6 +94,13 @@
     <Compile Include="SkillUnit.Designer.cs">
       <DependentUpon>SkillUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpeakerData.cs" />
+    <Compile Include="SpeakerUnit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SpeakerUnit.Designer.cs">
+      <DependentUpon>SpeakerUnit.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FavoriteMemberListUnit.resx">
       <DependentUpon>FavoriteMemberListUnit.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +123,9 @@
     <EmbeddedResource Include="SkillUnit.resx">
       <DependentUpon>SkillUnit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SpeakerUnit.resx">
+      <DependentUpon>SpeakerUnit.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -134,6 +144,17 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SpeechLib">
+      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

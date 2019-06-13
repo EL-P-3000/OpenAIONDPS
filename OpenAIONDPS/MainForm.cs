@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SpeechLib;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OpenAIONDPS
@@ -64,6 +67,13 @@ namespace OpenAIONDPS
         private const int MOD_CONTROL = 0x0002;
         private const int WM_HOTKEY = 0x0312;
 
+        /* 読み上げ */
+        private SpVoice Speaker = new SpVoice();
+        private BlockingCollection<string> SpeakTextQueue = new BlockingCollection<string>();
+        private Thread SpeakerThread = null;
+        private bool IsSpeakerThread = true;
+        private LinkedList<SpeakerData> SpeakerDataList = new LinkedList<SpeakerData>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -85,6 +95,9 @@ namespace OpenAIONDPS
             this.DPSHighLightCheckBox.Checked = Registry.ReadDPSHighLight();
 
             RegisterHotKey(Handle, HOTKEY_ID, MOD_CONTROL, (int)Keys.F1);
+
+            this.SpeakerThread = new Thread(Speak);
+            this.SpeakerThread.Start();
         }
 
         private void InitSkillUnit()
@@ -115,9 +128,40 @@ namespace OpenAIONDPS
             }
         }
 
+        public void Speak()
+        {
+            try
+            {
+                while (IsSpeakerThread)
+                {
+                    foreach (string TestData in SpeakTextQueue.GetConsumingEnumerable())
+                    {
+                        try
+                        {
+                            this.Speaker.Speak(TestData);
+                        }
+                        catch (Exception e2)
+                        {
+                        }
+                    }
+
+                    Console.WriteLine("Test");
+                }
+            }
+            catch (ThreadAbortException tae)
+            {
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.StopCalculationThread();
+            this.IsSpeakerThread = false;
+            this.SpeakerThread.Abort();
+            this.SpeakTextQueue.Dispose();
             UnregisterHotKey(Handle, HOTKEY_ID);
         }
 
@@ -155,6 +199,26 @@ namespace OpenAIONDPS
                             {
                                 this.JobTypeNumberOfMemberList[_MemberUnit.GetJob()] += 1;
                             }
+                        }
+                    }
+                }
+            }
+
+            this.SpeakerDataList.Clear();
+            foreach (Control _Control in this.SpeakTab.Controls)
+            {
+                if (_Control.GetType().Name.Equals("SpeakerUnit"))
+                {
+                    SpeakerUnit _SpeakerUnit = (SpeakerUnit)_Control;
+                    if (_SpeakerUnit.IsEnabled)
+                    {
+                        try
+                        {
+                            SpeakerData _SpeakerData = new SpeakerData(_SpeakerUnit.PatternText, _SpeakerUnit.SpeakText);
+                            this.SpeakerDataList.AddLast(_SpeakerData);
+                        }
+                        catch
+                        {
                         }
                     }
                 }
@@ -820,6 +884,9 @@ namespace OpenAIONDPS
                                         break;
                                     }
                                 }
+
+                                // 読み上げ
+                                this.CheckSpeakText(LogTextWithoutTime);
 
                                 // 前回復データの処理
                                 if (PreviousHealChatLogActionData != null)
@@ -2349,6 +2416,43 @@ namespace OpenAIONDPS
         public void StopCalculationFromLogFile()
         {
             this.StopCalculationThread();
+        }
+
+        /* 読み上げ */
+        private void CheckSpeakText(string LogTextWithoutTime)
+        {
+            if (String.IsNullOrEmpty(LogTextWithoutTime) || this.SpeakerDataList.Count == 0)
+            {
+                return;
+            }
+
+            foreach (SpeakerData _SpeakerData in this.SpeakerDataList)
+            {
+                try
+                {
+                    Match _Match = _SpeakerData.SpeakTextRegex.Match(LogTextWithoutTime);
+                    if (_Match.Success)
+                    {
+                        string SpeakText = "";
+                        if (_SpeakerData.SpeakText.IndexOf("{{{Target}}}") >= 0)
+                        {
+                            SpeakText = _SpeakerData.SpeakText.Replace("{{{Target}}}", _Match.Groups["Target"].Value);
+                        }
+                        else if (_SpeakerData.SpeakText.IndexOf("{{{自分}}}") >= 0)
+                        {
+                            SpeakText = _SpeakerData.SpeakText.Replace("{{{自分}}}", this.OwnName);
+                        }
+                        else
+                        {
+                            SpeakText = _SpeakerData.SpeakText;
+                        }
+                        this.SpeakTextQueue.Add(SpeakText);
+                    }
+                }
+                catch
+                {
+                }
+            }
         }
 
         /* その他 */

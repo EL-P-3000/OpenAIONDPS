@@ -67,6 +67,7 @@
             this.Controls.Add(this.NameLabel);
             this.Name = "SkillUnit";
             this.Size = new System.Drawing.Size(370, 16);
+            this.Tag = "2";
             this.ResumeLayout(false);
 
         }
