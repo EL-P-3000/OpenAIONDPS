@@ -139,6 +139,13 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SpeakTab = new System.Windows.Forms.TabPage();
+            this.speakerUnit7 = new OpenAIONDPS.SpeakerUnit();
+            this.speakerUnit6 = new OpenAIONDPS.SpeakerUnit();
+            this.speakerUnit5 = new OpenAIONDPS.SpeakerUnit();
+            this.speakerUnit4 = new OpenAIONDPS.SpeakerUnit();
+            this.speakerUnit3 = new OpenAIONDPS.SpeakerUnit();
+            this.speakerUnit2 = new OpenAIONDPS.SpeakerUnit();
+            this.speakerUnit1 = new OpenAIONDPS.SpeakerUnit();
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.SpeakUnit03 = new OpenAIONDPS.SpeakerUnit();
@@ -151,13 +158,6 @@
             this.label28 = new System.Windows.Forms.Label();
             this.DeleteLogWhenStartingCheckBox = new System.Windows.Forms.CheckBox();
             this.DPSHighLightCheckBox = new System.Windows.Forms.CheckBox();
-            this.speakerUnit1 = new OpenAIONDPS.SpeakerUnit();
-            this.speakerUnit2 = new OpenAIONDPS.SpeakerUnit();
-            this.speakerUnit3 = new OpenAIONDPS.SpeakerUnit();
-            this.speakerUnit4 = new OpenAIONDPS.SpeakerUnit();
-            this.speakerUnit5 = new OpenAIONDPS.SpeakerUnit();
-            this.speakerUnit6 = new OpenAIONDPS.SpeakerUnit();
-            this.speakerUnit7 = new OpenAIONDPS.SpeakerUnit();
             this.MemberGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CalculationTimerMinutesNumericUpDown)).BeginInit();
             this.MenuTabControl.SuspendLayout();
@@ -1267,6 +1267,76 @@
             this.SpeakTab.Text = "読み上げ";
             this.SpeakTab.UseVisualStyleBackColor = true;
             // 
+            // speakerUnit7
+            // 
+            this.speakerUnit7.IsEnabled = false;
+            this.speakerUnit7.Location = new System.Drawing.Point(6, 277);
+            this.speakerUnit7.Name = "speakerUnit7";
+            this.speakerUnit7.PatternText = "";
+            this.speakerUnit7.Size = new System.Drawing.Size(977, 21);
+            this.speakerUnit7.SpeakText = "";
+            this.speakerUnit7.TabIndex = 11;
+            // 
+            // speakerUnit6
+            // 
+            this.speakerUnit6.IsEnabled = false;
+            this.speakerUnit6.Location = new System.Drawing.Point(6, 250);
+            this.speakerUnit6.Name = "speakerUnit6";
+            this.speakerUnit6.PatternText = "";
+            this.speakerUnit6.Size = new System.Drawing.Size(977, 21);
+            this.speakerUnit6.SpeakText = "";
+            this.speakerUnit6.TabIndex = 10;
+            // 
+            // speakerUnit5
+            // 
+            this.speakerUnit5.IsEnabled = false;
+            this.speakerUnit5.Location = new System.Drawing.Point(6, 223);
+            this.speakerUnit5.Name = "speakerUnit5";
+            this.speakerUnit5.PatternText = "";
+            this.speakerUnit5.Size = new System.Drawing.Size(977, 21);
+            this.speakerUnit5.SpeakText = "";
+            this.speakerUnit5.TabIndex = 9;
+            // 
+            // speakerUnit4
+            // 
+            this.speakerUnit4.IsEnabled = false;
+            this.speakerUnit4.Location = new System.Drawing.Point(6, 196);
+            this.speakerUnit4.Name = "speakerUnit4";
+            this.speakerUnit4.PatternText = "";
+            this.speakerUnit4.Size = new System.Drawing.Size(977, 21);
+            this.speakerUnit4.SpeakText = "";
+            this.speakerUnit4.TabIndex = 8;
+            // 
+            // speakerUnit3
+            // 
+            this.speakerUnit3.IsEnabled = false;
+            this.speakerUnit3.Location = new System.Drawing.Point(6, 169);
+            this.speakerUnit3.Name = "speakerUnit3";
+            this.speakerUnit3.PatternText = "";
+            this.speakerUnit3.Size = new System.Drawing.Size(977, 21);
+            this.speakerUnit3.SpeakText = "";
+            this.speakerUnit3.TabIndex = 7;
+            // 
+            // speakerUnit2
+            // 
+            this.speakerUnit2.IsEnabled = false;
+            this.speakerUnit2.Location = new System.Drawing.Point(6, 142);
+            this.speakerUnit2.Name = "speakerUnit2";
+            this.speakerUnit2.PatternText = "";
+            this.speakerUnit2.Size = new System.Drawing.Size(977, 21);
+            this.speakerUnit2.SpeakText = "";
+            this.speakerUnit2.TabIndex = 6;
+            // 
+            // speakerUnit1
+            // 
+            this.speakerUnit1.IsEnabled = false;
+            this.speakerUnit1.Location = new System.Drawing.Point(6, 115);
+            this.speakerUnit1.Name = "speakerUnit1";
+            this.speakerUnit1.PatternText = "";
+            this.speakerUnit1.Size = new System.Drawing.Size(977, 21);
+            this.speakerUnit1.SpeakText = "";
+            this.speakerUnit1.TabIndex = 5;
+            // 
             // label38
             // 
             this.label38.AutoSize = true;
@@ -1394,76 +1464,6 @@
             this.DPSHighLightCheckBox.UseVisualStyleBackColor = true;
             this.DPSHighLightCheckBox.CheckedChanged += new System.EventHandler(this.DPSHighLightCheckBox_CheckedChanged);
             // 
-            // speakerUnit1
-            // 
-            this.speakerUnit1.IsEnabled = false;
-            this.speakerUnit1.Location = new System.Drawing.Point(6, 115);
-            this.speakerUnit1.Name = "speakerUnit1";
-            this.speakerUnit1.PatternText = "";
-            this.speakerUnit1.Size = new System.Drawing.Size(977, 21);
-            this.speakerUnit1.SpeakText = "";
-            this.speakerUnit1.TabIndex = 5;
-            // 
-            // speakerUnit2
-            // 
-            this.speakerUnit2.IsEnabled = false;
-            this.speakerUnit2.Location = new System.Drawing.Point(6, 142);
-            this.speakerUnit2.Name = "speakerUnit2";
-            this.speakerUnit2.PatternText = "";
-            this.speakerUnit2.Size = new System.Drawing.Size(977, 21);
-            this.speakerUnit2.SpeakText = "";
-            this.speakerUnit2.TabIndex = 6;
-            // 
-            // speakerUnit3
-            // 
-            this.speakerUnit3.IsEnabled = false;
-            this.speakerUnit3.Location = new System.Drawing.Point(6, 169);
-            this.speakerUnit3.Name = "speakerUnit3";
-            this.speakerUnit3.PatternText = "";
-            this.speakerUnit3.Size = new System.Drawing.Size(977, 21);
-            this.speakerUnit3.SpeakText = "";
-            this.speakerUnit3.TabIndex = 7;
-            // 
-            // speakerUnit4
-            // 
-            this.speakerUnit4.IsEnabled = false;
-            this.speakerUnit4.Location = new System.Drawing.Point(6, 196);
-            this.speakerUnit4.Name = "speakerUnit4";
-            this.speakerUnit4.PatternText = "";
-            this.speakerUnit4.Size = new System.Drawing.Size(977, 21);
-            this.speakerUnit4.SpeakText = "";
-            this.speakerUnit4.TabIndex = 8;
-            // 
-            // speakerUnit5
-            // 
-            this.speakerUnit5.IsEnabled = false;
-            this.speakerUnit5.Location = new System.Drawing.Point(6, 223);
-            this.speakerUnit5.Name = "speakerUnit5";
-            this.speakerUnit5.PatternText = "";
-            this.speakerUnit5.Size = new System.Drawing.Size(977, 21);
-            this.speakerUnit5.SpeakText = "";
-            this.speakerUnit5.TabIndex = 9;
-            // 
-            // speakerUnit6
-            // 
-            this.speakerUnit6.IsEnabled = false;
-            this.speakerUnit6.Location = new System.Drawing.Point(6, 250);
-            this.speakerUnit6.Name = "speakerUnit6";
-            this.speakerUnit6.PatternText = "";
-            this.speakerUnit6.Size = new System.Drawing.Size(977, 21);
-            this.speakerUnit6.SpeakText = "";
-            this.speakerUnit6.TabIndex = 10;
-            // 
-            // speakerUnit7
-            // 
-            this.speakerUnit7.IsEnabled = false;
-            this.speakerUnit7.Location = new System.Drawing.Point(6, 277);
-            this.speakerUnit7.Name = "speakerUnit7";
-            this.speakerUnit7.PatternText = "";
-            this.speakerUnit7.Size = new System.Drawing.Size(977, 21);
-            this.speakerUnit7.SpeakText = "";
-            this.speakerUnit7.TabIndex = 11;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1501,7 +1501,7 @@
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1170, 1010);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.60";
+            this.Text = "Open AION DPS 1.0.61";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
