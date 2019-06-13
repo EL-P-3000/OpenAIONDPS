@@ -668,6 +668,8 @@ namespace OpenAIONDPS
             // サモン
             SkillName = "タイフーン サモン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Summon));
+            SkillName = "アイス シート";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Summon));
 
 
             /**************************************************************************************************************************************/
