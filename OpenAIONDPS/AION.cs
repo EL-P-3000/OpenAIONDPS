@@ -91,7 +91,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(自分)
             /// </summary>
-            public const string AttackSkillDotEffectWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。)";
+            public const string AttackSkillDotEffectWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。|が魔法カウンター攻撃状態になりました。)";
 
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(自分)(メロディ)
@@ -101,7 +101,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(他人)
             /// </summary>
-            public const string AttackSkillDotEffectWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。)";
+            public const string AttackSkillDotEffectWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。|が魔法カウンター攻撃状態になりました。)";
 
             /// <summary>
             /// ドットスキル攻撃のエフェクトのパターン(他人)(メロディ)
@@ -661,6 +661,8 @@ namespace OpenAIONDPS
             SkillName = "バーン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Dot));
             SkillName = "ヒート サモン";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Dot));
+            SkillName = "イメーシエート カース";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Dot));
 
             // サモン
