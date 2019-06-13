@@ -71,7 +71,7 @@ namespace OpenAIONDPS
         private SpVoice Speaker = new SpVoice();
         private BlockingCollection<string> SpeakTextQueue = new BlockingCollection<string>();
         private Thread SpeakerThread = null;
-        private bool IsSpeakerThread = true;
+        private bool IsSpeakerThread = false;
         private LinkedList<SpeakerData> SpeakerDataList = new LinkedList<SpeakerData>();
 
         public MainForm()

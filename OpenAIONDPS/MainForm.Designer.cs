@@ -837,7 +837,7 @@
             this.MenuTabControl.Controls.Add(this.MemberDamageListTabPage);
             this.MenuTabControl.Controls.Add(this.SkillDamageListTabPage);
             this.MenuTabControl.Controls.Add(this.SkillHealListTabPage);
-            this.MenuTabControl.Controls.Add(this.SpeakTab);
+            //this.MenuTabControl.Controls.Add(this.SpeakTab);
             this.MenuTabControl.Location = new System.Drawing.Point(4, 94);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
