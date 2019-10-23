@@ -2045,11 +2045,11 @@ namespace OpenAIONDPS
                 {
                     if (String.IsNullOrEmpty(SkillName))
                     {
-                        SkillName = _Skill.Name.Replace(" ", "\\s");
+                        SkillName = _Skill.Name.Replace(" ", "\\s").Replace("(", "\\(").Replace(")", "\\)");
                     }
                     else
                     {
-                        SkillName += "|" + _Skill.Name.Replace(" ", "\\s");
+                        SkillName += "|" + _Skill.Name.Replace(" ", "\\s").Replace("(", "\\(").Replace(")", "\\)");
                     }
                 }
             }

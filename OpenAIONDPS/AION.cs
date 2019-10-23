@@ -7,11 +7,11 @@ namespace OpenAIONDPS
     {
         public class LogPattern
         {
-            private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s\(\)0-9VI]+)";
+            private const string SkillNamePattern                              = @"(?<SkillName>[\p{IsKatakana}：\s\(\)0-9VI向上権能冥龍王の震怒加護祝福]+)";
             private const string SkillNameEffectedPattern                      = @"(?<SkillName2>.+)";
             private const string SkillNameReplacedSkillNamePattern             = @"(?<SkillName>[[[SkillName]]])";
             private const string SkillNameReplacedSkillName2Pattern            = @"(?<SkillName2>[[[SkillName]]])";
-            private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s\(\)]+|攻撃))";
+            private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s\(\)0-9VI向上権能冥龍王の震怒加護祝福]+|攻撃))";
             private const string SkillNameGiganticSoldierPattern               = @"(?<SkillName>スウィープ|マグネティック\sディスチャージ|エネルギー\sディスチャージ)";
             private const string SkillNameCannonPattern                        = @"(?<SkillName>殺龍砲)";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
@@ -600,7 +600,7 @@ namespace OpenAIONDPS
             /* シールド ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // エフェクトダメージ
-            SkillName = "アップセット エフェクト";
+            SkillName = @"アップセット エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shield, AttackSkillType.EffectDamage));
 
 
@@ -613,19 +613,19 @@ namespace OpenAIONDPS
             /* シャドウ ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ドット
-            SkillName = "エクターミネーション";
+            SkillName = @"エクターミネーション";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.Dot));
-            SkillName = "デッドリー ポイズン サドン アタック";
+            SkillName = @"デッドリー ポイズン サドン アタック";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.Dot));
-            SkillName = "バック ダメージ";
+            SkillName = @"バック ダメージ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.Dot));
 
             // エフェクトダメージ
-            SkillName = "エクスプローシブ アプライ エフェクト";
+            SkillName = @"エクスプローシブ アプライ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
-            SkillName = "スティレット コミットメント効果";
+            SkillName = @"スティレット コミットメント効果";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
-            SkillName = "ドラスティック ポイズン エフェクト";
+            SkillName = @"ドラスティック ポイズン エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
 
 
@@ -633,16 +633,16 @@ namespace OpenAIONDPS
             /* ボウ *******************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // エフェクトダメージ
-            SkillName = "ヴェンジフル トラップ エフェクト";
+            SkillName = @"ヴェンジフル トラップ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
-            SkillName = "ダスト トラップ エフェクト";
+            SkillName = @"ダスト トラップ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
-            SkillName = "バンプ トラップ エフェクト";
+            SkillName = @"バンプ トラップ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
             /* 要調査 */
-            SkillName = "バースト トラップ エフェクト";
+            SkillName = @"バースト トラップ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
-            SkillName = "クレアポイアンス トラップ エフェクト";
+            SkillName = @"クレアポイアンス トラップ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
 
 
@@ -650,25 +650,29 @@ namespace OpenAIONDPS
             /* スペル *****************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ディレイダメージ
-            SkillName = "ボルカニック ブローアウト";
+            SkillName = @"ボルカニック ブローアウト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.DelayDamage));
-            SkillName = "ボルカニック ビック イラプション";
+            SkillName = @"ボルカニック ビック イラプション";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.DelayDamage));
-            SkillName = "エンハンスト ボルカニック ビック イラプション";
+            SkillName = @"エンハンスト ボルカニック ビック イラプション";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.DelayDamage));
+            SkillName = @"(向上)エンハンスト ボルカニック ビック イラプション";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.DelayDamage));
 
             // ドット
-            SkillName = "バーン";
+            SkillName = @"バーン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Dot));
-            SkillName = "ヒート サモン";
+            SkillName = @"ヒート サモン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Dot));
-            SkillName = "イメーシエート カース";
+            SkillName = @"(向上)ヒート サモン";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Dot));
+            SkillName = @"イメーシエート カース";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Dot));
 
             // サモン
-            SkillName = "タイフーン サモン";
+            SkillName = @"タイフーン サモン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Summon));
-            SkillName = "アイス シート";
+            SkillName = @"アイス シート";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spell, AttackSkillType.Summon));
 
 
@@ -676,37 +680,37 @@ namespace OpenAIONDPS
             /* スピリット *************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ドット
-            SkillName = "イロージョン";
+            SkillName = @"イロージョン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "ワイドエリア イロージョン";
+            SkillName = @"ワイドエリア イロージョン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "アース チェーン";
+            SkillName = @"アース チェーン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "マジック エクスプロージョン";
+            SkillName = @"マジック エクスプロージョン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "アンガー サイクロン";
+            SkillName = @"アンガー サイクロン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "カース クラウド";
+            SkillName = @"カース クラウド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "サモン：ウインド エネルギー";
+            SkillName = @"サモン：ウインド エネルギー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "サモン：サイクロン エネルギー";
+            SkillName = @"サモン：サイクロン エネルギー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "ヘル ペイン";
+            SkillName = @"ヘル ペイン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
-            SkillName = "マジック バックドラフト VII";
+            SkillName = @"マジック バックドラフト VII";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Dot));
 
             // サモン
-            SkillName = "ファイア スピリット";
+            SkillName = @"ファイア スピリット";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Summon));
-            SkillName = "ウォーター スピリット";
+            SkillName = @"ウォーター スピリット";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Summon));
-            SkillName = "ウインド スピリット";
+            SkillName = @"ウインド スピリット";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Summon));
-            SkillName = "グラウンド スピリット";
+            SkillName = @"グラウンド スピリット";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Summon));
-            SkillName = "タイフーン スピリット";
+            SkillName = @"タイフーン スピリット";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Spirit, AttackSkillType.Summon));
 
 
@@ -714,21 +718,21 @@ namespace OpenAIONDPS
             /* キュア *****************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ドット
-            SkillName = "パニッシュ";
+            SkillName = @"パニッシュ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Cure, AttackSkillType.Dot));
-            SkillName = "アース アンガー";
+            SkillName = @"アース アンガー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Cure, AttackSkillType.Dot));
-            SkillName = "ウイークン ブランド";
+            SkillName = @"ウイークン ブランド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Cure, AttackSkillType.Dot));
-            SkillName = "ペイン サクセッシブ";
+            SkillName = @"ペイン サクセッシブ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Cure, AttackSkillType.Dot));
-            SkillName = "ディストラクション ボイス";
+            SkillName = @"ディストラクション ボイス";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Cure, AttackSkillType.Dot));
 
             // サモン
-            SkillName = "ディシプリン エネルギー";
+            SkillName = @"ディシプリン エネルギー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Cure, AttackSkillType.Summon));
-            SkillName = "ノーブル エネルギー";
+            SkillName = @"ノーブル エネルギー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Cure, AttackSkillType.Summon));
 
 
@@ -736,15 +740,15 @@ namespace OpenAIONDPS
             /* チャント ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ドット
-            SkillName = "マウンテン クラッシュ";
+            SkillName = @"マウンテン クラッシュ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Chant, AttackSkillType.Dot));
 
             // エフェクトダメージ
-            SkillName = "ウインド ブレス";
+            SkillName = @"ウインド ブレス";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Chant, AttackSkillType.EffectDamage));
-            SkillName = "アース プロミス エフェクト";
+            SkillName = @"アース プロミス エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Chant, AttackSkillType.EffectDamage));
-            SkillName = "アース コミットメント エフェクト";
+            SkillName = @"アース コミットメント エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Chant, AttackSkillType.EffectDamage));
 
 
@@ -752,7 +756,7 @@ namespace OpenAIONDPS
             /* バレット ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ドット
-            SkillName = "ホーム ペネトレート";
+            SkillName = @"ホーム ペネトレート";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bullet, AttackSkillType.Dot));
 
 
@@ -760,7 +764,9 @@ namespace OpenAIONDPS
             /* ギア *******************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ディレイダメージ
-            SkillName = "チャージ ファイア";
+            SkillName = @"チャージ ファイア";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Gia, AttackSkillType.DelayDamage));
+            SkillName = @"(向上)チャージ ファイア";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Gia, AttackSkillType.DelayDamage));
 
 
@@ -768,11 +774,11 @@ namespace OpenAIONDPS
             /* メロディ ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ドット
-            SkillName = "ダメージ エコー";
+            SkillName = @"ダメージ エコー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Melody, AttackSkillType.Dot));
-            SkillName = "シャープ フリカティブ";
+            SkillName = @"シャープ フリカティブ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Melody, AttackSkillType.Dot));
-            SkillName = "モスキー ラプソディ";
+            SkillName = @"モスキー ラプソディ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Melody, AttackSkillType.Dot));
 
 
@@ -780,33 +786,41 @@ namespace OpenAIONDPS
             /* ビビッド ***************************************************************************************************************************/
             /**************************************************************************************************************************************/
             // ドット
-            SkillName = "タイム ボム";
+            SkillName = @"タイム ボム";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.Dot));
-            SkillName = "ライトニング スケッチャー";
+            SkillName = @"ライトニング スケッチャー";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.Dot));
 
             // エフェクトダメージ
-            SkillName = "アンガー バインド";
+            SkillName = @"アンガー バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "ラス バインド";
+            SkillName = @"ラス バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "インデュランス バインド";
+            SkillName = @"(向上)ラス バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "タイム バインド";
+            SkillName = @"インデュランス バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "グラビティ バインド";
+            SkillName = @"(向上)インデュランス バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "タイムズ リストレイン";
+            SkillName = @"タイム バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "アニマ バインド";
+            SkillName = @"グラビティ バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "ライトニング バインド";
+            SkillName = @"(向上)グラビティ バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "スケッチャー ボム";
+            SkillName = @"タイムズ リストレイン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "グラビティ スケッチャー";
+            SkillName = @"(向上)タイムズ リストレイン";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
-            SkillName = "ディシプリン バインド";
+            SkillName = @"アニマ バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = @"ライトニング バインド";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = @"スケッチャー ボム";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = @"グラビティ スケッチャー";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
+            SkillName = @"ディシプリン バインド";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Vivid, AttackSkillType.EffectDamage));
 
 
@@ -814,7 +828,7 @@ namespace OpenAIONDPS
             /* エレスギガル ***********************************************************************************************************************/
             /**************************************************************************************************************************************/
             // 破壊されかかった(天族|魔族) 殺龍砲が使用した殺龍砲
-            SkillName = "殺龍砲";
+            SkillName = @"殺龍砲";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.None, AttackSkillType.EffectDamage));
 
             return _AttackSkillList;
