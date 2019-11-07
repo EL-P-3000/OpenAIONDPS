@@ -111,7 +111,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// ドットスキル攻撃のダメージのパターン
             /// </summary>
-            public const string AttackSkillDotDamagePattern = "^" + TargetNamePattern + "(は|が)" + SkillNameReplacedSkillNamePattern + @"(\sエフェクト|)の効果により、" + DamagePattern + "の(出血|)ダメージを受けました。";
+            public const string AttackSkillDotDamagePattern = "^" + TargetNamePattern + "(は|が)" + SkillNameReplacedSkillNamePattern + @"(\sエフェクト|)の効果により、" + DamagePattern + "の(毒|出血|)ダメージを受けました。";
 
             /* バフ消去スキル攻撃 */
 
@@ -147,7 +147,7 @@ namespace OpenAIONDPS
             /// <summary>
             /// エフェクトダメージスキル攻撃のダメージのパターン
             /// </summary>
-            public const string AttackSkillEffectDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedSkillNamePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
+            public const string AttackSkillEffectDamageDamagePattern = "^" + TargetNamePattern + "は" + SkillNameReplacedSkillNamePattern + "の効果により、" + DamagePattern + "の(毒|)ダメージを受けました。";
 
             /* 反射攻撃 */
 
@@ -623,7 +623,7 @@ namespace OpenAIONDPS
             // エフェクトダメージ
             SkillName = @"エクスプローシブ アプライ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
-            SkillName = @"スティレット コミットメント効果";
+            SkillName = @"スティレット コミットメント エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
             SkillName = @"ドラスティック ポイズン エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
