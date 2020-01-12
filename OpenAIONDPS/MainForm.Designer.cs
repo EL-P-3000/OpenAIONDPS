@@ -260,7 +260,7 @@
             this.MemberGroupBox.Controls.Add(this.Member18);
             this.MemberGroupBox.Location = new System.Drawing.Point(6, 6);
             this.MemberGroupBox.Name = "MemberGroupBox";
-            this.MemberGroupBox.Size = new System.Drawing.Size(1125, 590);
+            this.MemberGroupBox.Size = new System.Drawing.Size(1505, 590);
             this.MemberGroupBox.TabIndex = 19;
             this.MemberGroupBox.TabStop = false;
             this.MemberGroupBox.Text = "メンバー";
@@ -323,7 +323,7 @@
             // ClearButton
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(1044, 561);
+            this.ClearButton.Location = new System.Drawing.Point(1424, 561);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 54;
@@ -811,7 +811,7 @@
             // 
             this.ProjectManualLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectManualLinkLabel.AutoSize = true;
-            this.ProjectManualLinkLabel.Location = new System.Drawing.Point(806, 17);
+            this.ProjectManualLinkLabel.Location = new System.Drawing.Point(1186, 17);
             this.ProjectManualLinkLabel.Name = "ProjectManualLinkLabel";
             this.ProjectManualLinkLabel.Size = new System.Drawing.Size(227, 12);
             this.ProjectManualLinkLabel.TabIndex = 0;
@@ -823,7 +823,7 @@
             // 
             this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(740, 17);
+            this.label29.Location = new System.Drawing.Point(1120, 17);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(50, 12);
             this.label29.TabIndex = 0;
@@ -840,7 +840,7 @@
             this.MenuTabControl.Location = new System.Drawing.Point(4, 94);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1146, 875);
+            this.MenuTabControl.Size = new System.Drawing.Size(1526, 875);
             this.MenuTabControl.TabIndex = 11;
             this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
             // 
@@ -852,7 +852,7 @@
             this.MemberDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.MemberDamageListTabPage.Name = "MemberDamageListTabPage";
             this.MemberDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1138, 849);
+            this.MemberDamageListTabPage.Size = new System.Drawing.Size(1518, 849);
             this.MemberDamageListTabPage.TabIndex = 0;
             this.MemberDamageListTabPage.Text = "メンバー別ダメージ一覧";
             this.MemberDamageListTabPage.UseVisualStyleBackColor = true;
@@ -864,7 +864,7 @@
             this.SkillListFlowLayoutPanel.AutoScroll = true;
             this.SkillListFlowLayoutPanel.Location = new System.Drawing.Point(0, 602);
             this.SkillListFlowLayoutPanel.Name = "SkillListFlowLayoutPanel";
-            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(1138, 247);
+            this.SkillListFlowLayoutPanel.Size = new System.Drawing.Size(1518, 247);
             this.SkillListFlowLayoutPanel.TabIndex = 29;
             // 
             // SkillDamageListTabPage
@@ -874,7 +874,7 @@
             this.SkillDamageListTabPage.Location = new System.Drawing.Point(4, 22);
             this.SkillDamageListTabPage.Name = "SkillDamageListTabPage";
             this.SkillDamageListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SkillDamageListTabPage.Size = new System.Drawing.Size(1138, 849);
+            this.SkillDamageListTabPage.Size = new System.Drawing.Size(1438, 849);
             this.SkillDamageListTabPage.TabIndex = 1;
             this.SkillDamageListTabPage.Text = "スキル別ダメージ一覧";
             this.SkillDamageListTabPage.UseVisualStyleBackColor = true;
@@ -920,7 +920,7 @@
             this.AttackSkillListDataGridView.ReadOnly = true;
             this.AttackSkillListDataGridView.RowHeadersVisible = false;
             this.AttackSkillListDataGridView.RowTemplate.Height = 21;
-            this.AttackSkillListDataGridView.Size = new System.Drawing.Size(1036, 922);
+            this.AttackSkillListDataGridView.Size = new System.Drawing.Size(1336, 922);
             this.AttackSkillListDataGridView.TabIndex = 0;
             // 
             // MemberNameColumn
@@ -1005,7 +1005,7 @@
             this.SkillHealListTabPage.Location = new System.Drawing.Point(4, 22);
             this.SkillHealListTabPage.Name = "SkillHealListTabPage";
             this.SkillHealListTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SkillHealListTabPage.Size = new System.Drawing.Size(1138, 849);
+            this.SkillHealListTabPage.Size = new System.Drawing.Size(1438, 849);
             this.SkillHealListTabPage.TabIndex = 2;
             this.SkillHealListTabPage.Text = "スキル別ヒール一覧";
             this.SkillHealListTabPage.UseVisualStyleBackColor = true;
@@ -1045,7 +1045,7 @@
             this.HealSkillListDataGridView.ReadOnly = true;
             this.HealSkillListDataGridView.RowHeadersVisible = false;
             this.HealSkillListDataGridView.RowTemplate.Height = 21;
-            this.HealSkillListDataGridView.Size = new System.Drawing.Size(1036, 922);
+            this.HealSkillListDataGridView.Size = new System.Drawing.Size(1336, 922);
             this.HealSkillListDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -1127,7 +1127,7 @@
             // 
             this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(740, 35);
+            this.label30.Location = new System.Drawing.Point(1120, 35);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(41, 12);
             this.label30.TabIndex = 31;
@@ -1137,7 +1137,7 @@
             // 
             this.ProjectLatestVersionLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectLatestVersionLinkLabel.AutoSize = true;
-            this.ProjectLatestVersionLinkLabel.Location = new System.Drawing.Point(806, 34);
+            this.ProjectLatestVersionLinkLabel.Location = new System.Drawing.Point(1186, 34);
             this.ProjectLatestVersionLinkLabel.Name = "ProjectLatestVersionLinkLabel";
             this.ProjectLatestVersionLinkLabel.Size = new System.Drawing.Size(326, 12);
             this.ProjectLatestVersionLinkLabel.TabIndex = 32;
@@ -1149,7 +1149,7 @@
             // 
             this.ProjectTopLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectTopLinkLabel.AutoSize = true;
-            this.ProjectTopLinkLabel.Location = new System.Drawing.Point(806, 52);
+            this.ProjectTopLinkLabel.Location = new System.Drawing.Point(1186, 52);
             this.ProjectTopLinkLabel.Name = "ProjectTopLinkLabel";
             this.ProjectTopLinkLabel.Size = new System.Drawing.Size(242, 12);
             this.ProjectTopLinkLabel.TabIndex = 0;
@@ -1161,7 +1161,7 @@
             // 
             this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(740, 52);
+            this.label28.Location = new System.Drawing.Point(1120, 52);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(60, 12);
             this.label28.TabIndex = 0;
@@ -1204,7 +1204,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member01.Location = new System.Drawing.Point(6, 58);
             this.Member01.Name = "Member01";
-            this.Member01.Size = new System.Drawing.Size(1109, 26);
+            this.Member01.Size = new System.Drawing.Size(1489, 26);
             this.Member01.TabIndex = 13;
             // 
             // Member02
@@ -1213,7 +1213,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member02.Location = new System.Drawing.Point(6, 86);
             this.Member02.Name = "Member02";
-            this.Member02.Size = new System.Drawing.Size(1109, 26);
+            this.Member02.Size = new System.Drawing.Size(1489, 26);
             this.Member02.TabIndex = 14;
             // 
             // Member03
@@ -1222,7 +1222,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member03.Location = new System.Drawing.Point(6, 114);
             this.Member03.Name = "Member03";
-            this.Member03.Size = new System.Drawing.Size(1109, 26);
+            this.Member03.Size = new System.Drawing.Size(1489, 26);
             this.Member03.TabIndex = 15;
             // 
             // Member04
@@ -1231,7 +1231,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member04.Location = new System.Drawing.Point(6, 142);
             this.Member04.Name = "Member04";
-            this.Member04.Size = new System.Drawing.Size(1109, 26);
+            this.Member04.Size = new System.Drawing.Size(1489, 26);
             this.Member04.TabIndex = 16;
             // 
             // Member05
@@ -1240,7 +1240,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member05.Location = new System.Drawing.Point(6, 170);
             this.Member05.Name = "Member05";
-            this.Member05.Size = new System.Drawing.Size(1109, 26);
+            this.Member05.Size = new System.Drawing.Size(1489, 26);
             this.Member05.TabIndex = 17;
             // 
             // Member06
@@ -1249,7 +1249,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member06.Location = new System.Drawing.Point(6, 198);
             this.Member06.Name = "Member06";
-            this.Member06.Size = new System.Drawing.Size(1109, 26);
+            this.Member06.Size = new System.Drawing.Size(1489, 26);
             this.Member06.TabIndex = 18;
             // 
             // Member07
@@ -1258,7 +1258,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member07.Location = new System.Drawing.Point(6, 226);
             this.Member07.Name = "Member07";
-            this.Member07.Size = new System.Drawing.Size(1109, 26);
+            this.Member07.Size = new System.Drawing.Size(1489, 26);
             this.Member07.TabIndex = 19;
             // 
             // Member08
@@ -1267,7 +1267,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member08.Location = new System.Drawing.Point(6, 254);
             this.Member08.Name = "Member08";
-            this.Member08.Size = new System.Drawing.Size(1109, 26);
+            this.Member08.Size = new System.Drawing.Size(1489, 26);
             this.Member08.TabIndex = 20;
             // 
             // Member09
@@ -1276,7 +1276,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member09.Location = new System.Drawing.Point(6, 282);
             this.Member09.Name = "Member09";
-            this.Member09.Size = new System.Drawing.Size(1109, 26);
+            this.Member09.Size = new System.Drawing.Size(1489, 26);
             this.Member09.TabIndex = 21;
             // 
             // Member10
@@ -1285,7 +1285,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member10.Location = new System.Drawing.Point(6, 310);
             this.Member10.Name = "Member10";
-            this.Member10.Size = new System.Drawing.Size(1109, 26);
+            this.Member10.Size = new System.Drawing.Size(1489, 26);
             this.Member10.TabIndex = 22;
             // 
             // Member11
@@ -1294,7 +1294,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member11.Location = new System.Drawing.Point(6, 338);
             this.Member11.Name = "Member11";
-            this.Member11.Size = new System.Drawing.Size(1109, 26);
+            this.Member11.Size = new System.Drawing.Size(1489, 26);
             this.Member11.TabIndex = 23;
             // 
             // Member12
@@ -1303,7 +1303,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member12.Location = new System.Drawing.Point(6, 366);
             this.Member12.Name = "Member12";
-            this.Member12.Size = new System.Drawing.Size(1109, 26);
+            this.Member12.Size = new System.Drawing.Size(1489, 26);
             this.Member12.TabIndex = 24;
             // 
             // Member13
@@ -1312,7 +1312,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member13.Location = new System.Drawing.Point(6, 394);
             this.Member13.Name = "Member13";
-            this.Member13.Size = new System.Drawing.Size(1109, 26);
+            this.Member13.Size = new System.Drawing.Size(1489, 26);
             this.Member13.TabIndex = 57;
             // 
             // Member14
@@ -1321,7 +1321,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member14.Location = new System.Drawing.Point(6, 422);
             this.Member14.Name = "Member14";
-            this.Member14.Size = new System.Drawing.Size(1109, 26);
+            this.Member14.Size = new System.Drawing.Size(1489, 26);
             this.Member14.TabIndex = 58;
             // 
             // Member15
@@ -1330,7 +1330,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member15.Location = new System.Drawing.Point(6, 450);
             this.Member15.Name = "Member15";
-            this.Member15.Size = new System.Drawing.Size(1109, 26);
+            this.Member15.Size = new System.Drawing.Size(1489, 26);
             this.Member15.TabIndex = 59;
             // 
             // Member16
@@ -1339,7 +1339,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member16.Location = new System.Drawing.Point(6, 478);
             this.Member16.Name = "Member16";
-            this.Member16.Size = new System.Drawing.Size(1109, 26);
+            this.Member16.Size = new System.Drawing.Size(1489, 26);
             this.Member16.TabIndex = 60;
             // 
             // Member17
@@ -1348,7 +1348,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member17.Location = new System.Drawing.Point(6, 506);
             this.Member17.Name = "Member17";
-            this.Member17.Size = new System.Drawing.Size(1109, 26);
+            this.Member17.Size = new System.Drawing.Size(1489, 26);
             this.Member17.TabIndex = 61;
             // 
             // Member18
@@ -1357,7 +1357,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Member18.Location = new System.Drawing.Point(6, 534);
             this.Member18.Name = "Member18";
-            this.Member18.Size = new System.Drawing.Size(1109, 26);
+            this.Member18.Size = new System.Drawing.Size(1489, 26);
             this.Member18.TabIndex = 62;
             // 
             // speakerUnit7
@@ -1467,7 +1467,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 971);
+            this.ClientSize = new System.Drawing.Size(1534, 971);
             this.Controls.Add(this.DPSHighLightCheckBox);
             this.Controls.Add(this.DeleteLogWhenStartingCheckBox);
             this.Controls.Add(this.StartCalcConditionComboBox);
@@ -1498,7 +1498,7 @@
             this.Controls.Add(this.CalculationStopButton);
             this.Controls.Add(this.CalculationStartButton);
             this.KeyPreview = true;
-            this.MaximumSize = new System.Drawing.Size(1170, 1010);
+            this.MaximumSize = new System.Drawing.Size(1550, 1010);
             this.Name = "MainForm";
             this.Text = "Open AION DPS 1.0.66";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
