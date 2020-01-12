@@ -1617,6 +1617,25 @@ namespace OpenAIONDPS
                                         ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
                                         ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
 
+                                        // ターゲット存在のチェック
+                                        if (AttackSkillDebuffTargetList.ContainsKey(ChatLogActionData.TargetName))
+                                        {
+                                            // デバフ存在のチェック
+                                            Dictionary<string, ActionData> DebuffSkillList = AttackSkillDebuffTargetList[ChatLogActionData.TargetName];
+                                            if (DebuffSkillList.ContainsKey(ChatLogActionData.SkillName))
+                                            {
+                                                DebuffSkillList.Remove(ChatLogActionData.SkillName);
+                                            }
+
+                                            DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
+                                        }
+                                        else
+                                        {
+                                            Dictionary<string, ActionData> DebuffSkillList = new Dictionary<string, ActionData>();
+                                            DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
+                                            AttackSkillDebuffTargetList.Add(ChatLogActionData.TargetName, DebuffSkillList);
+                                        }
+
                                         this.Invoke(UpdateDamageDelegate, ChatLogActionData);
 
                                         continue;
