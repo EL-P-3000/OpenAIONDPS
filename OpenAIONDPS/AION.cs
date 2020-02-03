@@ -94,7 +94,7 @@ namespace OpenAIONDPS
             public const string AttackSkillDotEffectWithoutSourceNamePattern = "^" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(にダメージを与え続けました。|が出血状態になりました。|が魔法カウンター攻撃状態になりました。|からHPを吸収しはじめます。)";
 
             /// <summary>
-            /// ドットスキル攻撃のエフェクトのパターン(自分)(メロディ)
+            /// ドットスキル攻撃のエフェクトのパターン(自分)(メロディ/ギア)
             /// </summary>
             public const string AttackSkillDotEffectMelodyWithoutSourceNamePattern = "^" + SkillNamePattern + "を使い、" + TargetNamePattern + "が" + SkillNameEffectedPattern + "効果を受けました。";
 
@@ -104,7 +104,7 @@ namespace OpenAIONDPS
             public const string AttackSkillDotEffectWithSourceNamePattern = "^" + SourceNamePattern + "が使用した" + SkillNamePattern + "の効果により、" + TargetNamePattern + "(はダメージを受け続けました。|は出血状態になりました。|が魔法カウンター攻撃状態になりました。|からHPを吸収しはじめます。)";
 
             /// <summary>
-            /// ドットスキル攻撃のエフェクトのパターン(他人)(メロディ)
+            /// ドットスキル攻撃のエフェクトのパターン(他人)(メロディ/ギア)
             /// </summary>
             public const string AttackSkillDotEffectMelodyWithSourceNamePattern = "^" + SourceNamePattern + "は" + SkillNamePattern + "の効果により、" + TargetNamePattern + "に" + SkillNameEffectedPattern + "効果を与えました。";
 

@@ -1524,6 +1524,7 @@ namespace OpenAIONDPS
                                 else
                                 {
                                     // ドットスキルの成功
+                                    // ギアのディレイダメージスキルを含む
                                     Match AttackSkillDotEffectWithSourceNameMatch = AttackSkillDotEffectWithSourceNameRegex.Match(LogTextWithoutTime);
                                     Match AttackSkillDotEffectMelodyWithSourceNameMatch = AttackSkillDotEffectMelodyWithSourceNameRegex.Match(LogTextWithoutTime);
                                     Match AttackSkillDotEffectWithoutSourceNameMatch = AttackSkillDotEffectWithoutSourceNameRegex.Match(LogTextWithoutTime);
@@ -1531,6 +1532,8 @@ namespace OpenAIONDPS
                                     if (AttackSkillDotEffectWithSourceNameMatch.Success || AttackSkillDotEffectMelodyWithSourceNameMatch.Success || AttackSkillDotEffectWithoutSourceNameMatch.Success || AttackSkillDotEffectMelodyWithoutSourceNameMatch.Success)
                                     {
                                         Match _Match = null;
+                                        string SkillName2 = "";
+                                        bool IsDelaySkill = false;
                                         if (AttackSkillDotEffectWithSourceNameMatch.Success)
                                         {
                                             _Match = AttackSkillDotEffectWithSourceNameMatch;
@@ -1540,6 +1543,7 @@ namespace OpenAIONDPS
                                         {
                                             _Match = AttackSkillDotEffectMelodyWithSourceNameMatch;
                                             ChatLogActionData.SourceName = _Match.Groups["SourceName"].Value;
+                                            SkillName2 = _Match.Groups["SkillName2"].Value;
                                         }
                                         else if (AttackSkillDotEffectWithoutSourceNameMatch.Success)
                                         {
@@ -1550,28 +1554,51 @@ namespace OpenAIONDPS
                                         {
                                             _Match = AttackSkillDotEffectMelodyWithoutSourceNameMatch;
                                             ChatLogActionData.SourceName = this.OwnName;
+                                            SkillName2 = _Match.Groups["SkillName2"].Value;
                                         }
 
                                         ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
                                         ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
 
-                                        // ターゲット存在のチェック
-                                        if (AttackSkillDebuffTargetList.ContainsKey(ChatLogActionData.TargetName))
+                                        if (SkillName2.Equals("ディレイ"))
                                         {
-                                            // デバフ存在のチェック
-                                            Dictionary<string, ActionData> DebuffSkillList = AttackSkillDebuffTargetList[ChatLogActionData.TargetName];
-                                            if (DebuffSkillList.ContainsKey(ChatLogActionData.SkillName))
+                                            if (!AttackSkillDelayDamageTargetList.ContainsKey(ChatLogActionData.TargetName))
                                             {
-                                                DebuffSkillList.Remove(ChatLogActionData.SkillName);
+                                                Dictionary<string, LinkedList<ActionData>> _SkillActionDataList = new Dictionary<string, LinkedList<ActionData>>();
+                                                AttackSkillDelayDamageTargetList.Add(ChatLogActionData.TargetName, _SkillActionDataList);
                                             }
 
-                                            DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
+                                            Dictionary<string, LinkedList<ActionData>> SkillActionDataList = AttackSkillDelayDamageTargetList[ChatLogActionData.TargetName];
+
+                                            if (!SkillActionDataList.ContainsKey(ChatLogActionData.SkillName))
+                                            {
+                                                LinkedList<ActionData> TempSkillActionList = new LinkedList<ActionData>();
+                                                SkillActionDataList.Add(ChatLogActionData.SkillName, TempSkillActionList);
+                                            }
+
+                                            LinkedList<ActionData> ActionList = SkillActionDataList[ChatLogActionData.SkillName];
+                                            ActionList.AddLast(ChatLogActionData);
                                         }
                                         else
                                         {
-                                            Dictionary<string, ActionData> DebuffSkillList = new Dictionary<string, ActionData>();
-                                            DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
-                                            AttackSkillDebuffTargetList.Add(ChatLogActionData.TargetName, DebuffSkillList);
+                                            // ターゲット存在のチェック
+                                            if (AttackSkillDebuffTargetList.ContainsKey(ChatLogActionData.TargetName))
+                                            {
+                                                // デバフ存在のチェック
+                                                Dictionary<string, ActionData> DebuffSkillList = AttackSkillDebuffTargetList[ChatLogActionData.TargetName];
+                                                if (DebuffSkillList.ContainsKey(ChatLogActionData.SkillName))
+                                                {
+                                                    DebuffSkillList.Remove(ChatLogActionData.SkillName);
+                                                }
+
+                                                DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
+                                            }
+                                            else
+                                            {
+                                                Dictionary<string, ActionData> DebuffSkillList = new Dictionary<string, ActionData>();
+                                                DebuffSkillList.Add(ChatLogActionData.SkillName, ChatLogActionData);
+                                                AttackSkillDebuffTargetList.Add(ChatLogActionData.TargetName, DebuffSkillList);
+                                            }
                                         }
 
                                         continue;
@@ -1672,7 +1699,7 @@ namespace OpenAIONDPS
 
                                                 foreach (ActionData ChatLogSkillDelayActionData in ActionDataList)
                                                 {
-                                                    if (((ChatLogActionData.Time.Ticks - ChatLogSkillDelayActionData.Time.Ticks) / 10000000) < 10)
+                                                    if (((ChatLogActionData.Time.Ticks - ChatLogSkillDelayActionData.Time.Ticks) / 10000000) < 80)
                                                     {
                                                         ChatLogActionData.SourceName = ChatLogSkillDelayActionData.SourceName;
                                                         ActionDataList.Remove(ChatLogSkillDelayActionData);
