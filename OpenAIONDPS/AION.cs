@@ -631,7 +631,7 @@ namespace OpenAIONDPS
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
             SkillName = @"スティレット コミットメント エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
-            SkillName = @"(向上)スティレット コミットメント エフェクト";
+            SkillName = @"(向上)スティレット コミットメント";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
             SkillName = @"ドラスティック ポイズン エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Shadow, AttackSkillType.EffectDamage));
@@ -648,6 +648,8 @@ namespace OpenAIONDPS
             SkillName = @"ダスト トラップ エフェクト";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
             SkillName = @"バンプ トラップ エフェクト";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
+            SkillName = @"(向上)バンプ トラップ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.Bow, AttackSkillType.EffectDamage));
             /* 要調査 */
             SkillName = @"バースト トラップ エフェクト";
