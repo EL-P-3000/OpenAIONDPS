@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -671,6 +672,11 @@ namespace OpenAIONDPS
         /// 殺龍砲
         /// </summary>
         private static readonly Regex AttackCannonRegex = new Regex(AION.LogPattern.AttackCannonPattern, RegexOptions.Compiled);
+
+        /// <summary>
+        /// ルーン 攻撃：追加ダメージ
+        /// </summary>
+        private static readonly Regex AttackRuneAddDamageRegex = new Regex(AION.LogPattern.AttackRuneAddDamagePattern, RegexOptions.Compiled);
 
         /// <summary>
         /// 回避/抵抗した攻撃のパターン(自分)リスト
@@ -1523,6 +1529,20 @@ namespace OpenAIONDPS
                                 }
                                 else
                                 {
+                                    // ルーン 攻撃：追加ダメージ
+                                    Match AttackRuneAddDamageRegexMatch = AttackRuneAddDamageRegex.Match(LogTextWithoutTime);
+                                    if (AttackRuneAddDamageRegexMatch.Success)
+                                    {
+                                        ChatLogActionData.SourceName = AttackRuneAddDamageRegexMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = AttackRuneAddDamageRegexMatch.Groups["TargetName"].Value;
+                                        ChatLogActionData.SkillName = AttackRuneAddDamageRegexMatch.Groups["SkillName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(AttackRuneAddDamageRegexMatch.Groups["Damage"].Value.Replace(",", ""));
+
+                                        this.Invoke(UpdateDamageDelegate, ChatLogActionData);
+
+                                        continue;
+                                    }
+
                                     // ドットスキルの成功
                                     // ギアのディレイダメージスキルを含む
                                     Match AttackSkillDotEffectWithSourceNameMatch = AttackSkillDotEffectWithSourceNameRegex.Match(LogTextWithoutTime);
@@ -2164,10 +2184,19 @@ namespace OpenAIONDPS
                     }
                     else
                     {
-                        // スキル一覧のダメージを更新
-                        this.UpdateTotalDamage(ChatLogActionData.Damage);
-                        this.AttackSkillUnitList[ChatLogActionData.SkillName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
-                        UpdateTotalDamageFlag = true;
+                        if (this.MemberNameMemberUnitList.Count == 1 && ChatLogActionData.SkillName.Equals("攻撃：追加ダメージ"))
+                        {
+                            this.UpdateTotalDamage(ChatLogActionData.Damage);
+                            this.MemberNameMemberUnitList.First().Value.AddDamage(ChatLogActionData);
+                            UpdateTotalDamageFlag = true;
+                        }
+                        else
+                        {
+                            // スキル一覧のダメージを更新
+                            this.UpdateTotalDamage(ChatLogActionData.Damage);
+                            this.AttackSkillUnitList[ChatLogActionData.SkillName].AddDamage(ChatLogActionData.Damage, ChatLogActionData.IsCriticalHit);
+                            UpdateTotalDamageFlag = true;
+                        }
                     }
                 }
                 // その他のダメージ

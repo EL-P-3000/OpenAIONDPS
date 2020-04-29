@@ -14,6 +14,7 @@ namespace OpenAIONDPS
             private const string SkillNameOrSimpleAttackPattern                = @"(?<SkillName>([\p{IsKatakana}：\s\(\)0-9VI向上権能冥龍王の震怒加護祝福衰弱苦痛脱力]+|攻撃))";
             private const string SkillNameGiganticSoldierPattern               = @"(?<SkillName>スウィープ|マグネティック\sディスチャージ|エネルギー\sディスチャージ)";
             private const string SkillNameCannonPattern                        = @"(?<SkillName>殺龍砲)";
+            private const string SkillNameRuneAddDamagePattern                 = @"(?<SkillName>攻撃：追加ダメージ)";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
             private const string TargetNamePattern                             = @"(?<TargetName>[^、]+)";
@@ -182,6 +183,11 @@ namespace OpenAIONDPS
             ///  殺龍砲
             /// </summary>
             public const string AttackCannonPattern = @"^破壊されかかった(天族|魔族)\s殺龍砲が使用した" + SkillNameCannonPattern + "の効果により、" + TargetNamePattern + "に" + DamagePattern + "のダメージを与えました。";
+
+            /// <summary>
+            /// ルーン 攻撃：追加ダメージ
+            /// </summary>
+            public const string AttackRuneAddDamagePattern = "^" + TargetNamePattern + "は" + SkillNameRuneAddDamagePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
 
             /* 回避/抵抗 */
 
@@ -880,6 +886,15 @@ namespace OpenAIONDPS
             // 破壊されかかった(天族|魔族) 殺龍砲が使用した殺龍砲
             SkillName = @"殺龍砲";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.None, AttackSkillType.EffectDamage));
+
+
+            /**************************************************************************************************************************************/
+            /* ルーン *****************************************************************************************************************************/
+            /**************************************************************************************************************************************/
+            // 攻撃：追加ダメージ
+            SkillName = @"攻撃：追加ダメージ";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.None, AttackSkillType.EffectDamage));
+
 
             return _AttackSkillList;
         }
