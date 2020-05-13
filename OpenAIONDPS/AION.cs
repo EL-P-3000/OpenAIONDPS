@@ -15,6 +15,7 @@ namespace OpenAIONDPS
             private const string SkillNameGiganticSoldierPattern               = @"(?<SkillName>スウィープ|マグネティック\sディスチャージ|エネルギー\sディスチャージ)";
             private const string SkillNameCannonPattern                        = @"(?<SkillName>殺龍砲)";
             private const string SkillNameRuneAddDamagePattern                 = @"(?<SkillName>攻撃：追加ダメージ)";
+            private const string SkillNameRuneAddAreaDamagePattern             = @"(?<SkillName>攻撃：範囲ダメージ)";
             private const string SourceNamePattern                             = @"(?<SourceName>[^、]+)";
             private const string SourceNameReplacedMemberNamePattern           = @"(?<SourceName>[[[MemberName]]])";
             private const string TargetNamePattern                             = @"(?<TargetName>[^、]+)";
@@ -188,6 +189,11 @@ namespace OpenAIONDPS
             /// ルーン 攻撃：追加ダメージ
             /// </summary>
             public const string AttackRuneAddDamagePattern = "^" + TargetNamePattern + "は" + SkillNameRuneAddDamagePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
+
+            /// <summary>
+            /// ルーン 攻撃：範囲ダメージ
+            /// </summary>
+            public const string AttackRuneAddAreaDamagePattern = "^" + TargetNamePattern + "は" + SkillNameRuneAddAreaDamagePattern + "の効果により、" + DamagePattern + "のダメージを受けました。";
 
             /* 回避/抵抗 */
 
@@ -893,6 +899,10 @@ namespace OpenAIONDPS
             /**************************************************************************************************************************************/
             // 攻撃：追加ダメージ
             SkillName = @"攻撃：追加ダメージ";
+            _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.None, AttackSkillType.EffectDamage));
+
+            // 攻撃：追加ダメージ
+            SkillName = @"攻撃：範囲ダメージ";
             _AttackSkillList.Add(SkillName, new AttackSkill(SkillName, JobType.None, AttackSkillType.EffectDamage));
 
 

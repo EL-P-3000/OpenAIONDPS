@@ -679,6 +679,11 @@ namespace OpenAIONDPS
         private static readonly Regex AttackRuneAddDamageRegex = new Regex(AION.LogPattern.AttackRuneAddDamagePattern, RegexOptions.Compiled);
 
         /// <summary>
+        /// ルーン 攻撃：範囲ダメージ
+        /// </summary>
+        private static readonly Regex AttackRuneAddAreaDamageRegex = new Regex(AION.LogPattern.AttackRuneAddAreaDamagePattern, RegexOptions.Compiled);
+
+        /// <summary>
         /// 回避/抵抗した攻撃のパターン(自分)リスト
         /// </summary>
         private static readonly Regex ChatLogEvadeResistRegex = new Regex(AION.LogPattern.EvasionResistanceWithoutSourceNamePattern, RegexOptions.Compiled);
@@ -1529,14 +1534,26 @@ namespace OpenAIONDPS
                                 }
                                 else
                                 {
-                                    // ルーン 攻撃：追加ダメージ
-                                    Match AttackRuneAddDamageRegexMatch = AttackRuneAddDamageRegex.Match(LogTextWithoutTime);
-                                    if (AttackRuneAddDamageRegexMatch.Success)
+                                    // ルーン 攻撃：追加ダメージ / 攻撃：範囲ダメージ
+                                    Match AttackRuneAddDamageMatch = AttackRuneAddDamageRegex.Match(LogTextWithoutTime);
+                                    Match AttackRuneAddAreaDamageMatch = AttackRuneAddAreaDamageRegex.Match(LogTextWithoutTime);
+                                    if (AttackRuneAddDamageMatch.Success || AttackRuneAddAreaDamageMatch.Success)
                                     {
-                                        ChatLogActionData.SourceName = AttackRuneAddDamageRegexMatch.Groups["SkillName"].Value;
-                                        ChatLogActionData.TargetName = AttackRuneAddDamageRegexMatch.Groups["TargetName"].Value;
-                                        ChatLogActionData.SkillName = AttackRuneAddDamageRegexMatch.Groups["SkillName"].Value;
-                                        ChatLogActionData.Damage = long.Parse(AttackRuneAddDamageRegexMatch.Groups["Damage"].Value.Replace(",", ""));
+                                        Match _Match = null;
+
+                                        if (AttackRuneAddDamageMatch.Success)
+                                        {
+                                            _Match = AttackRuneAddDamageMatch;
+                                        }
+                                        else if (AttackRuneAddAreaDamageMatch.Success)
+                                        {
+                                            _Match = AttackRuneAddAreaDamageMatch;
+                                        }
+
+                                        ChatLogActionData.SourceName = _Match.Groups["SkillName"].Value;
+                                        ChatLogActionData.TargetName = _Match.Groups["TargetName"].Value;
+                                        ChatLogActionData.SkillName = _Match.Groups["SkillName"].Value;
+                                        ChatLogActionData.Damage = long.Parse(_Match.Groups["Damage"].Value.Replace(",", ""));
 
                                         this.Invoke(UpdateDamageDelegate, ChatLogActionData);
 
@@ -2185,6 +2202,12 @@ namespace OpenAIONDPS
                     else
                     {
                         if (this.MemberNameMemberUnitList.Count == 1 && ChatLogActionData.SkillName.Equals("攻撃：追加ダメージ"))
+                        {
+                            this.UpdateTotalDamage(ChatLogActionData.Damage);
+                            this.MemberNameMemberUnitList.First().Value.AddDamage(ChatLogActionData);
+                            UpdateTotalDamageFlag = true;
+                        }
+                        else if (this.MemberNameMemberUnitList.Count == 1 && ChatLogActionData.SkillName.Equals("攻撃：範囲ダメージ"))
                         {
                             this.UpdateTotalDamage(ChatLogActionData.Damage);
                             this.MemberNameMemberUnitList.First().Value.AddDamage(ChatLogActionData);
