@@ -1508,7 +1508,7 @@
             this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1550, 1010);
             this.Name = "MainForm";
-            this.Text = "Open AION DPS 1.0.71";
+            this.Text = "Open AION DPS 1.0.72";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
